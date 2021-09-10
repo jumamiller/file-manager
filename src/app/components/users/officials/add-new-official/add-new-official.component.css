@@ -14,7 +14,7 @@ label{
   color: #000000;
 }
 input,select{
-  font-family: Poppins;
+  font-family: 'Poppins',sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 18px;

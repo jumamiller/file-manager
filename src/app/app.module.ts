@@ -14,6 +14,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MaterialModule} from "./material-module";
 import {ToastrModule} from "ngx-toastr";
 import { MessagesComponent } from './components/messages/messages.component';
+import { NewsListComponent } from './components/news/news-list/news-list.component';
+import { SingleNewsDetailsComponent } from './components/news/single-news-details/single-news-details.component';
+import { AddNewsComponent } from './components/news/add-news/add-news.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,10 @@ import { MessagesComponent } from './components/messages/messages.component';
     RegisterComponent,
     AuthLayoutComponent,
     DashboardComponent,
-    MessagesComponent
+    MessagesComponent,
+    NewsListComponent,
+    SingleNewsDetailsComponent,
+    AddNewsComponent
   ],
   imports: [
     BrowserModule,

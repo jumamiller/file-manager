@@ -60,6 +60,18 @@ const routes: Routes = [
   {
     path:'manage-users',
     loadChildren: () => import('./components/users/users.module').then(mod=>mod.UsersModule)
+  },
+  {
+    path:'ministry',
+    loadChildren: () => import('./components/ministry/ministry.module').then(mod=>mod.MinistryModule),
+  },
+  {
+    path:'news',
+    loadChildren: () => import('./components/news/news.module').then(mod=>mod.NewsModule),
+  },
+  {
+    path:'projects',
+    loadChildren: () => import('./components/project/project.module').then(mod=>mod.ProjectModule),
   }
 ];
 
