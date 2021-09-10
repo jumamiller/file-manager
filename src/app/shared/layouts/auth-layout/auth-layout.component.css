@@ -1,0 +1,17 @@
+.layout-bg{
+  background-image: url("../../../../assets/images/background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  min-height: 100vh;
+}
+
+footer{
+  color: #004598;
+}
+.footer-copyright{
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  color: #004598;
+}

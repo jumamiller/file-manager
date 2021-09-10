@@ -1,0 +1,117 @@
+<div class="content mat-elevation-z8">
+  <div class="row appointment-heading">
+    <div class="col-md-9 appointment-cols">
+      <h5 class="title">My Appointments</h5>
+    </div>
+    <div class="col-md-3 appointment-cols">
+      <a class="add-appointment" [routerLink]="['/']"><mat-icon>queue</mat-icon> New Appointment</a>
+    </div>
+  </div>
+
+  <div class="appointment-table">
+    <div class="row">
+      <div class="col-md-9"><h4 class="appointment-list">Showing All Appointments</h4></div>
+      <div class="col-md-3">
+        <label>Show Date:</label>
+        <select class="select-date">
+          <option value="">dd/mm/yyyy</option>
+        </select>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover table-striped">
+        <thead class="thead-bg">
+        <tr>
+          <th scope="col">S/N</th>
+          <th scope="col">Scheduled Date</th>
+          <th scope="col">Invitee</th>
+          <th scope="col">Time</th>
+          <th scope="col" class="text-center">Status</th>
+          <th scope="col" class="text-center">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td class="">1</td>
+          <td class="">Jan. 7th, 2020.</td>
+          <td class="">Dr Alisu Dansuki</td>
+          <td class="">11:30 AM</td>
+          <td class="text-center text-success"><span class="">Pending</span></td>
+          <td class="text-center">
+            <button mat-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
+            <mat-menu #menu="matMenu">
+              <a [routerLink]="['/appointments/my-appointments/details']" mat-menu-item>View Entry</a>
+              <a [routerLink]="['/appointments/my-appointments/edit']" mat-menu-item>Edit Entry</a>
+              <a mat-menu-item class="text-danger">Delete Entry</a>
+            </mat-menu>
+          </td>
+        </tr>
+        <tr>
+          <td class="">2</td>
+          <td class="">Jan. 7th, 2020.</td>
+          <td class="">Dr Alisu Dansuki</td>
+          <td class="">11:30 AM</td>
+          <td class="text-center text-warning"><span class="">Closed</span></td>
+          <td class="text-center">
+            <button mat-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
+            <mat-menu #menu="matMenu">
+              <a [routerLink]="['/appointments/my-appointments/details']" mat-menu-item>View Entry</a>
+              <a [routerLink]="['/appointments/my-appointments/edit']" mat-menu-item>Edit Entry</a>
+              <a mat-menu-item class="text-danger">Delete Entry</a>
+            </mat-menu>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="">3</td>
+          <td class="">Jan. 7th, 2020.</td>
+          <td class="">Dr Alisu Dansuki</td>
+          <td class="">11:30 AM</td>
+          <td class="text-center text-primary"><span class="">Approved</span></td>
+          <td class="text-center">
+            <button mat-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
+            <mat-menu #menu="matMenu">
+              <a [routerLink]="['/appointments/my-appointments/details']" mat-menu-item>View Entry</a>
+              <a [routerLink]="['/appointments/my-appointments/edit']" mat-menu-item>Edit Entry</a>
+              <a mat-menu-item class="text-danger">Delete Entry</a>
+            </mat-menu>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="">4</td>
+          <td class="">Jan. 7th, 2020.</td>
+          <td class="">Dr Alisu Dansuki</td>
+          <td class="">11:30 AM</td>
+          <td class="text-center text-danger"><span class="">Past</span></td>
+          <td class="text-center">
+            <button mat-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
+            <mat-menu #menu="matMenu">
+              <a [routerLink]="['/appointments/my-appointments/details']" mat-menu-item>View Entry</a>
+              <a [routerLink]="['/appointments/my-appointments/edit']" mat-menu-item>Edit Entry</a>
+              <a mat-menu-item class="text-danger">Delete Entry</a>
+            </mat-menu>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="">5</td>
+          <td class="">Jan. 7th, 2020.</td>
+          <td class="">Dr Alisu Dansuki</td>
+          <td class="">11:30 AM</td>
+          <td class="text-center text-success"><span class="">Pending</span></td>
+          <td class="text-center">
+            <button mat-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
+            <mat-menu #menu="matMenu">
+              <a [routerLink]="['/appointments/my-appointments/details']" mat-menu-item>View Entry</a>
+              <a [routerLink]="['/appointments/my-appointments/edit']" mat-menu-item>Edit Entry</a>
+              <a mat-menu-item class="text-danger">Delete Entry</a>
+            </mat-menu>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <h5 class="table-totals">Showing 1-15 of 256 Entries</h5>
+  </div>
+</div>

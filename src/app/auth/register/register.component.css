@@ -1,0 +1,70 @@
+mat-form-field.mat-form-field {
+  font-size: 16px;
+}
+mat-card-title{
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: bolder;
+  font-size: 40px;
+  line-height: 60px;
+  text-align: center;
+
+  color: #FFFFFF;
+}
+mat-form-field {
+  width: 100%;
+  color: #FFFFFF;
+}
+mat-card{
+  width: 525px;
+  height: auto;
+  left: auto;
+  top: auto;
+  margin: 0 auto;
+  background: #C60C5A;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.6);
+  border-radius: 5px;
+}
+mat-label{
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 36px;
+  color: #FFFFFF;
+}
+mat-form-field input{
+  padding: 5px;
+  color: #FFFFFF;
+}
+mat-icon{
+  color:#FFFFFF;
+}
+mat-checkbox{
+  color: #FFFFFF;
+}
+.register-button{
+  width: 194px;
+  height: 45px;
+  background: #004598;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+  border-radius: 3px;
+  font-family: 'Poppins',sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+
+  color: #FFFFFF;
+}
+.login-button{
+  font-family: 'Poppins',sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 27px;
+  text-align: right;
+  text-decoration-line: underline;
+  color: #FFFFFF;
+}

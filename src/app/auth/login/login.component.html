@@ -1,0 +1,38 @@
+<div class="citizen-registration">
+  <div class="container">
+    <mat-card class="mt-5 mb-5">
+      <mat-card-title class="text-center">Citizen</mat-card-title>
+      <mat-card-header>
+        <p class="text-center text-white">Sign in here for your access to the
+          Kogi State Open Governance and Accountability System</p>
+      </mat-card-header>
+      <mat-card-content class="justify-content-center">
+        <form [formGroup]="citizenLoginForm" (ngSubmit)="onCitizenLogin()" novalidate role="form">
+          <p>
+            <mat-form-field appearance="standard">
+              <mat-label>Email Address</mat-label>
+              <input type="email" matInput placeholder="johndoe@example.com" required name="email" formControlName="email" autocomplete="email">
+            </mat-form-field>
+          </p>
+
+          <p>
+            <mat-form-field appearance="standard">
+              <mat-label>Password</mat-label>
+              <input type="password" matInput required name="password" formControlName="password" autocomplete="password">
+            </mat-form-field>
+          </p>
+
+          <div class="row mt-5">
+            <div class="col-md-6">
+              <button *ngIf="!submitting" type="submit" class="register-button">Sign In</button>
+              <button *ngIf="submitting" type="submit" class="register-button">logging you in...</button>
+            </div>
+            <div class="col-md-6">
+              <a class="login-button text-right" [routerLink]="['/auth/register']">Create an Account</a>
+            </div>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

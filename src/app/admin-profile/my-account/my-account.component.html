@@ -1,0 +1,117 @@
+<div class="content mat-elevation-z8 ">
+  <div class="row">
+    <div class="col-md-3 mt-5 p-5">
+      <h3 class="title">Settings</h3>
+      <mat-divider></mat-divider>
+
+      <div class="update-account-alert mt-5">
+        <div class="row">
+          <div class="col-md-1">
+            <mat-icon class="text-warning">report</mat-icon>
+          </div>
+          <div class="col-md-11">
+            <h4 class="">Account Settings</h4>
+            <p>Complete your profile to gain access to all features</p>
+          </div>
+          <a [routerLink]="['/']" class="complete-profile-button text-white">Complete My Profile</a>
+        </div>
+      </div>
+
+      <div class="mt-5 links">
+        <mat-divider></mat-divider>
+        <h4 class="title">Account Settings</h4>
+        <p class="inline-links">Personal Information,email</p>
+      </div>
+
+      <div class="mt-5 links">
+        <mat-divider></mat-divider>
+        <a class="profile-links" [routerLink]="['/admin/profile/account-security']">Security</a>
+        <p class="inline-links">Change Password, 2FA</p>
+      </div>
+
+      <div class="mt-5 links">
+        <mat-divider></mat-divider>
+        <a class="profile-links" [routerLink]="['/admin/profile/account-appearance']">Appearance</a>
+        <p class="inline-links">Dark and Light mode, Font size</p>
+      </div>
+    </div>
+    <!--END column 1 account settings-->
+
+    <!--BEGIN column 2 account settings-->
+    <div class="col-md-9 mt-5 p-5 col-content">
+      <h3 class="title">Account Settings</h3>
+      <div class="mt-5 links">
+        <mat-divider></mat-divider>
+        <h4 class="title">Personal Information</h4>
+        <div class="account-edit-form">
+          <form>
+            <div class="row">
+              <div class="col-md-10">
+                <div class="form-group">
+                  <label>First Name</label>
+                  <input type="text" name="firstName"id="firstName" class="form-control">
+                </div>
+
+                <div class="form-group">
+                  <label>Last Name</label>
+                  <input type="text" name="lastName" id="lastName" class="form-control">
+                </div>
+              </div>
+              <div class="col-md-2 file-col">
+                <div class="file-input text-center m-auto">
+                  <img src="assets/images/camera.png"alt="" class="">
+                </div>
+              </div>
+            </div>
+
+            <div class="row mt-3">
+              <div class="col">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" placeholder="" id="email" name="email">
+              </div>
+              <div class="col">
+                <label for="phone">Phone</label>
+                <input type="tel" class="form-control" placeholder="" id="phone" name="phone">
+              </div>
+            </div>
+
+            <div class="row mt-3">
+              <div class="col">
+                <label for="state">State</label>
+                <input type="text" class="form-control" placeholder="" id="state" name="state">
+              </div>
+              <div class="col">
+                <label for="LGA">Local Government Area</label>
+                <input type="text" class="form-control" placeholder="" id="LGA" name="LGA">
+              </div>
+            </div>
+
+            <div class="row mt-3">
+              <div class="col">
+                <label for="gender">Gender</label>
+                <input type="text" class="form-control" placeholder="" id="gender" name="gender">
+              </div>
+              <div class="col">
+                <label for="age">Age</label>
+                <input type="number" class="form-control" placeholder="" id="age" name="age">
+              </div>
+            </div>
+          </form>
+          <!--END edit form-->
+          <div class="divider mt-5">
+            <mat-divider></mat-divider>
+          </div>
+
+          <div class="row mt-5 edit-buttons">
+            <div class="col-md-6 discard">
+              <button class="">Discard Changes</button>
+            </div>
+            <div class="col-md-6 profile">
+              <button class="">Complete My Profile</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

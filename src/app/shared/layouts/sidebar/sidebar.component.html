@@ -1,0 +1,67 @@
+<mat-toolbar class="mat-elevation-z8">
+  <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+    <mat-icon *ngIf="!sidenav.opened">
+      menu
+    </mat-icon>
+    <mat-icon *ngIf="sidenav.opened">
+      close
+    </mat-icon>
+  </button>
+  KOGAS OFFICIAL PORTAL
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+
+    <button mat-button class="menu-button">
+      <mat-icon>keyboard_backspace</mat-icon>
+      <a class="text-decoration-none text-white" [href]="[homeURL]"> <span>Main Site</span></a>
+    </button>
+    <!--avatar-->
+    <img class="avatar mat-elevation-z8" src="assets/images/miller.png"width="200" height="200"  alt=""/>
+    <h4 class="name">Mr. Ebukah.</h4>
+    <p class="designation">Managing Director</p>
+
+    <mat-divider></mat-divider>
+    <button mat-button class="menu-button">
+      <mat-icon>account_box</mat-icon>
+      <a class="text-decoration-none text-white" [routerLink]="['/admin/profile/account-settings']" routerLinkActive="active"[routerLinkActiveOptions]="{exact: true}"><span>My Profile</span></a>
+    </button>
+
+    <mat-divider></mat-divider>
+    <button mat-button class="menu-button">
+      <mat-icon>date_range</mat-icon>
+      <a class="text-decoration-none text-white" [routerLink]="['/admin/appointments/my-appointments']"><span>Appointments</span></a>
+    </button>
+
+    <mat-divider></mat-divider>
+    <button mat-button class="menu-button">
+      <mat-icon>email</mat-icon>
+      <a class="text-decoration-none text-white" [routerLink]="['/admin/messages']"><span>Messages</span></a>
+    </button>
+
+    <mat-divider></mat-divider>
+    <button mat-button class="menu-button">
+      <mat-icon>info</mat-icon>
+      <a class="text-decoration-none text-white" [routerLink]="['/admin/suggestions/submissions']"><span>Ideas/Suggestions</span></a>
+    </button>
+
+    <mat-divider></mat-divider>
+    <button mat-button class="menu-button">
+      <mat-icon>help</mat-icon>
+      <a class="text-decoration-none text-white" [routerLink]="['/admin/complaints/my-query-lists']"><span>Query</span></a>
+    </button>
+
+    <mat-divider></mat-divider>
+    <button mat-button class="menu-button">
+      <mat-icon>logout</mat-icon>
+      <span>Logout</span>
+    </button>
+
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <!--BEGIN Main content here!-->
+    <router-outlet></router-outlet>
+    <!--END Main content here!-->
+  </mat-sidenav-content>
+</mat-sidenav-container>
