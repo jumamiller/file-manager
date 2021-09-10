@@ -1,1 +1,37 @@
-<p>add-roles works!</p>
+<div class="content mat-elevation-z8">
+  <div class="roles-form">
+    <form>
+      <div class="form-row m-3">
+        <div class="col">
+          <label for="roleName">Role name</label>
+          <input type="text" id="roleName" name="roleName" class="form-control" placeholder="governor">
+        </div>
+        <div class="col">
+          <label for="roleDescription">Role Description</label>
+          <input type="text" id="roleDescription" name="roleDescription" class="form-control" placeholder="role description">
+        </div>
+      </div>
+
+      <h3 class="text-dark ml-5">Add Permissions To the Role</h3>
+      <div class="row mt-5 permissions">
+        <div class="col-md-3"><mat-checkbox class="perm-margin">View User</mat-checkbox></div>
+        <div class="col-md-3"><mat-checkbox class="perm-margin">View Staff</mat-checkbox></div>
+        <div class="col-md-3"><mat-checkbox class="perm-margin">View Role</mat-checkbox></div>
+        <div class="col-md-3"><mat-checkbox class="perm-margin">Create Role</mat-checkbox></div>
+      </div>
+
+      <div class="row mt-5 permissions">
+        <div class="col-md-3"><mat-checkbox class="perm-margin">View User</mat-checkbox></div>
+        <div class="col-md-3"><mat-checkbox class="perm-margin">View Staff</mat-checkbox></div>
+        <div class="col-md-3"><mat-checkbox class="perm-margin">View Role</mat-checkbox></div>
+        <div class="col-md-3"><mat-checkbox class="perm-margin">Create Role</mat-checkbox></div>
+      </div>
+
+
+      <div class="submit m-2">
+        <button class="btn btn-danger">Create New Role</button>
+      </div>
+
+    </form>
+  </div>
+</div>
