@@ -14,6 +14,7 @@ import { RolesListComponent } from './roles/roles-list/roles-list.component';
 import { AddRolesComponent } from './roles/add-roles/add-roles.component';
 import { EditRolesComponent } from './roles/edit-roles/edit-roles.component';
 import { SingleRoleDetailsComponent } from './roles/single-role-details/single-role-details.component';
+import {SharedModule} from "../../shared/shared.module";
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { SingleRoleDetailsComponent } from './roles/single-role-details/single-r
   ],
   imports: [
     CommonModule,
+    SharedModule,
     UsersRoutingModule
   ]
 })
