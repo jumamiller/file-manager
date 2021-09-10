@@ -10,7 +10,7 @@ import {MessagesComponent} from "./components/messages/messages.component";
 const routes: Routes = [
   {
     path:'',
-    redirectTo:'admin/profile/account-settings',
+    redirectTo:'/admin/profile/account-settings',
     pathMatch:'full',
   },
   {
