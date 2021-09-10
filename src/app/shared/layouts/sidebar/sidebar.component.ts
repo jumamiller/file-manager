@@ -23,7 +23,7 @@ export class SidebarComponent {
 
   ngAfterViewInit() {
     this.observer
-      .observe(['(max-width: 768px)'])
+      .observe(['(max-width: 1200px)'])
       .pipe(delay(1))
       .subscribe((res) => {
         if (res.matches) {
