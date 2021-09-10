@@ -5,3 +5,22 @@
   font-size: 2rem;
   color: lightgray;
 }
+label{
+  font-family: 'Poppins',sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 36px;
+  color: #000000;
+}
+input,select{
+  font-family: 'Poppins',sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 27px;
+  /* identical to box height */
+
+
+  color: #B7B7B7;
+}
