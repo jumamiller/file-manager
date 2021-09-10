@@ -30,14 +30,20 @@
 
     <mat-divider></mat-divider>
     <button mat-button class="menu-button">
+      <mat-icon>account_circle</mat-icon>
+      <a class="text-decoration-none text-white" [routerLink]="['/manage-users/citizens-list']"><span>Citizens</span></a>
+    </button>
+
+    <mat-divider></mat-divider>
+    <button mat-button class="menu-button">
       <mat-icon>lock</mat-icon>
-      <a class="text-decoration-none text-white" [routerLink]="['/admin/profile/account-settings']"><span>Roles</span></a>
+      <a class="text-decoration-none text-white" [routerLink]="['/manage-users/roles-list']"><span>Roles</span></a>
     </button>
 
     <mat-divider></mat-divider>
     <button mat-button class="menu-button">
       <mat-icon>supervised_user_circle</mat-icon>
-      <a class="text-decoration-none text-white" [routerLink]="['/admin/profile/account-settings']"><span>Officials</span></a>
+      <a class="text-decoration-none text-white" [routerLink]="['/manage-users/officials-list']"><span>Officials</span></a>
     </button>
 
     <mat-divider></mat-divider>
