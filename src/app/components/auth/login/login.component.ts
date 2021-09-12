@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import { ApiService} from "../../../core/services/api.service";
 import {ToastrService} from "ngx-toastr";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
+import {AuthService} from "../../../core/services/auth.service";
+import {first} from "rxjs/operators";
 
 @Component({
   selector: 'app-login',
@@ -14,12 +16,23 @@ export class LoginComponent implements OnInit {
   citizenLoginForm: FormGroup;
   submitting=false;
   loading=true;
+  submitted = false;
+  returnUrl: string;
+  error = '';
+
   constructor(
     private formBuilder: FormBuilder,
     private apiService:ApiService,
+    private route: ActivatedRoute,
+    private router: Router,
     private toastrService:ToastrService,
-    private router:Router
-  ) { }
+    private authService:AuthService
+  ) {
+    // redirect to home if already logged in
+    if (this.authService.currentUserValue) {
+      this.router.navigate(['/amin/profile/account-settings']);
+    }
+  }
 
   ngOnInit(): void {
     this.citizenFormControls();
@@ -32,6 +45,8 @@ export class LoginComponent implements OnInit {
       email: ['',Validators.required],
       password: ['',Validators.required],
     })
+    // get return url from route parameters or default to '/'
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/admin/profile/account-settings';
   }
 
   /**
@@ -41,29 +56,34 @@ export class LoginComponent implements OnInit {
     return this.citizenLoginForm.controls;
   }
 
+  /**
+   * on user login form submission
+   */
   onCitizenLogin(){
     this.submitting=true;
     let user={
       email:this.form.email.value,
       password:this.form.password.value,
     }
-    this.apiService.loginCitizens(user)
-      .subscribe((res)=>{
-        if(res.success){
-          this.toastrService.success(res.message,'Success');
-          localStorage.setItem('kogasCurrentUser',JSON.stringify(res.data));
-          this.router.navigate(['/profile/account-settings']);
-          this.loading=false;
+
+    //api request
+    this.authService.login(user.email,user.password)
+      .pipe(first())
+      .subscribe(
+        res => {
+          if(res.success){
+            console.log(res);
+            this.router.navigate([this.returnUrl]);
+            this.loading=false;
+          }
+          else{
+            this.toastrService.error(res.message,'ALERT');
+            this.submitting=false;
+          }
+        },
+        err => {
+          this.toastrService.error(err.error.message,'ERROR');
           this.submitting=false;
-        }
-        else{
-          this.toastrService.error('Your request to access to your Kogas account was denied due to invalid credentials!','Account Denied');
-          this.loading=false;
-          this.submitting=false;
-        }
-      },error => {
-        this.toastrService.error(error.error,error.name);
-        this.submitting=false;
-      })
+        });
   }
 }

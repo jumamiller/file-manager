@@ -19,11 +19,4 @@ export class ApiService {
   createNewAccounts(citizen:Citizen): Observable<User>{
     return this.httpClient.post<User>(`${environment.API_BASE_URL}register`,citizen);
   }
-  /**
-   * login citizens accounts
-   * @param citizen
-   */
-  loginCitizens(citizen: { password: any; email: any }): Observable<User>{
-    return this.httpClient.post<User>(`${environment.API_BASE_URL}login`,citizen);
-  }
 }

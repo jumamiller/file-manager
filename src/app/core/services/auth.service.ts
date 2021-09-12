@@ -31,7 +31,7 @@ export class AuthService {
    * @param password
    */
   login(email: string, password: string) {
-    return this.httpClient.post<User>(`${environment.API_BASE_URL}/login`, { email, password })
+    return this.httpClient.post<User>(`${environment.API_BASE_URL}login`, { email, password })
       .pipe(map(user => {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('kogiCitizen', JSON.stringify(user));
