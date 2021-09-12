@@ -82,7 +82,7 @@ export class LoginComponent implements OnInit {
           }
         },
         err => {
-          this.toastrService.error(err.error.message,'ERROR');
+          this.toastrService.error(`${err.error.message} | your account may not exist, contact system administrator if error persists`,'ERROR');
           this.submitting=false;
         });
   }
