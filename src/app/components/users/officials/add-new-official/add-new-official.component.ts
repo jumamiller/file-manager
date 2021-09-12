@@ -71,13 +71,13 @@ export class AddNewOfficialComponent implements OnInit {
           this.toastrService.success(res.message,'Success');
           this.submitting=false;
         }
-        else{
-          this.toastrService.error(res.message,'Failed');
+        if(!res.success){
+          this.toastrService.error(res.errors,'Failed');
           this.submitting=false;
         }
       },error => {
         console.log(error);
-        this.toastrService.error(error.error.message,'Error');
+        this.toastrService.error(error,'Error');
         this.submitting=false;
       })
   }

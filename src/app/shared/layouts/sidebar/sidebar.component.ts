@@ -70,6 +70,5 @@ export class SidebarComponent {
    */
   getCurrentUser(){
     this.user=this.authService.currentUserValue.data;
-    console.log(this.user);
   }
 }
