@@ -18,7 +18,11 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let citizen of citizens;let i=index;">
+        <tr *ngFor="let citizen of citizens | paginate :{
+                  itemsPerPage: tableSize,
+                  currentPage: page,
+                  totalItems: count
+                  };let i=index;">
           <td class="">{{i+1}}</td>
           <td class="">{{citizen.first_name}}</td>
           <td class="">{{citizen.last_name}}</td>
@@ -32,6 +36,20 @@
         </tbody>
       </table>
     </div>
+    <pagination-controls
+      [responsive]="true"
+      previousLabel="Prev"
+      nextLabel="Next"
+      [maxSize]="9"
+      [directionLinks]="true"
+      [autoHide]=true
+      screenReaderPaginationLabel="Pagination"
+      screenReaderPageLabel="page"
+      screenReaderCurrentLabel="You're on page"
+      (pageBoundsCorrection)="pageChanged($event)"
+      (pageChange)="onTableDataChange($event)">
+    </pagination-controls>
+
     <div *ngIf="loading" class="d-flex justify-content-center my-1">
       <div class="spinner-border" role="status" aria-hidden="true"></div>
     </div>

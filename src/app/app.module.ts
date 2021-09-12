@@ -20,6 +20,7 @@ import { AddNewsComponent } from './components/news/add-news/add-news.component'
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {JwtInterceptor} from "./core/helpers/jwt.interceptor";
 import {ErrorInterceptor} from "./core/helpers/error.interceptor";
+import {NgxPaginationModule} from "ngx-pagination";
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import {ErrorInterceptor} from "./core/helpers/error.interceptor";
   ],
   imports: [
     BrowserModule,
+    NgxPaginationModule,
     RouterModule,
     SharedModule,
     AppRoutingModule,
@@ -44,9 +46,7 @@ import {ErrorInterceptor} from "./core/helpers/error.interceptor";
     ToastrModule.forRoot(), // ToastrModule added
   ],
   providers: [
-    { provide:
-      HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })

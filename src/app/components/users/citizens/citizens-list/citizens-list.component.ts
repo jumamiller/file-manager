@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from "../../../../core/services/user.service";
 import {ToastrService} from "ngx-toastr";
-import {UserList} from "../../../../core/models/user-list";
 import {Citizen} from "../../../../core/models/citizen";
 
 @Component({
@@ -14,6 +13,12 @@ export class CitizensListComponent implements OnInit {
 
   citizens: Citizen[];
   loading=true;
+
+  tableSize = 10;
+  page = 1;
+  count = 0;
+  tableSizes = [2, 4, 10, 20];
+
   constructor(private userService:UserService, private toastrService:ToastrService) { }
 
   ngOnInit(): void {
@@ -40,5 +45,16 @@ export class CitizensListComponent implements OnInit {
         this.toastrService.error(error.error.message,'Error');
         this.loading=false;
       })
+  }
+
+  onTableDataChange(event) {
+    this.page = event;
+    this.listOfCitizens();
+  }
+
+  pageChanged($event: number) {
+    this.tableSize = event.target["value"];
+    this.page = 1;
+    this.listOfCitizens();
   }
 }

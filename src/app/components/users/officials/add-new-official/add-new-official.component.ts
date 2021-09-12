@@ -76,8 +76,7 @@ export class AddNewOfficialComponent implements OnInit {
           this.submitting=false;
         }
       },error => {
-        console.log(error);
-        this.toastrService.error(error,'Error');
+        this.toastrService.error(error.error.errors,'Error');
         this.submitting=false;
       })
   }

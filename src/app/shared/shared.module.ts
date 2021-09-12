@@ -5,6 +5,7 @@ import {HttpClientModule} from "@angular/common/http";
 import { SidebarComponent } from './layouts/sidebar/sidebar.component';
 import {MaterialModule} from "../material-module";
 import {CommonModule} from "@angular/common";
+import {NgxPaginationModule} from "ngx-pagination";
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import {CommonModule} from "@angular/common";
     ReactiveFormsModule,
     SidebarComponent,
     MaterialModule,
+    NgxPaginationModule,
     RouterModule
   ],
   imports: [
@@ -21,6 +23,7 @@ import {CommonModule} from "@angular/common";
     HttpClientModule,
     ReactiveFormsModule,
     MaterialModule,
+    NgxPaginationModule,
     CommonModule
   ],
 })
