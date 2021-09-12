@@ -3,6 +3,9 @@ import {MatSidenav} from "@angular/material/sidenav";
 import {BreakpointObserver} from "@angular/cdk/layout";
 import {delay} from "rxjs/operators";
 import {environment} from "../../../../environments/environment";
+import {AuthService} from "../../../core/services/auth.service";
+import {Router} from "@angular/router";
+import {Citizen} from "../../../core/models/citizen";
 
 @Component({
   selector: 'app-sidebar',
@@ -10,6 +13,8 @@ import {environment} from "../../../../environments/environment";
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent {
+
+  user:Citizen;
 
   homeURL:string=environment.HomeURL;
   @ViewChild(MatSidenav)
@@ -19,7 +24,12 @@ export class SidebarComponent {
   isShowing = false;
   showSubSubMenu: boolean = false;
 
-  constructor(private observer: BreakpointObserver) {}
+  constructor(private observer: BreakpointObserver,
+              private authService:AuthService,
+              private router:Router,
+             ) {
+    this.getCurrentUser();
+  }
 
   ngAfterViewInit() {
     this.observer
@@ -45,5 +55,21 @@ export class SidebarComponent {
     if (!this.isExpanded) {
       this.isShowing = false;
     }
+  }
+
+  /**
+   * user sign out
+   */
+  signOut(){
+    this.authService.logout();
+    this.router.navigate(['/admin/auth/login']);
+  }
+
+  /**
+   * get current user login details
+   */
+  getCurrentUser(){
+    this.user=this.authService.currentUserValue.data;
+    console.log(this.user);
   }
 }

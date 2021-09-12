@@ -34,12 +34,12 @@
               <div class="col-md-10">
                 <div class="form-group">
                   <label>First Name</label>
-                  <input type="text" name="firstName"id="firstName" class="form-control">
+                  <input type="text" name="firstName"id="firstName" class="form-control" [value]="user.first_name">
                 </div>
 
                 <div class="form-group">
                   <label>Last Name</label>
-                  <input type="text" name="lastName" id="lastName" class="form-control">
+                  <input type="text" name="lastName" id="lastName" class="form-control"[value]="user.last_name">
                 </div>
               </div>
               <div class="col-md-2 file-col">
@@ -52,18 +52,18 @@
             <div class="row mt-3">
               <div class="col">
                 <label for="email">Email</label>
-                <input type="email" class="form-control" placeholder="" id="email" name="email">
+                <input type="email" class="form-control" placeholder="" id="email" name="email"[value]="user.email">
               </div>
               <div class="col">
                 <label for="phone">Phone</label>
-                <input type="tel" class="form-control" placeholder="" id="phone" name="phone">
+                <input type="tel" class="form-control" placeholder="" id="phone" name="phone" [value]="user.phone">
               </div>
             </div>
 
             <div class="row mt-3">
               <div class="col">
                 <label for="state">State</label>
-                <input type="text" class="form-control" placeholder="" id="state" name="state">
+                <input type="text" class="form-control" placeholder="" id="state" name="state"[value]="user.city">
               </div>
               <div class="col">
                 <label for="LGA">Local Government Area</label>

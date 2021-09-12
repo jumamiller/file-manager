@@ -4,11 +4,13 @@ import {SidebarComponent} from "../../shared/layouts/sidebar/sidebar.component";
 import {ProjectsListComponent} from "./projects-list/projects-list.component";
 import {SingleProjectDetailsComponent} from "./single-project-details/single-project-details.component";
 import {AddNewProjectComponent} from "./add-new-project/add-new-project.component";
+import {AuthGuard} from "../../core/guards/auth.guard";
 
 const routes: Routes = [
   {
     path:'',
     component:SidebarComponent,
+    canActivate: [AuthGuard],
     children:[
       {path:'kogi-projects-list',component:ProjectsListComponent},
       {path:'kogi-projects-list/details',component:SingleProjectDetailsComponent},

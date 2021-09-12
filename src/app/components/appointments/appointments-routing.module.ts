@@ -5,11 +5,13 @@ import {AppointmentListComponent} from "./appointment-list/appointment-list.comp
 import {AddAppointmentsComponent} from "./add-appointments/add-appointments.component";
 import {SingleAppointmentComponent} from "./single-appointment/single-appointment.component";
 import {EditAppointmentComponent} from "./edit-appointment/edit-appointment.component";
+import {AuthGuard} from "../../core/guards/auth.guard";
 
 const routes: Routes = [
   {
     path:'',
     component: SidebarComponent,
+    canActivate: [AuthGuard],
     children:[
       {
         path:'my-appointments',

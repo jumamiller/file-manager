@@ -4,11 +4,13 @@ import {SidebarComponent} from "../../shared/layouts/sidebar/sidebar.component";
 import {MinistriesListComponent} from "./ministries-list/ministries-list.component";
 import {SingleMinistryDetailsComponent} from "./single-ministry-details/single-ministry-details.component";
 import {AddNewMinistryComponent} from "./add-new-ministry/add-new-ministry.component";
+import {AuthGuard} from "../../core/guards/auth.guard";
 
 const routes: Routes = [
   {
     path:'',
     component:SidebarComponent,
+    canActivate: [AuthGuard],
     children:[
       {path:'kogi-ministries-list',component:MinistriesListComponent},
       {path:'kogi-ministry-list/ministry-details',component:SingleMinistryDetailsComponent},

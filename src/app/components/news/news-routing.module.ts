@@ -4,11 +4,13 @@ import {SidebarComponent} from "../../shared/layouts/sidebar/sidebar.component";
 import {NewsListComponent} from "./news-list/news-list.component";
 import {SingleNewsDetailsComponent} from "./single-news-details/single-news-details.component";
 import {AddNewsComponent} from "./add-news/add-news.component";
+import {AuthGuard} from "../../core/guards/auth.guard";
 
 const routes: Routes = [
   {
     path:'',
     component:SidebarComponent,
+    canActivate: [AuthGuard],
     children:[
       {path:'news-list',component:NewsListComponent},
       {path:'news-list/details',component:SingleNewsDetailsComponent},

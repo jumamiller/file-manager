@@ -19,8 +19,8 @@
     </button>
     <!--avatar-->
     <img class="avatar mat-elevation-z8" src="assets/images/miller.png"width="200" height="200"  alt=""/>
-    <h4 class="name">Mr. Ebukah.</h4>
-    <p class="designation">Managing Director</p>
+    <h4 class="name">{{user.first_name}} {{user.last_name}}</h4>
+    <p class="designation">Government {{user.user_type}}</p>
 
     <mat-divider></mat-divider>
     <button mat-button class="menu-button">
@@ -91,7 +91,7 @@
     <mat-divider></mat-divider>
     <button mat-button class="menu-button">
       <mat-icon>logout</mat-icon>
-      <span>Logout</span>
+      <a class="text-decoration-none text-white" (click)="signOut()"><span>Logout</span></a>
     </button>
 
   </mat-sidenav>

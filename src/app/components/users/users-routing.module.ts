@@ -13,11 +13,13 @@ import {RolesListComponent} from "./roles/roles-list/roles-list.component";
 import {EditRolesComponent} from "./roles/edit-roles/edit-roles.component";
 import {AddRolesComponent} from "./roles/add-roles/add-roles.component";
 import {SingleRoleDetailsComponent} from "./roles/single-role-details/single-role-details.component";
+import {AuthGuard} from "../../core/guards/auth.guard";
 
 const routes: Routes = [
   {
     path:'',
     component: SidebarComponent,
+    canActivate: [AuthGuard],
     children: [
       {path:'citizens-list',component: CitizensListComponent},
       {path:'add-new-citizens',component:AddNewCitizensComponent},
