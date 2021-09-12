@@ -53,7 +53,8 @@ export class RegisterComponent implements OnInit {
   onCitizenRegistration(){
     this.submitting=true;
     let user:Citizen={
-      full_name:this.form.fullName.value,
+      last_name: "",
+      first_name:this.form.fullName.value,
       city:this.form.city.value,
       phone:this.form.phone.value,
       role:'citizen',
