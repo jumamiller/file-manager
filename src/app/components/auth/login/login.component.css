@@ -84,7 +84,7 @@ mat-checkbox{
     color: #FFFFFF;
   }
   mat-form-field {
-    width: auto;
+    width: 100%;
   }
   mat-card{
     width: auto;
