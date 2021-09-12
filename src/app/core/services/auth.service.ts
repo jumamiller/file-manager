@@ -40,7 +40,7 @@ export class AuthService {
           return user;
         }
         else{
-          this.toastrService.error("ACCESS DENIED| You're not authorised to this portal!");
+          this.toastrService.error("ACCESS DENIED | You're not authorised to this portal!");
           return false;
         }
       }));
