@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {User} from "../models/user";
 import {environment} from "../../../environments/environment";
+import {UserList} from "../models/user-list";
 
 @Injectable({
   providedIn: 'root'
@@ -14,14 +15,14 @@ export class UserService {
   /**
    * return list of KOGi Citizens registered on KOGAS
    */
-  registeredKogiCitizensList(): Observable<User>{
-    return this.httpClient.get<User>(`${environment.API_BASE_URL}admin/citizens`);
+  registeredKogiCitizensList(): Observable<UserList>{
+    return this.httpClient.get<UserList>(`${environment.API_BASE_URL}admin/citizens`);
   }
 
   /**
    * list of KOGI officials
    */
-  registeredKogiOfficialsList():Observable<User>{
-    return this.httpClient.get<User>(`${environment.API_BASE_URL}admin/government-officials`);
+  registeredKogiOfficialsList():Observable<UserList>{
+    return this.httpClient.get<UserList>(`${environment.API_BASE_URL}admin/government-officials`);
   }
 }

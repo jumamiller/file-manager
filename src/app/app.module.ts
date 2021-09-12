@@ -17,6 +17,9 @@ import { MessagesComponent } from './components/messages/messages.component';
 import { NewsListComponent } from './components/news/news-list/news-list.component';
 import { SingleNewsDetailsComponent } from './components/news/single-news-details/single-news-details.component';
 import { AddNewsComponent } from './components/news/add-news/add-news.component';
+import {HTTP_INTERCEPTORS} from "@angular/common/http";
+import {JwtInterceptor} from "./core/helpers/jwt.interceptor";
+import {ErrorInterceptor} from "./core/helpers/error.interceptor";
 
 @NgModule({
   declarations: [
@@ -40,7 +43,11 @@ import { AddNewsComponent } from './components/news/add-news/add-news.component'
     BrowserAnimationsModule,
     ToastrModule.forRoot(), // ToastrModule added
   ],
-  providers: [],
+  providers: [
+    { provide:
+      HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

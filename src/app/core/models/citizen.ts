@@ -1,7 +1,7 @@
 export interface Citizen {
   city:string;
   phone:string;
-  role:string;
+  role?:string;
   email:string;
   password:string;
   updated_at?: string;

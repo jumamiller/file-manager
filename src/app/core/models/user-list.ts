@@ -1,11 +1,10 @@
 import {Citizen} from "./citizen";
 
-export interface User {
-
+export interface UserList {
   success: boolean;
-  data: Citizen;
+  data: Citizen[];
   message: string;
   errors: string;
   meta: string[];
-  token:string;
+  token: string;
 }

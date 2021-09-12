@@ -5,6 +5,7 @@ import {User} from "../models/user";
 import {environment} from "../../../environments/environment";
 import {map} from "rxjs/operators";
 import {ToastrService} from "ngx-toastr";
+import {Citizen} from "../models/citizen";
 
 @Injectable({
   providedIn: 'root'
@@ -53,5 +54,12 @@ export class AuthService {
     // remove user from local storage to log user out
     localStorage.removeItem('kogiCitizen');
     this.currentUserSubject.next(null);
+  }
+
+  /**
+   * register user endpoint
+   */
+  register(citizen:Citizen):Observable<User>{
+    return this.httpClient.post<User>(`${environment.API_BASE_URL}create-account`,citizen);
   }
 }

@@ -1,59 +1,65 @@
 <div class="content mat-elevation-z8">
   <h2 class="text-center text-dark">Add New Government Official</h2>
   <div class="add-new-user">
-    <form>
+    <form [formGroup]="officialForm" (ngSubmit)="onSubmit()">
       <div class="form-row m-3">
         <div class="col-md-4">
-          <label for="fullName">Full Name</label>
-          <input type="text" id="fullName" name="fullName" class="form-control" placeholder="John Doe"required="">
+          <label for="firstName">First Name</label>
+          <input type="text" id="firstName" formControlName="firstName" class="form-control" placeholder="John"required="">
         </div>
+
         <div class="col-md-4">
-          <label for="phoneNumber">Phone Number</label>
-          <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" placeholder=""required="">
+          <label for="lastName">First Name</label>
+          <input type="text" id="lastName" formControlName="lastName" class="form-control" placeholder="Doe"required="">
+        </div>
+
+        <div class="col-md-4">
+          <label for="phone">Phone Number</label>
+          <input type="text" id="phone" formControlName="phone" class="form-control" placeholder=""required="">
         </div>
 
         <div class="col-md-4">
           <label for="email">Email Address</label>
-          <input type="email" id="email" name="email" class="form-control" placeholder=""required="">
+          <input type="email" id="email" formControlName="email" class="form-control" placeholder=""required="">
         </div>
 
         <div class="col-md-4">
-          <label for="city">Town/City</label>
-          <input type="text" id="city" name="city" class="form-control" placeholder=""required="">
+          <label for="city">City</label>
+          <input type="text" id="city" formControlName="city" class="form-control" placeholder=""required="">
         </div>
 
         <div class="col-md-4">
-          <label for="residence">Area Of Residence</label>
-          <input type="text" id="residence" name="residence" class="form-control" placeholder=""required="">
+          <label for="gender">Gender</label>
+          <select id="gender" formControlName="gender"class="form-control">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Rather Not Say">Rather Not Say</option>
+          </select>
         </div>
 
         <div class="col-md-4">
-          <label for="tax">Tax Information</label>
-          <input type="text" id="tax" name="tax" class="form-control" placeholder=""required="">
-        </div>
-        <div class="col-md-4">
-          <label for="experience">Work Experience</label>
-          <input type="text" id="experience" name="experience" class="form-control" placeholder=""required="">
-        </div>
-
-        <div class="col-md-4 form-group">
-          <label for="resume">Resume</label>
-          <input type="file" id="resume" name="experience" class="form-control-file" placeholder=""required="">
+          <label for="LGA">Local Government Area</label>
+          <input type="text" id="LGA" formControlName="LGA" class="form-control" placeholder=""required="">
         </div>
 
         <div class="col-md-4">
           <label for="role">Select Official Role</label>
           <select id="role" class="custom-select"name="role">
-            <option value="">Governor</option>
-            <option value="">Minister</option>
-            <option value="">Chief Of Staff</option>
+            <option>Coming Soon!</option>
           </select>
+        </div>
+
+        <div class="col-md-4">
+          <label for="password">Temporal Password</label>
+          <input type="password" id="password" min="8" formControlName="password" placeholder="Enter official password" class="form-control"required="">
         </div>
 
       </div>
       <div class="submission m-4">
-        <button class="btn btn-danger">Create Government Official</button>
+        <button *ngIf="!submitting" [disabled]="officialForm.invalid" type="submit" class="btn btn-danger">Add Official</button>
+        <button *ngIf="submitting" type="submit" class="btn btn-success">Processing...</button>
       </div>
+
     </form>
   </div>
 </div>

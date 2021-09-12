@@ -7,86 +7,32 @@
         <thead>
         <tr>
           <th scope="col">#</th>
-          <th scope="col">Name</th>
+          <th scope="col">First Name</th>
+          <th scope="col">Last Name</th>
           <th scope="col">Email</th>
           <th scope="col">Phone</th>
+          <th scope="col">City</th>
+          <th scope="col">Gender</th>
+          <th scope="col">Role</th>
           <th scope="col" class="text-center">Edit</th>
           <th scope="col" class="text-center">Block</th>
           <th scope="col" class="text-center">Remove</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-          <td class="">1</td>
-          <td class="">John Doe</td>
-          <td class="">johdoe@example.com</td>
-          <td class="">+13484764646</td>
+        <tr *ngFor="let official of officials;let i=index">
+          <td class="">{{i+1}}</td>
+          <td class="">{{official.first_name}}</td>
+          <td class="">{{official.last_name}}</td>
+          <td class="">{{official.email}}</td>
+          <td class="">{{official.phone}}</td>
+          <td class="">{{official.city}}</td>
+          <td class="">{{official.gender}}</td>
+          <td class="">{{official.user_type}}</td>
           <td class="text-center"><button class="btn btn-primary"><i class="fas fa-user-edit"></i> </button></td>
           <td class="text-center"><button class="btn btn-danger"><i class="fas fa-stop-circle"></i></button> </td>
           <td class="text-center"> <button class="btn btn-danger"><i class="fas fa-trash"></i></button></td>
         </tr>
-
-        <tr>
-          <td class="">2</td>
-          <td class="">John Doe</td>
-          <td class="">johdoe@example.com</td>
-          <td class="">+13484764646</td>
-          <td class="text-center"><button class="btn btn-primary"><i class="fas fa-user-edit"></i> </button></td>
-          <td class="text-center"><button class="btn btn-danger"><i class="fas fa-stop-circle"></i></button> </td>
-          <td class="text-center"> <button class="btn btn-danger"><i class="fas fa-trash"></i></button></td>
-        </tr>
-
-        <tr>
-          <td class="">3</td>
-          <td class="">John Doe</td>
-          <td class="">johdoe@example.com</td>
-          <td class="">+13484764646</td>
-          <td class="text-center"><button class="btn btn-primary"><i class="fas fa-user-edit"></i> </button></td>
-          <td class="text-center"><button class="btn btn-danger"><i class="fas fa-stop-circle"></i></button> </td>
-          <td class="text-center"> <button class="btn btn-danger"><i class="fas fa-trash"></i></button></td>
-        </tr>
-
-        <tr>
-          <td class="">4</td>
-          <td class="">John Doe</td>
-          <td class="">johdoe@example.com</td>
-          <td class="">+13484764646</td>
-          <td class="text-center"><button class="btn btn-primary"><i class="fas fa-user-edit"></i> </button></td>
-          <td class="text-center"><button class="btn btn-danger"><i class="fas fa-stop-circle"></i></button> </td>
-          <td class="text-center"> <button class="btn btn-danger"><i class="fas fa-trash"></i></button></td>
-        </tr>
-
-        <tr>
-          <td class="">5</td>
-          <td class="">John Doe</td>
-          <td class="">johdoe@example.com</td>
-          <td class="">+13484764646</td>
-          <td class="text-center"><button class="btn btn-primary"><i class="fas fa-user-edit"></i> </button></td>
-          <td class="text-center"><button class="btn btn-danger"><i class="fas fa-stop-circle"></i></button> </td>
-          <td class="text-center"> <button class="btn btn-danger"><i class="fas fa-trash"></i></button></td>
-        </tr>
-
-
-        <tr>
-          <td class="">6</td>
-          <td class="">John Doe</td>
-          <td class="">johdoe@example.com</td>
-          <td class="">+13484764646</td>
-          <td class="text-center"><button class="btn btn-primary"><i class="fas fa-user-edit"></i> </button></td>
-          <td class="text-center"><button class="btn btn-danger"><i class="fas fa-stop-circle"></i></button> </td>
-          <td class="text-center"> <button class="btn btn-danger"><i class="fas fa-trash"></i></button></td>
-        </tr>
-
-        <tr>
-          <td class="">7</td>
-          <td class="">John Doe</td>
-          <td class="">johdoe@example.com</td>
-          <td class="">+13484764646</td>
-          <td class="text-center"><button class="btn btn-primary"><i class="fas fa-user-edit"></i> </button></td>
-          <td class="text-center"><button class="btn btn-danger"><i class="fas fa-stop-circle"></i></button> </td>
-          <td class="text-center"> <button class="btn btn-danger"><i class="fas fa-trash"></i></button></td>
-        </tr>
-
         </tbody>
       </table>
     </div>
