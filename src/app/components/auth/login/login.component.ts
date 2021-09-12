@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
   ) {
     // redirect to home if already logged in
     if (this.authService.currentUserValue) {
-      this.router.navigate(['/amin/profile/account-settings']);
+      this.router.navigate(['/admin/profile/account-settings']);
     }
   }
 
@@ -72,7 +72,7 @@ export class LoginComponent implements OnInit {
       .subscribe(
         res => {
           if(res.success){
-            console.log(res);
+            this.toastrService.success(res.message,'Success');
             this.router.navigate([this.returnUrl]);
             this.loading=false;
           }
@@ -82,7 +82,7 @@ export class LoginComponent implements OnInit {
           }
         },
         err => {
-          this.toastrService.error(`${err.error.message} | your account may not exist, contact system administrator if error persists`,'ERROR');
+          this.toastrService.error(`${err.error.message} | Access Denied. Wrong Credentials`,'ERROR');
           this.submitting=false;
         });
   }

@@ -4,11 +4,13 @@ import {SidebarComponent} from "../../shared/layouts/sidebar/sidebar.component";
 import {MyAccountComponent} from "./my-account/my-account.component";
 import {SecurityComponent} from "./security/security.component";
 import {AccountAppearanceComponent} from "./account-appearance/account-appearance.component";
+import {AuthGuard} from "../../core/guards/auth.guard";
 
 const routes: Routes = [
   {
     path:'',
     component: SidebarComponent,
+    canActivate: [AuthGuard],
     children:[
       {
         path:'account-settings',component: MyAccountComponent
