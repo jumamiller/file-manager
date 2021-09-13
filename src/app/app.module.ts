@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -19,7 +18,6 @@ import { SingleNewsDetailsComponent } from './components/news/single-news-detail
 import { AddNewsComponent } from './components/news/add-news/add-news.component';
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {JwtInterceptor} from "./core/helpers/jwt.interceptor";
-import {ErrorInterceptor} from "./core/helpers/error.interceptor";
 import {NgxPaginationModule} from "ngx-pagination";
 
 @NgModule({
