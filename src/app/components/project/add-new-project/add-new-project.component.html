@@ -19,7 +19,11 @@
 
         <div class="col-md-4">
           <label for="status">Project Status</label>
-          <input type="text" id="status" formControlName="status" class="form-control" placeholder=""required="">
+          <select formControlName="status" id="status">
+            <option value="upcoming">Upcoming</option>
+            <option value="in-progress">In Progress</option>
+            <option value="completed">Completed</option>
+          </select>
         </div>
 
         <div class="col-md-4">
