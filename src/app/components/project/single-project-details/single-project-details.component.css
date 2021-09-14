@@ -22,3 +22,11 @@ input,select{
   /* identical to box height */
   color: #B7B7B7;
 }
+p{
+  font-family: 'Poppins',sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 48px;
+  color: #1C416D;
+}
