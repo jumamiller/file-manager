@@ -76,7 +76,6 @@ export class AddNewProjectComponent implements OnInit {
           this.toatrService.error('Something went wrong while adding project,try again later','Failed');
         }
       },error => {
-        console.log(error);
         this.toatrService.error(error.errors.message);
       })
   }

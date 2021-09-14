@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {FormGroup} from "@angular/forms";
+import {ApiService} from "../../../core/services/api.service";
+import {ToastrService} from "ngx-toastr";
+import {News} from "../../../models/news";
 
 @Component({
   selector: 'app-news-list',
@@ -7,9 +11,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewsListComponent implements OnInit {
 
-  constructor() { }
+  news:News[];
+  loading=true;
+  constructor(private apiService:ApiService,private toastrService:ToastrService) { }
 
   ngOnInit(): void {
+    this.getNews();
+  }
+
+  /**
+   * add news
+   */
+  getNews(){
+    this.apiService.getNews()
+      .subscribe((res)=>{
+        this.news=res['data'];
+        this.loading=false;
+      })
   }
 
 }

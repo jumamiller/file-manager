@@ -5,6 +5,7 @@ import {User} from "../models/user";
 import {environment} from "../../../environments/environment";
 import {Citizen} from "../models/citizen";
 import {Project} from "../models/project";
+import {News} from "../../models/news";
 
 @Injectable({
   providedIn: 'root'
@@ -41,5 +42,19 @@ export class ApiService {
    */
   singleProjectDetails(projectId:any):Observable<Project> {
     return this.httpClient.get<Project>(`${environment.API_BASE_URL}admin/list-of-projects/project-details/${projectId}`);
+  }
+
+  /**
+   * add news
+   */
+  addNews(news:News):Observable<News>{
+    return this.httpClient.post<News>(`${environment.API_BASE_URL}admin/add-news`,news);
+  }
+
+  /**
+   * get all news
+   */
+  getNews():Observable<News[]>{
+    return this.httpClient.get<News[]>(`${environment.API_BASE_URL}admin/get-news`);
   }
 }
