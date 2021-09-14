@@ -34,4 +34,12 @@ export class ApiService {
   listOfProjects():Observable<Project[]>{
     return this.httpClient.get<Project[]>(`${environment.API_BASE_URL}admin/list-of-projects`)
   }
+
+  /**
+   *
+   * @param projectId
+   */
+  singleProjectDetails(projectId:any):Observable<Project> {
+    return this.httpClient.get<Project>(`${environment.API_BASE_URL}admin/list-of-projects/project-details/${projectId}`);
+  }
 }

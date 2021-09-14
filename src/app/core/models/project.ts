@@ -1,4 +1,8 @@
 export interface Project {
+  id?:any;
+  data?:any;
+  success?:boolean;
+  message?:string;
   name:string,
   description:string,
   category:string,
