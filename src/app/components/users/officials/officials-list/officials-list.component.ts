@@ -4,6 +4,7 @@ import {UserService} from "../../../../core/services/user.service";
 import {ToastrService} from "ngx-toastr";
 import {AuthService} from "../../../../core/services/auth.service";
 import * as moment from 'moment';
+import {Router} from "@angular/router";
 @Component({
   selector: 'app-officials-list',
   templateUrl: './officials-list.component.html',
@@ -17,6 +18,7 @@ export class OfficialsListComponent implements OnInit {
   constructor(
     private userService:UserService,
     private authService:AuthService,
+    private router:Router,
     private toastrService:ToastrService,
   ) { }
 
@@ -63,6 +65,7 @@ export class OfficialsListComponent implements OnInit {
         if(res.success)
         {
           this.toastrService.success(res.message,'Success');
+          this.reloadCurrentRoute();
           this.loading=false;
         }
         else{
@@ -73,6 +76,43 @@ export class OfficialsListComponent implements OnInit {
         this.toastrService.error(error.error.message,'Error');
         this.loading=false;
       })
+  }/**
+   * activate suspended official
+   * @param userId
+   */
+  activate(userId: number)
+  {
+    let currentAdminId=this.authService.currentUserValue.data.id;
+    let activationInfo={
+      user_is_suspended:false,
+      user_activated_by:currentAdminId,
+      user_activated_date:moment().format('YYYY/MM/DD HH:mm:ss')
+    };
+    this.userService.activateUser(activationInfo,userId)
+      .subscribe((res)=>{
+        if(res.success)
+        {
+          this.toastrService.success(res.message,'Success');
+          this.reloadCurrentRoute();
+          this.loading=false;
+        }
+        else{
+          this.toastrService.error(res.message,'Failed');
+          this.loading=false;
+        }
+      },error => {
+        this.toastrService.error(error.error.message,'Error');
+        this.loading=false;
+      })
+  }
+  /**
+   * reload
+   */
+  reloadCurrentRoute() {
+    let currentUrl = this.router.url;
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+      this.router.navigate([currentUrl]);
+    });
   }
 
 }

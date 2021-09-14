@@ -45,7 +45,7 @@ export class UserService {
    * activate blocked user
    */
   activateUser(data:any, id:number):Observable<any>{
-    return this.httpClient.patch<any>(`${environment.API_BASE_URL}admin/user/activate/${id}`,{data});
+    return this.httpClient.patch<any>(`${environment.API_BASE_URL}admin/user/activate/${id}`,data);
   }
 
   /**
@@ -59,6 +59,7 @@ export class UserService {
    * update user details
    */
   editUserDetails(citizen:Citizen,id:number):Observable<Citizen>{
-    return this.httpClient.patch<Citizen>(`${environment.API_BASE_URL}admin/user/remove/${id}`,{citizen});
+    return this.httpClient.patch<Citizen>(`${environment.API_BASE_URL}admin/user/remove/${id}`,citizen);
   }
+
 }

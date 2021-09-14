@@ -1,13 +1,15 @@
 <mat-toolbar class="mat-elevation-z8">
-  <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
-    <mat-icon *ngIf="!sidenav.opened">
-      menu
-    </mat-icon>
-    <mat-icon *ngIf="sidenav.opened">
-      close
-    </mat-icon>
-  </button>
-  KOGAS OFFICIAL PORTAL
+  <mat-toolbar-row>
+    <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+      <mat-icon *ngIf="!sidenav.opened">
+        menu
+      </mat-icon>
+      <mat-icon *ngIf="sidenav.opened">
+        close
+      </mat-icon>
+    </button>
+    <img src="assets/images/logo.png"alt="" width="164" height="64">
+  </mat-toolbar-row>
 </mat-toolbar>
 
 <mat-sidenav-container>
@@ -23,75 +25,75 @@
     <p class="designation">Government {{user.user_type}}</p>
 
     <mat-divider></mat-divider>
-    <button mat-button class="menu-button">
+    <button mat-button class="menu-button" [routerLink]="['/admin/profile/account-settings']" routerLinkActive="active">
       <mat-icon>account_box</mat-icon>
-      <a class="text-decoration-none text-white" [routerLink]="['/admin/profile/account-settings']" routerLinkActive="active"[routerLinkActiveOptions]="{exact: true}"><span>My Profile</span></a>
+      <span>My Profile</span>
     </button>
 
     <mat-divider></mat-divider>
-    <button mat-button class="menu-button">
+    <button mat-button class="menu-button" [routerLink]="['/manage-users/citizens-list']" routerLinkActive="active">
       <mat-icon>account_circle</mat-icon>
-      <a class="text-decoration-none text-white" [routerLink]="['/manage-users/citizens-list']"><span>Citizens</span></a>
+      <span>Citizens</span>
     </button>
 
     <mat-divider></mat-divider>
-    <button mat-button class="menu-button">
+    <button mat-button class="menu-button" [routerLink]="['/manage-users/roles-list']" routerLinkActive="active">
       <mat-icon>lock</mat-icon>
-      <a class="text-decoration-none text-white" [routerLink]="['/manage-users/roles-list']"><span>Roles</span></a>
+      <span>Roles</span>
     </button>
 
     <mat-divider></mat-divider>
-    <button mat-button class="menu-button">
+    <button mat-button class="menu-button" [routerLink]="['/manage-users/officials-list']" routerLinkActive="active">
       <mat-icon>supervised_user_circle</mat-icon>
-      <a class="text-decoration-none text-white" [routerLink]="['/manage-users/officials-list']"><span>Officials</span></a>
+      <span>Officials</span>
     </button>
 
     <mat-divider></mat-divider>
-    <button mat-button class="menu-button">
+    <button mat-button class="menu-button" [routerLink]="['/ministry/kogi-ministries-list']" routerLinkActive="active">
       <mat-icon>business</mat-icon>
-      <a class="text-decoration-none text-white" [routerLink]="['/ministry/kogi-ministries-list']"><span>Ministries</span></a>
+      <span>Ministries</span>
     </button>
 
     <mat-divider></mat-divider>
-    <button mat-button class="menu-button">
+    <button mat-button class="menu-button"[routerLink]="['/projects/kogi-projects-list']" routerLinkActive="active">
       <mat-icon>work</mat-icon>
-      <a class="text-decoration-none text-white" [routerLink]="['/projects/kogi-projects-list']"><span>Projects</span></a>
+      <span>Projects</span>
     </button>
 
     <mat-divider></mat-divider>
-    <button mat-button class="menu-button">
+    <button mat-button class="menu-button" [routerLink]="['/news/news-list']" routerLinkActive="active">
       <mat-icon>cell_wifi</mat-icon>
-      <a class="text-decoration-none text-white" [routerLink]="['/news/news-list']"><span>News 	&amp; Events</span></a>
+      <span>News 	&amp; Events</span>
     </button>
 
     <mat-divider></mat-divider>
-    <button mat-button class="menu-button">
+    <button mat-button class="menu-button" [routerLink]="['/admin/appointments/my-appointments']" routerLinkActive="active">
       <mat-icon>date_range</mat-icon>
-      <a class="text-decoration-none text-white" [routerLink]="['/admin/appointments/my-appointments']"><span>Appointments</span></a>
+      <span>Appointments</span>
     </button>
 
     <mat-divider></mat-divider>
-    <button mat-button class="menu-button">
+    <button mat-button class="menu-button" [routerLink]="['/admin/messages']" routerLinkActive="active">
       <mat-icon>email</mat-icon>
-      <a class="text-decoration-none text-white" [routerLink]="['/admin/messages']"><span>Messages</span></a>
+      <span>Messages</span>
     </button>
 
     <mat-divider></mat-divider>
-    <button mat-button class="menu-button">
+    <button mat-button class="menu-button" [routerLink]="['/admin/suggestions/submissions']" routerLinkActive="active">
       <mat-icon>info</mat-icon>
-      <a class="text-decoration-none text-white" [routerLink]="['/admin/suggestions/submissions']"><span>Ideas/Suggestions</span></a>
+      <span>Ideas/Suggestions</span>
     </button>
 
     <mat-divider></mat-divider>
-    <button mat-button class="menu-button">
+    <button mat-button class="menu-button" [routerLink]="['/admin/complaints/my-query-lists']" routerLinkActive="active">
       <mat-icon>help</mat-icon>
-      <a class="text-decoration-none text-white" [routerLink]="['/admin/complaints/my-query-lists']"><span>Query</span></a>
+      <span>Query</span>
     </button>
 
     <mat-divider></mat-divider>
-    <button mat-button class="menu-button">
+    <button mat-button class="menu-button"(click)="signOut()" routerLinkActive="active">
       <mat-icon>logout</mat-icon>
-      <a class="text-decoration-none text-white" (click)="signOut()"><span>Logout</span></a>
+      <span>Logout</span>
     </button>
 
   </mat-sidenav>

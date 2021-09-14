@@ -7,7 +7,8 @@ mat-sidenav {
   margin: 16px;
   width: 250px;
   border-right: none;
-  background: #002b5c;
+  background: url("../../../../assets/images/background.jpg") no-repeat;
+  background-size: cover;
   color: white;
   border-radius: 10px;
   padding: 16px;
@@ -25,10 +26,20 @@ mat-sidenav-container {
   justify-content: flex-start;
   font-size: 1rem;
 }
+.active{
+  background: #CA0C5C;
+  border-radius: 3px;
+  font-family: 'Poppins',sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 17px;
+  /* or 30px */
+  color: #FFFFFF;
+  width: 100%;
+}
 
 mat-icon {
   margin-right: 8px;
-   /* or 28px */
   color: rgba(255, 255, 255, 0.4);
 }
 
@@ -54,22 +65,4 @@ mat-divider {
   margin-top: 16px;
   margin-bottom: 16px;
   background-color: rgba(255, 255, 255, 0.5);
-}
-span{
-  font-family: 'Poppins',sans-serif;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 175.6%;
-  /* or 28px */
-  color: rgba(255, 255, 255, 0.4);
-}
-.active-list-item {
-  /*font-family: 'Poppins',sans-serif;*/
-  /*font-style: normal;*/
-  /*font-weight: 600;*/
-  /*font-size: 17px;*/
-  /*line-height: 175.6%;*/
-  /*background: #FFFFFF;*/
-  /*color: red;*/
 }

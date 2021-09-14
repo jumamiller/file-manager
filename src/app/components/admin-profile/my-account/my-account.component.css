@@ -51,7 +51,6 @@
   width: auto;
   height: 35px;
   margin: auto;
-  background: #003679;
   border-radius: 3px;
   font-size: 14px;
   text-align: center;
@@ -95,23 +94,11 @@
   background: #C4C4C4;
   border-radius: 3px;
 }
-.edit-buttons .discard button{
+.edit-buttons .complete-account{
+  background: #CA0C5C;
   font-family: 'Poppins',sans-serif;
   font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  text-align: center;
-  border: 0;
-  color: rgba(0, 0, 0, 0.6);
-}
-.edit-buttons .profile button{
-  width: auto;
-  height: auto;
-  background: #003679;
-  border-radius: 3px;
-  font-family: 'Poppins',sans-serif;
-  font-style: normal;
-  font-weight: normal;
+  font-weight: bold;
   font-size: 14px;
   line-height: 175.6%;
   /* or 25px */
@@ -119,6 +106,19 @@
   text-align: center;
 
   color: #FFFFFF;
+}
+.edit-buttons .discard-changes{
+  background: #F4F4F4;
+  border-radius: 3px;
+
+  font-family: 'Poppins',sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 175.6%;
+  /* or 25px */
+  text-align: center;
+  color: rgba(0, 0, 0, 0.6);
 }
 /*screen responses/*/
 

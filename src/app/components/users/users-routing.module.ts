@@ -28,6 +28,7 @@ const routes: Routes = [
 
       {path:'officials-list',component:OfficialsListComponent},
       {path:'add-new-official',component:AddNewOfficialComponent},
+      {path:'edit-official/',component:AddNewOfficialComponent},
       {path:'officials-lists/edit-official-details',component:EditOfficialComponent},
       {path:'officials-lists/official-details',component:SingleOfficialComponent},
 
