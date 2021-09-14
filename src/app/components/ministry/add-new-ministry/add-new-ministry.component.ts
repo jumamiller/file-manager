@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {ToastrService} from "ngx-toastr";
+import { Ministry } from "../../../core/models/ministry";
+import {ApiService} from "../../../core/services/api.service";
 
 @Component({
   selector: 'app-add-new-ministry',
@@ -7,9 +11,46 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddNewMinistryComponent implements OnInit {
 
-  constructor() { }
+  ministryForm:FormGroup;
+  constructor(
+    private formBuilder:FormBuilder,
+    private apiService:ApiService,
+    private toastrService:ToastrService) { }
 
   ngOnInit(): void {
+    this.ministryFormControl();
+  }
+
+  /**
+   * form control
+   */
+  ministryFormControl(){
+    this.ministryForm= this.formBuilder.group({
+      name:['',Validators.required],
+      description:['',Validators.required],
+      address:['',Validators.required],
+      budget:['',Validators.required]
+    })
+  }
+  get form(){
+    return this.ministryForm.controls;
+  }
+
+  /**
+   * on adding a new ministry
+   */
+  onSubmit(){
+    let ministry:Ministry={
+      address: this.form.address.value,
+      budget: this.form.budget.value,
+      description: this.form.description.value,
+      name: this.form.name.value
+    };
+
+    this.apiService.addMinistry(ministry)
+      .subscribe((res)=>{
+        this.toastrService.success(res.message,'Success');
+      })
   }
 
 }

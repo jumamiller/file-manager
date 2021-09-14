@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Ministry} from "../../../core/models/ministry";
+import {ApiService} from "../../../core/services/api.service";
 
 @Component({
   selector: 'app-ministries-list',
@@ -7,9 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MinistriesListComponent implements OnInit {
 
-  constructor() { }
+  ministries: Ministry[]=[];
+  loading=true;
+  constructor(private apiService:ApiService) { }
 
   ngOnInit(): void {
+    this.listOfMinistries();
+  }
+
+  /**
+   * list of ministries
+   */
+  listOfMinistries(){
+    this.apiService.getMinistry()
+      .subscribe((res)=>{
+        this.ministries=res['data'];
+        this.loading=false;
+      })
   }
 
 }

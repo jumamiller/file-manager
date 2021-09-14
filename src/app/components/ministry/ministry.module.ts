@@ -5,6 +5,7 @@ import { MinistryRoutingModule } from './ministry-routing.module';
 import { MinistriesListComponent } from './ministries-list/ministries-list.component';
 import { SingleMinistryDetailsComponent } from './single-ministry-details/single-ministry-details.component';
 import { AddNewMinistryComponent } from './add-new-ministry/add-new-ministry.component';
+import {SharedModule} from "../../shared/shared.module";
 
 
 @NgModule({
@@ -13,9 +14,10 @@ import { AddNewMinistryComponent } from './add-new-ministry/add-new-ministry.com
     SingleMinistryDetailsComponent,
     AddNewMinistryComponent
   ],
-  imports: [
-    CommonModule,
-    MinistryRoutingModule
-  ]
+    imports: [
+        CommonModule,
+        MinistryRoutingModule,
+        SharedModule
+    ]
 })
 export class MinistryModule { }

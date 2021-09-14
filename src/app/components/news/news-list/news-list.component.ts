@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {FormGroup} from "@angular/forms";
 import {ApiService} from "../../../core/services/api.service";
 import {ToastrService} from "ngx-toastr";
-import {News} from "../../../models/news";
+import {News} from "../../../core/models/news";
 
 @Component({
   selector: 'app-news-list',

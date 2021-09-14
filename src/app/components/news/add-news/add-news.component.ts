@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {News} from "../../../models/news";
 import {ApiService} from "../../../core/services/api.service";
 import {ToastrService} from "ngx-toastr";
+import {News} from "../../../core/models/news";
 
 @Component({
   selector: 'app-add-news',
