@@ -54,23 +54,23 @@ const routes: Routes = [
     loadChildren: () => import('./components/idea-suggestions/idea-suggestions.module').then(mod=>mod.IdeaSuggestionsModule)
   },
   {
-    path:'complaints',
+    path:'admin/complaints',
     loadChildren: () => import('./components/query/query.module').then(mod=>mod.QueryModule)
   },
   {
-    path:'manage-users',
+    path:'admin/manage-users',
     loadChildren: () => import('./components/users/users.module').then(mod=>mod.UsersModule)
   },
   {
-    path:'ministry',
+    path:'admin/ministry',
     loadChildren: () => import('./components/ministry/ministry.module').then(mod=>mod.MinistryModule),
   },
   {
-    path:'news',
+    path:'admin/news',
     loadChildren: () => import('./components/news/news.module').then(mod=>mod.NewsModule),
   },
   {
-    path:'projects',
+    path:'admin/projects',
     loadChildren: () => import('./components/project/project.module').then(mod=>mod.ProjectModule),
   }
 ];
