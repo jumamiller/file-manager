@@ -40,6 +40,7 @@ export class AddNewProjectComponent implements OnInit {
       total_duration:['',Validators.required],
       start_date:['',Validators.required],
       end_date:['',Validators.required],
+      status:[''],
     });
   }
   get form(){
@@ -60,6 +61,7 @@ export class AddNewProjectComponent implements OnInit {
       facilitator_contacts: this.form.facilitator_contacts.value,
       facilitator_name: this.form.facilitator_name.value,
       project_image: this.form.project_image.value,
+      status: 'upcoming',
       ministry: this.form.ministry.value,
       name: this.form.name.value,
       start_date: this.form.start_date.value,
