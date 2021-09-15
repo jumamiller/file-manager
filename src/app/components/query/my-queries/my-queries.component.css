@@ -59,10 +59,6 @@
   /* or 32px */
   color: #000000;
 }
-.appointment-table table{
-  border: 2px solid #333333;
-  box-sizing: border-box;
-}
 .appointment-table thead{
   background: #E1EAFB;
   font-family: 'Poppins',sans-serif;
