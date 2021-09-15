@@ -1,11 +1,6 @@
 <div class="content mat-elevation-z8">
-  <div class="row appointment-heading">
-    <div class="col-md-9 appointment-cols">
-      <h5 class="title">My Appointments</h5>
-    </div>
-    <div class="col-md-3 appointment-cols">
-      <a class="add-appointment" [routerLink]="['/']"><mat-icon>queue</mat-icon> New Appointment</a>
-    </div>
+  <div class="appointment-heading">
+    <h5 class="text-center">Appointments</h5>
   </div>
 
   <div class="appointment-table">
@@ -41,7 +36,7 @@
             <button mat-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
             <mat-menu #menu="matMenu">
               <a [routerLink]="['/appointments/my-appointments/details']" mat-menu-item>View Entry</a>
-              <a [routerLink]="['/appointments/my-appointments/edit']" mat-menu-item>Edit Entry</a>
+              <a [routerLink]="['/appointments/my-appointments/edit']" mat-menu-item>Leave Comment</a>
               <a mat-menu-item class="text-danger">Delete Entry</a>
             </mat-menu>
           </td>
@@ -56,7 +51,7 @@
             <button mat-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
             <mat-menu #menu="matMenu">
               <a [routerLink]="['/appointments/my-appointments/details']" mat-menu-item>View Entry</a>
-              <a [routerLink]="['/appointments/my-appointments/edit']" mat-menu-item>Edit Entry</a>
+              <a [routerLink]="['/appointments/my-appointments/edit']" mat-menu-item>Leave Comment</a>
               <a mat-menu-item class="text-danger">Delete Entry</a>
             </mat-menu>
           </td>
@@ -72,7 +67,7 @@
             <button mat-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
             <mat-menu #menu="matMenu">
               <a [routerLink]="['/appointments/my-appointments/details']" mat-menu-item>View Entry</a>
-              <a [routerLink]="['/appointments/my-appointments/edit']" mat-menu-item>Edit Entry</a>
+              <a [routerLink]="['/appointments/my-appointments/edit']" mat-menu-item>Leave Comment</a>
               <a mat-menu-item class="text-danger">Delete Entry</a>
             </mat-menu>
           </td>
@@ -88,7 +83,7 @@
             <button mat-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
             <mat-menu #menu="matMenu">
               <a [routerLink]="['/appointments/my-appointments/details']" mat-menu-item>View Entry</a>
-              <a [routerLink]="['/appointments/my-appointments/edit']" mat-menu-item>Edit Entry</a>
+              <a [routerLink]="['/appointments/my-appointments/edit']" mat-menu-item>Leave Comment</a>
               <a mat-menu-item class="text-danger">Delete Entry</a>
             </mat-menu>
           </td>
@@ -104,7 +99,7 @@
             <button mat-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
             <mat-menu #menu="matMenu">
               <a [routerLink]="['/appointments/my-appointments/details']" mat-menu-item>View Entry</a>
-              <a [routerLink]="['/appointments/my-appointments/edit']" mat-menu-item>Edit Entry</a>
+              <a [routerLink]="['/appointments/my-appointments/edit']" mat-menu-item>Leave Comment</a>
               <a mat-menu-item class="text-danger">Delete Entry</a>
             </mat-menu>
           </td>
