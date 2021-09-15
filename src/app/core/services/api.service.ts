@@ -7,6 +7,7 @@ import {Citizen} from "../models/citizen";
 import {Project} from "../models/project";
 import {Ministry} from "../models/ministry";
 import {News} from "../models/news";
+import {Appointment} from "../models/appointment";
 
 @Injectable({
   providedIn: 'root'
@@ -71,5 +72,12 @@ export class ApiService {
    */
   getMinistry():Observable<Ministry[]>{
     return this.httpClient.get<Ministry[]>(`${environment.API_BASE_URL}admin/get-ministries`);
+  }
+
+  /**
+   * get all appointments
+   */
+  getAllAppointments():Observable<Appointment[]>{
+    return this.httpClient.get<Appointment[]>(`${environment.API_BASE_URL}citizen/appointments`);
   }
 }
