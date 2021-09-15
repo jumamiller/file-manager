@@ -8,7 +8,7 @@
 .appointment-cols{
   margin-top: 20px;
 }
-.appointment-heading h5{
+h5{
   font-family: 'Poppins',sans-serif;
   font-style: normal;
   font-weight: 600;
@@ -58,10 +58,6 @@
   line-height: 175.6%;
   /* or 32px */
   color: #000000;
-}
-.appointment-table table{
-  border: 2px solid #333333;
-  box-sizing: border-box;
 }
 .appointment-table thead{
   background: #E1EAFB;

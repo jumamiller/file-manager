@@ -1,12 +1,5 @@
 <div class="content mat-elevation-z8">
-  <div class="row appointment-heading">
-    <div class="col-md-9 appointment-cols">
-      <h5 class="title">Ideas/Suggestions</h5>
-    </div>
-    <div class="col-md-3 appointment-cols">
-      <a class="add-appointment" [routerLink]="['/']"><mat-icon>queue</mat-icon> New Suggestion</a>
-    </div>
-  </div>
+  <h5 class="text-center title">Ideas/Suggestions</h5>
 
   <div class="appointment-table">
     <div class="row">
@@ -41,8 +34,8 @@
           <td class="text-center">
             <button mat-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
             <mat-menu #menu="matMenu">
-              <a [routerLink]="['/suggestions/submissions/details']" mat-menu-item>View Entry</a>
-              <a [routerLink]="['/suggestions/my-submissions/details']" mat-menu-item>Edit Entry</a>
+              <a [routerLink]="['/admin/suggestions/submissions/details']" mat-menu-item>View Entry</a>
+              <a [routerLink]="['/admin/suggestions/my-submissions/details']" mat-menu-item>Leave Comment</a>
               <a mat-menu-item class="text-danger">Delete Entry</a>
             </mat-menu>
           </td>
@@ -58,7 +51,7 @@
             <button mat-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
             <mat-menu #menu="matMenu">
               <a [routerLink]="['/suggestions/submissions/details']" mat-menu-item>View Entry</a>
-              <a [routerLink]="['/suggestions/my-submissions/details']" mat-menu-item>Edit Entry</a>
+              <a [routerLink]="['/suggestions/my-submissions/details']" mat-menu-item>Leave Comment</a>
               <a mat-menu-item class="text-danger">Delete Entry</a>
             </mat-menu>
           </td>
@@ -74,7 +67,7 @@
             <button mat-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
             <mat-menu #menu="matMenu">
               <a [routerLink]="['/suggestions/submissions/details']" mat-menu-item>View Entry</a>
-              <a [routerLink]="['/suggestions/my-submissions/details']" mat-menu-item>Edit Entry</a>
+              <a [routerLink]="['/suggestions/my-submissions/details']" mat-menu-item>Leave Comment</a>
               <a mat-menu-item class="text-danger">Delete Entry</a>
             </mat-menu>
           </td>
