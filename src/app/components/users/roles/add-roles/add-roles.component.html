@@ -13,7 +13,6 @@
         </div>
       </div>
 
-      <h3 class="text-dark ml-3">Add Permissions To the Role</h3>
       <div class="row mt-5 permissions">
         <div class="col-md-3" *ngFor="let permission of permissions">
           <mat-checkbox
@@ -22,7 +21,7 @@
             (change)="onPermissionCheckBoxChange($event)"
             class="perm-margin"
           >
-            {{permission.display_name}}
+            <span class="perm">{{permission.display_name}}</span>
           </mat-checkbox>
         </div>
       </div>

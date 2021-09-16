@@ -101,6 +101,13 @@ export class ApiService {
   }
 
   /**
+   * remove a role
+   */
+  removeRole(role_id:number):Observable<Role>{
+    return this.httpClient.delete<Role>(`${environment.API_BASE_URL}admin/roles/${role_id}`);
+  }
+
+  /**
    * add new role
    */
   addNewRole(role:Role):Observable<Role>{

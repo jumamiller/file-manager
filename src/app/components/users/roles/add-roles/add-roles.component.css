@@ -21,6 +21,9 @@ input{
 .permissions{
   margin: 3px;
 }
+.permissions .perm{
+  font-size: 14px;
+}
 .permissions .perm-margin{
   font-family: 'Poppins',sans-serif;
   font-style: normal;
