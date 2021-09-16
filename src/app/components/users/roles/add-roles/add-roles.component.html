@@ -1,38 +1,39 @@
 <div class="content mat-elevation-z8">
   <h2 class="text-center text-dark">Add New Roles</h2>
   <div class="roles-form">
-    <form>
+    <form [formGroup]="roleForm" (ngSubmit)="onNewRoleSubmit()">
       <div class="form-row m-3">
         <div class="col">
           <label for="roleName">Role name</label>
-          <input type="text" id="roleName" name="roleName" class="form-control" placeholder="governor">
+          <input type="text" id="roleName" formControlName="roleName" class="form-control" placeholder="governor">
         </div>
         <div class="col">
           <label for="roleDescription">Role Description</label>
-          <input type="text" id="roleDescription" name="roleDescription" class="form-control" placeholder="role description">
+          <input type="text" id="roleDescription" formControlName="roleDescription" class="form-control" placeholder="role description">
         </div>
       </div>
 
-      <h3 class="text-dark ml-5">Add Permissions To the Role</h3>
+      <h3 class="text-dark ml-3">Add Permissions To the Role</h3>
       <div class="row mt-5 permissions">
-        <div class="col-md-3"><mat-checkbox class="perm-margin">View User</mat-checkbox></div>
-        <div class="col-md-3"><mat-checkbox class="perm-margin">View Staff</mat-checkbox></div>
-        <div class="col-md-3"><mat-checkbox class="perm-margin">View Role</mat-checkbox></div>
-        <div class="col-md-3"><mat-checkbox class="perm-margin">Create Role</mat-checkbox></div>
+        <div class="col-md-3" *ngFor="let permission of permissions">
+          <mat-checkbox
+            [checked]="permission.checked"
+            [id]="permission.id"
+            (change)="onPermissionCheckBoxChange($event)"
+            class="perm-margin"
+          >
+            {{permission.display_name}}
+          </mat-checkbox>
+        </div>
       </div>
-
-      <div class="row mt-5 permissions">
-        <div class="col-md-3"><mat-checkbox class="perm-margin">View User</mat-checkbox></div>
-        <div class="col-md-3"><mat-checkbox class="perm-margin">View Staff</mat-checkbox></div>
-        <div class="col-md-3"><mat-checkbox class="perm-margin">View Role</mat-checkbox></div>
-        <div class="col-md-3"><mat-checkbox class="perm-margin">Create Role</mat-checkbox></div>
-      </div>
-
 
       <div class="submit m-2">
         <button class="btn btn-danger">Create New Role</button>
       </div>
 
     </form>
+    <div *ngIf="loading" class="d-flex justify-content-center my-1">
+      <div class="spinner-border" role="status" aria-hidden="true"></div>
+    </div>
   </div>
 </div>

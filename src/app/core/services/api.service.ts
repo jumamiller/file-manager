@@ -8,6 +8,8 @@ import {Project} from "../models/project";
 import {Ministry} from "../models/ministry";
 import {News} from "../models/news";
 import {Appointment} from "../models/appointment";
+import {Permission} from "../models/permission";
+import {Role} from "../models/role";
 
 @Injectable({
   providedIn: 'root'
@@ -79,5 +81,36 @@ export class ApiService {
    */
   getAllAppointments():Observable<Appointment[]>{
     return this.httpClient.get<Appointment[]>(`${environment.API_BASE_URL}citizen/appointments`);
+  }
+
+  /**
+   * roles and permissions
+   */
+  /**
+   * get all permissions
+   */
+  getAllPermissions():Observable<Permission>{
+    return this.httpClient.get<Permission>(`${environment.API_BASE_URL}admin/permissions`);
+  }
+
+  /**
+   * get all roles
+   */
+  getAllRoles():Observable<Role>{
+    return this.httpClient.get<Role>(`${environment.API_BASE_URL}admin/roles`);
+  }
+
+  /**
+   * add new role
+   */
+  addNewRole(role:Role):Observable<Role>{
+    return this.httpClient.post<Role>(`${environment.API_BASE_URL}admin/roles`,role);
+  }
+
+  /**
+   * add permission to a role
+   */
+  addPermissionToRole(permissions:any[],role_id:number):Observable<any>{
+    return this.httpClient.post<Role>(`${environment.API_BASE_URL}admin/roles/add-permissions/${role_id}`,{permissions:permissions});
   }
 }
