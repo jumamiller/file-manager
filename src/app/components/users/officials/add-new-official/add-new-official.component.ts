@@ -17,6 +17,9 @@ export class AddNewOfficialComponent implements OnInit {
   officialForm: FormGroup;
   loading=true;
   submitting=false;
+  categories;
+  portfolios;
+  subCategories;
 
   constructor(
     private authService:AuthService,
@@ -28,6 +31,7 @@ export class AddNewOfficialComponent implements OnInit {
   ngOnInit(): void {
     this.officialsFormControl();
     this.getAllRoles();
+    this.getCategories();
   }
 
   /**
@@ -94,6 +98,19 @@ export class AddNewOfficialComponent implements OnInit {
       .subscribe((res)=>{
         this.roles=res['data'];
         this.loading=false;
+      })
+  }
+
+  /**
+   * get categories
+   */
+  getCategories(){
+    this.apiService.getCategories()
+      .subscribe((res)=>{
+        this.categories=res['category_name'];
+        this.portfolios=res['portfolio']['portfolio_name'];
+        this.subCategories=res['sub_category']['sub_category_name'];
+        console.log(this.categories);
       })
   }
 }

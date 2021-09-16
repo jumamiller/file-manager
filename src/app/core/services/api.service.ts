@@ -127,4 +127,11 @@ export class ApiService {
   assignRoleToOfficial(role:any):Observable<any>{
     return this.httpClient.post<any>(`${environment.API_BASE_URL}admin/roles/assign-roles`,role);
   }
+
+  /**
+   * get categories
+   */
+  getCategories():Observable<any>{
+    return this.httpClient.get<any>(`${environment.API_BASE_URL}admin/category`);
+  }
 }
