@@ -96,8 +96,8 @@ export class ApiService {
   /**
    * get all roles
    */
-  getAllRoles():Observable<Role>{
-    return this.httpClient.get<Role>(`${environment.API_BASE_URL}admin/roles`);
+  getAllRoles():Observable<Role[]>{
+    return this.httpClient.get<Role[]>(`${environment.API_BASE_URL}admin/roles`);
   }
 
   /**

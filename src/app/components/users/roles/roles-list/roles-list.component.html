@@ -15,36 +15,20 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-          <td class="">1</td>
-          <td class="">Governor</td>
-          <td class="">The governor of Kogi State oversees the whole system activities</td>
+        <tr *ngFor="let role of roles;let i=index">
+          <td class="">{{i+1}}</td>
+          <td class="">{{role.name}}</td>
+          <td class="">{{role.description}}</td>
           <td class="text-center"><button class="btn btn-success"><i class="fas fa-eye"></i> </button></td>
           <td class="text-center"><button class="btn btn-primary"><i class="fas fa-user-edit"></i> </button></td>
           <td class="text-center"> <button class="btn btn-danger"><i class="fas fa-trash"></i></button></td>
         </tr>
-
-        <tr>
-          <td class="">2</td>
-          <td class="">Minister</td>
-          <td class="">manages all tasks regarding his/her ministry</td>
-          <td class="text-center"><button class="btn btn-success"><i class="fas fa-eye"></i> </button></td>
-          <td class="text-center"><button class="btn btn-primary"><i class="fas fa-user-edit"></i> </button></td>
-          <td class="text-center"> <button class="btn btn-danger"><i class="fas fa-trash"></i></button></td>
-        </tr>
-
-        <tr>
-          <td class="">3</td>
-          <td class="">Chief Of Staff</td>
-          <td class="">senior-level strategic partner that helps an executive...</td>
-          <td class="text-center"><button class="btn btn-success"><i class="fas fa-eye"></i> </button></td>
-          <td class="text-center"><button class="btn btn-primary"><i class="fas fa-user-edit"></i> </button></td>
-          <td class="text-center"> <button class="btn btn-danger"><i class="fas fa-trash"></i></button></td>
-        </tr>
-
 
         </tbody>
       </table>
     </div>
+  </div>
+  <div *ngIf="loading" class="d-flex justify-content-center my-1">
+    <div class="spinner-border" role="status" aria-hidden="true"></div>
   </div>
 </div>
