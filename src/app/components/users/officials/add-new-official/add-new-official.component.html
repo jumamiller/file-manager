@@ -54,12 +54,8 @@
 
         <div class="col-md-4">
           <label for="role">Select Official Role</label>
-          <select id="role" class="custom-select"name="role">
-            <option>Admin</option>
-            <option>Governor</option>
-            <option>Official</option>
-            <option>Minister</option>
-            <option>others</option>
+          <select id="role" class="custom-select" formControlName="role">
+            <option *ngFor="let role of roles" [value]="role.id">{{role.display_name}}</option>
           </select>
         </div>
 

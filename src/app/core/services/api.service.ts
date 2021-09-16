@@ -113,4 +113,11 @@ export class ApiService {
   addPermissionToRole(permissions:any[],role_id:number):Observable<any>{
     return this.httpClient.post<Role>(`${environment.API_BASE_URL}admin/roles/add-permissions/${role_id}`,{permissions:permissions});
   }
+
+  /**
+   * assign Role to official
+   */
+  assignRoleToOfficial(role:any):Observable<any>{
+    return this.httpClient.post<any>(`${environment.API_BASE_URL}admin/roles/assign-roles`,role);
+  }
 }

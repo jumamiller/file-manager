@@ -3,6 +3,8 @@ import {AuthService} from "../../../../core/services/auth.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Citizen} from "../../../../core/models/citizen";
 import {ToastrService} from "ngx-toastr";
+import {ApiService} from "../../../../core/services/api.service";
+import {Role} from "../../../../core/models/role";
 
 @Component({
   selector: 'app-add-new-official',
@@ -11,6 +13,7 @@ import {ToastrService} from "ngx-toastr";
 })
 export class AddNewOfficialComponent implements OnInit {
 
+  roles:Role[];
   officialForm: FormGroup;
   loading=true;
   submitting=false;
@@ -18,11 +21,13 @@ export class AddNewOfficialComponent implements OnInit {
   constructor(
     private authService:AuthService,
     private formBuilder:FormBuilder,
+    private apiService:ApiService,
     private toastrService: ToastrService
   ) { }
 
   ngOnInit(): void {
     this.officialsFormControl();
+    this.getAllRoles();
   }
 
   /**
@@ -32,6 +37,7 @@ export class AddNewOfficialComponent implements OnInit {
     this.officialForm=this.formBuilder.group({
       firstName:['',Validators.required],
       lastName:['',Validators.required],
+      role:['',Validators.required],
       phone:['',Validators.required],
       email:['',Validators.required],
       city:['',Validators.required],
@@ -78,6 +84,16 @@ export class AddNewOfficialComponent implements OnInit {
       },error => {
         this.toastrService.error(error.error.errors,'Error');
         this.submitting=false;
+      })
+  }
+  /**
+   * list roles
+   */
+  getAllRoles(){
+    this.apiService.getAllRoles()
+      .subscribe((res)=>{
+        this.roles=res['data'];
+        this.loading=false;
       })
   }
 }
