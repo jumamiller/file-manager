@@ -11,6 +11,7 @@ import {Appointment} from "../models/appointment";
 import {Permission} from "../models/permission";
 import {Role} from "../models/role";
 import {Category} from "../models/category";
+import {LocalGovernment} from "../models/local-government";
 
 @Injectable({
   providedIn: 'root'
@@ -134,5 +135,19 @@ export class ApiService {
    */
   getCategories():Observable<Category[]>{
     return this.httpClient.get<Category[]>(`${environment.API_BASE_URL}admin/category`);
+  }
+
+  /**
+   * local governments
+   */
+  addLocalGovernments(LGA:LocalGovernment):Observable<LocalGovernment>{
+    return this.httpClient.post<LocalGovernment>(`${environment.API_BASE_URL}admin/lga`,LGA);
+  }
+
+  /**
+   * get local governments
+   */
+  getLocalGovernments():Observable<LocalGovernment[]>{
+    return this.httpClient.get<LocalGovernment[]>(`${environment.API_BASE_URL}admin/lga`);
   }
 }

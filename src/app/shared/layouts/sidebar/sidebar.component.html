@@ -61,6 +61,12 @@
     </button>
 
     <mat-divider></mat-divider>
+    <button mat-button class="menu-button"[routerLink]="['/admin/local-government-area/list-governments']" routerLinkActive="active">
+      <mat-icon>home</mat-icon>
+      <span>LGAs</span>
+    </button>
+
+    <mat-divider></mat-divider>
     <button mat-button class="menu-button" [routerLink]="['/admin/news/news-list']" routerLinkActive="active">
       <mat-icon>cell_wifi</mat-icon>
       <span>News 	&amp; Events</span>
