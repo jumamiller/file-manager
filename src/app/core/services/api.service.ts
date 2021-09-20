@@ -10,6 +10,7 @@ import {News} from "../models/news";
 import {Appointment} from "../models/appointment";
 import {Permission} from "../models/permission";
 import {Role} from "../models/role";
+import {Category} from "../models/category";
 
 @Injectable({
   providedIn: 'root'
@@ -131,7 +132,7 @@ export class ApiService {
   /**
    * get categories
    */
-  getCategories():Observable<any>{
-    return this.httpClient.get<any>(`${environment.API_BASE_URL}admin/category`);
+  getCategories():Observable<Category[]>{
+    return this.httpClient.get<Category[]>(`${environment.API_BASE_URL}admin/category`);
   }
 }

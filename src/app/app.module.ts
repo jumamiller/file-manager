@@ -30,7 +30,7 @@ import {NgxPaginationModule} from "ngx-pagination";
     MessagesComponent,
     NewsListComponent,
     SingleNewsDetailsComponent,
-    AddNewsComponent
+    AddNewsComponent,
   ],
   imports: [
     BrowserModule,

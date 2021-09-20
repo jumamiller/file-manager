@@ -5,6 +5,7 @@ export interface Citizen {
   email:string;
   password:string;
   updated_at?: string;
+  avatar?:any;
   created_at?: string;
   id?: number;
   first_name:string;

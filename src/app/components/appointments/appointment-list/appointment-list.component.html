@@ -17,14 +17,11 @@
       <table class="table table-bordered table-hover table-striped">
         <thead class="thead-bg">
         <tr>
-          <th scope="col">S/N</th>
-          <th scope="col">Scheduled Date</th>
-          <th scope="col">Ministry</th>
-          <th scope="col">Department</th>
-          <th scope="col">Message</th>
-          <th scope="col">Citizen</th>
-          <th scope="col">Phone</th>
-          <th scope="col">Email</th>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Officer To Be Seen</th>
+          <th scope="col">Purpose</th>
+          <th scope="col">proposed Date</th>
           <th scope="col" class="text-center">Status</th>
           <th scope="col" class="text-center">Actions</th>
         </tr>
@@ -32,13 +29,10 @@
         <tbody>
         <tr *ngFor="let appointment of appointments;let i=index">
           <td class="">{{i+1}}</td>
-          <td class="">{{appointment.date}}</td>
-          <td class="">{{appointment.ministry}}</td>
-          <td class="">{{appointment.department}}</td>
-          <td class="">{{appointment.message}}</td>
           <td class="">{{appointment['first_name']}} {{appointment['last_name']}}</td>
-          <td class="">{{appointment['phone']}}</td>
-          <td class="">{{appointment['email']}}</td>
+          <td class="">{{appointment.official}}</td>
+          <td class="">{{appointment.message}}</td>
+          <td class="">{{appointment.date}}</td>
           <td class="text-center text-success"><span class="">{{appointment.status}}</span></td>
           <td class="text-center">
             <button mat-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>

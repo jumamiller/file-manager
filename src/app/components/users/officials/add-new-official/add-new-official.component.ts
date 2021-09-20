@@ -5,6 +5,7 @@ import {Citizen} from "../../../../core/models/citizen";
 import {ToastrService} from "ngx-toastr";
 import {ApiService} from "../../../../core/services/api.service";
 import {Role} from "../../../../core/models/role";
+import {Category} from "../../../../core/models/category";
 
 @Component({
   selector: 'app-add-new-official',
@@ -17,9 +18,9 @@ export class AddNewOfficialComponent implements OnInit {
   officialForm: FormGroup;
   loading=true;
   submitting=false;
-  categories;
-  portfolios;
-  subCategories;
+  categories:Category[];
+  portfolios:Category[]=[];
+  subCategories:Category[]=[];
 
   constructor(
     private authService:AuthService,
@@ -47,6 +48,7 @@ export class AddNewOfficialComponent implements OnInit {
       city:['',Validators.required],
       gender:['',Validators.required],
       LGA:['',Validators.required],
+      avatar:['',Validators.required],
       password:['',Validators.required],
     })
   }
@@ -63,6 +65,11 @@ export class AddNewOfficialComponent implements OnInit {
    */
   onSubmit(){
     this.submitting=true;
+    // Create form data
+    const formData = new FormData();
+    // Store form name as "file" with file data
+    console.log(this.form.avatar);
+    formData.append("avatar", this.form.avatar.value);
     let official:Citizen={
       first_name:this.form.firstName.value,
       last_name: this.form.lastName.value,
@@ -72,7 +79,8 @@ export class AddNewOfficialComponent implements OnInit {
       gender:this.form.gender.value,
       password:this.form.password.value,
       LGA:this.form.LGA.value,
-      user_type:'official'
+      user_type:'official',
+      avatar:formData,
     }
     this.authService.register(official)
       .subscribe((res)=>{
@@ -107,10 +115,7 @@ export class AddNewOfficialComponent implements OnInit {
   getCategories(){
     this.apiService.getCategories()
       .subscribe((res)=>{
-        this.categories=res['category_name'];
-        this.portfolios=res['portfolio']['portfolio_name'];
-        this.subCategories=res['sub_category']['sub_category_name'];
-        console.log(this.categories);
+        this.categories=res['data'];
       })
   }
 }

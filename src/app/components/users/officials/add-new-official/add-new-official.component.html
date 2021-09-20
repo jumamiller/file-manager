@@ -1,25 +1,25 @@
 <div class="content mat-elevation-z8">
   <h2 class="text-center text-dark">Add New Government Official</h2>
   <div class="add-new-user">
-    <form [formGroup]="officialForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="officialForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
       <div class="form-row m-3">
         <div class="col-md-4">
           <label for="category">Select Category</label>
           <select class="custom-select" name="category" id="category">
-            <option value=""></option>
+            <option value="" *ngFor="let category of categories">{{category.category_name}}</option>
           </select>
         </div>
 
         <div class="col-md-4">
           <label for="category">Sub-Category</label>
-          <select class="custom-select" name="category" id="category">
-            <option value=""></option>
+          <select class="custom-select" name="category" id="sub_category">
+            <option value="" *ngFor="let sub_category of categories">{{sub_category.sub_category_name}}</option>
           </select>
         </div>
 
         <div class="col-md-4">
           <label for="category">Portfolio</label>
-          <select class="custom-select" name="category" id="category">
+          <select class="custom-select" name="category" id="portfolio">
             <option value=""></option>
           </select>
         </div>
@@ -64,16 +64,6 @@
         </div>
 
         <div class="col-md-4">
-          <label for="facebook-link">Facebook Link</label>
-          <input type="text" id="facebook-link" class="form-control">
-        </div>
-
-        <div class="col-md-4">
-          <label for="instagram-link">Instagram Link</label>
-          <input type="text" id="instagram-link" class="form-control">
-        </div>
-
-        <div class="col-md-4">
           <label for="role">Select Role</label>
           <select id="role" class="custom-select" formControlName="role">
             <option *ngFor="let role of roles" [value]="role.id">{{role.display_name}}</option>
@@ -82,7 +72,7 @@
 
         <div class="col-md-4">
           <label>Upload Avatar</label>
-          <input type="file" class="form-control-file">
+          <input type="file" class="form-control-file" formControlName="avatar">
         </div>
 
         <div class="col-md-4">
