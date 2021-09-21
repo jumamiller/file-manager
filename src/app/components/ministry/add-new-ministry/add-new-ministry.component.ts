@@ -11,6 +11,7 @@ import {ApiService} from "../../../core/services/api.service";
 })
 export class AddNewMinistryComponent implements OnInit {
 
+  submitting=false;
   ministryForm:FormGroup;
   constructor(
     private formBuilder:FormBuilder,
@@ -40,6 +41,7 @@ export class AddNewMinistryComponent implements OnInit {
    * on adding a new ministry
    */
   onSubmit(){
+    this.submitting=true;
     let ministry:Ministry={
       address: this.form.address.value,
       budget: this.form.budget.value,
@@ -50,6 +52,10 @@ export class AddNewMinistryComponent implements OnInit {
     this.apiService.addMinistry(ministry)
       .subscribe((res)=>{
         this.toastrService.success(res.message,'Success');
+        this.submitting=false;
+      },error => {
+        this.toastrService.error(error.error.message,'Error');
+        this.submitting=false;
       })
   }
 
