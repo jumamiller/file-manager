@@ -13,6 +13,7 @@ import {Role} from "../models/role";
 import {Category} from "../models/category";
 import {LocalGovernment} from "../models/local-government";
 import {Suggestion} from "../models/suggestion";
+import {Volunteer} from "../models/volunteer";
 
 @Injectable({
   providedIn: 'root'
@@ -162,7 +163,22 @@ export class ApiService {
   /**
    * proposals
    */
-  getproposalsList():Observable<Suggestion[]>{
+  getProposalsList():Observable<Suggestion[]>{
     return this.httpClient.get<Suggestion[]>(`${environment.API_BASE_URL}citizen/proposals`);
+  }
+
+  /**
+   * volunteer projects
+   */
+  getVolunteerProjects():Observable<Volunteer[]>{
+    return this.httpClient.get<Volunteer[]>(`${environment.API_BASE_URL}citizen/volunteer`);
+  }
+
+  /**
+   * volunteer projects
+   * @param volunteer
+   */
+  addNewVolunteerProject(volunteer:Volunteer):Observable<Volunteer>{
+    return this.httpClient.post<Volunteer>(`${environment.API_BASE_URL}citizen/volunteer`,volunteer);
   }
 }

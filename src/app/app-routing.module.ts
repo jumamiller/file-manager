@@ -80,7 +80,10 @@ const routes: Routes = [
   {
     path:'admin/proposals',
     loadChildren: () => import('./components/proposals/proposals.module').then(mod=>mod.ProposalsModule)
-
+  },
+  {
+    path:'admin/volunteer-projects',
+    loadChildren: () => import('./components/volunteer/volunteer.module').then(mod=>mod.VolunteerModule),
   }
 ];
 

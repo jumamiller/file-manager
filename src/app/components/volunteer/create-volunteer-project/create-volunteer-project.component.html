@@ -1,0 +1,66 @@
+<div class="content mat-elevation-z8">
+  <h3 class="text-center">Add Volunteer projects</h3>
+  <div class="suggestion-form m-3">
+    <form [formGroup]="volunteerProjectForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Title</label>
+            <input type="text" class="form-control" formControlName="title">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Description</label>
+            <input type="text" class="form-control" formControlName="description">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Purpose</label>
+            <input type="text" class="form-control" formControlName="purpose">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Location</label>
+            <input type="text" class="form-control" formControlName="location">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label>Status</label>
+            <select formControlName="status"class="form-control">
+              <option value="pending">Pending</option>
+              <option value="completed">Completed</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label>Duration</label>
+            <input type="date" class="form-control" formControlName="duration">
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label>Resource</label>
+            <input type="text" class="form-control" formControlName="resources">
+          </div>
+        </div>
+      </div>
+      <div class="row mt-5">
+        <div class="col-md-10"></div>
+        <div class="col-md-2">
+          <button *ngIf="!submitting" type="submit" class="btn btn-danger">Submit</button>
+          <button *ngIf="submitting" type="submit" class="btn btn-success">Adding project...</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

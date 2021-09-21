@@ -19,7 +19,7 @@ export class ProposalListComponent implements OnInit {
   }
 
   suggestionsList(){
-    this.apiService.getproposalsList()
+    this.apiService.getProposalsList()
       .subscribe((res)=>{
         this.proposals=res['data'];
         this.loading=false;
