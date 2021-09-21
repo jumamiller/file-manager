@@ -88,6 +88,13 @@ export class ApiService {
   }
 
   /**
+   * respond to appointment
+   */
+  respondToAppointment(appointmentDetails:any):Observable<any>{
+    return this.httpClient.patch<any>(`${environment.API_BASE_URL}admin/appointment`,appointmentDetails);
+  }
+
+  /**
    * roles and permissions
    */
   /**

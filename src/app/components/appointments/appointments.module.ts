@@ -7,6 +7,7 @@ import { AddAppointmentsComponent } from './add-appointments/add-appointments.co
 import { SingleAppointmentComponent } from './single-appointment/single-appointment.component';
 import { EditAppointmentComponent } from './edit-appointment/edit-appointment.component';
 import {MaterialModule} from "../../material-module";
+import {SharedModule} from "../../shared/shared.module";
 
 
 @NgModule({
@@ -16,10 +17,11 @@ import {MaterialModule} from "../../material-module";
     SingleAppointmentComponent,
     EditAppointmentComponent,
   ],
-  imports: [
-    CommonModule,
-    AppointmentsRoutingModule,
-    MaterialModule
-  ]
+    imports: [
+        CommonModule,
+        AppointmentsRoutingModule,
+        MaterialModule,
+        SharedModule
+    ]
 })
 export class AppointmentsModule { }
