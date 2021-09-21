@@ -168,6 +168,13 @@ export class ApiService {
   }
 
   /**
+   * respond to suggestion
+   */
+  respondToSuggestions(response:any):Observable<any>{
+    return this.httpClient.patch<Suggestion[]>(`${environment.API_BASE_URL}admin/suggestion`,response);
+  }
+
+  /**
    * proposals
    */
   getProposalsList():Observable<Suggestion[]>{

@@ -26,13 +26,13 @@
           <td class="">{{suggestion.first_name}} {{suggestion.last_name}}</td>
           <td class="">{{suggestion.office}}</td>
           <td class="">{{suggestion.message}}</td>
-          <td class="">{{suggestion.message}}</td>
+          <td class="">{{suggestion.response}}</td>
           <td class="text-center text-success"><span class="">Pending</span></td>
           <td class="text-center">
             <button mat-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
             <mat-menu #menu="matMenu">
               <a [routerLink]="['/admin/suggestions/submissions/details']" mat-menu-item>View Entry</a>
-              <a [routerLink]="['/admin/suggestions/my-submissions/details']" mat-menu-item>Respond</a>
+              <a [routerLink]="['/admin/suggestions/my-submissions/details']" mat-menu-item (click)="onSuggestionClick(suggestion.id)"data-toggle="modal" data-target="#exampleModal">Respond</a>
               <a mat-menu-item class="text-danger">Delete Entry</a>
             </mat-menu>
           </td>
@@ -42,6 +42,34 @@
     </div>
     <div *ngIf="loading" class="d-flex justify-content-center my-1">
       <div class="spinner-border" role="status" aria-hidden="true"></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" data-backdrop="false" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title" id="exampleModalLabel">Respond to Suggestion</h6>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="responseForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="response">Response</label>
+            <textarea class="form-control" cols="7" rows="7" id="response" formControlName="response"></textarea>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button *ngIf="!submitting" [disabled]="responseForm.invalid" type="submit" class="btn btn-danger">Send Response</button>
+            <button *ngIf="submitting" type="button" class="btn btn-success">Sending Response...</button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </div>
