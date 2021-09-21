@@ -76,6 +76,11 @@ const routes: Routes = [
   {
     path:'admin/local-government-area',
     loadChildren: () => import('./components/local-governments/local-governments.module').then(mod =>mod.LocalGovernmentsModule)
+  },
+  {
+    path:'admin/proposals',
+    loadChildren: () => import('./components/proposals/proposals.module').then(mod=>mod.ProposalsModule)
+
   }
 ];
 

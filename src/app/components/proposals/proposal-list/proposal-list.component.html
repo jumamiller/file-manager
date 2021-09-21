@@ -1,17 +1,17 @@
 <div class="content mat-elevation-z8">
-  <h5 class="text-center title">Ideas/Suggestions</h5>
+  <h5 class="text-center title">Proposals</h5>
 
   <div class="appointment-table">
     <div class="table-responsive">
       <table class="table table-bordered table-hover table-striped">
         <thead class="thead-bg">
         <tr>
-          <th scope="col">S/N</th>
+          <th scope="col">#</th>
           <th scope="col">Date</th>
           <th scope="col">Name</th>
           <th scope="col">Official</th>
           <th scope="col">Office</th>
-          <th scope="col">Suggestion</th>
+          <th scope="col">proposal</th>
           <th scope="col">Response</th>
           <th scope="col" class="text-center">Status</th>
           <th scope="col" class="text-center">Actions</th>
@@ -19,20 +19,20 @@
         </thead>
         <tbody>
 
-        <tr *ngFor="let suggestion of suggestions;let i=index">
+        <tr *ngFor="let proposal of proposals;let i=index">
           <td class="">{{i+1}}</td>
-          <td class="">{{suggestion.created_at | date}}</td>
-          <td class="">{{suggestion.official}}</td>
-          <td class="">{{suggestion.first_name}} {{suggestion.last_name}}</td>
-          <td class="">{{suggestion.office}}</td>
-          <td class="">{{suggestion.message}}</td>
-          <td class="">{{suggestion.message}}</td>
+          <td class="">{{proposal.created_at | date}}</td>
+          <td class="">{{proposal.official}}</td>
+          <td class="">{{proposal.first_name}} {{proposal.last_name}}</td>
+          <td class="">{{proposal.office}}</td>
+          <td class="">{{proposal.message}}</td>
+          <td class="">{{proposal.message}}</td>
           <td class="text-center text-success"><span class="">Pending</span></td>
           <td class="text-center">
             <button mat-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
             <mat-menu #menu="matMenu">
-              <a [routerLink]="['/admin/suggestions/submissions/details']" mat-menu-item>View Entry</a>
-              <a [routerLink]="['/admin/suggestions/my-submissions/details']" mat-menu-item>Respond</a>
+              <a [routerLink]="['/admin/proposals/submissions/details']" mat-menu-item>View Entry</a>
+              <a [routerLink]="['/admin/proposals/my-submissions/details']" mat-menu-item>Respond</a>
               <a mat-menu-item class="text-danger">Delete Entry</a>
             </mat-menu>
           </td>

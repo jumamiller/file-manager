@@ -12,6 +12,7 @@ import {Permission} from "../models/permission";
 import {Role} from "../models/role";
 import {Category} from "../models/category";
 import {LocalGovernment} from "../models/local-government";
+import {Suggestion} from "../models/suggestion";
 
 @Injectable({
   providedIn: 'root'
@@ -149,5 +150,19 @@ export class ApiService {
    */
   getLocalGovernments():Observable<LocalGovernment[]>{
     return this.httpClient.get<LocalGovernment[]>(`${environment.API_BASE_URL}admin/lga`);
+  }
+
+  /**
+   * ideas
+   */
+  getListOfSuggestions():Observable<Suggestion[]>{
+    return this.httpClient.get<Suggestion[]>(`${environment.API_BASE_URL}citizen/suggestions`);
+  }
+
+  /**
+   * proposals
+   */
+  getproposalsList():Observable<Suggestion[]>{
+    return this.httpClient.get<Suggestion[]>(`${environment.API_BASE_URL}citizen/proposals`);
   }
 }

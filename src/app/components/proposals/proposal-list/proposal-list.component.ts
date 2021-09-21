@@ -4,13 +4,13 @@ import {ApiService} from "../../../core/services/api.service";
 import {ToastrService} from "ngx-toastr";
 
 @Component({
-  selector: 'app-submissions',
-  templateUrl: './submissions.component.html',
-  styleUrls: ['./submissions.component.css']
+  selector: 'app-proposal-list',
+  templateUrl: './proposal-list.component.html',
+  styleUrls: ['./proposal-list.component.css']
 })
-export class SubmissionsComponent implements OnInit {
+export class ProposalListComponent implements OnInit {
 
-  suggestions:Suggestion[];
+  proposals:Suggestion[];
   loading=true;
   constructor(private apiService:ApiService, private toastrService:ToastrService) { }
 
@@ -19,9 +19,9 @@ export class SubmissionsComponent implements OnInit {
   }
 
   suggestionsList(){
-    this.apiService.getListOfSuggestions()
+    this.apiService.getproposalsList()
       .subscribe((res)=>{
-        this.suggestions=res['data'];
+        this.proposals=res['data'];
         this.loading=false;
       },error => {
         this.toastrService.error(error.error.message,'Error');
