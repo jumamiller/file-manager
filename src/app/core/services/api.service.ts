@@ -69,8 +69,8 @@ export class ApiService {
   /**
    * add ministries
    */
-  addMinistry(ministry:Ministry,formData):Observable<Ministry>{
-    return this.httpClient.post<Ministry>(`${environment.API_BASE_URL}admin/add-ministry`,formData);
+  addMinistry(ministry:Ministry):Observable<Ministry>{
+    return this.httpClient.post<Ministry>(`${environment.API_BASE_URL}admin/add-ministry`,ministry);
   }
 
   /**

@@ -47,10 +47,9 @@ export class AddNewMinistryComponent implements OnInit {
       budget: this.form.budget.value,
       description: this.form.description.value,
       name: this.form.name.value,
-
     };
 
-    this.apiService.addMinistry(ministry,this.formData)
+    this.apiService.addMinistry(ministry)
       .subscribe((res)=>{
         this.toastrService.success(res.message,'Success');
         this.submitting=false;
