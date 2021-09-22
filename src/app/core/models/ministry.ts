@@ -4,6 +4,6 @@ export interface Ministry {
   message?:string,
   name:string,
   description:string,
-  address:string,
+  address?:string,
   budget:string
 }

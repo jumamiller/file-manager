@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {User} from "../models/user";
 import {environment} from "../../../environments/environment";
@@ -69,8 +69,19 @@ export class ApiService {
   /**
    * add ministries
    */
-  addMinistry(ministry:Ministry):Observable<Ministry>{
-    return this.httpClient.post<Ministry>(`${environment.API_BASE_URL}admin/add-ministry`,ministry);
+  addMinistry(ministry:Ministry,formData):Observable<Ministry>{
+    return this.httpClient.post<Ministry>(`${environment.API_BASE_URL}admin/add-ministry`,formData);
+  }
+
+  /**
+   * image upload
+   * @param formData
+   */
+  uploadMinistryImage(formData):Observable<any>{
+    let options = {
+      headers: new HttpHeaders().set('Content-Type', 'multipart/form-data; boundary=%s')
+    };
+    return this.httpClient.post<any>(`${environment.API_BASE_URL}admin/upload-ministry-image`,formData,options);
   }
 
   /**

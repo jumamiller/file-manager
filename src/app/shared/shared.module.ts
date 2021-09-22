@@ -6,17 +6,25 @@ import { SidebarComponent } from './layouts/sidebar/sidebar.component';
 import {MaterialModule} from "../material-module";
 import {CommonModule} from "@angular/common";
 import {NgxPaginationModule} from "ngx-pagination";
+import {NgDropFilesDirective} from "../core/directives/ng-drop-files.directive";
+import {UploadComponent} from "../components/upload/upload.component";
 
 @NgModule({
   declarations: [
-    SidebarComponent
+    SidebarComponent,
+    NgDropFilesDirective,
+    UploadComponent
   ],
   exports: [
     ReactiveFormsModule,
     SidebarComponent,
     MaterialModule,
     NgxPaginationModule,
-    RouterModule
+    RouterModule,
+    CommonModule,
+    NgDropFilesDirective,
+    UploadComponent
+
   ],
   imports: [
     RouterModule,

@@ -13,6 +13,7 @@ export class AddNewMinistryComponent implements OnInit {
 
   submitting=false;
   ministryForm:FormGroup;
+  formData :FormData;
   constructor(
     private formBuilder:FormBuilder,
     private apiService:ApiService,
@@ -43,17 +44,35 @@ export class AddNewMinistryComponent implements OnInit {
   onSubmit(){
     this.submitting=true;
     let ministry:Ministry={
-      address: this.form.address.value,
       budget: this.form.budget.value,
       description: this.form.description.value,
-      name: this.form.name.value
+      name: this.form.name.value,
+
     };
 
-    this.apiService.addMinistry(ministry)
+    this.apiService.addMinistry(ministry,this.formData)
       .subscribe((res)=>{
         this.toastrService.success(res.message,'Success');
         this.submitting=false;
       },error => {
+        this.toastrService.error(error.error.message,'Error');
+        this.submitting=false;
+      })
+  }
+
+  /**
+   * handle image upload
+   * @param file
+   */
+  handleFileInput(file) {
+    let formData = new FormData();
+    formData.append('banner_image', file.target.files[0]);
+    this.apiService.uploadMinistryImage(formData)
+      .subscribe((res)=>{
+        this.toastrService.success(res.message,'Success');
+        this.submitting=false;
+      },error => {
+        console.log(error);
         this.toastrService.error(error.error.message,'Error');
         this.submitting=false;
       })

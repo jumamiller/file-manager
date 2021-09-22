@@ -19,6 +19,12 @@ import { AddNewsComponent } from './components/news/add-news/add-news.component'
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {JwtInterceptor} from "./core/helpers/jwt.interceptor";
 import {NgxPaginationModule} from "ngx-pagination";
+import {AngularFireModule} from "@angular/fire";
+import {environment} from "../environments/environment";
+import {AngularFirestoreModule} from "@angular/fire/firestore";
+import {AngularFireAuthModule} from "@angular/fire/auth";
+import {PhotoUploadService} from "./core/services/photo-upload.service";
+import {AngularFireStorageModule} from "@angular/fire/storage";
 
 @NgModule({
   declarations: [
@@ -42,9 +48,16 @@ import {NgxPaginationModule} from "ngx-pagination";
     NgbModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(), // ToastrModule added
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule, // imports firebase/firestore, only needed for database features
+    AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
+    AngularFireStorageModule // imports firebase/storage only needed for storage features
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+    PhotoUploadService
+  ],
+  exports: [
   ],
   bootstrap: [AppComponent]
 })
