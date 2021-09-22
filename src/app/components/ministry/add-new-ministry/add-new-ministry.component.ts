@@ -13,7 +13,6 @@ export class AddNewMinistryComponent implements OnInit {
 
   submitting=false;
   ministryForm:FormGroup;
-  formData :FormData;
   constructor(
     private formBuilder:FormBuilder,
     private apiService:ApiService,
@@ -64,17 +63,15 @@ export class AddNewMinistryComponent implements OnInit {
    * @param file
    */
   handleFileInput(file) {
-    let formData = new FormData();
-    formData.append('banner_image', file.target.files[0]);
+    const formData = new FormData();
+    formData.append('image', file.target.files[0]);
+    console.log(formData);
     this.apiService.uploadMinistryImage(formData)
-      .subscribe((res)=>{
-        this.toastrService.success(res.message,'Success');
-        this.submitting=false;
-      },error => {
+      .subscribe(res => {
+        console.log(res);
+      }, error => {
         console.log(error);
-        this.toastrService.error(error.error.message,'Error');
-        this.submitting=false;
-      })
+      });
   }
 
 }

@@ -69,8 +69,15 @@ export class ApiService {
   /**
    * add ministries
    */
-  addMinistry(ministry:Ministry):Observable<Ministry>{
+  addMinistry(ministry: Ministry):Observable<Ministry>{
     return this.httpClient.post<Ministry>(`${environment.API_BASE_URL}admin/add-ministry`,ministry);
+  }
+
+  /**
+   * remove ministry
+   */
+  removeMinistry(ministryId:number):Observable<any>{
+    return this.httpClient.delete<Ministry>(`${environment.API_BASE_URL}admin/remove-ministry/${ministryId}`);
   }
 
   /**
@@ -79,9 +86,9 @@ export class ApiService {
    */
   uploadMinistryImage(formData):Observable<any>{
     let options = {
-      headers: new HttpHeaders().set('Content-Type', 'multipart/form-data; boundary=%s')
+      headers: new HttpHeaders().set('Content-Type', undefined)
     };
-    return this.httpClient.post<any>(`${environment.API_BASE_URL}admin/upload-ministry-image`,formData,options);
+    return this.httpClient.post<any>(`${environment.API_BASE_URL}admin/upload-ministry-image`,formData);
   }
 
   /**
