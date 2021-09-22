@@ -25,6 +25,7 @@ import {AngularFirestoreModule} from "@angular/fire/firestore";
 import {AngularFireAuthModule} from "@angular/fire/auth";
 import {PhotoUploadService} from "./core/services/photo-upload.service";
 import {AngularFireStorageModule} from "@angular/fire/storage";
+import { SliceWordsPipe } from './core/pipes/slice-words.pipe';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import {AngularFireStorageModule} from "@angular/fire/storage";
     NewsListComponent,
     SingleNewsDetailsComponent,
     AddNewsComponent,
+    SliceWordsPipe,
   ],
   imports: [
     BrowserModule,

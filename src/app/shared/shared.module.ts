@@ -7,13 +7,11 @@ import {MaterialModule} from "../material-module";
 import {CommonModule} from "@angular/common";
 import {NgxPaginationModule} from "ngx-pagination";
 import {NgDropFilesDirective} from "../core/directives/ng-drop-files.directive";
-import {UploadComponent} from "../components/upload/upload.component";
 
 @NgModule({
   declarations: [
     SidebarComponent,
     NgDropFilesDirective,
-    UploadComponent
   ],
   exports: [
     ReactiveFormsModule,
@@ -23,7 +21,6 @@ import {UploadComponent} from "../components/upload/upload.component";
     RouterModule,
     CommonModule,
     NgDropFilesDirective,
-    UploadComponent
 
   ],
   imports: [
