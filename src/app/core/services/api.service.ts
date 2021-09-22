@@ -67,6 +67,13 @@ export class ApiService {
   }
 
   /**
+   * show single ministry
+   */
+  showSingleMinistry(ministryId: string):Observable<Ministry>{
+    return this.httpClient.get<Ministry>(`${environment.API_BASE_URL}admin/get-ministry/${ministryId}`);
+  }
+
+  /**
    * add ministries
    */
   addMinistry(ministry: Ministry):Observable<Ministry>{

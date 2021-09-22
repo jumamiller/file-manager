@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Ministry} from "../../../core/models/ministry";
 import {ApiService} from "../../../core/services/api.service";
 import {ToastrService} from "ngx-toastr";
-import {Route, Router} from "@angular/router";
+import {ActivatedRoute, Route, Router} from "@angular/router";
 import {FormBuilder, FormGroup} from "@angular/forms";
 
 @Component({
@@ -21,6 +21,7 @@ export class MinistriesListComponent implements OnInit {
   constructor(
     private apiService:ApiService,
     private fb:FormBuilder,
+    private route:ActivatedRoute,
     private toastrService:ToastrService,private router:Router) { }
 
   ngOnInit(): void {
@@ -94,6 +95,13 @@ export class MinistriesListComponent implements OnInit {
         this.toastrService.error(error.error.message,'Error');
         this.submitting=false;
       })
+  }
+
+  /**
+   * redirecto to single ministry details
+   */
+  redirectToSingleMinistry(ministryId){
+    this.router.navigate(['/admin/ministry/kogi-ministry-list/ministry-details'],{queryParams: {ministryId}});
   }
   /**
    * reload
