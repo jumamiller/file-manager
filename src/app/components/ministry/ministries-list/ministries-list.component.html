@@ -15,7 +15,6 @@
           <th scope="col">Name</th>
           <th scope="col">Description</th>
           <th scope="col">Budget</th>
-          <th scope="col">Address</th>
           <th scope="col" class="text-center">View</th>
           <th scope="col" class="text-center">Edit</th>
           <th scope="col" class="text-center">Remove</th>
@@ -27,9 +26,8 @@
           <td class="">{{ministry.name}}</td>
           <td class="">{{ministry.description}}</td>
           <td class="">{{ministry.budget}}</td>
-          <td class="">{{ministry.address}}</td>
           <td class="text-center"><button class="btn btn-success"><i class="fas fa-eye"></i> </button></td>
-          <td class="text-center"><button class="btn btn-primary"><i class="fas fa-user-edit"></i></button> </td>
+          <td class="text-center"><button class="btn btn-primary" (click)="onMinistrySelection(ministry.id)"  data-toggle="modal" data-target="#exampleModal"><i class="fas fa-user-edit"></i></button> </td>
           <td class="text-center"> <button class="btn btn-danger" (click)="removeMinistry(ministry.id)"><i class="fas fa-trash"></i></button></td>
         </tr>
 
@@ -39,5 +37,42 @@
   </div>
   <div *ngIf="loading" class="d-flex justify-content-center my-1">
     <div class="spinner-border" role="status" aria-hidden="true"></div>
+  </div>
+</div>
+
+<!-- Button trigger modal -->
+<!-- Modal -->
+<div class="modal fade" data-backdrop="false" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Ministry</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="editForm" (ngSubmit)="onMinistryUpdate()">
+          <div class="form-group">
+            <label for="name">Ministry Name</label>
+            <input type="text" class="form-control" id="name" formControlName="name">
+          </div>
+
+          <div class="form-group">
+            <label for="budget">Ministry Budget</label>
+            <input type="text" class="form-control" id="budget" formControlName="budget">
+          </div>
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control" cols="7" rows="7" id="description" formControlName="description"></textarea>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button *ngIf="!submitting" [disabled]="editForm.invalid" type="submit" class="btn btn-danger">Update Ministry</button>
+            <button *ngIf="submitting" type="button" class="btn btn-success">updating...</button>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
 </div>

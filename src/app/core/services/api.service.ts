@@ -81,6 +81,13 @@ export class ApiService {
   }
 
   /**
+   * update ministry
+   */
+  updateMinistry(data:Ministry,ministryId){
+    return this.httpClient.patch<Ministry>(`${environment.API_BASE_URL}admin/update-ministry/${ministryId}`,data);
+  }
+
+  /**
    * image upload
    * @param formData
    */
