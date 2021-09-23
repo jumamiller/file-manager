@@ -100,7 +100,7 @@
         <div class="col-md-4" *ngIf="selectedSubCategory=='KOGAS lead' || selectedSubCategory=='others' || selectedSubCategory=='' || selectedSubCategory=='IT support' ">
           <label for="ministry"> Ministries/Bureaus/Agencies</label>
           <select class="custom-select" name="LGA" id="">
-            <option value="" *ngFor="let ministry of ministries;let i=index">{{ministry.name}}</option>
+            <option value="" *ngFor="let ministry of ministries;let i=index">Ministry of {{ministry.name}}</option>
           </select>
         </div>
         <!--END Permanent Secretary / Directors-->
@@ -109,7 +109,7 @@
         <div class="col-md-4" *ngIf="selectedSubCategory=='permanent secretary' || selectedSubCategory=='director'  || selectedSubCategory=='director general'  || selectedSubCategory=='head'" >
           <label for="ministry"> Ministries/Bureaus/Agencies</label>
           <select class="custom-select" name="LGA">
-            <option value="" *ngFor="let ministry of ministries;let i=index">{{ministry.name}}</option>
+            <option value="" *ngFor="let ministry of ministries;let i=index">Ministry of {{ministry.name}}</option>
           </select>
         </div>
         <!--END Pros / Support Staff / Admin-->
