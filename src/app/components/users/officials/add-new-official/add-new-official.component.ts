@@ -6,6 +6,7 @@ import {ToastrService} from "ngx-toastr";
 import {ApiService} from "../../../../core/services/api.service";
 import {Role} from "../../../../core/models/role";
 import {Category} from "../../../../core/models/category";
+import {Ministry} from "../../../../core/models/ministry";
 
 @Component({
   selector: 'app-add-new-official',
@@ -20,6 +21,8 @@ export class AddNewOfficialComponent implements OnInit {
   submitting=false;
   categories:Category[];
   selectedCategory:any;
+  selectedSubCategory:any;
+  ministries:Ministry[];
 
   constructor(
     private authService:AuthService,
@@ -32,6 +35,7 @@ export class AddNewOfficialComponent implements OnInit {
     this.officialsFormControl();
     this.getAllRoles();
     this.getCategories();
+    this.getMinistries();
   }
 
   /**
@@ -52,6 +56,13 @@ export class AddNewOfficialComponent implements OnInit {
     })
   }
 
+  getMinistries(){
+    this.apiService.getMinistry()
+      .subscribe((res)=>{
+        this.ministries=res['data'];
+      })
+  }
+
   /**
    * get controls values
    */
@@ -61,6 +72,13 @@ export class AddNewOfficialComponent implements OnInit {
 
   currentCategory(cat:any){
     this.selectedCategory=cat;
+  }
+
+  /**
+   * @param sub
+   */
+  currentSubCategory(sub:any){
+    this.selectedSubCategory=sub;
   }
 
   /**

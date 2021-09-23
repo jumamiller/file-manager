@@ -12,9 +12,9 @@
         </div>
 
         <div class="col-md-4">
-          <label for="cabinet-sub-categories">Sub-Category</label>
+          <label for="cabinet-sub-categories">Select Office</label>
           <!--BEGIN the cabinet-->
-          <select *ngIf="selectedCategory=='1'" class="custom-select" name="category" id="cabinet-sub-categories">
+          <select *ngIf="selectedCategory=='1'" class="custom-select" name="category" id="cabinet-sub-categories" (change)="currentSubCategory($event.target['value'])">
             <option value="Head Of Service">Head Of Service</option>
             <option value="Commissioners">Commissioners</option>
             <option value="Special Advisers">Special Advisers</option>
@@ -38,39 +38,40 @@
           </select>
           <!--END the government house-->
 
-          <!--BEGIN -->
+          <!--BEGIN head of agencies-->
           <select *ngIf="selectedCategory=='3'" class="custom-select" name="category" id="sub_category">
             <option value="Bureau Of Local Government Pension">Bureau Of Local Government Pension</option>
-            <option value="Bureau of Public Procurement">Bureau of Public Procurement</option>
-            <option value="Bureau of Information Services and Sensitization">Bureau of Information Services and Sensitization</option>
-            <option value="Bureau of Lands">Bureau of Lands</option>
-            <option value="Bureau of Public / Private Partnerships">Bureau of Public / Private Partnerships</option>
-            <option value="Emergency Management Agency">Emergency Management Agency</option>
-            <option value="HIV/AIDS Control Agency">HIV/AIDS Control Agency</option>
-            <option value="Kogi Agro-allied Company ">Kogi Agro-allied Company </option>
-            <option value="Kogi Enterprise Development Agency (ADA)">Kogi Enterprise Development Agency (ADA)</option>
-            <option value="Kogi Investments and Properties Limited">Kogi Investments and Properties Limited</option>
-            <option value="Kogi Solid Minerals Processing Company Ltd.">Kogi Solid Minerals Processing Company Ltd.</option>
-            <option value="Kogi Sports Council">Kogi Sports Council</option>
-            <option value="Kogi State Broadcasting Corporation">Kogi State Broadcasting Corporation</option>
-            <option value="Kogi State Fire Agency">Kogi State Fire Agency</option>
-            <option value="Kogi State Geological Services">Kogi State Geological Services</option>
-            <option value="Kogi State Mineral Resources Development">Kogi State Mineral Resources Development</option>
-            <option value="Kogi State Newspaper Corporation">Kogi State Newspaper Corporation</option>
-            <option value="Kogi State Security Trust Fund">Kogi State Security Trust Fund</option>
-            <option value="Kogi State Maintenance Agency">Kogi State Maintenance Agency</option>
-            <option value="SDG">SDG</option>
-            <option value="Others">Others</option>
           </select>
-          <!--END-->
+          <!--END head of agencies-->
+
+          <!--BEGIN Local Governments-->
+          <select *ngIf="selectedCategory=='4'" class="custom-select" name="category">
+            <option value="">Adavi</option>
+          </select>
+          <!--END local Governments-->
+
+          <!--BEGIN vice chancellors-->
+          <select *ngIf="selectedCategory=='5'" class="custom-select" name="category">
+            <option value="Confluence State University of Science and Technology ">Confluence State University of Science and Technology </option>
+            <option value="">Kogi state Polytechnic</option>
+          </select>
+          <!--END vice chancellors-->
         </div>
 
-        <div class="col-md-4">
-          <label for="category">Portfolio</label>
+        <div class="col-md-4" *ngIf="selectedSubCategory=='Commissioners'">
+          <label for="category">Ministries</label>
           <select class="custom-select" name="category" id="portfolio">
-            <option value=""></option>
+            <option value="" *ngFor="let ministry of ministries;let i=index">Ministry of {{ministry.name}}</option>
           </select>
         </div>
+
+        <div class="col-md-4" *ngIf="selectedSubCategory=='Special Advisers'">
+          <label for="ministry">Ministries</label>
+          <select class="custom-select" name="category" id="ministry">
+            <option value="" *ngFor="let ministry of ministries;let i=index">Ministry of {{ministry.name}}</option>
+          </select>
+        </div>
+
 
         <div class="col-md-4">
           <label for="firstName">First Name</label>
