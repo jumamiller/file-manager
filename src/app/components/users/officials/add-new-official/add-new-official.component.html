@@ -98,7 +98,7 @@
 
         <!--Begin Permanent Secretary / Directors sub-categories-->
         <div class="col-md-4" *ngIf="selectedSubCategory=='KOGAS lead' || selectedSubCategory=='others' || selectedSubCategory=='' || selectedSubCategory=='IT support' ">
-          <label for="ministry"> Ministries and Bureaus/Agencies</label>
+          <label for="ministry"> Ministries/Bureaus/Agencies</label>
           <select class="custom-select" name="LGA" id="">
             <option value="" *ngFor="let ministry of ministries;let i=index">{{ministry.name}}</option>
           </select>
@@ -107,7 +107,7 @@
 
         <!--Begin Pros / Support Staff / Admin-->
         <div class="col-md-4" *ngIf="selectedSubCategory=='permanent secretary' || selectedSubCategory=='director'  || selectedSubCategory=='director general'  || selectedSubCategory=='head'" >
-          <label for="ministry"> Ministries and Bureaus/Agencies</label>
+          <label for="ministry"> Ministries/Bureaus/Agencies</label>
           <select class="custom-select" name="LGA">
             <option value="" *ngFor="let ministry of ministries;let i=index">{{ministry.name}}</option>
           </select>
