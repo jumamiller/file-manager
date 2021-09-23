@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   HomeURL:'https://development.kogas.ng/',
   API_BASE_URL:'https://api-development.kogas.ng/api/v1/',
-  ASSETS_URL:'https://api-development.kogas.ng/public/',
+  ASSETS_URL:'https://api-development.kogas.ng/public/storage/',
   firebase: {
     apiKey: 'AIzaSyCNozWZRdnmJn1wkh6PK71sc-XWihx2SDQ',
     authDomain: 'photo-upload-5ae53.firebaseapp.com',
