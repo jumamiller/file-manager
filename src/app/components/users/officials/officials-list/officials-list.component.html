@@ -12,11 +12,13 @@
         <thead>
         <tr>
           <th scope="col">#</th>
-          <th scope="col">First Name</th>
-          <th scope="col">Last Name</th>
+          <th scope="col">Avatar</th>
+          <th scope="col">Name</th>
           <th scope="col">Email</th>
           <th scope="col">Phone</th>
+          <th scope="col">Category</th>
           <th scope="col">Office</th>
+          <th scope="col">Ministry</th>
           <th scope="col">Status</th>
           <th scope="col" class="text-center">Edit</th>
           <th scope="col" class="text-center">Block</th>
@@ -26,11 +28,15 @@
         <tbody>
         <tr *ngFor="let official of officials;let i=index">
           <td class="">{{i+1}}</td>
-          <td class="">{{official.first_name}}</td>
-          <td class="">{{official.last_name}}</td>
+          <td class="">
+            <img [src]="assetsURL+official.avatar" alt="avatar" width="70" height="70" class="rounded-circle">
+          </td>
+          <td class="">{{official.first_name}} {{official.last_name}}</td>
           <td class="">{{official.email}}</td>
           <td class="">{{official.phone}}</td>
-          <td class="">{{official.city}}</td>
+          <td class="">{{official.official_category | officialCategory}}</td>
+          <td class="">{{official.official_office}}</td>
+          <td class="">{{official.ministry}}</td>
           <td class="text-center">
             <span class="badge badge-success" *ngIf="official.user_is_suspended==false">active</span>
             <span class="badge badge-danger" *ngIf="official.user_is_suspended==true">suspended</span>

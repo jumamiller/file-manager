@@ -20,9 +20,9 @@
       <a class="text-decoration-none text-white" [href]="[homeURL]"> <span>Main Site</span></a>
     </button>
     <!--avatar-->
-    <img class="avatar mat-elevation-z8" src="assets/images/miller.png"width="200" height="200"  alt=""/>
+    <img class="avatar mat-elevation-z8" [src]="imageURL+user.avatar" width="200" height="200"  alt=""/>
     <h4 class="name">{{user.first_name}} {{user.last_name}}</h4>
-    <p class="designation">Government {{user.user_type}}</p>
+    <p class="designation">{{user.official_office}}</p>
 
     <mat-divider></mat-divider>
     <button mat-button class="menu-button" [routerLink]="['/admin/profile/account-settings']" routerLinkActive="active">

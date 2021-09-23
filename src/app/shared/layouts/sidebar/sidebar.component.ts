@@ -16,6 +16,8 @@ export class SidebarComponent {
 
   user:Citizen;
 
+  imageURL=environment.ASSETS_URL;
+
   homeURL:string=environment.HomeURL;
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;

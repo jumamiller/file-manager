@@ -19,7 +19,6 @@ import { AddNewsComponent } from './components/news/add-news/add-news.component'
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {JwtInterceptor} from "./core/helpers/jwt.interceptor";
 import {NgxPaginationModule} from "ngx-pagination";
-import {environment} from "../environments/environment";
 import { SliceWordsPipe } from './core/pipes/slice-words.pipe';
 
 @NgModule({
@@ -49,8 +48,9 @@ import { SliceWordsPipe } from './core/pipes/slice-words.pipe';
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
   ],
-  exports: [
-  ],
+    exports: [
+
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

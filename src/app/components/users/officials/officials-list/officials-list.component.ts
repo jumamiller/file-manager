@@ -5,6 +5,7 @@ import {ToastrService} from "ngx-toastr";
 import {AuthService} from "../../../../core/services/auth.service";
 import * as moment from 'moment';
 import {Router} from "@angular/router";
+import {environment} from "../../../../../environments/environment";
 @Component({
   selector: 'app-officials-list',
   templateUrl: './officials-list.component.html',
@@ -15,6 +16,8 @@ export class OfficialsListComponent implements OnInit {
   officials:Citizen[];
   loading=true;
   now: Date = new Date();
+
+  assetsURL=environment.ASSETS_URL;
   constructor(
     private userService:UserService,
     private authService:AuthService,
