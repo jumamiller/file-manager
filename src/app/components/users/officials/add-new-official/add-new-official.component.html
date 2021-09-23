@@ -27,7 +27,7 @@
           <!--END the cabinet-->
 
           <!--BEGIN the government house-->
-          <select *ngIf="selectedCategory=='2'" class="custom-select" name="category" id="government-house">
+          <select *ngIf="selectedCategory=='2'" class="custom-select" name="category" id="government-house" (change)="currentSubCategory($event.target['value'])">
             <option value="Chief Of staff">Chief Of staff</option>
             <option value="Deputy Chief Of staff">Deputy Chief Of staff</option>
             <option value="Director Of Protocol">Director Of Protocol</option>
@@ -39,38 +39,80 @@
           <!--END the government house-->
 
           <!--BEGIN head of agencies-->
-          <select *ngIf="selectedCategory=='3'" class="custom-select" name="category" id="sub_category">
-            <option value="Bureau Of Local Government Pension">Bureau Of Local Government Pension</option>
+          <select *ngIf="selectedCategory=='3'" class="custom-select" name="category" id="sub_category"(change)="currentSubCategory($event.target['value'])">
+            <option value="">Select Heads Of Agencies</option>
+            <option value="director general">Director General</option>
+            <option value="director">Director</option>
+            <option value="head">Head</option>
           </select>
           <!--END head of agencies-->
 
           <!--BEGIN Local Governments-->
-          <select *ngIf="selectedCategory=='4'" class="custom-select" name="category">
-            <option value="">Adavi</option>
+          <select *ngIf="selectedCategory=='4'" class="custom-select" name="category" (change)="currentSubCategory($event.target['value'])">
+            <option value="">Select Position</option>
+            <option value="chairperson">Chairperson</option>
+            <option value="vice chairperson">Vice Chairperson</option>
+            <option value="secretary">Secretary</option>
+            <option value="public relation officer">Public Relations Officer (PRO)</option>
           </select>
           <!--END local Governments-->
 
           <!--BEGIN vice chancellors-->
           <select *ngIf="selectedCategory=='5'" class="custom-select" name="category">
             <option value="Confluence State University of Science and Technology ">Confluence State University of Science and Technology </option>
-            <option value="">Kogi state Polytechnic</option>
           </select>
           <!--END vice chancellors-->
+
+          <!--BEGIN Permanent Secretary / Directors-->
+          <select *ngIf="selectedCategory=='6'" class="custom-select" name="permanent-secretary" (change)="currentSubCategory($event.target['value'])">
+            <option value="">Select Position</option>
+            <option value="permanent secretary">Permanent Secretary</option>
+            <option value="director">Director</option>
+          </select>
+          <!--END Permanent Secretary / Directors-->
+
+          <!--BEGIN Pros / Support Staff / Admin-->
+          <select *ngIf="selectedCategory=='7'" class="custom-select" name="permanent-secretary" (change)="currentSubCategory($event.target['value'])">
+            <option value="">Select Position</option>
+            <option value="KOGAS lead">KOGAS Lead</option>
+            <option value="admin support">Admin Support</option>
+            <option value="IT support">IT Support</option>
+            <option value="others">Others</option>
+          </select>
+          <!--END Pros / Support Staff / Admin-->
         </div>
 
-        <div class="col-md-4" *ngIf="selectedSubCategory=='Commissioners'">
+        <div class="col-md-4" *ngIf="selectedSubCategory=='Commissioners' || selectedSubCategory== 'Special Advisers'">
           <label for="category">Ministries</label>
           <select class="custom-select" name="category" id="portfolio">
             <option value="" *ngFor="let ministry of ministries;let i=index">Ministry of {{ministry.name}}</option>
           </select>
         </div>
 
-        <div class="col-md-4" *ngIf="selectedSubCategory=='Special Advisers'">
-          <label for="ministry">Ministries</label>
-          <select class="custom-select" name="category" id="ministry">
-            <option value="" *ngFor="let ministry of ministries;let i=index">Ministry of {{ministry.name}}</option>
+        <div class="col-md-4" *ngIf="selectedSubCategory=='chairperson' || selectedSubCategory=='vice chairperson' || selectedSubCategory=='secretary' ||selectedSubCategory=='public relation officer'">
+          <label for="ministry">Local Government Areas</label>
+          <select class="custom-select" name="LGA" id="ministry">
+            <option value="" *ngFor="let LGA of LGAs;let i=index">{{LGA.name}}</option>
           </select>
         </div>
+
+        <!--Begin Permanent Secretary / Directors sub-categories-->
+        <div class="col-md-4" *ngIf="selectedSubCategory=='KOGAS lead' || selectedSubCategory=='others' || selectedSubCategory=='' || selectedSubCategory=='IT support' ">
+          <label for="ministry"> Ministries and Bureaus/Agencies</label>
+          <select class="custom-select" name="LGA" id="">
+            <option value="" *ngFor="let ministry of ministries;let i=index">{{ministry.name}}</option>
+          </select>
+        </div>
+        <!--END Permanent Secretary / Directors-->
+
+        <!--Begin Pros / Support Staff / Admin-->
+        <div class="col-md-4" *ngIf="selectedSubCategory=='permanent secretary' || selectedSubCategory=='director'">
+          <label for="ministry"> Ministries and Bureaus/Agencies</label>
+          <select class="custom-select" name="LGA">
+            <option value="" *ngFor="let ministry of ministries;let i=index">{{ministry.name}}</option>
+          </select>
+        </div>
+        <!--END Pros / Support Staff / Admin-->
 
 
         <div class="col-md-4">

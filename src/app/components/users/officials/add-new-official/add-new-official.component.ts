@@ -7,6 +7,7 @@ import {ApiService} from "../../../../core/services/api.service";
 import {Role} from "../../../../core/models/role";
 import {Category} from "../../../../core/models/category";
 import {Ministry} from "../../../../core/models/ministry";
+import {LocalGovernment} from "../../../../core/models/local-government";
 
 @Component({
   selector: 'app-add-new-official',
@@ -23,6 +24,7 @@ export class AddNewOfficialComponent implements OnInit {
   selectedCategory:any;
   selectedSubCategory:any;
   ministries:Ministry[];
+  LGAs:LocalGovernment[];
 
   constructor(
     private authService:AuthService,
@@ -60,6 +62,12 @@ export class AddNewOfficialComponent implements OnInit {
     this.apiService.getMinistry()
       .subscribe((res)=>{
         this.ministries=res['data'];
+      })
+  }
+  getLocalGovernments(){
+    this.apiService.getLocalGovernments()
+      .subscribe((res)=>{
+        this.LGAs=res['data'];
       })
   }
 
