@@ -8,7 +8,7 @@ import {Role} from "../../../../core/models/role";
 import {Category} from "../../../../core/models/category";
 import {Ministry} from "../../../../core/models/ministry";
 import {LocalGovernment} from "../../../../core/models/local-government";
-
+import * as _ from 'lodash';
 @Component({
   selector: 'app-add-new-official',
   templateUrl: './add-new-official.component.html',
@@ -25,6 +25,11 @@ export class AddNewOfficialComponent implements OnInit {
   selectedSubCategory:any;
   ministries:Ministry[];
   LGAs:LocalGovernment[];
+
+  //avatar
+  imageError: string;
+  isImageSaved: boolean;
+  cardImageBase64: string;
 
   constructor(
     private authService:AuthService,
@@ -53,7 +58,10 @@ export class AddNewOfficialComponent implements OnInit {
       city:['',Validators.required],
       gender:['',Validators.required],
       LGA:['',Validators.required],
-      avatar:['',Validators.required],
+      sector:['',Validators.required],
+      official_category:[''],
+      official_office:[''],
+      ministry:[''],
       password:['',Validators.required],
     })
   }
@@ -94,11 +102,6 @@ export class AddNewOfficialComponent implements OnInit {
    */
   onSubmit(){
     this.submitting=true;
-    // Create form data
-    const formData = new FormData();
-    // Store form name as "file" with file data
-    console.log(this.form.avatar);
-    formData.append("avatar", this.form.avatar.value);
     let official:Citizen={
       first_name:this.form.firstName.value,
       last_name: this.form.lastName.value,
@@ -109,7 +112,11 @@ export class AddNewOfficialComponent implements OnInit {
       password:this.form.password.value,
       LGA:this.form.LGA.value,
       user_type:'official',
-      avatar:formData,
+      avatar: this.cardImageBase64,
+      sector:this.form.sector.value,
+      official_category:this.form.official_category.value,
+      official_office:this.form.official_office.value,
+      ministry:this.form.ministry.value,
     }
     this.authService.register(official)
       .subscribe((res)=>{
@@ -146,5 +153,57 @@ export class AddNewOfficialComponent implements OnInit {
       .subscribe((res)=>{
         this.categories=res['data'];
       })
+  }
+  /**
+   * handle image upload
+   * @param fileInput
+   */
+  // @ts-ignore
+  handleFileInput(fileInput) {
+    this.imageError = null;
+    if (fileInput.target.files && fileInput.target.files[0]) {
+      // Size Filter Bytes
+      const max_size = 20971520;
+      const allowed_types = ['image/png', 'image/jpeg'];
+      const max_height = 15200;
+      const max_width = 25600;
+
+      if (fileInput.target.files[0].size > max_size) {
+        this.imageError =
+          'Maximum size allowed is ' + max_size / 1000 + 'Mb';
+
+        return false;
+      }
+
+      if (!_.includes(allowed_types, fileInput.target.files[0].type)) {
+        this.imageError = 'Only Images are allowed ( JPG | PNG )';
+        return false;
+      }
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        const image = new Image();
+        image.src = e.target.result;
+        // @ts-ignore
+        image.onload = rs => {
+          const img_height = rs.currentTarget['height'];
+          const img_width = rs.currentTarget['width'];
+
+          if (img_height > max_height && img_width > max_width) {
+            this.imageError =
+              'Maximum dimensions allowed ' +
+              max_height +
+              '*' +
+              max_width +
+              'px';
+            return false;
+          } else {
+            this.cardImageBase64 = e.target.result;
+            this.isImageSaved = true;
+            // this.previewImagePath = imgBase64Path;
+          }
+        };
+      };
+      reader.readAsDataURL(fileInput.target.files[0]);
+    }
   }
 }
