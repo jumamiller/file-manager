@@ -5,16 +5,44 @@
       <div class="form-row m-3">
         <div class="col-md-4">
           <label for="category">Select Category</label>
-          <select class="custom-select" name="category" id="category">
-            <option value="" *ngFor="let category of categories">{{category.category_name}}</option>
+          <select class="custom-select" name="category" id="category" (change)="currentCategory($event.target['value'])">
+            <option>Select Official's Category</option>
+            <option [value]="category.id" *ngFor="let category of categories">{{category.category_name}}</option>
           </select>
         </div>
 
         <div class="col-md-4">
-          <label for="category">Sub-Category</label>
-          <select class="custom-select" name="category" id="sub_category">
-            <option value="" *ngFor="let sub_category of categories">{{sub_category.sub_category_name}}</option>
+          <label for="cabinet-sub-categories">Sub-Category</label>
+          <!--BEGIN the cabinet-->
+          <select *ngIf="selectedCategory=='1'" class="custom-select" name="category" id="cabinet-sub-categories">
+            <option value="Head Of Service">Head Of Service</option>
+            <option value="Commissioners">Commissioners</option>
+            <option value="Special Advisers">Special Advisers</option>
+            <option value="Accountant General Of State">Accountant General Of State</option>
+            <option value="Auditor General (State)">Auditor General (State)</option>
+            <option value="Auditor General (Local Governments)">Auditor General (Local Governments)</option>
+            <option value="Senior Special Assistants">Senior Special Assistants</option>
+            <option value="Special Assistants">Special Assistants</option>
           </select>
+          <!--END the cabinet-->
+
+          <!--BEGIN the government house-->
+          <select *ngIf="selectedCategory=='2'" class="custom-select" name="category" id="government-house">
+            <option value="Chief Of staff">Chief Of staff</option>
+            <option value="Deputy Chief Of staff">Deputy Chief Of staff</option>
+            <option value="Director Of Protocol">Director Of Protocol</option>
+            <option value="Chief Press Secretary (Governor)">Chief Press Secretary (Governor)</option>
+            <option value="Chief Press Secretary (Deputy Governor)">Chief Press Secretary (Deputy Governor)</option>
+            <option value="Personal Assistant (Governor)">Personal Assistant (Governor)</option>
+            <option value="Personal Assistant (Deputy Governor)">Personal Assistant (Deputy Governor)</option>
+          </select>
+          <!--END the government house-->
+
+          <!--BEGIN -->
+          <select *ngIf="selectedCategory=='3'" class="custom-select" name="category" id="sub_category">
+            <option value="">{{selectedCategory}}</option>
+          </select>
+          <!--END-->
         </div>
 
         <div class="col-md-4">

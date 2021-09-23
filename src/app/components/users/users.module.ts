@@ -15,6 +15,8 @@ import { AddRolesComponent } from './roles/add-roles/add-roles.component';
 import { EditRolesComponent } from './roles/edit-roles/edit-roles.component';
 import { SingleRoleDetailsComponent } from './roles/single-role-details/single-role-details.component';
 import {SharedModule} from "../../shared/shared.module";
+import { RecursiveComponent } from './recursive/recursive.component';
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -30,12 +32,14 @@ import {SharedModule} from "../../shared/shared.module";
     RolesListComponent,
     AddRolesComponent,
     EditRolesComponent,
-    SingleRoleDetailsComponent
+    SingleRoleDetailsComponent,
+    RecursiveComponent
   ],
-  imports: [
-    CommonModule,
-    SharedModule,
-    UsersRoutingModule
-  ]
+    imports: [
+        CommonModule,
+        SharedModule,
+        UsersRoutingModule,
+        FormsModule
+    ]
 })
 export class UsersModule { }

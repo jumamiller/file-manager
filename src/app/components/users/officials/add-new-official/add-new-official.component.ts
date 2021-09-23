@@ -19,8 +19,7 @@ export class AddNewOfficialComponent implements OnInit {
   loading=true;
   submitting=false;
   categories:Category[];
-  portfolios:Category[]=[];
-  subCategories:Category[]=[];
+  selectedCategory:any;
 
   constructor(
     private authService:AuthService,
@@ -58,6 +57,10 @@ export class AddNewOfficialComponent implements OnInit {
    */
   get form(){
     return this.officialForm.controls;
+  }
+
+  currentCategory(cat:any){
+    this.selectedCategory=cat;
   }
 
   /**
