@@ -1,5 +1,6 @@
 export interface Ministry {
   data?:any,
+  banner_image?:any;
   id?:number;
   success?:boolean,
   message?:string,

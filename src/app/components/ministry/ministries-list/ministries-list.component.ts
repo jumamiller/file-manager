@@ -98,7 +98,7 @@ export class MinistriesListComponent implements OnInit {
   }
 
   /**
-   * redirecto to single ministry details
+   * redirect to single ministry details
    */
   redirectToSingleMinistry(ministryId){
     this.router.navigate(['/admin/ministry/kogi-ministry-list/ministry-details'],{queryParams: {ministryId}});
