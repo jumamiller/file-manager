@@ -106,7 +106,7 @@
         <!--END Permanent Secretary / Directors-->
 
         <!--Begin Pros / Support Staff / Admin-->
-        <div class="col-md-4" *ngIf="selectedSubCategory=='permanent secretary' || selectedSubCategory=='director'">
+        <div class="col-md-4" *ngIf="selectedSubCategory=='permanent secretary' || selectedSubCategory=='director'  || selectedSubCategory=='director general'  || selectedSubCategory=='head'" >
           <label for="ministry"> Ministries and Bureaus/Agencies</label>
           <select class="custom-select" name="LGA">
             <option value="" *ngFor="let ministry of ministries;let i=index">{{ministry.name}}</option>
