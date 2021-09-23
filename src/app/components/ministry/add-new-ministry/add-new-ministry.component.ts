@@ -13,7 +13,6 @@ export class AddNewMinistryComponent implements OnInit {
 
   submitting=false;
   ministryForm:FormGroup;
-  banner_image:any;
   imageError: string;
   isImageSaved: boolean;
   cardImageBase64: string;

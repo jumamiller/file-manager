@@ -63,6 +63,10 @@
             <input type="text" class="form-control" id="budget" formControlName="budget">
           </div>
           <div class="form-group">
+            <label for="file">Upload Image</label>
+            <input type="file" id="file" (change)="handleFileInput($event)" class="form-control-file" placeholder=""required="">
+          </div>
+          <div class="form-group">
             <label for="description">Description</label>
             <textarea class="form-control" cols="7" rows="7" id="description" formControlName="description"></textarea>
           </div>
