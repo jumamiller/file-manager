@@ -61,7 +61,10 @@ export class AddNewOfficialComponent implements OnInit {
       sector:['',Validators.required],
       official_category:[''],
       official_office:[''],
-      ministry:[''],
+      ministry_id:[''],
+      local_government_id:[''],
+      bureaus_id:[''],
+      government_house_id:[''],
       password:['',Validators.required],
     })
   }
@@ -116,7 +119,10 @@ export class AddNewOfficialComponent implements OnInit {
       sector:this.form.sector.value,
       official_category:this.form.official_category.value,
       official_office:this.form.official_office.value,
-      ministry:this.form.ministry.value,
+      ministry_id:this.form.ministry_id.value,
+      local_government_id:this.form.local_government_id.value,
+      bureaus_id:this.form.bureaus_id.value,
+      government_house_id:this.form.government_house_id.value
     }
     this.authService.register(official)
       .subscribe((res)=>{

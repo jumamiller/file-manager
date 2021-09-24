@@ -16,14 +16,14 @@
           <!--BEGIN the cabinet-->
           <select class="custom-select" name="category" id="cabinet-sub-categories" (change)="currentSubCategory($event.target['value'])" formControlName="official_office">
             <option value="">Select Official Office</option>
-            <option value="Head Of Service">Head Of Service</option>
-            <option value="Commissioners">Commissioners</option>
-            <option value="Special Advisers">Special Advisers</option>
-            <option value="Accountant General Of State">Accountant General Of State</option>
-            <option value="Auditor General (State)">Auditor General (State)</option>
-            <option value="Auditor General (Local Governments)">Auditor General (Local Governments)</option>
-            <option value="Senior Special Assistants">Senior Special Assistants</option>
-            <option value="Special Assistants">Special Assistants</option>
+            <option value="1">Head Of Service</option>
+            <option value="2">Commissioners</option>
+            <option value="3">Special Advisers</option>
+            <option value="4">Accountant General Of State</option>
+            <option value="5">Auditor General (State)</option>
+            <option value="6">Auditor General (Local Governments)</option>
+            <option value="7">Senior Special Assistants</option>
+            <option value="8">Special Assistants</option>
           </select>
           <!--END the cabinet-->
         </div>
@@ -68,15 +68,6 @@
           <!--END local Governments-->
         </div>
 
-        <div class="col-md-4" *ngIf="selectedCategory=='5'">
-          <!--BEGIN vice chancellors-->
-          <label for="cabinet-sub-categories">Select Office</label>
-          <select class="custom-select" name="category" formControlName="official_office">
-            <option value=" "></option>
-          </select>
-          <!--END vice chancellors-->
-        </div>
-
         <div class="col-md-4"*ngIf="selectedCategory=='6'">
           <label for="cabinet-sub-categories">Select Office</label>
           <!--BEGIN Permanent Secretary / Directors-->
@@ -102,25 +93,25 @@
         </div>
 
         <!-- -->
-        <div class="col-md-4" *ngIf="selectedSubCategory=='Commissioners' || selectedSubCategory== 'Special Advisers'">
+        <div class="col-md-4" *ngIf="selectedSubCategory=='2' || selectedSubCategory== '3'">
           <label for="category">Ministries</label>
-          <select class="custom-select" name="category" id="portfolio" formControlName="ministry">
-            <option [value]="ministry.name" *ngFor="let ministry of ministries;let i=index">Ministry of {{ministry.name}}</option>
+          <select class="custom-select" name="category" id="portfolio" formControlName="ministry_id">
+            <option [value]="ministry.id" *ngFor="let ministry of ministries;let i=index">Ministry of {{ministry.name}}</option>
           </select>
         </div>
 
         <div class="col-md-4" *ngIf="selectedSubCategory=='chairperson' || selectedSubCategory=='vice chairperson' || selectedSubCategory=='secretary' ||selectedSubCategory=='public relation officer'">
           <label for="ministry">Local Government Areas</label>
-          <select class="custom-select" name="LGA" id="ministry" formControlName="ministry">
-            <option [value]="LGA.name" *ngFor="let LGA of LGAs;let i=index">{{LGA.name}}</option>
+          <select class="custom-select" name="LGA" id="ministry" formControlName="ministry_id">
+            <option [value]="LGA.id" *ngFor="let LGA of LGAs;let i=index">{{LGA.name}}</option>
           </select>
         </div>
 
         <!--Begin Permanent Secretary / Directors sub-categories-->
         <div class="col-md-4" *ngIf="selectedSubCategory=='KOGAS lead' || selectedSubCategory=='others' || selectedSubCategory=='' || selectedSubCategory=='IT support' ">
           <label for="ministry"> Ministries/Bureaus/Agencies</label>
-          <select class="custom-select" name="LGA" id="" formControlName="ministry">
-            <option value="" *ngFor="let ministry of ministries;let i=index">Ministry of {{ministry.name}}</option>
+          <select class="custom-select" name="LGA" id="" formControlName="ministry_id">
+            <option value="{{ministry.id}}" *ngFor="let ministry of ministries;let i=index">Ministry of {{ministry.name}}</option>
           </select>
         </div>
         <!--END Permanent Secretary / Directors-->
@@ -128,8 +119,8 @@
         <!--Begin Pros / Support Staff / Admin-->
         <div class="col-md-4" *ngIf="selectedSubCategory=='permanent secretary' || selectedSubCategory=='director'  || selectedSubCategory=='director general'  || selectedSubCategory=='head'" >
           <label for="ministry"> Ministries/Bureaus/Agencies</label>
-          <select class="custom-select" name="LGA" formControlName="ministry">
-            <option value="" *ngFor="let ministry of ministries;let i=index">Ministry of {{ministry.name}}</option>
+          <select class="custom-select" name="LGA" formControlName="ministry_id">
+            <option value="{{ministry.id}}" *ngFor="let ministry of ministries;let i=index">Ministry of {{ministry.name}}</option>
           </select>
         </div>
         <!--END Pros / Support Staff / Admin-->
@@ -163,6 +154,7 @@
         <div class="col-md-4">
           <label for="gender">Gender</label>
           <select id="gender" formControlName="gender"class="form-control">
+            <option value="">Select official gender</option>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
             <option value="Rather Not Say">Rather Not Say</option>
@@ -185,9 +177,9 @@
           <label for="sector">Select Sector</label>
           <select id="sector"class="custom-select" formControlName="sector">
             <option value="" disabled>Select official Sector</option>
-            <option value="admin sector">Admin Sector</option>
-            <option value="economic sector">Economic Sector</option>
-            <option value="social sector">Social Sector</option>
+            <option value="1">Admin Sector</option>
+            <option value="2">Economic Sector</option>
+            <option value="3">Social Sector</option>
           </select>
         </div>
 
@@ -197,7 +189,7 @@
         </div>
 
         <div class="col-md-4">
-          <label for="password">Temporal Password</label>
+          <label for="password">Password</label>
           <input type="password" id="password" min="8" formControlName="password" placeholder="Enter official password" class="form-control"required="">
         </div>
 

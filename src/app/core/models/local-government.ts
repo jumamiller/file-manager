@@ -3,6 +3,7 @@ export interface LocalGovernment {
   message?:string;
   name:string,
   area:number,
+  id?:number;
   population:number,
   state:string,
   country:string,

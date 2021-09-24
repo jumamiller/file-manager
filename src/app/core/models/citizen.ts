@@ -1,7 +1,9 @@
-import {Validators} from "@angular/forms";
-
 export interface Citizen {
   city:string;
+  ministry_id?:string;
+  local_government_id?:string;
+  bureaus_id?:string;
+  government_house_id?:string;
   phone:string;
   role?:string;
   email:string;
