@@ -8,12 +8,14 @@ import {CommonModule} from "@angular/common";
 import {NgxPaginationModule} from "ngx-pagination";
 import {NgDropFilesDirective} from "../core/directives/ng-drop-files.directive";
 import { OfficialCategoryPipe} from "../core/pipes/official-category.pipe";
+import {OfficialOfficePipe} from "../core/pipes/official-office.pipe";
 
 @NgModule({
   declarations: [
     SidebarComponent,
     NgDropFilesDirective,
-    OfficialCategoryPipe
+    OfficialCategoryPipe,
+    OfficialOfficePipe,
   ],
   exports: [
     ReactiveFormsModule,
@@ -23,7 +25,9 @@ import { OfficialCategoryPipe} from "../core/pipes/official-category.pipe";
     RouterModule,
     CommonModule,
     NgDropFilesDirective,
-    OfficialCategoryPipe
+    OfficialCategoryPipe,
+    OfficialOfficePipe
+
 
   ],
   imports: [
