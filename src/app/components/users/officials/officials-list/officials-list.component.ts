@@ -16,8 +16,8 @@ export class OfficialsListComponent implements OnInit {
   officials:Citizen[];
   loading=true;
   now: Date = new Date();
-
   assetsURL=environment.ASSETS_URL;
+  selectedOfficial:Citizen;
   constructor(
     private userService:UserService,
     private authService:AuthService,
@@ -50,6 +50,14 @@ export class OfficialsListComponent implements OnInit {
         this.toastrService.error(error.error.message,'Error');
         this.loading=false;
       })
+  }
+
+  /**
+   * current official
+   * @param official
+   */
+  onOfficialChange(official:Citizen){
+    this.selectedOfficial=official;
   }
   /**
    * suspend admin staff

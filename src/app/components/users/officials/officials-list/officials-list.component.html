@@ -28,7 +28,7 @@
         <tbody>
         <tr *ngFor="let official of officials;let i=index">
           <td class="">{{i+1}}</td>
-          <td class="">
+          <td class="" title="Click Me to enlarge image" (click)="onOfficialChange(official)"data-toggle="modal" data-target="#exampleModal">
             <img [src]="assetsURL+official.avatar" alt="avatar" width="70" height="70" class="rounded-circle">
           </td>
           <td class="">{{official.first_name}} {{official.last_name}}</td>
@@ -56,3 +56,27 @@
     </div>
   </div>
 </div>
+
+<!--BEGIN modal Avatar viewer-->
+
+<!-- Modal -->
+<div *ngIf="selectedOfficial" class="modal fade" data-backdrop="false" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title" id="exampleModalLabel">{{selectedOfficial.first_name}} {{selectedOfficial.last_name}}</h1>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h3 class="modal-text">{{selectedOfficial.official_office| officialOffice}}, {{selectedOfficial.ministry_id|ministry}}</h3>
+        <img [src]="assetsURL+selectedOfficial.avatar" alt="" width="480">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--END modal Avatar viewer-->
