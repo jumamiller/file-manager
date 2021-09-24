@@ -36,7 +36,7 @@
           <td class="">{{official.phone}}</td>
           <td class="">{{official.official_category | officialCategory}}</td>
           <td class="">{{official.official_office | officialOffice}}</td>
-          <td class="">{{official.ministry}}</td>
+          <td class="">{{official.ministry_id | ministry}}</td>
           <td class="text-center">
             <span class="badge badge-success" *ngIf="official.user_is_suspended==false">active</span>
             <span class="badge badge-danger" *ngIf="official.user_is_suspended==true">suspended</span>

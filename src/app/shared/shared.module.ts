@@ -9,6 +9,7 @@ import {NgxPaginationModule} from "ngx-pagination";
 import {NgDropFilesDirective} from "../core/directives/ng-drop-files.directive";
 import { OfficialCategoryPipe} from "../core/pipes/official-category.pipe";
 import {OfficialOfficePipe} from "../core/pipes/official-office.pipe";
+import {MinistryPipe} from "../core/pipes/ministry.pipe";
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import {OfficialOfficePipe} from "../core/pipes/official-office.pipe";
     NgDropFilesDirective,
     OfficialCategoryPipe,
     OfficialOfficePipe,
+    MinistryPipe
   ],
   exports: [
     ReactiveFormsModule,
@@ -26,7 +28,8 @@ import {OfficialOfficePipe} from "../core/pipes/official-office.pipe";
     CommonModule,
     NgDropFilesDirective,
     OfficialCategoryPipe,
-    OfficialOfficePipe
+    OfficialOfficePipe,
+    MinistryPipe
 
 
   ],
