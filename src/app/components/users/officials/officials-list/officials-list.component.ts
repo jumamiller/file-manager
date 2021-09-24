@@ -108,6 +108,30 @@ export class OfficialsListComponent implements OnInit {
         this.loading=false;
       })
   }
+
+  /**
+   * remove official
+   * @param userId
+   */
+  remove(userId: number)
+  {
+    this.userService.deleteUser(userId)
+      .subscribe((res)=>{
+        if(res.success)
+        {
+          this.toastrService.success(res.message,'Success');
+          this.reloadCurrentRoute();
+          this.loading=false;
+        }
+        else{
+          this.toastrService.error(res.message,'Failed');
+          this.loading=false;
+        }
+      },error => {
+        this.toastrService.error(error.error.message,'Error');
+        this.loading=false;
+      })
+  }
   /**
    * reload
    */

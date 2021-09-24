@@ -46,7 +46,7 @@
             <button *ngIf="official.user_is_suspended==false" (click)="suspend(official.id)" class="btn btn-danger"><i class="fas fa-stop-circle"></i></button>
             <button *ngIf="official.user_is_suspended==true" (click)="activate(official.id)" class="btn btn-success"><i class="fas fa-unlock"></i></button>
           </td>
-          <td class="text-center"> <button class="btn btn-danger"><i class="fas fa-trash"></i></button></td>
+          <td class="text-center"> <button class="btn btn-danger" title="Delete Official" (click)="remove(official.id)"><i class="fas fa-trash"></i></button></td>
         </tr>
         </tbody>
       </table>
