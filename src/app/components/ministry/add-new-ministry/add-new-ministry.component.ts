@@ -31,6 +31,7 @@ export class AddNewMinistryComponent implements OnInit {
   ministryFormControl(){
     this.ministryForm= this.formBuilder.group({
       name:['',Validators.required],
+      header_text:['',Validators.required],
       description:['',Validators.required],
       address:['',Validators.required],
       budget:['',Validators.required]
@@ -49,6 +50,7 @@ export class AddNewMinistryComponent implements OnInit {
       budget: this.form.budget.value,
       description: this.form.description.value,
       name: this.form.name.value,
+      header_text: this.form.header_text.value,
       banner_image:this.cardImageBase64,
     };
 

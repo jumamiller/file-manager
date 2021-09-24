@@ -38,6 +38,7 @@ export class MinistriesListComponent implements OnInit {
   editMinistryFormControls(){
     this.editForm=this.fb.group({
       name:[''],
+      header_text:[''],
       description:[''],
       budget:['']
     })
@@ -86,6 +87,7 @@ export class MinistriesListComponent implements OnInit {
     this.submitting=true;
     let ministry:Ministry={
       name:this.form.name.value,
+      header_text:this.form.header_text.value,
       description:this.form.description.value,
       budget:this.form.budget.value,
       banner_image: this.cardImageBase64
@@ -154,7 +156,6 @@ export class MinistriesListComponent implements OnInit {
             return false;
           } else {
             this.cardImageBase64 = e.target.result;
-            console.log(this.cardImageBase64);
             this.isImageSaved = true;
             // this.previewImagePath = imgBase64Path;
           }
