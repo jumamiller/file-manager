@@ -1,6 +1,6 @@
 <div class="content mat-elevation-z8">
+  <p class="text-right p-2 m-2"><a class="btn btn-danger" [routerLink]="['/admin/manage-users/add-new-roles']">Add New Role</a></p>
   <div class="citizens">
-    <a class="btn btn-danger text-right mt-2 ml-5" [routerLink]="['/admin/manage-users/add-new-roles']">Add New Role</a>
     <div class="table-responsive">
       <h4 class="text-center text-dark">System Roles</h4>
       <table class="table table-striped table-hover table-bordered">
@@ -17,10 +17,10 @@
         <tbody>
         <tr *ngFor="let role of roles;let i=index">
           <td class="">{{i+1}}</td>
-          <td class="">{{role.name}}</td>
+          <td class="">{{role.display_name}}</td>
           <td class="">{{role.description}}</td>
-          <td class="text-center"><button class="btn btn-success"><i class="fas fa-eye"></i> </button></td>
-          <td class="text-center"><button class="btn btn-primary"><i class="fas fa-user-edit"></i> </button></td>
+          <td class="text-center"><button (click)="onRoleClick(role)" class="btn btn-success"data-toggle="modal" data-target="#roleDetails"><i class="fas fa-eye"></i> </button></td>
+          <td class="text-center"><button (click)="onRoleClick(role)" class="btn btn-primary"data-toggle="modal" data-target="#editRole"><i class="fas fa-user-edit"></i> </button></td>
           <td class="text-center"> <button (click)="removeRole(role.id)" class="btn btn-danger"><i class="fas fa-trash"></i></button></td>
         </tr>
 
@@ -32,3 +32,74 @@
     <div class="spinner-border" role="status" aria-hidden="true"></div>
   </div>
 </div>
+
+<!-- Role Details -->
+<div *ngIf="selectedRole" class="modal fade" data-backdrop="false" id="roleDetails" tabindex="-1" role="dialog" aria-labelledby="roleDetailsModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title" id="roleDetailsModalLabel">{{selectedRole.display_name}}</h1>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label>Role Name</label>
+            <input type="text" [value]="selectedRole.name"disabled class="form-control">
+          </div>
+          <div class="form-group">
+            <label>Role Display Name</label>
+            <input type="text" [value]="selectedRole.display_name"disabled class="form-control">
+          </div>
+          <div class="form-group">
+            <label>Role Description</label>
+            <input type="text" [value]="selectedRole.description"disabled class="form-control">
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--END modal role details viewer-->
+
+
+<!-- BEGIN edit role details -->
+<div *ngIf="selectedRole" class="modal fade" data-backdrop="false" id="editRole" tabindex="-1" role="dialog" aria-labelledby="editRoleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title" id="editRoleModalLabel">{{selectedRole.name}}</h1>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="editRoleForm" (ngSubmit)="onRoleUpdate()">
+          <div class="form-group">
+            <label>Role Name</label>
+            <input type="text" [value]="selectedRole.name" class="form-control" formControlName="name">
+          </div>
+          <div class="form-group">
+            <label>Role Display Name</label>
+            <input type="text" [value]="selectedRole.display_name" class="form-control" formControlName="display_name">
+          </div>
+          <div class="form-group">
+            <label>Role Description</label>
+            <input type="text" [value]="selectedRole.description" class="form-control" formControlName="description">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-success">Update {{selectedRole.name}}</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!--END modal Role edit viewer-->

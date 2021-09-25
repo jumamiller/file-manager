@@ -5,6 +5,7 @@ import {ToastrService} from "ngx-toastr";
 import {ActivatedRoute, Route, Router} from "@angular/router";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import * as _ from 'lodash';
+import {ConfirmationAlertService} from "../../../core/helpers/confirmation-alert.service";
 @Component({
   selector: 'app-ministries-list',
   templateUrl: './ministries-list.component.html',
@@ -25,6 +26,7 @@ export class MinistriesListComponent implements OnInit {
     private apiService:ApiService,
     private fb:FormBuilder,
     private route:ActivatedRoute,
+    private confirmationAlert:ConfirmationAlertService,
     private toastrService:ToastrService,private router:Router) { }
 
   ngOnInit(): void {
@@ -71,13 +73,18 @@ export class MinistriesListComponent implements OnInit {
    * @param id
    */
   removeMinistry(id:number){
-    this.apiService.removeMinistry(id)
-      .subscribe((res)=>{
-        this.toastrService.success(res.message,'Success');
-        this.reloadCurrentRoute();
-      },error => {
-        this.toastrService.error(error.error.message,'Error');
-      })
+    this.confirmationAlert.sweetAlert(
+      'Are you sure?',
+      'Deleting ministry is an irreversible process and you confirm that this also affects officials linked to it.',
+      '',
+      '',
+      'question',
+      true,
+      'Yes, Delete Ministry!',
+      'No, Cancel',
+      '',
+      this.apiService.removeMinistry(id)
+    );
   }
 
   /**

@@ -151,6 +151,13 @@ export class ApiService {
   }
 
   /**
+   * update role
+   */
+  updateRole(role:Role, role_id:number):Observable<Role>{
+    return this.httpClient.patch<Role>(`${environment.API_BASE_URL}admin/roles/${role_id}`,role);
+  }
+
+  /**
    * add new role
    */
   addNewRole(role:Role):Observable<Role>{
