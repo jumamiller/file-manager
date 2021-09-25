@@ -200,6 +200,27 @@ export class ApiService {
   }
 
   /**
+   * get single Local government
+   */
+  getSingleLocalGovernment(LGA_id:number):Observable<LocalGovernment>{
+    return this.httpClient.get<LocalGovernment>(`${environment.API_BASE_URL}admin/lga/${LGA_id}`);
+  }
+
+  /**
+   * update Local government
+   */
+  updateLocalGovernment(LGA:LocalGovernment,LGA_id:number):Observable<LocalGovernment>{
+    return this.httpClient.patch<LocalGovernment>(`${environment.API_BASE_URL}admin/lga/${LGA_id}`,LGA);
+  }
+
+  /**
+   * remove a local government
+   */
+  removeLocalGovernments(LGA_id:number):Observable<LocalGovernment>{
+    return this.httpClient.delete<LocalGovernment>(`${environment.API_BASE_URL}admin/lga/${LGA_id}`);
+  }
+
+  /**
    * ideas
    */
   getListOfSuggestions():Observable<Suggestion[]>{
