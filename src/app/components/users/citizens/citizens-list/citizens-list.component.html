@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-8"></div>
       <div class="col-md-4 add-new-action-button">
-        <a class="btn btn-danger mt-2 ml-5" [routerLink]="['/manage-users/add-new-citizens']">Add New Citizen</a>
+        <a class="btn btn-danger mt-2 ml-5" [routerLink]="['/admin/manage-users/add-new-citizens']">Add New Citizen</a>
       </div>
     </div>
     <div class="table-responsive">
@@ -12,11 +12,11 @@
         <thead>
         <tr>
           <th scope="col">#</th>
-          <th scope="col">First Name</th>
-          <th scope="col">Last Name</th>
+          <th scope="col">Avatar</th>
+          <th scope="col">Name</th>
           <th scope="col">Email</th>
           <th scope="col">Phone</th>
-          <th scope="col">Role</th>
+          <th scope="col">Status</th>
           <th scope="col" class="text-center">Edit</th>
           <th scope="col" class="text-center">Block</th>
           <th scope="col" class="text-center">Remove</th>
@@ -29,14 +29,22 @@
                   totalItems: count
                   };let i=index;">
           <td class="">{{i+1}}</td>
-          <td class="">{{citizen.first_name}}</td>
-          <td class="">{{citizen.last_name}}</td>
+          <td class="" title="Click Me to enlarge image" (click)="onCitizenChange(citizen)"data-toggle="modal" data-target="#exampleModal">
+            <img [src]="assetsURL+citizen.avatar" alt="avatar" width="70" height="70" class="rounded-circle">
+          </td>
+          <td class="">{{citizen.first_name}} {{citizen.last_name}}</td>
           <td class="">{{citizen.email}}</td>
           <td class="">{{citizen.phone}}</td>
-          <td class="">{{citizen.user_type}}</td>
+          <td class="text-center">
+            <span class="badge badge-success" *ngIf="citizen.user_is_suspended==false">active</span>
+            <span class="badge badge-danger" *ngIf="citizen.user_is_suspended==true">suspended</span>
+          </td>
           <td class="text-center"><button class="btn btn-primary"><i class="fas fa-user-edit"></i> </button></td>
-          <td class="text-center"><button class="btn btn-danger"><i class="fas fa-stop-circle"></i></button> </td>
-          <td class="text-center"> <button class="btn btn-danger"><i class="fas fa-trash"></i></button></td>
+          <td class="text-center">
+            <button *ngIf="citizen.user_is_suspended==false" (click)="suspend(citizen.id)" class="btn btn-danger"><i class="fas fa-stop-circle"></i></button>
+            <button *ngIf="citizen.user_is_suspended==true" (click)="activate(citizen.id)" class="btn btn-success"><i class="fas fa-unlock"></i></button>
+          </td>
+          <td class="text-center"> <button class="btn btn-danger" title="Delete Official" (click)="remove(citizen.id)"><i class="fas fa-trash"></i></button></td>
         </tr>
         </tbody>
       </table>
@@ -60,3 +68,26 @@
     </div>
   </div>
 </div>
+
+<!--BEGIN modal Avatar viewer-->
+
+<!-- Modal -->
+<div *ngIf="selectedCitizen" class="modal fade" data-backdrop="false" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title" id="exampleModalLabel">{{selectedCitizen.first_name}} {{selectedCitizen.last_name}}</h1>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <img [src]="assetsURL+selectedCitizen.avatar" alt="" width="480">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--END modal Avatar viewer-->

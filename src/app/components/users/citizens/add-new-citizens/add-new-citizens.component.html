@@ -43,12 +43,19 @@
         </div>
 
         <div class="col-md-4">
-          <label for="password">Temporal Password</label>
+          <label for="password">Password</label>
           <input type="password" id="password" min="8" formControlName="password" placeholder="Enter official password" class="form-control"required="">
         </div>
+
+        <div class="col-md-4">
+          <label>Upload Avatar</label>
+          <input type="file" class="form-control-file" (change)="handleFileInput($event)">
+        </div>
+
       </div>
-      <div class="submission m-4">
-        <button type="submit" [disabled]="citizensForm.invalid" class="btn btn-danger">Create Citizen</button>
+      <div class="submission m-4 text-right">
+        <button *ngIf="!submitting" type="submit" [disabled]="citizensForm.invalid" class="btn btn-danger">Create Citizen</button>
+        <button *ngIf="submitting" type="submit" [disabled]="citizensForm.invalid" class="btn btn-success">Processing New Citizen...</button>
       </div>
     </form>
   </div>

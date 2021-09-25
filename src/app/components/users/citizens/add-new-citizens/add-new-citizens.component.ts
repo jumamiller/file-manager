@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../../../core/services/auth.service";
 import {ToastrService} from "ngx-toastr";
 import {Citizen} from "../../../../core/models/citizen";
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-add-new-citizens',
@@ -14,6 +15,11 @@ export class AddNewCitizensComponent implements OnInit {
   citizensForm:FormGroup;
   submitting=false;
   loading=true;
+
+  //avatar
+  imageError: string;
+  isImageSaved: boolean;
+  cardImageBase64: string;
 
   constructor(
     private authService:AuthService,
@@ -61,7 +67,8 @@ export class AddNewCitizensComponent implements OnInit {
       gender:this.form.gender.value,
       password:this.form.password.value,
       LGA:this.form.LGA.value,
-      user_type:'citizen'
+      user_type:'citizen',
+      avatar:this.cardImageBase64,
     }
     this.authService.register(citizen)
       .subscribe((res)=>{
@@ -79,4 +86,58 @@ export class AddNewCitizensComponent implements OnInit {
         this.submitting=false;
       })
   }
+  /**
+   * handle image upload
+   * @param fileInput
+   */
+  // @ts-ignore
+  handleFileInput(fileInput) {
+    this.imageError = null;
+    if (fileInput.target.files && fileInput.target.files[0]) {
+      // Size Filter Bytes
+      const max_size = 20971520;
+      const allowed_types = ['image/png', 'image/jpeg'];
+      const max_height = 15200;
+      const max_width = 25600;
+
+      if (fileInput.target.files[0].size > max_size) {
+        this.imageError =
+          'Maximum size allowed is ' + max_size / 1000 + 'Mb';
+        this.toastrService.error(this.imageError,'Error');
+        return false;
+      }
+
+      if (!_.includes(allowed_types, fileInput.target.files[0].type)) {
+        this.imageError = 'Only Images are allowed ( JPG | PNG )';
+        this.toastrService.error(this.imageError,'Error');
+        return false;
+      }
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        const image = new Image();
+        image.src = e.target.result;
+        // @ts-ignore
+        image.onload = rs => {
+          const img_height = rs.currentTarget['height'];
+          const img_width = rs.currentTarget['width'];
+
+          if (img_height > max_height && img_width > max_width) {
+            this.imageError =
+              'Maximum dimensions allowed ' +
+              max_height +
+              '*' +
+              max_width +
+              'px';
+            return false;
+          } else {
+            this.cardImageBase64 = e.target.result;
+            this.isImageSaved = true;
+            this.toastrService.success('Processing image, please wait...','Adding Image');
+          }
+        };
+      };
+      reader.readAsDataURL(fileInput.target.files[0]);
+    }
+  }
+
 }

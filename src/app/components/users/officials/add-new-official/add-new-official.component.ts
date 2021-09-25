@@ -177,12 +177,13 @@ export class AddNewOfficialComponent implements OnInit {
       if (fileInput.target.files[0].size > max_size) {
         this.imageError =
           'Maximum size allowed is ' + max_size / 1000 + 'Mb';
-
+        this.toastrService.error(this.imageError,'Error');
         return false;
       }
 
       if (!_.includes(allowed_types, fileInput.target.files[0].type)) {
         this.imageError = 'Only Images are allowed ( JPG | PNG )';
+        this.toastrService.error(this.imageError,'Error');
         return false;
       }
       const reader = new FileReader();
