@@ -8,8 +8,19 @@ import {Router} from "@angular/router";
 })
 export class ConfirmationAlertService {
 
+  timerInterval:any;
+  swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+      confirmButton: 'btn btn-success',
+      cancelButton: 'btn btn-danger'
+    },
+    buttonsStyling: false
+  });
+
   constructor(private router:Router) {
   }
+
+
   /**
    * @return approval
    * @param title
@@ -43,9 +54,17 @@ export class ConfirmationAlertService {
       input: input,
       inputPlaceholder:inputPlaceholder,
       icon: icon,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
       showCancelButton: showCancelButton,
       confirmButtonText: confirmButtonText,
       cancelButtonText: cancelButtonText,
+      showClass: {
+        popup: 'animate__animated animate__fadeInDown'
+      },
+      hideClass: {
+        popup: 'animate__animated animate__fadeOutUp'
+      },
     }).then((result) => {
       if(result.value)
       {
@@ -54,7 +73,7 @@ export class ConfirmationAlertService {
           {
             if(res.success)
             {
-              Swal.fire(
+              this.swalWithBootstrapButtons.fire(
                 'Congratulations,!',
                 `${res.message}`,
                 'success'
@@ -63,7 +82,7 @@ export class ConfirmationAlertService {
             }
             else
             {
-              Swal.fire(
+              this.swalWithBootstrapButtons.fire(
                 'Failed,!',
                 `${res.message}`,
                 'warning'
@@ -72,14 +91,14 @@ export class ConfirmationAlertService {
           }
           else
           {
-            Swal.fire(
+            this.swalWithBootstrapButtons.fire(
               'Failed,!',
               `Server Error`,
               'error'
             );
           }
         }, error => {
-          Swal.fire(
+          this.swalWithBootstrapButtons.fire(
             'Failed,!',
             `${error}`,
             'error'
@@ -88,7 +107,7 @@ export class ConfirmationAlertService {
       }
       else if(result.dismiss === Swal.DismissReason.cancel)
       {
-        Swal.fire(
+        this.swalWithBootstrapButtons.fire(
           'Cancelled',
           'Your request to cancel this operation was processed successfully!',
           'error'
@@ -99,7 +118,7 @@ export class ConfirmationAlertService {
         callback.subscribe(res => {
           if(res.success)
           {
-            Swal.fire(
+            this.swalWithBootstrapButtons.fire(
               'Congratulations,!',
               `${res.message}`,
               'success'
@@ -109,7 +128,7 @@ export class ConfirmationAlertService {
           else
           {
 
-            Swal.fire(
+            this.swalWithBootstrapButtons.fire(
               'Failed,!',
               `${res.message}`,
               'warning'

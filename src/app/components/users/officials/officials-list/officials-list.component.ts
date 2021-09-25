@@ -74,8 +74,8 @@ export class OfficialsListComponent implements OnInit {
       user_suspended_date:moment().format('YYYY/MM/DD HH:mm:ss')
     };
     this.confirmationAlert.sweetAlert(
-      'Are you sure you want to suspend this official?',
-      '',
+      'Are you sure?',
+      'Suspending an official will deny the affected official an access to Kogas',
       '',
       '',
       'question',
@@ -98,8 +98,8 @@ export class OfficialsListComponent implements OnInit {
       user_activated_date:moment().format('YYYY/MM/DD HH:mm:ss')
     };
     this.confirmationAlert.sweetAlert(
-      'Are you sure you want to activate this official?',
-      '',
+      'Are you sure?',
+      'By activating an official, you let them access Kogas system and perform operations depending on their roles',
       '',
       '',
       'question',
@@ -118,8 +118,8 @@ export class OfficialsListComponent implements OnInit {
   remove(userId: number)
   {
     this.confirmationAlert.sweetAlert(
-      'Are you sure you want to remove this official?',
-      '',
+      'Are you sure?',
+      'Deleting an official is an irreversible process and will deny the affected official an access to Kogas',
       '',
       '',
       'question',
