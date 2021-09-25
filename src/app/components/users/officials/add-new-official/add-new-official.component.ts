@@ -43,6 +43,7 @@ export class AddNewOfficialComponent implements OnInit {
     this.getAllRoles();
     this.getCategories();
     this.getMinistries();
+    this.getLocalGovernments();
   }
 
   /**

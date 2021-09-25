@@ -8,7 +8,7 @@ export interface LocalGovernment {
   state:string,
   country:string,
   history:string,
-  chairman:string,
+  chairman?:string,
   chairman_message:string,
   chairman_avatar?:string,
   LGA_avatar?:string

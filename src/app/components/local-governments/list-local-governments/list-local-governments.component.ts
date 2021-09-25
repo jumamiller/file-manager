@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ApiService} from "../../../core/services/api.service";
 import {LocalGovernment} from "../../../core/models/local-government";
+import {environment} from "../../../../environments/environment";
 
 @Component({
   selector: 'app-list-local-governments',
@@ -11,6 +12,7 @@ export class ListLocalGovernmentsComponent implements OnInit {
 
   lgas:LocalGovernment[];
   loading=true;
+  imageUrl=environment.ASSETS_URL;
   constructor(private apiService:ApiService) { }
 
   ngOnInit(): void {
