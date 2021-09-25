@@ -54,12 +54,9 @@
           </div>
         </div>
       </div>
-      <div class="row mt-5">
-        <div class="col-md-10"></div>
-        <div class="col-md-2">
-          <button *ngIf="!submitting" type="submit" class="btn btn-danger">Submit</button>
-          <button *ngIf="submitting" type="submit" class="btn btn-success">Adding project...</button>
-        </div>
+      <div class="mt-5 text-right">
+        <button *ngIf="!submitting" type="submit" class="btn btn-danger">Add Volunteer Project</button>
+        <button *ngIf="submitting" type="submit" class="btn btn-success">Adding project...</button>
       </div>
     </form>
   </div>

@@ -52,23 +52,20 @@
       <div class="form-row m-3">
         <div class="col-md-12">
           <label for="chairman_message">Chairman Message</label>
-          <textarea class="form-control" cols="7" rows="7" id="chairman_message" formControlName="chairman_message"></textarea>
+          <textarea class="form-control" cols="5" rows="5" id="chairman_message" formControlName="chairman_message"></textarea>
         </div>
       </div>
 
       <div class="form-row m-3">
         <div class="col-md-12">
           <label for="history">LGA History</label>
-          <textarea class="form-control" cols="7" rows="7" id="=history" formControlName="history"></textarea>
+          <textarea id="history"class="form-control" cols="7" rows="7" id="=history" formControlName="history"></textarea>
         </div>
       </div>
 
-      <div class="submission m-4 row">
-        <div class="col-md-8"></div>
-        <div class="col-md-4">
-          <button *ngIf="!submitting" class="btn btn-danger">Add Local Government Area</button>
-          <button *ngIf="submitting" class="btn btn-success">Adding Local Government Area...</button>
-        </div>
+      <div class="m-5 text-right">
+        <button *ngIf="!submitting" class="btn btn-danger mb-2">Add Local Government Area</button>
+        <button *ngIf="submitting" class="btn btn-success mb-2">Adding Local Government Area...</button>
       </div>
     </form>
   </div>
