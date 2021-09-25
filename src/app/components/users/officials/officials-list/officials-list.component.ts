@@ -6,6 +6,7 @@ import {AuthService} from "../../../../core/services/auth.service";
 import * as moment from 'moment';
 import {Router} from "@angular/router";
 import {environment} from "../../../../../environments/environment";
+import {ConfirmationAlertService} from "../../../../core/helpers/confirmation-alert.service";
 @Component({
   selector: 'app-officials-list',
   templateUrl: './officials-list.component.html',
@@ -22,6 +23,7 @@ export class OfficialsListComponent implements OnInit {
     private userService:UserService,
     private authService:AuthService,
     private router:Router,
+    private confirmationAlert:ConfirmationAlertService,
     private toastrService:ToastrService,
   ) { }
 
@@ -71,22 +73,18 @@ export class OfficialsListComponent implements OnInit {
       user_suspended_by:currentAdminId,
       user_suspended_date:moment().format('YYYY/MM/DD HH:mm:ss')
     };
-    this.userService.suspendUser(suspensionInfo,userId)
-      .subscribe((res)=>{
-        if(res.success)
-        {
-          this.toastrService.success(res.message,'Success');
-          this.reloadCurrentRoute();
-          this.loading=false;
-        }
-        else{
-          this.toastrService.error(res.message,'Failed');
-          this.loading=false;
-        }
-      },error => {
-        this.toastrService.error(error.error.message,'Error');
-        this.loading=false;
-      })
+    this.confirmationAlert.sweetAlert(
+      'Are you sure you want to suspend this official?',
+      '',
+      '',
+      '',
+      'question',
+      true,
+      'Yes, Suspend Official!',
+      'No, Cancel',
+      '',
+      this.userService.suspendUser(suspensionInfo,userId)
+    );
   }/**
    * activate suspended official
    * @param userId
@@ -99,22 +97,18 @@ export class OfficialsListComponent implements OnInit {
       user_activated_by:currentAdminId,
       user_activated_date:moment().format('YYYY/MM/DD HH:mm:ss')
     };
-    this.userService.activateUser(activationInfo,userId)
-      .subscribe((res)=>{
-        if(res.success)
-        {
-          this.toastrService.success(res.message,'Success');
-          this.reloadCurrentRoute();
-          this.loading=false;
-        }
-        else{
-          this.toastrService.error(res.message,'Failed');
-          this.loading=false;
-        }
-      },error => {
-        this.toastrService.error(error.error.message,'Error');
-        this.loading=false;
-      })
+    this.confirmationAlert.sweetAlert(
+      'Are you sure you want to activate this official?',
+      '',
+      '',
+      '',
+      'question',
+      true,
+      'Yes, Activate Official!',
+      'No, Cancel',
+      '',
+      this.userService.activateUser(activationInfo,userId)
+    );
   }
 
   /**
@@ -123,31 +117,17 @@ export class OfficialsListComponent implements OnInit {
    */
   remove(userId: number)
   {
-    this.userService.deleteUser(userId)
-      .subscribe((res)=>{
-        if(res.success)
-        {
-          this.toastrService.success(res.message,'Success');
-          this.reloadCurrentRoute();
-          this.loading=false;
-        }
-        else{
-          this.toastrService.error(res.message,'Failed');
-          this.loading=false;
-        }
-      },error => {
-        this.toastrService.error(error.error.message,'Error');
-        this.loading=false;
-      })
+    this.confirmationAlert.sweetAlert(
+      'Are you sure you want to remove this official?',
+      '',
+      '',
+      '',
+      'question',
+      true,
+      'Yes, Delete Official!',
+      'No, Cancel',
+      '',
+      this.userService.deleteUser(userId)
+    );
   }
-  /**
-   * reload
-   */
-  reloadCurrentRoute() {
-    let currentUrl = this.router.url;
-    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
-      this.router.navigate([currentUrl]);
-    });
-  }
-
 }

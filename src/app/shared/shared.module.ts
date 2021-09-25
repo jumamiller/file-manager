@@ -33,13 +33,13 @@ import {MinistryPipe} from "../core/pipes/ministry.pipe";
 
 
   ],
-  imports: [
-    RouterModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    MaterialModule,
-    NgxPaginationModule,
-    CommonModule
-  ],
+    imports: [
+        RouterModule,
+        HttpClientModule,
+        ReactiveFormsModule,
+        MaterialModule,
+        NgxPaginationModule,
+        CommonModule,
+    ],
 })
 export class SharedModule { }

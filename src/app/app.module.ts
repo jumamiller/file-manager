@@ -20,6 +20,7 @@ import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {JwtInterceptor} from "./core/helpers/jwt.interceptor";
 import {NgxPaginationModule} from "ngx-pagination";
 import { SliceWordsPipe } from './core/pipes/slice-words.pipe';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({
   declarations: [
@@ -34,17 +35,18 @@ import { SliceWordsPipe } from './core/pipes/slice-words.pipe';
     AddNewsComponent,
     SliceWordsPipe,
   ],
-  imports: [
-    BrowserModule,
-    NgxPaginationModule,
-    RouterModule,
-    SharedModule,
-    AppRoutingModule,
-    MaterialModule,
-    NgbModule,
-    BrowserAnimationsModule,
-    ToastrModule.forRoot(), // ToastrModule added
-  ],
+    imports: [
+        BrowserModule,
+        NgxPaginationModule,
+        RouterModule,
+        SharedModule,
+        AppRoutingModule,
+        MaterialModule,
+        NgbModule,
+        BrowserAnimationsModule,
+        ToastrModule.forRoot(),
+        SweetAlert2Module.forRoot(),
+    ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
   ],
