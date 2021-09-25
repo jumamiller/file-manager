@@ -18,6 +18,11 @@ export class MinistriesListComponent implements OnInit {
   ministries: Ministry[]=[];
   selectedMinistryId:number;
 
+  page = 1;
+  count = 0;
+  tableSize = 10;
+  tableSizes = [2, 5, 10, 20, 30, 40];
+
   imageError: string;
   isImageSaved: boolean;
   cardImageBase64: string;
@@ -180,5 +185,18 @@ export class MinistriesListComponent implements OnInit {
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
       this.router.navigate([currentUrl]);
     });
+  }
+
+  onTableDataChange(event)
+  {
+    this.page = event;
+    this.listOfMinistries();
+  }
+
+  onTableSizeChange(event): void
+  {
+    this.tableSize = event.target.value;
+    this.page = 1;
+    this.listOfMinistries();
   }
 }
