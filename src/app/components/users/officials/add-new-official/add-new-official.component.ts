@@ -116,6 +116,7 @@ export class AddNewOfficialComponent implements OnInit {
       password:this.form.password.value,
       LGA:this.form.LGA.value,
       user_type:'official',
+      role:this.form.role.value,
       avatar: this.cardImageBase64,
       sector:this.form.sector.value,
       official_category:this.form.official_category.value,
