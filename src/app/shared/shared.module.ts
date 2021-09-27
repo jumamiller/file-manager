@@ -6,18 +6,18 @@ import { SidebarComponent } from './layouts/sidebar/sidebar.component';
 import {MaterialModule} from "../material-module";
 import {CommonModule} from "@angular/common";
 import {NgxPaginationModule} from "ngx-pagination";
-import {NgDropFilesDirective} from "../core/directives/ng-drop-files.directive";
 import { OfficialCategoryPipe} from "../core/pipes/official-category.pipe";
 import {OfficialOfficePipe} from "../core/pipes/official-office.pipe";
 import {MinistryPipe} from "../core/pipes/ministry.pipe";
+import {AccessControlDirective} from "../core/directives/access-control.directive";
 
 @NgModule({
   declarations: [
     SidebarComponent,
-    NgDropFilesDirective,
     OfficialCategoryPipe,
     OfficialOfficePipe,
-    MinistryPipe
+    MinistryPipe,
+    AccessControlDirective,
   ],
   exports: [
     ReactiveFormsModule,
@@ -26,11 +26,10 @@ import {MinistryPipe} from "../core/pipes/ministry.pipe";
     NgxPaginationModule,
     RouterModule,
     CommonModule,
-    NgDropFilesDirective,
     OfficialCategoryPipe,
     OfficialOfficePipe,
-    MinistryPipe
-
+    MinistryPipe,
+    AccessControlDirective,
 
   ],
     imports: [

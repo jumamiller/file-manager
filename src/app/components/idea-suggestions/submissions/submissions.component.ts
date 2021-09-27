@@ -4,6 +4,7 @@ import {ApiService} from "../../../core/services/api.service";
 import {ToastrService} from "ngx-toastr";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
+import {PermissionType} from "../../../core/constants/permission-type";
 
 @Component({
   selector: 'app-submissions',
@@ -12,6 +13,7 @@ import {Router} from "@angular/router";
 })
 export class SubmissionsComponent implements OnInit {
 
+  permissions=PermissionType;
   suggestions:Suggestion[];
   submitting=false;
   loading=true;

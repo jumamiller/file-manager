@@ -6,6 +6,7 @@ import {environment} from "../../../../environments/environment";
 import {AuthService} from "../../../core/services/auth.service";
 import {Router} from "@angular/router";
 import {Citizen} from "../../../core/models/citizen";
+import {PermissionType} from "../../../core/constants/permission-type";
 
 @Component({
   selector: 'app-sidebar',
@@ -14,6 +15,7 @@ import {Citizen} from "../../../core/models/citizen";
 })
 export class SidebarComponent {
 
+  permissions=PermissionType;
   user:Citizen;
 
   imageURL=environment.ASSETS_URL;

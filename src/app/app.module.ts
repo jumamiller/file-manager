@@ -21,6 +21,7 @@ import {JwtInterceptor} from "./core/helpers/jwt.interceptor";
 import {NgxPaginationModule} from "ngx-pagination";
 import { SliceWordsPipe } from './core/pipes/slice-words.pipe';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import {UnauthorisedComponent} from "./unauthorised/unauthorised.component";
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     SingleNewsDetailsComponent,
     AddNewsComponent,
     SliceWordsPipe,
+    UnauthorisedComponent,
   ],
     imports: [
         BrowserModule,

@@ -6,6 +6,7 @@ import {environment} from "../../../../../environments/environment";
 import * as moment from "moment";
 import {AuthService} from "../../../../core/services/auth.service";
 import {ConfirmationAlertService} from "../../../../core/helpers/confirmation-alert.service";
+import {PermissionType} from "../../../../core/constants/permission-type";
 
 @Component({
   selector: 'app-citizens-list',
@@ -15,6 +16,7 @@ import {ConfirmationAlertService} from "../../../../core/helpers/confirmation-al
 export class CitizensListComponent implements OnInit {
 
 
+  permissions=PermissionType;
   citizens: Citizen[];
   loading=true;
 

@@ -1,4 +1,4 @@
-<div class="content mat-elevation-z8">
+<div class="content mat-elevation-z8" *appAccessControl="[permissions.VIEW_IDEAS,'page']">
   <h5 class="text-center title">Ideas/Suggestions</h5>
 
   <div class="appointment-table">
@@ -32,7 +32,7 @@
             <button mat-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
             <mat-menu #menu="matMenu">
               <a [routerLink]="['/admin/suggestions/submissions/details']" mat-menu-item>View Entry</a>
-              <a [routerLink]="['/admin/suggestions/my-submissions/details']" mat-menu-item (click)="onSuggestionClick(suggestion.id)"data-toggle="modal" data-target="#exampleModal">Respond</a>
+              <a *appAccessControl="[permissions.RESPOND_TO_QUERIES,'nav']" [routerLink]="['/admin/suggestions/my-submissions/details']" mat-menu-item (click)="onSuggestionClick(suggestion.id)"data-toggle="modal" data-target="#exampleModal">Respond</a>
               <a mat-menu-item class="text-danger">Delete Entry</a>
             </mat-menu>
           </td>
@@ -48,7 +48,7 @@
 
 
 <!-- Modal -->
-<div class="modal fade" data-backdrop="false" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div *appAccessControl="[permissions.RESPOND_TO_QUERIES,'page']" class="modal fade" data-backdrop="false" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">

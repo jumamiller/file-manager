@@ -4,6 +4,7 @@ import {ApiService} from "../../../core/services/api.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ToastrService} from "ngx-toastr";
 import {Router} from "@angular/router";
+import {PermissionType} from "../../../core/constants/permission-type";
 
 @Component({
   selector: 'app-appointment-list',
@@ -12,6 +13,7 @@ import {Router} from "@angular/router";
 })
 export class AppointmentListComponent implements OnInit {
 
+  permissions=PermissionType;
   appointments:Appointment[];
   submitting=false;
   loading=true;

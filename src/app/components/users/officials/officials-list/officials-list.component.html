@@ -1,4 +1,4 @@
-<div class="content mat-elevation-z8">
+<div class="content mat-elevation-z8" *appAccessControl="[permissions.VIEW_OFFICIAL,'page']">
   <p class="m-1 p-1 text-right"><a class="btn btn-danger text-right mt-2 ml-5 add-new-action-button" [routerLink]="['/admin/manage-users/add-new-official']">Add New Official</a></p>
   <div class="citizens">
     <div class="table-responsive">
@@ -15,9 +15,9 @@
           <th scope="col">Office</th>
           <th scope="col">Ministry</th>
           <th scope="col">Status</th>
-          <th scope="col" class="text-center">Edit</th>
-          <th scope="col" class="text-center">Block</th>
-          <th scope="col" class="text-center">Remove</th>
+          <th scope="col" class="text-center" *appAccessControl="[permissions.EDIT_OFFICIAL,'nav']">Edit</th>
+          <th scope="col" class="text-center" *appAccessControl="[permissions.DELETE_OFFICIAL,'nav']">Block</th>
+          <th scope="col" class="text-center" *appAccessControl="[permissions.DELETE_OFFICIAL,'nav']">Remove</th>
         </tr>
         </thead>
         <tbody>
@@ -36,12 +36,12 @@
             <span class="badge badge-success" *ngIf="official.user_is_suspended==false">active</span>
             <span class="badge badge-danger" *ngIf="official.user_is_suspended==true">suspended</span>
           </td>
-          <td class="text-center"><button class="btn btn-primary"><i class="fas fa-user-edit"></i> </button></td>
-          <td class="text-center">
+          <td class="text-center" *appAccessControl="[permissions.EDIT_OFFICIAL,'nav']"><button class="btn btn-primary"><i class="fas fa-user-edit"></i> </button></td>
+          <td class="text-center" *appAccessControl="[permissions.DELETE_OFFICIAL,'nav']">
             <button *ngIf="official.user_is_suspended==false" (click)="suspend(official.id)" class="btn btn-danger"><i class="fas fa-stop-circle"></i></button>
             <button *ngIf="official.user_is_suspended==true" (click)="activate(official.id)" class="btn btn-success"><i class="fas fa-unlock"></i></button>
           </td>
-          <td class="text-center"> <button class="btn btn-danger" title="Delete Official" (click)="remove(official.id)"><i class="fas fa-trash"></i></button></td>
+          <td class="text-center" *appAccessControl="[permissions.DELETE_OFFICIAL,'nav']"> <button class="btn btn-danger" title="Delete Official" (click)="remove(official.id)"><i class="fas fa-trash"></i></button></td>
         </tr>
         </tbody>
       </table>

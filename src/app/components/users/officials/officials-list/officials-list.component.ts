@@ -7,6 +7,7 @@ import * as moment from 'moment';
 import {Router} from "@angular/router";
 import {environment} from "../../../../../environments/environment";
 import {ConfirmationAlertService} from "../../../../core/helpers/confirmation-alert.service";
+import {PermissionType} from "../../../../core/constants/permission-type";
 @Component({
   selector: 'app-officials-list',
   templateUrl: './officials-list.component.html',
@@ -14,6 +15,7 @@ import {ConfirmationAlertService} from "../../../../core/helpers/confirmation-al
 })
 export class OfficialsListComponent implements OnInit {
 
+  permissions=PermissionType;
   officials:Citizen[];
   loading=true;
   now: Date = new Date();

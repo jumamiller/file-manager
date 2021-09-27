@@ -1,4 +1,4 @@
-<div class="content mat-elevation-z8">
+<div class="content mat-elevation-z8"  *appAccessControl="[permissions.CREATE_CITIZEN,'page']">
   <h2 class="text-center text-dark">Add New Citizens</h2>
   <div class="add-new-user">
     <form [formGroup]="citizensForm" (ngSubmit)="onSubmit()">
@@ -53,7 +53,7 @@
         </div>
 
       </div>
-      <div class="submission m-4 text-right">
+      <div class="submission m-4 text-right" *appAccessControl="[permissions.CREATE_CITIZEN,'nav']">
         <button *ngIf="!submitting" type="submit" [disabled]="citizensForm.invalid" class="btn btn-danger">Create Citizen</button>
         <button *ngIf="submitting" type="submit" [disabled]="citizensForm.invalid" class="btn btn-success">Processing New Citizen...</button>
       </div>

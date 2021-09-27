@@ -1,5 +1,5 @@
-<div class="content mat-elevation-z8">
-  <p class="m-1 p-1 text-right"><a class="btn btn-danger mt-2 ml-5" [routerLink]="['/admin/manage-users/add-new-citizens']">Add New Citizen</a></p>
+<div class="content mat-elevation-z8" *appAccessControl="[permissions.VIEW_CITIZEN,'page']">
+  <p class="m-1 p-1 text-right"  *appAccessControl="[permissions.CREATE_CITIZEN,'nav']"><a class="btn btn-danger mt-2 ml-5" [routerLink]="['/admin/manage-users/add-new-citizens']">Add New Citizen</a></p>
   <div class="citizens">
     <div class="table-responsive">
       <h4 class="text-center text-dark">List Of Citizens</h4>
@@ -12,9 +12,9 @@
           <th scope="col">Email</th>
           <th scope="col">Phone</th>
           <th scope="col">Status</th>
-          <th scope="col" class="text-center">Edit</th>
-          <th scope="col" class="text-center">Block</th>
-          <th scope="col" class="text-center">Remove</th>
+          <th scope="col" class="text-center" *appAccessControl="[permissions.EDIT_CITIZEN,'nav']">Edit</th>
+          <th scope="col" class="text-center" *appAccessControl="[permissions.DELETE_CITIZEN,'nav']">Block</th>
+          <th scope="col" class="text-center" *appAccessControl="[permissions.DELETE_CITIZEN,'nav']">Remove</th>
         </tr>
         </thead>
         <tbody>
@@ -34,12 +34,12 @@
             <span class="badge badge-success" *ngIf="citizen.user_is_suspended==false">active</span>
             <span class="badge badge-danger" *ngIf="citizen.user_is_suspended==true">suspended</span>
           </td>
-          <td class="text-center"><button class="btn btn-primary"><i class="fas fa-user-edit"></i> </button></td>
-          <td class="text-center">
+          <td class="text-center" *appAccessControl="[permissions.EDIT_CITIZEN,'nav']"><button class="btn btn-primary"><i class="fas fa-user-edit"></i> </button></td>
+          <td class="text-center" *appAccessControl="[permissions.DELETE_CITIZEN,'nav']">
             <button *ngIf="citizen.user_is_suspended==false" (click)="suspend(citizen.id)" class="btn btn-danger"><i class="fas fa-stop-circle"></i></button>
             <button *ngIf="citizen.user_is_suspended==true" (click)="activate(citizen.id)" class="btn btn-success"><i class="fas fa-unlock"></i></button>
           </td>
-          <td class="text-center"> <button class="btn btn-danger" title="Delete Official" (click)="remove(citizen.id)"><i class="fas fa-trash"></i></button></td>
+          <td class="text-center" *appAccessControl="[permissions.DELETE_CITIZEN,'nav']"> <button class="btn btn-danger" title="Delete Official" (click)="remove(citizen.id)"><i class="fas fa-trash"></i></button></td>
         </tr>
         </tbody>
       </table>

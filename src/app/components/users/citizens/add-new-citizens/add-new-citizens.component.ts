@@ -4,6 +4,7 @@ import {AuthService} from "../../../../core/services/auth.service";
 import {ToastrService} from "ngx-toastr";
 import {Citizen} from "../../../../core/models/citizen";
 import * as _ from 'lodash';
+import {PermissionType} from "../../../../core/constants/permission-type";
 
 @Component({
   selector: 'app-add-new-citizens',
@@ -12,6 +13,7 @@ import * as _ from 'lodash';
 })
 export class AddNewCitizensComponent implements OnInit {
 
+  permissions=PermissionType;
   citizensForm:FormGroup;
   submitting=false;
   loading=true;
