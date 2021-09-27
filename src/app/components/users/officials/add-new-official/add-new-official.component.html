@@ -168,7 +168,7 @@
         <div class="col-md-4">
           <label for="role">Select Role</label>
           <select id="role" class="custom-select" formControlName="role">
-            <option *ngFor="let role of roles" [value]="role.id">{{role.display_name}}</option>
+            <option *ngFor="let role of roles" [value]="role.name">{{role.display_name}}</option>
           </select>
         </div>
 
