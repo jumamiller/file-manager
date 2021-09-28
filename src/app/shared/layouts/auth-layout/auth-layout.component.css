@@ -5,8 +5,8 @@
   width: 100%;
   min-height: 100vh;
 }
-.container-fluid{
-  width: 75%;
+.container-width{
+  width: 94%;
 }
 .main-logo{
   text-align: left;
@@ -18,9 +18,20 @@
   text-align: right;
 }
 
+header{
+  height: 13vh;
+}
+.section{
+  height: calc(80vh);
+  overflow-y: auto;
+  transition: all 0.5s;
+}
+
 footer{
   color: #004598;
+  height: 7vh;
 }
+
 .footer-copyright{
   font-family: 'Poppins',sans-serif;
   font-style: normal;

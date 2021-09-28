@@ -1,7 +1,7 @@
 <div class="citizen-registration">
   <div class="container">
     <mat-card class="mt-5 mb-5">
-      <mat-card-title class="text-center">Official Login</mat-card-title>
+      <mat-card-title class="text-center">Login</mat-card-title>
       <mat-card-header>
         <p class="text-center text-white">Sign in here for your access to the
           Kogi State Open Governance and Accountability System</p>
@@ -10,7 +10,7 @@
         <form [formGroup]="citizenLoginForm" (ngSubmit)="onCitizenLogin()" novalidate role="form">
           <p>
             <mat-form-field appearance="standard">
-              <mat-label>Email Address</mat-label>
+              <mat-label>Email</mat-label>
               <input type="email" matInput placeholder="johndoe@example.com" required name="email" formControlName="email" autocomplete="email">
             </mat-form-field>
           </p>

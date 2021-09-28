@@ -1,6 +1,6 @@
 <div class="layout-bg">
   <header>
-    <div class="container-fluid">
+    <div class="container-fluid container-width">
       <div class="row bg-white">
         <div class="col-md-4 main-logo"><a routerLink="/"><img src="../../../../assets/images/kogas.png" alt="" width="192.19" height="75"></a> </div>
         <div class="col-md-4 text-center shield"><img src="../../../../assets/images/shield.png" alt="" width="90.2" height="75"></div>
@@ -8,8 +8,10 @@
       </div>
     </div>
   </header>
-  <router-outlet></router-outlet>
-  <div class="container-fluid bg-white text-center p-2 footer">
+  <div class="section">
+    <router-outlet></router-outlet>
+  </div>
+  <div class="container-fluid container-width bg-white text-center p-2 footer">
     <footer class="mt-auto text-center">
       <p class="footer-copyright">COPYRIGHT 2021 ALL RIGHT RESERVED | KOGI STATE GOVERNMENT</p>
     </footer>
