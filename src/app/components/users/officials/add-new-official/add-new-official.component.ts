@@ -59,7 +59,7 @@ export class AddNewOfficialComponent implements OnInit {
       city:['',Validators.required],
       gender:['',Validators.required],
       LGA:['',Validators.required],
-      sector:['',Validators.required],
+      sector:[''],
       official_category:[''],
       official_office:[''],
       ministry_id:[''],
