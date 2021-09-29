@@ -19,7 +19,7 @@
 
         <div class="col-md-4">
           <label for="news_banner">News Banner</label>
-          <input type="file" id="news_banner" class="form-control-file"required="">
+          <input type="file" id="news_banner" (change)="handleFileInput($event)" class="form-control-file"required="">
         </div>
 
       </div>
