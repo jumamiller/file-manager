@@ -24,7 +24,8 @@
 
       </div>
       <div class="submission m-4 text-right">
-        <button class="btn btn-danger">Add News/Events</button>
+        <button *ngIf="!submitting" class="btn btn-danger">Add News/Events</button>
+        <button *ngIf="submitting" class="btn btn-success">Adding News...</button>
       </div>
     </form>
   </div>

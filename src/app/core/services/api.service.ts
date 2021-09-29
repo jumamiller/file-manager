@@ -67,6 +67,27 @@ export class ApiService {
   }
 
   /**
+   * show single news
+   */
+  getSingleNews(newsId:number):Observable<News>{
+    return this.httpClient.get<News>(`${environment.API_BASE_URL}admin/get-news/${newsId}`);
+  }
+
+  /**
+   * update news details
+   */
+  updateNews(data:News, newsId:number):Observable<News>{
+    return this.httpClient.patch<News>(`${environment.API_BASE_URL}admin/get-news/${newsId}`,data);
+  }
+
+  /**
+   * remove news
+   */
+  removeNews(newsId){
+    return this.httpClient.delete<News>(`${environment.API_BASE_URL}admin/get-news/${newsId}`);
+  }
+
+  /**
    * show single ministry
    */
   showSingleMinistry(ministryId: string):Observable<Ministry>{

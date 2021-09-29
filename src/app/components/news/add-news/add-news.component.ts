@@ -18,6 +18,7 @@ export class AddNewsComponent implements OnInit {
 
   newsForm:FormGroup;
   loading=true;
+  submitting=false;
   constructor(private apiService:ApiService,
               private toastrService:ToastrService,
               private formBuilder:FormBuilder) { }
@@ -43,6 +44,7 @@ export class AddNewsComponent implements OnInit {
    * add news
    */
   onNewsSubmit(){
+    this.submitting=true;
     let news:News={
       description: this.form.description.value,
       target_audience: this.form.target_audience.value,
@@ -53,12 +55,15 @@ export class AddNewsComponent implements OnInit {
       .subscribe((res)=>{
         if(res){
           this.toastrService.success(res.message);
+          this.submitting=false;
         }
         else{
           this.toastrService.error(res.message,'Failed');
+          this.submitting=false;
         }
       },error => {
         this.toastrService.error(error.error.message,'Error');
+        this.submitting=false;
       })
   }
 
