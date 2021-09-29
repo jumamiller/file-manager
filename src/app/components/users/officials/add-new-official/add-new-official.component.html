@@ -100,6 +100,16 @@
           </select>
         </div>
 
+        <div class="col-md-4" *ngIf="selectedSubCategory== '2'">
+          <label for="sector">Select Sector</label>
+          <select id="sector"class="custom-select" formControlName="sector">
+            <option value="" disabled>Select official Sector</option>
+            <option value="1">Admin Sector</option>
+            <option value="2">Economic Sector</option>
+            <option value="3">Social Sector</option>
+          </select>
+        </div>
+
         <div class="col-md-4" *ngIf="selectedSubCategory=='chairperson' || selectedSubCategory=='vice chairperson' || selectedSubCategory=='secretary' ||selectedSubCategory=='public relation officer'">
           <label for="ministry">Local Government Areas</label>
           <select class="custom-select" name="LGA" id="ministry" formControlName="ministry_id">
@@ -169,16 +179,6 @@
           <label for="role">Select Role</label>
           <select id="role" class="custom-select" formControlName="role">
             <option *ngFor="let role of roles" [value]="role.name">{{role.display_name}}</option>
-          </select>
-        </div>
-
-        <div class="col-md-4">
-          <label for="sector">Select Sector</label>
-          <select id="sector"class="custom-select" formControlName="sector">
-            <option value="" disabled>Select official Sector</option>
-            <option value="1">Admin Sector</option>
-            <option value="2">Economic Sector</option>
-            <option value="3">Social Sector</option>
           </select>
         </div>
 
