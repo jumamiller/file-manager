@@ -27,7 +27,7 @@
           <td class="">{{LGA.state}}</td>
           <td class="text-right">{{LGA.population|number}}</td>
           <td class="text-right">{{LGA.area|number}}KM2</td>
-          <td class="text-center"><button class="btn btn-success"><i class="fas fa-eye"></i> </button></td>
+          <td class="text-center"><button class="btn btn-success" (click)="onLGAClick(LGA)" data-target="#viewLGA" data-toggle="modal"><i class="fas fa-eye"></i> </button></td>
           <td class="text-center"><button class="btn btn-primary" (click)="onLGAClick(LGA)" data-toggle="modal" data-target="#editLGA"><i class="fas fa-user-edit"></i></button> </td>
           <td class="text-center"> <button class="btn btn-danger" (click)="removeLGA(LGA.id)"><i class="fas fa-trash"></i></button></td>
         </tr>
@@ -40,6 +40,68 @@
     <div class="spinner-border" role="status" aria-hidden="true"></div>
   </div>
 </div>
+
+
+<!-- BEGIN LGA details -->
+<div *ngIf="selectedLGA" class="modal fade" data-backdrop="false" id="viewLGA" tabindex="-1" role="dialog" aria-labelledby="editRoleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="text-center m-2">
+          <img [src]="imageUrl+selectedLGA.LGA_avatar" width="200" height="200" class="rounded-circle" alt="LGA">
+        </div>
+        <h1 class="modal-title" id="viewLGAModalLabel">{{selectedLGA.name}}</h1>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="editLGAForm" (ngSubmit)="onLGAUpdate()">
+          <div class="form-group">
+            <label>Name</label>
+            <input type="text" [placeholder]="selectedLGA.name"class="form-control" formControlName="name">
+          </div>
+          <div class="form-group">
+            <label>State</label>
+            <input type="text" [placeholder]="selectedLGA.state" class="form-control" formControlName="state">
+          </div>
+          <div class="form-group">
+            <label>Population</label>
+            <input type="number" [placeholder]="selectedLGA.population" class="form-control" formControlName="population">
+          </div>
+          <div class="form-group">
+            <label>Area</label>
+            <input type="number" [placeholder]="selectedLGA.area" class="form-control" formControlName="area">
+          </div>
+
+          <div class="form-group">
+            <label>Country</label>
+            <input type="text" [placeholder]="selectedLGA.area" class="form-control" formControlName="country">
+          </div>
+
+          <div class="form-row m-3">
+            <div class="col-md-12">
+              <label for="chairman_message">Chairman Message</label>
+              <textarea class="form-control" cols="5" rows="5"[placeholder]="selectedLGA.chairman_message" formControlName="chairman_message"></textarea>
+            </div>
+          </div>
+
+          <div class="form-row m-3">
+            <div class="col-md-12">
+              <label for="history">History</label>
+              <textarea class="form-control" cols="5" rows="5" [placeholder]="selectedLGA.history" formControlName="history"></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-success">Update {{selectedLGA.name}}</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!--END modal LGA viewer-->
 
 
 <!-- BEGIN edit LGA details -->
