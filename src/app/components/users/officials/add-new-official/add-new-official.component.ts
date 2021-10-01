@@ -90,8 +90,11 @@ export class AddNewOfficialComponent implements OnInit {
     return this.officialForm.controls;
   }
 
-  currentCategory(cat:any){
-    this.selectedCategory=cat;
+  currentCategory(id:number){
+    this.apiService.getSingleCategory(id)
+      .subscribe((res)=>{
+        this.selectedCategory=res.data;
+      })
   }
 
   /**

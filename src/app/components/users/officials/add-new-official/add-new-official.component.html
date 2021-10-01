@@ -5,135 +5,25 @@
       <div class="form-row m-3">
         <div class="col-md-4">
           <label for="category">Select Category</label>
-          <select class="custom-select" name="category" id="category" (change)="currentCategory($event.target['value'])" formControlName="official_category">
+          <select class="custom-select" name="category" #category  id="category" (change)="currentCategory($event.target['value'])" formControlName="official_category">
             <option>Select Official's Category</option>
             <option [value]="category.id" *ngFor="let category of categories">{{category.category_name}}</option>
           </select>
         </div>
 
-        <div class="col-md-4" *ngIf="selectedCategory=='1'">
-          <label for="cabinet-sub-categories">Select Office</label>
-          <!--BEGIN the cabinet-->
-          <select class="custom-select" name="category" id="cabinet-sub-categories" (change)="currentSubCategory($event.target['value'])" formControlName="official_office">
-            <option value="">Select Official Office</option>
-            <option value="1">Head Of Service</option>
-            <option value="2">Commissioners</option>
-            <option value="3">Special Advisers</option>
-            <option value="4">Accountant General Of State</option>
-            <option value="5">Auditor General (State)</option>
-            <option value="6">Auditor General (Local Governments)</option>
-            <option value="7">Senior Special Assistants</option>
-            <option value="8">Special Assistants</option>
-          </select>
-          <!--END the cabinet-->
-        </div>
-
-        <div class="col-md-4" *ngIf="selectedCategory=='2'">
-          <label for="cabinet-sub-categories">Select Office</label>
-          <!--BEGIN the government house-->
-          <select class="custom-select" name="category" id="government-house" (change)="currentSubCategory($event.target['value'])" formControlName="official_office">
-            <option value="Chief Of staff">Chief Of staff</option>
-            <option value="Deputy Chief Of staff">Deputy Chief Of staff</option>
-            <option value="Director Of Protocol">Director Of Protocol</option>
-            <option value="Chief Press Secretary (Governor)">Chief Press Secretary (Governor)</option>
-            <option value="Chief Press Secretary (Deputy Governor)">Chief Press Secretary (Deputy Governor)</option>
-            <option value="Personal Assistant (Governor)">Personal Assistant (Governor)</option>
-            <option value="Personal Assistant (Deputy Governor)">Personal Assistant (Deputy Governor)</option>
-          </select>
-          <!--END the government house-->
-        </div>
-
-        <div class="col-md-4"*ngIf="selectedCategory=='3'" >
-          <!--BEGIN head of agencies-->
-          <label for="cabinet-sub-categories">Select Office</label>
-          <select class="custom-select" name="category" id="sub_category"(change)="currentSubCategory($event.target['value'])" formControlName="official_office">
-            <option value="">Select Heads Of Agencies</option>
-            <option value="director general">Director General</option>
-            <option value="director">Director</option>
-            <option value="head">Head</option>
-          </select>
-          <!--END head of agencies-->
-        </div>
-
-        <div class="col-md-4" *ngIf="selectedCategory=='4'" >
-          <!--BEGIN Local Governments-->
-          <label for="cabinet-sub-categories">Select Office</label>
-          <select class="custom-select" name="category" (change)="currentSubCategory($event.target['value'])" formControlName="official_office">
-            <option value="">Select Position</option>
-            <option value="chairperson">Chairperson</option>
-            <option value="vice chairperson">Vice Chairperson</option>
-            <option value="secretary">Secretary</option>
-            <option value="public relation officer">Public Relations Officer (PRO)</option>
-          </select>
-          <!--END local Governments-->
-        </div>
-
-        <div class="col-md-4"*ngIf="selectedCategory=='6'">
-          <label for="cabinet-sub-categories">Select Office</label>
-          <!--BEGIN Permanent Secretary / Directors-->
-          <select  class="custom-select" name="permanent-secretary" (change)="currentSubCategory($event.target['value'])" formControlName="official_office">
-            <option value="">Select Position</option>
-            <option value="permanent secretary">Permanent Secretary</option>
-            <option value="director">Director</option>
-          </select>
-          <!--END Permanent Secretary / Directors-->
-        </div>
-
-        <div class="col-md-4"*ngIf="selectedCategory=='7'" >
-          <label for="cabinet-sub-categories">Select Office</label>
-          <!--BEGIN Pros / Support Staff / Admin-->
-          <select class="custom-select" name="permanent-secretary" (change)="currentSubCategory($event.target['value'])" formControlName="official_office">
-            <option value="">Select Position</option>
-            <option value="KOGAS lead">KOGAS Lead</option>
-            <option value="admin support">Admin Support</option>
-            <option value="IT support">IT Support</option>
-            <option value="others">Others</option>
-          </select>
-          <!--END Pros / Support Staff / Admin-->
-        </div>
-
-        <!-- -->
-        <div class="col-md-4" *ngIf="selectedSubCategory=='2' || selectedSubCategory== '3'">
-          <label for="category">Ministries</label>
-          <select class="custom-select" name="category" id="portfolio" formControlName="ministry_id">
-            <option [value]="ministry.id" *ngFor="let ministry of ministries;let i=index">Ministry of {{ministry.name}}</option>
+        <div class="col-md-4" *ngIf="selectedCategory">
+          <label for="offices">Select Office</label>
+          <select class="custom-select" name="offices" id="offices" (change)="currentSubCategory($event.target['value'])" formControlName="official_office">
+            <option [value]="office.id" *ngFor="let office of selectedCategory['sub_categories']">{{office['sub_category_name']}}</option>
           </select>
         </div>
 
-        <div class="col-md-4" *ngIf="selectedSubCategory== '2'">
-          <label for="sector">Select Sector</label>
-          <select id="sector"class="custom-select" formControlName="sector">
-            <option value="" disabled>Select official Sector</option>
-            <option value="1">Admin Sector</option>
-            <option value="2">Economic Sector</option>
-            <option value="3">Social Sector</option>
+        <div class="col-md-4" *ngIf="selectedSubCategory==1">
+          <label for="ministry">Select Ministry</label>
+          <select class="custom-select" name="ministry" id="ministry" formControlName="ministry_id">
+            <option [value]="ministry.id" *ngFor="let ministry of ministries">Ministry Of {{ministry.name}}</option>
           </select>
         </div>
-
-        <div class="col-md-4" *ngIf="selectedSubCategory=='chairperson' || selectedSubCategory=='vice chairperson' || selectedSubCategory=='secretary' ||selectedSubCategory=='public relation officer'">
-          <label for="ministry">Local Government Areas</label>
-          <select class="custom-select" name="LGA" id="ministry" formControlName="ministry_id">
-            <option [value]="LGA.id" *ngFor="let LGA of LGAs;let i=index">{{LGA.name}}</option>
-          </select>
-        </div>
-
-        <!--Begin Permanent Secretary / Directors sub-categories-->
-        <div class="col-md-4" *ngIf="selectedSubCategory=='KOGAS lead' || selectedSubCategory=='others' || selectedSubCategory=='' || selectedSubCategory=='IT support' ">
-          <label for="ministry"> Ministries/Bureaus/Agencies</label>
-          <select class="custom-select" name="LGA" id="" formControlName="ministry_id">
-            <option value="{{ministry.id}}" *ngFor="let ministry of ministries;let i=index">Ministry of {{ministry.name}}</option>
-          </select>
-        </div>
-        <!--END Permanent Secretary / Directors-->
-
-        <!--Begin Pros / Support Staff / Admin-->
-        <div class="col-md-4" *ngIf="selectedSubCategory=='permanent secretary' || selectedSubCategory=='director'  || selectedSubCategory=='director general'  || selectedSubCategory=='head'" >
-          <label for="ministry"> Ministries/Bureaus/Agencies</label>
-          <select class="custom-select" name="LGA" formControlName="ministry_id">
-            <option value="{{ministry.id}}" *ngFor="let ministry of ministries;let i=index">Ministry of {{ministry.name}}</option>
-          </select>
-        </div>
-        <!--END Pros / Support Staff / Admin-->
 
         <div class="col-md-4">
           <label for="firstName">First Name</label>
