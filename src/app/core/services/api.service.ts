@@ -202,9 +202,30 @@ export class ApiService {
   /**
    * get categories
    */
-  getCategories():Observable<Category[]>{
-    return this.httpClient.get<Category[]>(`${environment.API_BASE_URL}admin/category`);
+  getCategories():Observable<Category>{
+    return this.httpClient.get<Category>(`${environment.API_BASE_URL}admin/category`);
   }
+
+  /**
+   * edit categories
+   */
+  updateCategories(data:Category,id:number):Observable<Category>{
+    return this.httpClient.patch<Category>(`${environment.API_BASE_URL}admin/category/${id}`,data);
+  }
+  /**
+   * remove categories
+   */
+  removeCategory(id:number):Observable<Category>{
+    return this.httpClient.delete<Category>(`${environment.API_BASE_URL}admin/category/${id}`);
+  }
+
+  /**
+   * get sub categories
+   */
+  getSubCategories():Observable<Category>{
+    return this.httpClient.get<Category>(`${environment.API_BASE_URL}admin/sub-category`);
+  }
+
 
   /**
    * local governments

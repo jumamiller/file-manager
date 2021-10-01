@@ -34,6 +34,14 @@
 
     <div *appAccessControl="[permissions.VIEW_CITIZEN,'nav']">
       <mat-divider></mat-divider>
+      <button mat-button class="menu-button" [routerLink]="['/admin/official-categories/category-list']" routerLinkActive="active">
+        <mat-icon>work</mat-icon>
+        <span>Categories</span>
+      </button>
+    </div>
+
+    <div *appAccessControl="[permissions.VIEW_CITIZEN,'nav']">
+      <mat-divider></mat-divider>
       <button mat-button class="menu-button" [routerLink]="['/admin/manage-users/citizens-list']" routerLinkActive="active">
         <mat-icon>account_circle</mat-icon>
         <span>Citizens</span>

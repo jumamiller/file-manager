@@ -84,6 +84,10 @@ const routes: Routes = [
   {
     path:'admin/volunteer-projects',
     loadChildren: () => import('./components/volunteer/volunteer.module').then(mod=>mod.VolunteerModule),
+  },
+  {
+    path:'admin/official-categories',
+    loadChildren: () => import('./components/category/category.module').then(mod=>mod.CategoryModule)
   }
 ];
 
