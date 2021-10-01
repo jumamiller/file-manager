@@ -43,7 +43,6 @@ export class CategoryListComponent implements OnInit {
     this.apiService.getCategories()
       .subscribe((res)=>{
         this.categories=res.data;
-        console.log(res.data)
         this.loading=false;
       },error => {
         this.toastrService.error(error.error.message,'Error');
