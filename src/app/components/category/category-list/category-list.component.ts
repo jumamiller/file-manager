@@ -16,9 +16,11 @@ export class CategoryListComponent implements OnInit {
   categories:Category[];
   editCategoryForm:FormGroup;
   addNewCategoryForm:FormGroup;
+  addNewCategoryOfficeForm:FormGroup;
   submitting=false;
   selectedCategory:Category;
   loading=true;
+
   constructor(
     private apiService:ApiService,
     private fb:FormBuilder,
@@ -31,6 +33,7 @@ export class CategoryListComponent implements OnInit {
     this.getCategories();
     this.editFormControls();
     this.addNewCategoryControls();
+    this.addNewCategoryOfficeFormControls();
   }
 
   /**
@@ -40,6 +43,7 @@ export class CategoryListComponent implements OnInit {
     this.apiService.getCategories()
       .subscribe((res)=>{
         this.categories=res.data;
+        console.log(res.data)
         this.loading=false;
       },error => {
         this.toastrService.error(error.error.message,'Error');
@@ -53,6 +57,15 @@ export class CategoryListComponent implements OnInit {
     this.addNewCategoryForm=this.fb.group({
       category_name:[''],
       category_description:[''],
+    });
+  }
+  /**
+   * add new category form
+   */
+  addNewCategoryOfficeFormControls(){
+    this.addNewCategoryOfficeForm=this.fb.group({
+      sub_category_name:[''],
+      sub_category_description:[''],
     });
   }
 
@@ -78,6 +91,13 @@ export class CategoryListComponent implements OnInit {
    */
   get catForm(){
     return this.addNewCategoryForm.controls;
+  }
+
+  /**
+   * sub category(office)form controls
+   */
+  get officeForm(){
+    return this.addNewCategoryOfficeForm.controls;
   }
 
   /**
@@ -125,6 +145,28 @@ export class CategoryListComponent implements OnInit {
         this.toastrService.error(error.error.message,'Error');
         this.submitting=false;
       })
+  }
+  /**
+   * adding office to category
+   */
+  onCategoryOfficeSubmission(){
+    let office:Category={
+      sub_category_name:this.officeForm.sub_category_name.value,
+      sub_category_description:this.officeForm.sub_category_description.value,
+      category_id:this.selectedCategory.id,
+    };
+    this.confirmationAlert.sweetAlert(
+      'Are you sure?',
+      `Adding new office to ${this.selectedCategory.category_name} category will allow admins to add officials to this new office!`,
+      '',
+      '',
+      'question',
+      true,
+      'Yes, Add Office!',
+      'No, Cancel',
+      '',
+      this.apiService.createSubCategory(office)
+    );
   }
 
   /**

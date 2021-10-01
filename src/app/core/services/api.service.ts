@@ -207,10 +207,24 @@ export class ApiService {
   }
 
   /**
+   * get categories
+   */
+  getSingleCategory(category_id:number):Observable<Category>{
+    return this.httpClient.get<Category>(`${environment.API_BASE_URL}admin/category/${category_id}`);
+  }
+
+  /**
    * create a category
    */
   createCategory(category:Category):Observable<Category>{
     return this.httpClient.post<Category>(`${environment.API_BASE_URL}admin/category`,category);
+  }
+
+  /**
+   * create sub category
+   */
+  createSubCategory(office:Category):Observable<Category>{
+    return this.httpClient.post<Category>(`${environment.API_BASE_URL}admin/sub-category`,office);
   }
 
   /**
