@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-add-category',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddCategoryComponent implements OnInit {
 
+  categoryForm:FormGroup;
+  loading=true;
+  submitting=false;
   constructor() { }
 
   ngOnInit(): void {
   }
+
+  onSubmit(){
+
+  }
+
 
 }

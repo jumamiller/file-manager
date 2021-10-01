@@ -1,5 +1,5 @@
 <div class="content mat-elevation-z8">
-  <p class="m-1 p-1 text-right"><a class="btn btn-danger text-right mt-2 ml-5" [routerLink]="['/admin/official-categories/add-local-government']">Add Officials Category</a></p>
+  <p class="m-1 p-1 text-right"><a class="btn btn-danger text-right mt-2 ml-5" data-target="#addCategory" data-toggle="modal">Add Officials Category</a></p>
   <div class="citizens">
     <div class="table-responsive">
       <h4 class="text-center text-dark">Kogi State Categories</h4>
@@ -33,7 +33,7 @@
 </div>
 
 
-<!-- BEGIN LGA details -->
+<!-- BEGIN category edit -->
 <div *ngIf="selectedCategory" class="modal fade" data-backdrop="false" id="viewLGA" tabindex="-1" role="dialog" aria-labelledby="editRoleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -64,3 +64,36 @@
   </div>
 </div>
 <!--END modal LGA viewer-->
+
+<!-- BEGIN add category details -->
+<div class="modal fade" data-backdrop="false" id="addCategory" tabindex="-1" role="dialog" aria-labelledby="editRoleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title" id="addNewModalLabel">Add New Category</h1>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="addNewCategoryForm" (ngSubmit)="onCategoryCreation()">
+          <div class="form-group">
+            <label>Name</label>
+            <input type="text" class="form-control" formControlName="category_name">
+          </div>
+          <div class="form-group">
+            <label>Description</label>
+            <input type="text"class="form-control" formControlName="category_description">
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            <button *ngIf="!submitting" type="submit" class="btn btn-success">Add Category</button>
+            <button *ngIf="submitting" type="submit" class="btn btn-success">Adding New Category...</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!--END Add new categoryr-->

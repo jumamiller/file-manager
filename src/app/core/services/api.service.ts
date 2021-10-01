@@ -207,6 +207,13 @@ export class ApiService {
   }
 
   /**
+   * create a category
+   */
+  createCategory(category:Category):Observable<Category>{
+    return this.httpClient.post<Category>(`${environment.API_BASE_URL}admin/category`,category);
+  }
+
+  /**
    * edit categories
    */
   updateCategories(data:Category,id:number):Observable<Category>{
