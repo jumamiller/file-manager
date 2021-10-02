@@ -106,7 +106,7 @@ export class CategoryListComponent implements OnInit {
   removeCategory(cat_id:number){
     this.confirmationAlert.sweetAlert(
       'Are you sure?',
-      'Deleting a category is an irreversible process and will affect the associated official Kogas',
+      'Deleting a category is an irreversible process and will affect the associated official on Kogas',
       '',
       '',
       'question',
@@ -115,6 +115,25 @@ export class CategoryListComponent implements OnInit {
       'No, Cancel',
       '',
       this.apiService.removeCategory(cat_id)
+    );
+  }
+
+  /**
+   * Remove sub category
+   * @param sub_cat_id
+   */
+  removeSubCategory(sub_cat_id:number){
+    this.confirmationAlert.sweetAlert(
+      'Are you sure?',
+      'Deleting a sub category is an irreversible process and will affect the associated official on Kogas',
+      '',
+      '',
+      'question',
+      true,
+      'Yes, Delete Sub-Category!',
+      'No, Cancel',
+      '',
+      this.apiService.removeSubCategory(sub_cat_id)
     );
   }
 

@@ -233,11 +233,26 @@ export class ApiService {
   updateCategories(data:Category,id:number):Observable<Category>{
     return this.httpClient.patch<Category>(`${environment.API_BASE_URL}admin/category/${id}`,data);
   }
+
+  /**
+   * update sub-category
+   */
+  updateSubCategory(data:Category,id:number):Observable<Category>{
+    return this.httpClient.patch<Category>(`${environment.API_BASE_URL}admin/sub-category/${id}`,data);
+  }
+
   /**
    * remove categories
    */
   removeCategory(id:number):Observable<Category>{
     return this.httpClient.delete<Category>(`${environment.API_BASE_URL}admin/category/${id}`);
+  }
+
+  /**
+   * remove sub categoryy
+   */
+  removeSubCategory(id:number):Observable<Category>{
+    return this.httpClient.delete<Category>(`${environment.API_BASE_URL}admin/sub-category/${id}`);
   }
 
   /**

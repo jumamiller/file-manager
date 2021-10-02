@@ -163,6 +163,7 @@
             <th>#</th>
             <th>Name</th>
             <th>Description</th>
+            <th>Remove</th>
           </tr>
           </thead>
           <tbody>
@@ -170,6 +171,7 @@
             <td>{{i+1}}</td>
             <td>{{office['sub_category_name']}}</td>
             <td>{{office['sub_category_description']}}</td>
+            <td class="text-center"> <button class="btn btn-danger" (click)="removeSubCategory(office.id)"><i class="fas fa-trash"></i></button></td>
           </tr>
           </tbody>
         </table>
