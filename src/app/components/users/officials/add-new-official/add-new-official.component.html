@@ -31,6 +31,16 @@
         </div>
         <!--If the office is commissioner-->
 
+        <!--BEGIN LGAs is Local government councils -->
+        <div class="col-md-4" *ngIf="currentCategoryId==4">
+          <label for="LGA">Select LGA</label>
+          <select class="custom-select" name="ministry" id="LGA" formControlName="LGA">
+            <option disabled>Select Official's LGA</option>
+            <option [value]="LGA.id" *ngFor="let LGA of LGAs">{{LGA.name}}</option>
+          </select>
+        </div>
+        <!--LGAs is Local governments councils-->
+
         <!--BEGIN sector if commissioner is displayed-->
         <div class="col-md-4" *ngIf="selectedSubCategory==8">
           <label for="sector">Select Sector</label>
@@ -76,11 +86,6 @@
             <option value="Female">Female</option>
             <option value="Rather Not Say">Rather Not Say</option>
           </select>
-        </div>
-
-        <div class="col-md-4">
-          <label for="LGA">Local Government Area</label>
-          <input type="text" id="LGA" formControlName="LGA" class="form-control" placeholder=""required="">
         </div>
 
         <div class="col-md-4">

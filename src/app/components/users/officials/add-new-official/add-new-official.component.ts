@@ -22,6 +22,7 @@ export class AddNewOfficialComponent implements OnInit {
   submitting=false;
   categories:Category[];
   selectedCategory:any;
+  currentCategoryId:any;
   selectedSubCategory:any;
   ministries:Ministry[];
   LGAs:LocalGovernment[];
@@ -58,7 +59,7 @@ export class AddNewOfficialComponent implements OnInit {
       email:['',Validators.required],
       city:['',Validators.required],
       gender:['',Validators.required],
-      LGA:['',Validators.required],
+      LGA:[''],
       sector:[''],
       category_id:[''],
       sub_category_id:[''],
@@ -67,12 +68,19 @@ export class AddNewOfficialComponent implements OnInit {
     })
   }
 
+  /**
+   * get ministries
+   */
   getMinistries(){
     this.apiService.getMinistry()
       .subscribe((res)=>{
         this.ministries=res['data'];
       })
   }
+
+  /**
+   * get LGAs
+   */
   getLocalGovernments(){
     this.apiService.getLocalGovernments()
       .subscribe((res)=>{
@@ -88,6 +96,7 @@ export class AddNewOfficialComponent implements OnInit {
   }
 
   currentCategory(id:number){
+    this.currentCategoryId=id;
     this.apiService.getSingleCategory(id)
       .subscribe((res)=>{
         this.selectedCategory=res.data;
