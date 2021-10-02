@@ -12,8 +12,6 @@
           <th scope="col">Email</th>
           <th scope="col">Phone</th>
           <th scope="col">Category</th>
-          <th scope="col">Office</th>
-          <th scope="col">Ministry</th>
           <th scope="col">Status</th>
           <th scope="col" class="text-center" *appAccessControl="[permissions.EDIT_OFFICIAL,'nav']">Edit</th>
           <th scope="col" class="text-center" *appAccessControl="[permissions.DELETE_OFFICIAL,'nav']">Block</th>
@@ -29,8 +27,6 @@
           <td class="">{{official.first_name}} {{official.last_name}}</td>
           <td class="">{{official.email}}</td>
           <td class="">{{official.phone}}</td>
-          <td class="">{{official.official_category | officialCategory}}</td>
-          <td class="">{{official.official_office | officialOffice}}</td>
           <td class="">{{official.ministry_id | ministry}}</td>
           <td class="text-center">
             <span class="badge badge-success" *ngIf="official.user_is_suspended==false">active</span>
@@ -65,7 +61,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <h3 class="modal-text">{{selectedOfficial.official_office| officialOffice}}, {{selectedOfficial.ministry_id|ministry}}</h3>
+        <h3 class="modal-text">{{selectedOfficial.ministry_id|ministry}}</h3>
         <img [src]="assetsURL+selectedOfficial.avatar" alt="" width="480">
       </div>
       <div class="modal-footer">

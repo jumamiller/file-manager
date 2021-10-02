@@ -1,9 +1,8 @@
 export interface Citizen {
   city:string;
   ministry_id?:string;
-  local_government_id?:string;
-  bureaus_id?:string;
-  government_house_id?:string;
+  category_id?:string;
+  sub_category_id?:string;
   phone:string;
   role?:string;
   email:string;
@@ -19,9 +18,6 @@ export interface Citizen {
   age?:string;
   LGA?:string;
   sector?:string,
-  official_category?:string,
-  official_office?:string,
-  ministry?:string,
   user_type?:string;
   user_phone_code?:number;
   user_login_attempts?:number;

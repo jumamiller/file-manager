@@ -60,12 +60,9 @@ export class AddNewOfficialComponent implements OnInit {
       gender:['',Validators.required],
       LGA:['',Validators.required],
       sector:[''],
-      official_category:[''],
-      official_office:[''],
+      category_id:[''],
+      sub_category_id:[''],
       ministry_id:[''],
-      local_government_id:[''],
-      bureaus_id:[''],
-      government_house_id:[''],
       password:['',Validators.required],
     })
   }
@@ -102,6 +99,7 @@ export class AddNewOfficialComponent implements OnInit {
    */
   currentSubCategory(sub:any){
     this.selectedSubCategory=sub;
+    console.log(sub);
   }
 
   /**
@@ -122,12 +120,9 @@ export class AddNewOfficialComponent implements OnInit {
       role:this.form.role.value,
       avatar: this.cardImageBase64,
       sector:this.form.sector.value,
-      official_category:this.form.official_category.value,
-      official_office:this.form.official_office.value,
+      category_id:this.form.ministry_id.value,
+      sub_category_id:this.form.ministry_id.value,
       ministry_id:this.form.ministry_id.value,
-      local_government_id:this.form.local_government_id.value,
-      bureaus_id:this.form.bureaus_id.value,
-      government_house_id:this.form.government_house_id.value
     }
     this.authService.register(official)
       .subscribe((res)=>{

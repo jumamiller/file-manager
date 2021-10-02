@@ -5,25 +5,43 @@
       <div class="form-row m-3">
         <div class="col-md-4">
           <label for="category">Select Category</label>
-          <select class="custom-select" name="category" #category  id="category" (change)="currentCategory($event.target['value'])" formControlName="official_category">
-            <option>Select Official's Category</option>
+          <select class="custom-select" name="category" #category  id="category" (change)="currentCategory($event.target['value'])" formControlName="category_id">
+            <option disabled>Select Official's Category</option>
             <option [value]="category.id" *ngFor="let category of categories">{{category.category_name}}</option>
           </select>
         </div>
 
+        <!-- Begin sub categories/offices -->
         <div class="col-md-4" *ngIf="selectedCategory">
           <label for="offices">Select Office</label>
-          <select class="custom-select" name="offices" id="offices" (change)="currentSubCategory($event.target['value'])" formControlName="official_office">
+          <select class="custom-select" name="offices" id="offices" (change)="currentSubCategory($event.target['value'])" formControlName="sub_category_id">
+            <option disabled>Select Official's Office</option>
             <option [value]="office.id" *ngFor="let office of selectedCategory['sub_categories']">{{office['sub_category_name']}}</option>
           </select>
         </div>
+        <!-- END sub categories/offices -->
 
-        <div class="col-md-4" *ngIf="selectedSubCategory==1">
+        <!--BEGIN If the office is commissioner=id=8/PRO=id=10/Permanent secretary =id=12-->
+        <div class="col-md-4" *ngIf="selectedSubCategory==8 ||selectedSubCategory==10 || selectedSubCategory==12">
           <label for="ministry">Select Ministry</label>
           <select class="custom-select" name="ministry" id="ministry" formControlName="ministry_id">
+            <option disabled>Select Official's Ministry</option>
             <option [value]="ministry.id" *ngFor="let ministry of ministries">Ministry Of {{ministry.name}}</option>
           </select>
         </div>
+        <!--If the office is commissioner-->
+
+        <!--BEGIN sector if commissioner is displayed-->
+        <div class="col-md-4" *ngIf="selectedSubCategory==8">
+          <label for="sector">Select Sector</label>
+          <select class="custom-select" name="ministry" id="sector" formControlName="sector">
+            <option disabled>Select Commissioner's Sector</option>
+            <option value="admin-sector">Admin Sector</option>
+            <option value="economic-sector">Economic Sector</option>
+            <option value="social-sector">Social Sector</option>
+          </select>
+        </div>
+        <!--END sector if commissioner is displayed-->
 
         <div class="col-md-4">
           <label for="firstName">First Name</label>
