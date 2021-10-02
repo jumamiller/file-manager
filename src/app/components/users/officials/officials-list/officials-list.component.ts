@@ -18,9 +18,11 @@ export class OfficialsListComponent implements OnInit {
   permissions=PermissionType;
   officials:Citizen[];
   loading=true;
+  loadingOfficial=true;
   now: Date = new Date();
   assetsURL=environment.ASSETS_URL;
   selectedOfficial:Citizen;
+  currentOfficialDetails:Citizen;
   constructor(
     private userService:UserService,
     private authService:AuthService,
@@ -45,6 +47,28 @@ export class OfficialsListComponent implements OnInit {
           this.officials = res.data;
           this.toastrService.success(res.message,'Success');
           this.loading=false;
+        }
+        else{
+          this.toastrService.error(res.message,'Failed');
+          this.loading=false;
+        }
+      },error => {
+        this.toastrService.error(error.error.message,'Error');
+        this.loading=false;
+      })
+  }
+
+  /**
+   * get selected official details
+   * @param official_id
+   */
+  getSingleOfficialDetails(official_id){
+    this.userService.showSingleUserDetails(official_id)
+      .subscribe((res)=>{
+        if(res.success)
+        {
+          this.currentOfficialDetails = res.data;
+          this.loadingOfficial=false;
         }
         else{
           this.toastrService.error(res.message,'Failed');

@@ -11,8 +11,9 @@
           <th scope="col">Name</th>
           <th scope="col">Email</th>
           <th scope="col">Phone</th>
-          <th scope="col">Category</th>
+          <th scope="col">Address</th>
           <th scope="col">Status</th>
+          <th scope="col" class="text-center" *appAccessControl="[permissions.VIEW_OFFICIAL,'nav']">View</th>
           <th scope="col" class="text-center" *appAccessControl="[permissions.EDIT_OFFICIAL,'nav']">Edit</th>
           <th scope="col" class="text-center" *appAccessControl="[permissions.DELETE_OFFICIAL,'nav']">Block</th>
           <th scope="col" class="text-center" *appAccessControl="[permissions.DELETE_OFFICIAL,'nav']">Remove</th>
@@ -21,16 +22,19 @@
         <tbody>
         <tr *ngFor="let official of officials;let i=index">
           <td class="">{{i+1}}</td>
-          <td class="" title="Click Me to enlarge image" (click)="onOfficialChange(official)"data-toggle="modal" data-target="#exampleModal">
+          <td class="" title="Click Me to enlarge image" (click)="onOfficialChange(official)" data-toggle="modal" data-target="#exampleModal">
             <img [src]="assetsURL+official.avatar" alt="avatar" width="70" height="70" class="rounded-circle">
           </td>
           <td class="">{{official.first_name}} {{official.last_name}}</td>
           <td class="">{{official.email}}</td>
           <td class="">{{official.phone}}</td>
-          <td class="">{{official.ministry_id | ministry}}</td>
+          <td class="">{{official.city}}</td>
           <td class="text-center">
             <span class="badge badge-success" *ngIf="official.user_is_suspended==false">active</span>
-            <span class="badge badge-danger" *ngIf="official.user_is_suspended==true">suspended</span>
+            <span class="" *ngIf="official.user_is_suspended==true">suspended</span>
+          </td>
+          <td class="text-center" *appAccessControl="[permissions.VIEW_OFFICIAL,'nav']">
+            <button (click)="getSingleOfficialDetails(official.id)" class="btn btn-success" data-toggle="modal" data-target="#viewOfficialDetails"><i class="fas fa-eye"></i> </button>
           </td>
           <td class="text-center" *appAccessControl="[permissions.EDIT_OFFICIAL,'nav']"><button class="btn btn-primary"><i class="fas fa-user-edit"></i> </button></td>
           <td class="text-center" *appAccessControl="[permissions.DELETE_OFFICIAL,'nav']">
@@ -71,3 +75,94 @@
   </div>
 </div>
 <!--END modal Avatar viewer-->
+
+
+<!-- View viewOfficialDetails Details  -->
+<div *ngIf="currentOfficialDetails" class="modal fade" data-backdrop="false" id="viewOfficialDetails" tabindex="-1" role="dialog" aria-labelledby="viewOfficialDetailsModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title" id="viewOfficialDetailsModalLabel"></h1>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="account-details">
+        <div class="text-center">
+          <img [src]="assetsURL+currentOfficialDetails.avatar" class="rounded-circle" alt="" width="100"height="100">
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-6">
+            <ul class="list-group">
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                Name
+                <span class="p-2 font-weight-bolder">{{currentOfficialDetails.first_name}} {{currentOfficialDetails.last_name}}</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                Email
+                <span class=" font-weight-bolder  p-2">{{currentOfficialDetails.email}}</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                Phone
+                <span class=" font-weight-bolder  p-2">{{currentOfficialDetails.phone}}</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                Gender
+                <span class="font-weight-bolder  p-2">{{currentOfficialDetails.gender || 'unknown'}}</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                Address
+                <span class="font-weight-bolder  p-2">{{currentOfficialDetails.city | slice:0 :20}}</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                Role
+                <span class="font-weight-bolder  p-2">{{currentOfficialDetails['roles'][0]['display_name']}}</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                Added By IP Address:
+                <span class="font-weight-bolder  p-2">{{currentOfficialDetails['IP_address']}}</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                Category
+                <span class="font-weight-bolder  p-2">{{currentOfficialDetails['category']['category_name']}}</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                Office
+                <span class="font-weight-bolder  p-2">{{currentOfficialDetails['sub_category']['sub_category_name']}}</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                Ministry
+                <span class="font-weight-bolder  p-2">{{currentOfficialDetails['ministry']['name']}}</span>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <h4 class="text-center">System Permissions</h4>
+            <div class="table-responsive">
+              <table class="table table-active table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>#</th>
+                  <th class="text-center">Name</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let permission of currentOfficialDetails['roles'][0]['permissions'];let i=index">
+                  <td>{{i+1}}</td>
+                  <td>{{permission['display_name']}}</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--END modal Avatar viewer viewOffialDetails-->

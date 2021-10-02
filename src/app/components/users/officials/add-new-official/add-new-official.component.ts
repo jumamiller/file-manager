@@ -124,13 +124,13 @@ export class AddNewOfficialComponent implements OnInit {
       city: this.form.city.value,
       gender:this.form.gender.value,
       password:this.form.password.value,
-      LGA:this.form.LGA.value,
+      LGA_id:this.form.LGA.value,
       user_type:'official',
       role:this.form.role.value,
       avatar: this.cardImageBase64,
       sector:this.form.sector.value,
-      category_id:this.form.ministry_id.value,
-      sub_category_id:this.form.ministry_id.value,
+      category_id:this.form.category_id.value,
+      sub_category_id:this.form.sub_category_id.value,
       ministry_id:this.form.ministry_id.value,
     }
     this.authService.register(official)

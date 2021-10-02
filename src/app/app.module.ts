@@ -53,6 +53,7 @@ import {UnauthorisedComponent} from "./unauthorised/unauthorised.component";
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
   ],
     exports: [
+        SliceWordsPipe
 
     ],
   bootstrap: [AppComponent]

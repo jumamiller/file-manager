@@ -44,7 +44,7 @@ export class AddNewCitizensComponent implements OnInit {
       email:['',Validators.required],
       city:['',Validators.required],
       gender:['',Validators.required],
-      LGA:['',Validators.required],
+      LGA:[''],
       password:['',Validators.required],
     })
   }
@@ -68,7 +68,7 @@ export class AddNewCitizensComponent implements OnInit {
       city: this.form.city.value,
       gender:this.form.gender.value,
       password:this.form.password.value,
-      LGA:this.form.LGA.value,
+      LGA_id:this.form.LGA.value,
       user_type:'citizen',
       avatar:this.cardImageBase64,
     }
