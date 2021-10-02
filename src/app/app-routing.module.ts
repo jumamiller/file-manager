@@ -66,6 +66,10 @@ const routes: Routes = [
     loadChildren: () => import('./components/ministry/ministry.module').then(mod=>mod.MinistryModule),
   },
   {
+    path:'admin/bureaus',
+    loadChildren: () => import('./components/bureaus/bureaus.module').then(mod=>mod.BureausModule),
+  },
+  {
     path:'admin/news',
     loadChildren: () => import('./components/news/news.module').then(mod=>mod.NewsModule),
   },

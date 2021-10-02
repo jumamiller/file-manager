@@ -1,0 +1,44 @@
+.content {
+  height: auto;
+  border-radius: 10px;
+  margin: 16px 32px;
+  font-size: 2rem;
+  color: lightgray;
+}
+table{
+  border: 2px solid #333333;
+  box-sizing: border-box;
+}
+thead{
+  background: #E1EAFB;
+  font-family: 'Poppins',sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 175.6%;
+  color: #333333;
+}
+tbody td{
+  font-family: 'Poppins',sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 175.6%;
+  color: #333
+}
+.table-totals{
+  font-family: 'Poppins',sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 175.6%;
+  /* or 32px */
+  color: #000000;
+}
+.create-citizen-button{
+
+}
+.pagination-text{
+  font-size: 14px;
+  text-align: right;
+}

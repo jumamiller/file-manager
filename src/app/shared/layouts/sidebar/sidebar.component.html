@@ -72,6 +72,14 @@
       </button>
     </div>
 
+    <div>
+      <mat-divider></mat-divider>
+      <button mat-button class="menu-button" [routerLink]="['/admin/bureaus/bureau-list']" routerLinkActive="active">
+        <mat-icon>business</mat-icon>
+        <span>Bureaus</span>
+      </button>
+    </div>
+
     <div *appAccessControl="[permissions.VIEW_PROJECTS,'nav']">
       <mat-divider></mat-divider>
       <button mat-button class="menu-button"[routerLink]="['/admin/projects/kogi-projects-list']" routerLinkActive="active">
