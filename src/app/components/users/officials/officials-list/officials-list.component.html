@@ -132,9 +132,13 @@
                 Office
                 <span class="font-weight-bolder  p-2">{{currentOfficialDetails['sub_category']['sub_category_name']}}</span>
               </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center">
+              <li *ngIf="currentOfficialDetails['ministry']" class="list-group-item d-flex justify-content-between align-items-center">
                 Ministry
                 <span class="font-weight-bolder  p-2">{{currentOfficialDetails['ministry']['name']}}</span>
+              </li>
+              <li *ngIf="currentOfficialDetails['local_government']" class="list-group-item d-flex justify-content-between align-items-center">
+                LGA
+                <span class="font-weight-bolder  p-2">{{currentOfficialDetails["local_government"]['name']}}</span>
               </li>
             </ul>
           </div>
