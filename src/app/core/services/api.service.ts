@@ -14,6 +14,8 @@ import {Category} from "../models/category";
 import {LocalGovernment} from "../models/local-government";
 import {Suggestion} from "../models/suggestion";
 import {Volunteer} from "../models/volunteer";
+import {Bureau} from "../models/bureau";
+import {B} from "@angular/cdk/keycodes";
 
 @Injectable({
   providedIn: 'root'
@@ -113,6 +115,33 @@ export class ApiService {
    */
   updateMinistry(data:Ministry,ministryId){
     return this.httpClient.patch<Ministry>(`${environment.API_BASE_URL}admin/update-ministry/${ministryId}`,data);
+  }
+
+  /**
+   * get list of bureaus
+   */
+  getBureaus():Observable<Bureau>{
+    return this.httpClient.get<Bureau>(`${environment.API_BASE_URL}admin/get-bureaus`);
+  }
+
+  /**
+   * add bureau
+   */
+  addBureau(bureau:Bureau):Observable<Bureau>{
+    return this.httpClient.post<Bureau>(`${environment.API_BASE_URL}admin/add-bureaus`,bureau);
+  }
+
+  /**
+   * remove bureaus
+   */
+  removeBureau(bureauId:number):Observable<Bureau>{
+    return this.httpClient.delete<Bureau>(`${environment.API_BASE_URL}admin/remove-bureaus/${bureauId}`);
+  }
+  /**
+   * update bureaus
+   */
+  updateBureaus(data:Bureau,bureauId){
+    return this.httpClient.patch<Bureau>(`${environment.API_BASE_URL}admin/update-bureaus/${bureauId}`,data);
   }
 
   /**

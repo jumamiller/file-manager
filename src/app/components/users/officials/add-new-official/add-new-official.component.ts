@@ -9,6 +9,7 @@ import {Category} from "../../../../core/models/category";
 import {Ministry} from "../../../../core/models/ministry";
 import {LocalGovernment} from "../../../../core/models/local-government";
 import * as _ from 'lodash';
+import {PermissionType} from "../../../../core/constants/permission-type";
 @Component({
   selector: 'app-add-new-official',
   templateUrl: './add-new-official.component.html',
@@ -17,6 +18,7 @@ import * as _ from 'lodash';
 export class AddNewOfficialComponent implements OnInit {
 
   roles:Role[];
+  permissions=PermissionType;
   officialForm: FormGroup;
   loading=true;
   submitting=false;

@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ApiService} from "../../../core/services/api.service";
 import {ToastrService} from "ngx-toastr";
-import {Ministry} from "../../../core/models/ministry";
 import * as _ from 'lodash';
+import {Bureau} from "../../../core/models/bureau";
 @Component({
   selector: 'app-add-bureaus',
   templateUrl: './add-bureaus.component.html',
@@ -13,7 +13,7 @@ export class AddBureausComponent implements OnInit {
 
 
   submitting=false;
-  ministryForm:FormGroup;
+  bureauForm:FormGroup;
   imageError: string;
   isImageSaved: boolean;
   cardImageBase64: string;
@@ -23,14 +23,14 @@ export class AddBureausComponent implements OnInit {
     private toastrService:ToastrService) { }
 
   ngOnInit(): void {
-    this.ministryFormControl();
+    this.bureauFormControl();
   }
 
   /**
    * form control
    */
-  ministryFormControl(){
-    this.ministryForm= this.formBuilder.group({
+  bureauFormControl(){
+    this.bureauForm= this.formBuilder.group({
       name:['',Validators.required],
       header_text:['',Validators.required],
       description:['',Validators.required],
@@ -39,7 +39,7 @@ export class AddBureausComponent implements OnInit {
     })
   }
   get form(){
-    return this.ministryForm.controls;
+    return this.bureauForm.controls;
   }
 
   /**
@@ -47,7 +47,7 @@ export class AddBureausComponent implements OnInit {
    */
   onSubmit(){
     this.submitting=true;
-    let ministry:Ministry={
+    let bureau:Bureau={
       budget: this.form.budget.value,
       description: this.form.description.value,
       name: this.form.name.value,
@@ -55,7 +55,7 @@ export class AddBureausComponent implements OnInit {
       banner_image:this.cardImageBase64,
     };
 
-    this.apiService.addMinistry(ministry)
+    this.apiService.addBureau(bureau)
       .subscribe((res)=>{
         this.toastrService.success(res.message,'Success');
         this.submitting=false;

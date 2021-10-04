@@ -6,6 +6,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {ConfirmationAlertService} from "../../../core/helpers/confirmation-alert.service";
 import {ToastrService} from "ngx-toastr";
 import * as _ from 'lodash';
+import {Bureau} from "../../../core/models/bureau";
 @Component({
   selector: 'app-bureaus-list',
   templateUrl: './bureaus-list.component.html',
@@ -15,8 +16,8 @@ export class BureausListComponent implements OnInit {
 
   editForm:FormGroup;
   submitting=false;
-  ministries: Ministry[]=[];
-  selectedMinistryId:number;
+  bureaus: Bureau[]=[];
+  selectedBureauId:number;
 
   page = 1;
   count = 0;
@@ -35,14 +36,14 @@ export class BureausListComponent implements OnInit {
     private toastrService:ToastrService,private router:Router) { }
 
   ngOnInit(): void {
-    this.editMinistryFormControls();
-    this.listOfMinistries();
+    this.editBureauFormControls();
+    this.getBureaus();
   }
 
   /**
    * edit form controls
    */
-  editMinistryFormControls(){
+  editBureauFormControls(){
     this.editForm=this.fb.group({
       name:[''],
       header_text:[''],
@@ -58,17 +59,17 @@ export class BureausListComponent implements OnInit {
     return this.editForm.controls;
   }
 
-  onMinistrySelection(id){
-    this.selectedMinistryId=id;
+  onBureauSelection(id){
+    this.selectedBureauId=id;
   }
 
   /**
    * list of ministries
    */
-  listOfMinistries(){
-    this.apiService.getMinistry()
+  getBureaus(){
+    this.apiService.getBureaus()
       .subscribe((res)=>{
-        this.ministries=res['data'];
+        this.bureaus=res['data'];
         this.loading=false;
       })
   }
@@ -80,12 +81,12 @@ export class BureausListComponent implements OnInit {
   removeMinistry(id:number){
     this.confirmationAlert.sweetAlert(
       'Are you sure?',
-      'Deleting ministry is an irreversible process and you confirm that this also affects officials linked to it.',
+      'Deleting bureau is an irreversible process and you confirm that this also affects officials linked to it.',
       '',
       '',
       'question',
       true,
-      'Yes, Delete Ministry!',
+      'Yes, Delete Bureau!',
       'No, Cancel',
       '',
       this.apiService.removeMinistry(id)
@@ -95,16 +96,16 @@ export class BureausListComponent implements OnInit {
   /**
    * update ministry
    */
-  onMinistryUpdate(){
+  onBureauUpdate(){
     this.submitting=true;
-    let ministry:Ministry={
+    let bureau:Ministry={
       name:this.form.name.value,
       header_text:this.form.header_text.value,
       description:this.form.description.value,
       budget:this.form.budget.value,
       banner_image: this.cardImageBase64
     };
-    this.apiService.updateMinistry(ministry,this.selectedMinistryId)
+    this.apiService.updateBureaus(bureau,this.selectedBureauId)
       .subscribe((res)=>{
         this.toastrService.success(res.message,'Success');
         this.submitting=false;
@@ -113,13 +114,6 @@ export class BureausListComponent implements OnInit {
         this.toastrService.error(error.error.message,'Error');
         this.submitting=false;
       })
-  }
-
-  /**
-   * redirect to single ministry details
-   */
-  redirectToSingleMinistry(ministryId){
-    this.router.navigate(['/admin/ministry/kogi-ministry-list/ministry-details'],{queryParams: {ministryId}});
   }
 
   /**
@@ -190,14 +184,14 @@ export class BureausListComponent implements OnInit {
   onTableDataChange(event)
   {
     this.page = event;
-    this.listOfMinistries();
+    this.getBureaus();
   }
 
   onTableSizeChange(event): void
   {
     this.tableSize = event.target.value;
     this.page = 1;
-    this.listOfMinistries();
+    this.getBureaus();
   }
 
 }

@@ -1,4 +1,4 @@
-<div class="content mat-elevation-z8">
+<div class="content mat-elevation-z8" *appAccessControl="[permissions.CREATE_OFFICIAL,'page']">
   <h2 class="text-center text-dark">Add New Government Official</h2>
   <div class="add-new-user">
     <form [formGroup]="officialForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
