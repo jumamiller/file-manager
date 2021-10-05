@@ -1,5 +1,5 @@
-<div class="content mat-elevation-z8">
-  <p class="text-right p-1 m-1"> <a class="btn btn-danger" [routerLink]="['/admin/projects/add-new-kogi-project']">Add New Projects</a></p>
+<div class="content mat-elevation-z8" *appAccessControl="[permissionType.VIEW_PROJECTS,'page']">
+  <p *appAccessControl="[permissionType.CREATE_PROJECTS,'nav']" class="text-right p-1 m-1"> <a class="btn btn-danger" [routerLink]="['/admin/projects/add-new-kogi-project']">Add New Projects</a></p>
   <div class="citizens">
     <div class="table-responsive">
       <h4 class="text-center text-dark">Kogi Projects</h4>
@@ -15,9 +15,9 @@
           <th scope="col">End Date</th>
           <th scope="col">Duration</th>
           <th scope="col" class="text-center">Status</th>
-          <th scope="col" class="text-center">View</th>
-          <th scope="col" class="text-center">Edit</th>
-          <th scope="col" class="text-center">Remove</th>
+          <th scope="col" class="text-center" *appAccessControl="[permissionType.VIEW_PROJECTS,'nav']" >View</th>
+          <th scope="col" class="text-center" *appAccessControl="[permissionType.EDIT_PROJECTS,'nav']" >Edit</th>
+          <th scope="col" class="text-center" *appAccessControl="[permissionType.DELETE_PROJECTS,'nav']" >Remove</th>
         </tr>
         </thead>
         <tbody>
@@ -31,11 +31,10 @@
           <td class="">{{project.end_date}}</td>
           <td class="">{{project.total_duration}}</td>
           <td class="text-center"><span class="badge badge-success">upcoming</span></td>
-          <td class="text-center"><button class="btn btn-success" (click)="projectDetails(project.id)"><i class="fas fa-eye"></i> </button></td>
-          <td class="text-center"><button class="btn btn-primary"><i class="fas fa-user-edit"></i></button> </td>
-          <td class="text-center"> <button class="btn btn-danger"><i class="fas fa-trash"></i></button></td>
+          <td class="text-center" *appAccessControl="[permissionType.VIEW_PROJECTS,'nav']"><button class="btn btn-success" (click)="projectDetails(project.id)"><i class="fas fa-eye"></i> </button></td>
+          <td class="text-center" *appAccessControl="[permissionType.EDIT_PROJECTS,'nav']"><button class="btn btn-primary"><i class="fas fa-user-edit"></i></button> </td>
+          <td class="text-center" *appAccessControl="[permissionType.DELETE_PROJECTS,'nav']"> <button class="btn btn-danger"><i class="fas fa-trash"></i></button></td>
         </tr>
-
         </tbody>
       </table>
     </div>

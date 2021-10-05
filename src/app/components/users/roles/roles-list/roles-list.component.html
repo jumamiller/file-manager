@@ -1,5 +1,5 @@
-<div class="content mat-elevation-z8">
-  <p class="text-right p-2 m-2"><a class="btn btn-danger" [routerLink]="['/admin/manage-users/add-new-roles']">Add New Role</a></p>
+<div class="content mat-elevation-z8" *appAccessControl="[permissionType.VIEW_ROLES,'page']">
+  <p  *appAccessControl="[permissionType.CREATE_ROLES,'nav']" class="text-right p-2 m-2"><a class="btn btn-danger" [routerLink]="['/admin/manage-users/add-new-roles']">Add New Role</a></p>
   <div class="citizens">
     <div class="table-responsive">
       <h4 class="text-center text-dark">System Roles</h4>
@@ -9,9 +9,9 @@
           <th scope="col">#</th>
           <th scope="col">Name</th>
           <th scope="col">Description</th>
-          <th scope="col" class="text-center">View</th>
-          <th scope="col" class="text-center">Edit</th>
-          <th scope="col" class="text-center">Remove</th>
+          <th scope="col" class="text-center" *appAccessControl="[permissionType.VIEW_ROLES,'nav']">View</th>
+          <th scope="col" class="text-center" *appAccessControl="[permissionType.EDIT_ROLES,'nav']">Edit</th>
+          <th scope="col" class="text-center" *appAccessControl="[permissionType.DELETE_ROLES,'nav']">Remove</th>
         </tr>
         </thead>
         <tbody>
@@ -19,9 +19,9 @@
           <td class="">{{i+1}}</td>
           <td class="">{{role.display_name}}</td>
           <td class="">{{role.description}}</td>
-          <td class="text-center"><button (click)="onRoleClick(role)" class="btn btn-success"data-toggle="modal" data-target="#roleDetails"><i class="fas fa-eye"></i> </button></td>
-          <td class="text-center"><button (click)="onRoleClick(role)" class="btn btn-primary"data-toggle="modal" data-target="#editRole"><i class="fas fa-user-edit"></i> </button></td>
-          <td class="text-center"> <button (click)="removeRole(role.id)" class="btn btn-danger"><i class="fas fa-trash"></i></button></td>
+          <td class="text-center" *appAccessControl="[permissionType.VIEW_ROLES,'nav']"><button (click)="onRoleClick(role)" class="btn btn-success"data-toggle="modal" data-target="#roleDetails"><i class="fas fa-eye"></i> </button></td>
+          <td class="text-center" *appAccessControl="[permissionType.EDIT_ROLES,'nav']"><button (click)="onRoleClick(role)" class="btn btn-primary"data-toggle="modal" data-target="#editRole"><i class="fas fa-user-edit"></i> </button></td>
+          <td class="text-center" *appAccessControl="[permissionType.DELETE_ROLES,'nav']"> <button (click)="removeRole(role.id)" class="btn btn-danger"><i class="fas fa-trash"></i></button></td>
         </tr>
 
         </tbody>

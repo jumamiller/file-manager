@@ -3,6 +3,7 @@ import {ActivatedRoute} from "@angular/router";
 import {ApiService} from "../../../core/services/api.service";
 import {Project} from "../../../core/models/project";
 import {ToastrService} from "ngx-toastr";
+import {PermissionType} from "../../../core/constants/permission-type";
 
 @Component({
   selector: 'app-single-project-details',
@@ -12,6 +13,7 @@ import {ToastrService} from "ngx-toastr";
 export class SingleProjectDetailsComponent implements OnInit {
 
   projectId:any;
+  permissionType=PermissionType;
   project:Project;
   loading=true;
   constructor(private route:ActivatedRoute,private apiService:ApiService,private toastrService:ToastrService) { }

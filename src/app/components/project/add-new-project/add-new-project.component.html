@@ -1,4 +1,4 @@
-<div class="content mat-elevation-z8">
+<div class="content mat-elevation-z8" *appAccessControl="[permissionType.CREATE_PROJECTS,'page']">
   <h2 class="text-center text-dark">Add New Project</h2>
   <div class="add-new-user">
     <form [formGroup]="projectForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
@@ -79,7 +79,7 @@
         </div>
 
       </div>
-      <div class="submission m-4 text-right">
+      <div class="submission m-4 text-right" *appAccessControl="[permissionType.CREATE_PROJECTS,'nav']">
         <button class="btn btn-danger">Add New Project</button>
       </div>
     </form>

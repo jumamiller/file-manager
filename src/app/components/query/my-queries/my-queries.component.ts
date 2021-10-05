@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {PermissionType} from "../../../core/constants/permission-type";
 
 @Component({
   selector: 'app-my-queries',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyQueriesComponent implements OnInit {
 
+  permissionType=PermissionType;
   constructor() { }
 
   ngOnInit(): void {

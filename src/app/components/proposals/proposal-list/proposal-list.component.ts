@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Suggestion} from "../../../core/models/suggestion";
 import {ApiService} from "../../../core/services/api.service";
 import {ToastrService} from "ngx-toastr";
+import {PermissionType} from "../../../core/constants/permission-type";
 
 @Component({
   selector: 'app-proposal-list',
@@ -11,6 +12,7 @@ import {ToastrService} from "ngx-toastr";
 export class ProposalListComponent implements OnInit {
 
   proposals:Suggestion[];
+  permissionType=PermissionType;
   loading=true;
   constructor(private apiService:ApiService, private toastrService:ToastrService) { }
 

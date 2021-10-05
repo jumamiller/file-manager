@@ -1,4 +1,4 @@
-<div class="content mat-elevation-z8">
+<div class="content mat-elevation-z8" *appAccessControl="[permissionType.VIEW_LGA,'page']">
   <p class="m-1 p-1 text-right"><a class="btn btn-danger text-right mt-2 ml-5" [routerLink]="['/admin/local-government-area/add-local-government']">Add Local Government Area</a></p>
   <div class="citizens">
     <div class="table-responsive">
@@ -12,9 +12,9 @@
           <th scope="col" class="text-center">State</th>
           <th scope="col" class="text-center">Population</th>
           <th scope="col" class="text-center">Area</th>
-          <th scope="col" class="text-center">View</th>
-          <th scope="col" class="text-center">Edit</th>
-          <th scope="col" class="text-center">Remove</th>
+          <th scope="col" class="text-center" *appAccessControl="[permissionType.VIEW_LGA,'nav']">View</th>
+          <th scope="col" class="text-center" *appAccessControl="[permissionType.EDIT_LGA,'nav']">Edit</th>
+          <th scope="col" class="text-center" *appAccessControl="[permissionType.DELETE_LGA,'nav']">Remove</th>
         </tr>
         </thead>
         <tbody>
@@ -27,9 +27,9 @@
           <td class="">{{LGA.state}}</td>
           <td class="text-right">{{LGA.population|number}}</td>
           <td class="text-right">{{LGA.area|number}}KM2</td>
-          <td class="text-center"><button class="btn btn-success" (click)="onLGAClick(LGA)" data-target="#viewLGA" data-toggle="modal"><i class="fas fa-eye"></i> </button></td>
-          <td class="text-center"><button class="btn btn-primary" (click)="onLGAClick(LGA)" data-toggle="modal" data-target="#editLGA"><i class="fas fa-user-edit"></i></button> </td>
-          <td class="text-center"> <button class="btn btn-danger" (click)="removeLGA(LGA.id)"><i class="fas fa-trash"></i></button></td>
+          <td class="text-center" *appAccessControl="[permissionType.VIEW_LGA,'nav']"><button class="btn btn-success" (click)="onLGAClick(LGA)" data-target="#viewLGA" data-toggle="modal"><i class="fas fa-eye"></i> </button></td>
+          <td class="text-center" *appAccessControl="[permissionType.EDIT_LGA,'nav']"><button class="btn btn-primary" (click)="onLGAClick(LGA)" data-toggle="modal" data-target="#editLGA"><i class="fas fa-user-edit"></i></button> </td>
+          <td class="text-center" *appAccessControl="[permissionType.DELETE_LGA,'nav']"> <button class="btn btn-danger" (click)="removeLGA(LGA.id)"><i class="fas fa-trash"></i></button></td>
         </tr>
 
         </tbody>

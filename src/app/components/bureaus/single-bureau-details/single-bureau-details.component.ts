@@ -5,6 +5,7 @@ import {ApiService} from "../../../core/services/api.service";
 import {ActivatedRoute} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
 import {Bureau} from "../../../core/models/bureau";
+import {PermissionType} from "../../../core/constants/permission-type";
 
 @Component({
   selector: 'app-single-bureau-details',
@@ -16,6 +17,8 @@ export class SingleBureauDetailsComponent implements OnInit {
   bureau:Bureau;
   loading=true;
   imageURL=environment.ASSETS_URL;
+
+  permissionType=PermissionType;
   constructor(private apiService:ApiService,private route:ActivatedRoute,private toastrService:ToastrService) { }
 
   ngOnInit(): void {

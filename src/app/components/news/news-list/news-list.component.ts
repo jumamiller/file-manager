@@ -4,6 +4,7 @@ import {ToastrService} from "ngx-toastr";
 import {News} from "../../../core/models/news";
 import {environment} from "../../../../environments/environment";
 import {ConfirmationAlertService} from "../../../core/helpers/confirmation-alert.service";
+import {PermissionType} from "../../../core/constants/permission-type";
 
 @Component({
   selector: 'app-news-list',
@@ -13,6 +14,7 @@ import {ConfirmationAlertService} from "../../../core/helpers/confirmation-alert
 export class NewsListComponent implements OnInit {
 
   news:News[];
+  permissionType=PermissionType;
   loading=true;
   imageURL=environment.ASSETS_URL;
   constructor(private apiService:ApiService,

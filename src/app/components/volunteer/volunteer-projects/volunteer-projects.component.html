@@ -1,4 +1,4 @@
-<div class="content mat-elevation-z8">
+<div class="content mat-elevation-z8" *appAccessControl="[permissionType.VIEW_SOCIAL_PROJECTS,'page']">
   <p class="text-right m-1 p-1 appointment-heading"><a class="add-appointment" [routerLink]="['/admin/volunteer-projects/add-volunteer-projects']">Add Volunteer Project</a></p>
     <div class="appointment-table">
     <div class="table-responsive">

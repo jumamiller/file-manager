@@ -5,6 +5,7 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 import {ConfirmationAlertService} from "../../../core/helpers/confirmation-alert.service";
 import {ToastrService} from "ngx-toastr";
 import {Router} from "@angular/router";
+import {PermissionType} from "../../../core/constants/permission-type";
 
 @Component({
   selector: 'app-category-list',
@@ -20,6 +21,8 @@ export class CategoryListComponent implements OnInit {
   submitting=false;
   selectedCategory:Category;
   loading=true;
+
+  permissionType=PermissionType;
 
   constructor(
     private apiService:ApiService,

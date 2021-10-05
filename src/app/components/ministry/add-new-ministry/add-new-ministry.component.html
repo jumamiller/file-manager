@@ -1,4 +1,4 @@
-<div class="content mat-elevation-z8">
+<div class="content mat-elevation-z8" *appAccessControl="[permissionType.CREATE_MINISTRY,'page']">
   <h2 class="text-center text-dark">Add New Ministry</h2>
   <div class="add-new-user">
     <form [formGroup]="ministryForm" (ngSubmit)="onSubmit()">
@@ -30,7 +30,7 @@
         </div>
 
       </div>
-      <div class="submission m-4 text-right">
+      <div class="submission m-4 text-right" *appAccessControl="[permissionType.CREATE_MINISTRY,'nav']">
         <button *ngIf="!submitting" class="btn btn-danger">Add Ministry</button>
         <button *ngIf="submitting" class="btn btn-success">Adding Ministry...</button>
       </div>

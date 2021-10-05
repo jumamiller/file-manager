@@ -7,6 +7,7 @@ export enum PermissionType  {
   DELETE_PROJECTS = 'delete_projects',
   //social projects crud
   CREATE_SOCIAL_PROJECTS  ='create_social_projects',
+  VIEW_SOCIAL_PROJECTS  ='view_social_projects',
 
   //appointments
   VIEW_APPOINTMENTS ='view_appointment',
@@ -14,6 +15,9 @@ export enum PermissionType  {
 
   //NEWS AND EVENTS
   CREATE_NEWS_AND_EVENTS='create_news_and_events',
+  VIEW_NEWS_AND_EVENTS='view_news_and_events',
+  EDIT_NEWS_AND_EVENTS='edit_news_and_events',
+  DELETE_NEWS_AND_EVENTS='delete_news_and_events',
 
   //QUERIES
   VIEW_QUERIES ='view_query',
@@ -40,6 +44,36 @@ export enum PermissionType  {
   VIEW_IDEAS='view_ideas',
   DELETE_IDEAS='delete_ideas',
   RESPOND_TO_IDEAS='respond_to_ideas',
+
+  //Categories
+  CREATE_CATEGORIES='create_categories',
+  VIEW_CATEGORIES='view_categories',
+  DELETE_CATEGORIES='delete_category',
+  EDIT_CATEGORIES='edit_category',
+
+  //Roles
+  CREATE_ROLES='create_roles',
+  VIEW_ROLES='view_roles',
+  DELETE_ROLES='delete_roles',
+  EDIT_ROLES='edit_roles',
+
+  //Ministry
+  CREATE_MINISTRY='create_ministry',
+  VIEW_MINISTRY='view_ministry',
+  DELETE_MINISTRY='delete_ministry',
+  EDIT_MINISTRY='edit_ministry',
+
+  // Bureau
+  CREATE_BUREAU='create_bureau',
+  VIEW_BUREAU='view_bureau',
+  DELETE_BUREAU='delete_bureau',
+  EDIT_BUREAU='edit_bureau',
+
+  // LGA
+  CREATE_LGA='create_lga',
+  VIEW_LGA='view_lga',
+  DELETE_LGA='delete_lga',
+  EDIT_LGA='edit_lga',
 }
 
 

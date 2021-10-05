@@ -6,6 +6,7 @@ import {ConfirmationAlertService} from "../../../core/helpers/confirmation-alert
 import {FormBuilder, FormGroup} from "@angular/forms";
 import * as _ from 'lodash';
 import {Router} from "@angular/router";
+import {PermissionType} from "../../../core/constants/permission-type";
 @Component({
   selector: 'app-list-local-governments',
   templateUrl: './list-local-governments.component.html',
@@ -18,6 +19,8 @@ export class ListLocalGovernmentsComponent implements OnInit {
   selectedLGA:LocalGovernment;
   imageUrl=environment.ASSETS_URL;
   editLGAForm:FormGroup;
+
+  permissionType=PermissionType;
 
   imageError: string;
   isImageSaved: boolean;

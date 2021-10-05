@@ -5,6 +5,7 @@ import {ToastrService} from "ngx-toastr";
 import {Route, Router} from "@angular/router";
 import {ConfirmationAlertService} from "../../../../core/helpers/confirmation-alert.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
+import {PermissionType} from "../../../../core/constants/permission-type";
 
 @Component({
   selector: 'app-roles-list',
@@ -18,6 +19,8 @@ export class RolesListComponent implements OnInit {
   selectedRole:Role;
 
   editRoleForm:FormGroup;
+
+  permissionType=PermissionType;
 
   constructor(
     private apiService:ApiService,

@@ -1,5 +1,5 @@
-<div class="content mat-elevation-z8">
-  <p class="text-right m-1 p-1"><a class="btn btn-danger" [routerLink]="['/admin/ministry/add-new-kogi-ministry']">Add New Ministry</a></p>
+<div class="content mat-elevation-z8" *appAccessControl="[permissionType.VIEW_MINISTRY,'page']">
+  <p *appAccessControl="[permissionType.VIEW_MINISTRY,'nav']" class="text-right m-1 p-1"><a class="btn btn-danger" [routerLink]="['/admin/ministry/add-new-kogi-ministry']">Add New Ministry</a></p>
   <div class="citizens">
     <div class="table-responsive">
       <h4 class="text-center text-dark">Kogi Ministries</h4>
@@ -11,9 +11,9 @@
           <th scope="col">Header Text</th>
           <th scope="col">Description</th>
           <th scope="col">Budget</th>
-          <th scope="col" class="text-center">View</th>
-          <th scope="col" class="text-center">Edit</th>
-          <th scope="col" class="text-center">Remove</th>
+          <th scope="col" class="text-center" *appAccessControl="[permissionType.VIEW_MINISTRY,'nav']">View</th>
+          <th scope="col" class="text-center" *appAccessControl="[permissionType.EDIT_MINISTRY,'nav']">Edit</th>
+          <th scope="col" class="text-center" *appAccessControl="[permissionType.DELETE_MINISTRY,'nav']">Remove</th>
         </tr>
         </thead>
         <tbody>
@@ -27,9 +27,9 @@
           <td class="">{{ministry.header_text}}</td>
           <td class="">{{ministry.description |slice : 0  : 20}}</td>
           <td class="">{{ministry.budget |currency}}</td>
-          <td class="text-center"><button class="btn btn-success" (click)="redirectToSingleMinistry(ministry.id)"><i class="fas fa-eye"></i> </button></td>
-          <td class="text-center"><button class="btn btn-primary" (click)="onMinistrySelection(ministry.id)"  data-toggle="modal" data-target="#exampleModal"><i class="fas fa-user-edit"></i></button> </td>
-          <td class="text-center"> <button class="btn btn-danger" (click)="removeMinistry(ministry.id)"><i class="fas fa-trash"></i></button></td>
+          <td class="text-center" *appAccessControl="[permissionType.VIEW_MINISTRY,'nav']"><button class="btn btn-success" (click)="redirectToSingleMinistry(ministry.id)"><i class="fas fa-eye"></i> </button></td>
+          <td class="text-center" *appAccessControl="[permissionType.EDIT_MINISTRY,'nav']"><button class="btn btn-primary" (click)="onMinistrySelection(ministry.id)"  data-toggle="modal" data-target="#exampleModal"><i class="fas fa-user-edit"></i></button> </td>
+          <td class="text-center" *appAccessControl="[permissionType.DELETE_MINISTRY,'nav']"><button class="btn btn-danger" (click)="removeMinistry(ministry.id)"><i class="fas fa-trash"></i></button></td>
         </tr>
 
         </tbody>

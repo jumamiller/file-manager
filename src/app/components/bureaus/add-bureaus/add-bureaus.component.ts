@@ -4,6 +4,7 @@ import {ApiService} from "../../../core/services/api.service";
 import {ToastrService} from "ngx-toastr";
 import * as _ from 'lodash';
 import {Bureau} from "../../../core/models/bureau";
+import {PermissionType} from "../../../core/constants/permission-type";
 @Component({
   selector: 'app-add-bureaus',
   templateUrl: './add-bureaus.component.html',
@@ -17,6 +18,8 @@ export class AddBureausComponent implements OnInit {
   imageError: string;
   isImageSaved: boolean;
   cardImageBase64: string;
+
+  permissionType=PermissionType;
   constructor(
     private formBuilder:FormBuilder,
     private apiService:ApiService,

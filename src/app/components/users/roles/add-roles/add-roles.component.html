@@ -1,4 +1,4 @@
-<div class="content mat-elevation-z8">
+<div class="content mat-elevation-z8" *appAccessControl="[permissionType.CREATE_ROLES,'page']">
   <h2 class="text-center text-dark">Add New Roles</h2>
   <div class="roles-form">
     <form [formGroup]="roleForm" (ngSubmit)="onNewRoleSubmit()">
@@ -26,7 +26,7 @@
         </div>
       </div>
 
-      <div class="submit m-2 text-right">
+      <div class="submit m-2 text-right" *appAccessControl="[permissionType.CREATE_ROLES,'nav']">
         <button class="btn btn-danger">Create New Role</button>
       </div>
 

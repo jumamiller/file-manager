@@ -4,6 +4,7 @@ import {ApiService} from "../../../core/services/api.service";
 import {ToastrService} from "ngx-toastr";
 import {LocalGovernment} from "../../../core/models/local-government";
 import * as _ from 'lodash';
+import {PermissionType} from "../../../core/constants/permission-type";
 @Component({
   selector: 'app-add-local-governments',
   templateUrl: './add-local-governments.component.html',
@@ -11,6 +12,7 @@ import * as _ from 'lodash';
 })
 export class AddLocalGovernmentsComponent implements OnInit {
 
+  permissionType=PermissionType;
   LGAForm:FormGroup;
   submitting=false;
   //avatar

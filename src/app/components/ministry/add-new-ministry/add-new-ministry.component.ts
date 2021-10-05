@@ -4,12 +4,15 @@ import {ToastrService} from "ngx-toastr";
 import {Ministry} from "../../../core/models/ministry";
 import {ApiService} from "../../../core/services/api.service";
 import * as _ from 'lodash';
+import {PermissionType} from "../../../core/constants/permission-type";
 @Component({
   selector: 'app-add-new-ministry',
   templateUrl: './add-new-ministry.component.html',
   styleUrls: ['./add-new-ministry.component.css']
 })
 export class AddNewMinistryComponent implements OnInit {
+
+  permissionType=PermissionType;
 
   submitting=false;
   ministryForm:FormGroup;

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Project} from "../../../core/models/project";
 import {ApiService} from "../../../core/services/api.service";
 import {Router} from "@angular/router";
+import {PermissionType} from "../../../core/constants/permission-type";
 
 @Component({
   selector: 'app-projects-list',
@@ -10,6 +11,7 @@ import {Router} from "@angular/router";
 })
 export class ProjectsListComponent implements OnInit {
 
+  permissionType=PermissionType;
   projects: Project[]=[];
   loading=true;
   constructor(private apiService:ApiService, private router:Router) { }

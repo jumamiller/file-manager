@@ -1,5 +1,5 @@
-<div class="content mat-elevation-z8">
-  <p class="m-1 p-1 text-right"><a class="btn btn-danger" [routerLink]="['/admin/news/add-news']">Create News/ Events</a></p>
+<div class="content mat-elevation-z8" *appAccessControl="[permissionType.VIEW_NEWS_AND_EVENTS,'page']">
+  <p *appAccessControl="[permissionType.CREATE_NEWS_AND_EVENTS,'nav']" class="m-1 p-1 text-right"><a class="btn btn-danger" [routerLink]="['/admin/news/add-news']">Create News/ Events</a></p>
   <div class="citizens">
     <div class="table-responsive">
       <h4 class="text-center text-dark">Kogi News &amp; Events</h4>
@@ -11,9 +11,9 @@
           <th scope="col">Title</th>
           <th scope="col">Description</th>
           <th scope="col">Target Audience</th>
-          <th scope="col" class="text-center">View</th>
-          <th scope="col" class="text-center">Edit</th>
-          <th scope="col" class="text-center">Remove</th>
+          <th scope="col" class="text-center" *appAccessControl="[permissionType.VIEW_NEWS_AND_EVENTS,'nav']">View</th>
+          <th scope="col" class="text-center" *appAccessControl="[permissionType.EDIT_NEWS_AND_EVENTS,'nav']">Edit</th>
+          <th scope="col" class="text-center" *appAccessControl="[permissionType.DELETE_NEWS_AND_EVENTS,'nav']">Remove</th>
         </tr>
         </thead>
         <tbody>
@@ -25,9 +25,9 @@
           <td class="">{{kogiNews.title}}</td>
           <td class="">{{kogiNews.description}}</td>
           <td class="">{{kogiNews.target_audience}}</td>
-          <td class="text-center"><button class="btn btn-success"><i class="fas fa-eye"></i> </button></td>
-          <td class="text-center"><button class="btn btn-primary"><i class="fas fa-user-edit"></i></button> </td>
-          <td class="text-center"> <button (click)="remove(kogiNews.id)" class="btn btn-danger"><i class="fas fa-trash"></i></button></td>
+          <td class="text-center" *appAccessControl="[permissionType.VIEW_NEWS_AND_EVENTS,'nav']"><button class="btn btn-success"><i class="fas fa-eye"></i> </button></td>
+          <td class="text-center" *appAccessControl="[permissionType.EDIT_NEWS_AND_EVENTS,'nav']"><button class="btn btn-primary"><i class="fas fa-user-edit"></i></button> </td>
+          <td class="text-center" *appAccessControl="[permissionType.DELETE_NEWS_AND_EVENTS,'nav']"> <button (click)="remove(kogiNews.id)" class="btn btn-danger"><i class="fas fa-trash"></i></button></td>
         </tr>
 
         </tbody>

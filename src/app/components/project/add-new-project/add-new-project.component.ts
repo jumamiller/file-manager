@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Project} from "../../../core/models/project";
 import {ApiService} from "../../../core/services/api.service";
 import {ToastrService} from "ngx-toastr";
+import {PermissionType} from "../../../core/constants/permission-type";
 
 @Component({
   selector: 'app-add-new-project',
@@ -12,7 +13,7 @@ import {ToastrService} from "ngx-toastr";
 export class AddNewProjectComponent implements OnInit {
 
   projectForm:FormGroup;
-
+  permissionType=PermissionType;
   constructor(
     private formBuilder:FormBuilder,
     private toatrService:ToastrService,

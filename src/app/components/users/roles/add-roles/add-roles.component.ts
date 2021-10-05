@@ -5,6 +5,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ToastrService} from "ngx-toastr";
 import {Role} from "../../../../core/models/role";
 import {MatCheckboxChange} from "@angular/material/checkbox";
+import {PermissionType} from "../../../../core/constants/permission-type";
 
 @Component({
   selector: 'app-add-roles',
@@ -14,6 +15,7 @@ import {MatCheckboxChange} from "@angular/material/checkbox";
 export class AddRolesComponent implements OnInit {
 
   permissions:Permission[];
+  permissionType=PermissionType;
   loading=true;
 
   roleForm: FormGroup;

@@ -7,6 +7,7 @@ import {ConfirmationAlertService} from "../../../core/helpers/confirmation-alert
 import {ToastrService} from "ngx-toastr";
 import * as _ from 'lodash';
 import {Bureau} from "../../../core/models/bureau";
+import {PermissionType} from "../../../core/constants/permission-type";
 @Component({
   selector: 'app-bureaus-list',
   templateUrl: './bureaus-list.component.html',
@@ -18,6 +19,8 @@ export class BureausListComponent implements OnInit {
   submitting=false;
   bureaus: Bureau[]=[];
   selectedBureauId:number;
+
+  permissionType=PermissionType;
 
   page = 1;
   count = 0;

@@ -4,6 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
 import {Ministry} from "../../../core/models/ministry";
 import {environment} from "../../../../environments/environment";
+import {PermissionType} from "../../../core/constants/permission-type";
 
 @Component({
   selector: 'app-single-ministry-details',
@@ -13,6 +14,7 @@ import {environment} from "../../../../environments/environment";
 export class SingleMinistryDetailsComponent implements OnInit {
 
   ministry:Ministry;
+  permissionType=PermissionType;
   loading=true;
   imageURL=environment.ASSETS_URL;
   constructor(private apiService:ApiService,private route:ActivatedRoute,private toastrService:ToastrService) { }

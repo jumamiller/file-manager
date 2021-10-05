@@ -1,4 +1,4 @@
-<div class="content mat-elevation-z8">
+<div class="content mat-elevation-z8" *appAccessControl="[permissionType.CREATE_BUREAU,'page']">
   <h2 class="text-center text-dark">Add New Bureau</h2>
   <div class="add-new-user">
     <form [formGroup]="bureauForm" (ngSubmit)="onSubmit()">
@@ -30,7 +30,7 @@
         </div>
 
       </div>
-      <div class="submission m-4 text-right">
+      <div class="submission m-4 text-right"  *appAccessControl="[permissionType.CREATE_BUREAU,'nav']">
         <button *ngIf="!submitting" class="btn btn-danger">Add Bureau</button>
         <button *ngIf="submitting" class="btn btn-success">Adding Bureau...</button>
       </div>

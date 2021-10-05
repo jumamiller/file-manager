@@ -1,4 +1,4 @@
-<div class="content mat-elevation-z8">
+<div class="content mat-elevation-z8" *appAccessControl="[permissionType.CREATE_LGA,'page']">
   <h2 class="text-center text-dark">New Local Government Area</h2>
   <div class="add-new-user">
     <form [formGroup]="LGAForm" (ngSubmit)="onSubmit()">
@@ -51,7 +51,7 @@
         </div>
       </div>
 
-      <div class="m-5 text-right">
+      <div class="m-5 text-right" *appAccessControl="[permissionType.CREATE_LGA,'nav']">
         <button *ngIf="!submitting" class="btn btn-danger mb-2">Add Local Government Area</button>
         <button *ngIf="submitting" class="btn btn-success mb-2">Adding Local Government Area...</button>
       </div>

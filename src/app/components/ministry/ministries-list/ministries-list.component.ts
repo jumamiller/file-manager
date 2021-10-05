@@ -6,6 +6,7 @@ import {ActivatedRoute, Route, Router} from "@angular/router";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import * as _ from 'lodash';
 import {ConfirmationAlertService} from "../../../core/helpers/confirmation-alert.service";
+import {PermissionType} from "../../../core/constants/permission-type";
 @Component({
   selector: 'app-ministries-list',
   templateUrl: './ministries-list.component.html',
@@ -17,6 +18,8 @@ export class MinistriesListComponent implements OnInit {
   submitting=false;
   ministries: Ministry[]=[];
   selectedMinistryId:number;
+
+  permissionType=PermissionType;
 
   page = 1;
   count = 0;

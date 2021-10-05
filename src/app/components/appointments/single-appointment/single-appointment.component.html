@@ -1,4 +1,4 @@
-<div class="content mat-elevation-z8 ">
+<div class="content mat-elevation-z8 " *appAccessControl="[permissionType.VIEW_APPOINTMENTS,'page']">
   <a class="back" [routerLink]="['/appointments/my-appointments']">
     <span class=""><mat-icon>keyboard_backspace</mat-icon>
     </span>Back to Appointments

@@ -1,4 +1,4 @@
-<div class="content mat-elevation-z8">
+<div class="content mat-elevation-z8" *appAccessControl="[permissionType.VIEW_QUERIES,'page']">
   <h5 class="text-center title">Proposals</h5>
 
   <div class="appointment-table">
@@ -14,7 +14,7 @@
           <th scope="col">proposal</th>
           <th scope="col">Response</th>
           <th scope="col" class="text-center">Status</th>
-          <th scope="col" class="text-center">Actions</th>
+          <th scope="col" class="text-center" *appAccessControl="[permissionType.RESPOND_TO_IDEAS,'nav']">Actions</th>
         </tr>
         </thead>
         <tbody>

@@ -1,4 +1,4 @@
-<div class="mat-elevation-z8 content">
+<div class="mat-elevation-z8 content" *appAccessControl="[permissionType.VIEW_MINISTRY,'page']">
   <div *ngIf="loading" class="d-flex justify-content-center my-1">
     <div class="spinner-border" role="status" aria-hidden="true"></div>
   </div>

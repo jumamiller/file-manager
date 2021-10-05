@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Volunteer} from "../../../core/models/volunteer";
 import {ApiService} from "../../../core/services/api.service";
 import {ToastrService} from "ngx-toastr";
+import {PermissionType} from "../../../core/constants/permission-type";
 
 @Component({
   selector: 'app-volunteer-projects',
@@ -10,6 +11,7 @@ import {ToastrService} from "ngx-toastr";
 })
 export class VolunteerProjectsComponent implements OnInit {
 
+  permissionType=PermissionType;
   volunteerProjects:Volunteer[];
   loading=true;
   constructor(private apiService:ApiService,private toastrService:ToastrService) { }
