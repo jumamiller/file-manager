@@ -1,0 +1,16 @@
+<div class="mat-elevation-z8 content">
+  <div *ngIf="loading" class="d-flex justify-content-center my-1">
+    <div class="spinner-border" role="status" aria-hidden="true"></div>
+  </div>
+  <div class="" *ngIf="bureau">
+    <h4 class="text-center">{{bureau.name}} Detailed Information</h4>
+    <div class="row">
+      <div class="col-md-8" *ngIf="bureau">
+        <img [src]="imageURL+bureau.banner_image" alt="image"style="width: 100%">
+      </div>
+      <div class="col-md-4">
+        <p>{{bureau.description || 'No description is available'}}</p>
+      </div>
+    </div>
+  </div>
+</div>

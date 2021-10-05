@@ -4,6 +4,7 @@ import {SidebarComponent} from "../../shared/layouts/sidebar/sidebar.component";
 import {AuthGuard} from "../../core/guards/auth.guard";
 import {BureausListComponent} from "./bureaus-list/bureaus-list.component";
 import {AddBureausComponent} from "./add-bureaus/add-bureaus.component";
+import {SingleBureauDetailsComponent} from "./single-bureau-details/single-bureau-details.component";
 
 const routes: Routes = [
   {
@@ -18,6 +19,10 @@ const routes: Routes = [
       {
         path:'add-bureau',
         component: AddBureausComponent,
+      },
+      {
+        path:'bureau-list/bureau-details',
+        component:SingleBureauDetailsComponent,
       }
     ]
   }

@@ -27,9 +27,9 @@
           <td class="">{{bureau.header_text}}</td>
           <td class="">{{bureau.description |slice : 0  : 20}}</td>
           <td class="">{{bureau.budget |currency}}</td>
-          <td class="text-center"><button class="btn btn-success"><i class="fas fa-eye"></i> </button></td>
+          <td class="text-center"><button class="btn btn-success" (click)="redirectToSingleBureau(bureau.id)"><i class="fas fa-eye"></i> </button></td>
           <td class="text-center"><button class="btn btn-primary" (click)="onBureauSelection(bureau.id)"  data-toggle="modal" data-target="#exampleModal"><i class="fas fa-user-edit"></i></button> </td>
-          <td class="text-center"> <button class="btn btn-danger" (click)="removeMinistry(bureau.id)"><i class="fas fa-trash"></i></button></td>
+          <td class="text-center"> <button class="btn btn-danger" (click)="removeBureau(bureau.id)"><i class="fas fa-trash"></i></button></td>
         </tr>
 
         </tbody>
@@ -93,7 +93,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button *ngIf="!submitting" [disabled]="editForm.invalid" type="submit" class="btn btn-danger">Update Ministry</button>
+            <button *ngIf="!submitting" [disabled]="editForm.invalid" type="submit" class="btn btn-danger">Update Bureau</button>
             <button *ngIf="submitting" type="button" class="btn btn-success">updating...</button>
           </div>
         </form>

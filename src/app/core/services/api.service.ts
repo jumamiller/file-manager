@@ -141,18 +141,15 @@ export class ApiService {
    * update bureaus
    */
   updateBureaus(data:Bureau,bureauId){
-    return this.httpClient.patch<Bureau>(`${environment.API_BASE_URL}admin/update-bureaus/${bureauId}`,data);
+    return this.httpClient.patch<Bureau>(`${environment.API_BASE_URL}admin/update-bureau/${bureauId}`,data);
   }
 
   /**
-   * image upload
-   * @param formData
+   * get single bureau
+   * @param bureauId
    */
-  uploadMinistryImage(formData):Observable<any>{
-    let options = {
-      headers: new HttpHeaders().set('Content-Type', undefined)
-    };
-    return this.httpClient.post<any>(`${environment.API_BASE_URL}admin/upload-ministry-image`,formData);
+  getSingleBureau(bureauId: string):Observable<Bureau>{
+    return this.httpClient.get<Bureau>(`${environment.API_BASE_URL}admin/get-bureau/${bureauId}`);
   }
 
   /**

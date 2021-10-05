@@ -78,7 +78,7 @@ export class BureausListComponent implements OnInit {
    * remove ministry
    * @param id
    */
-  removeMinistry(id:number){
+  removeBureau(id:number){
     this.confirmationAlert.sweetAlert(
       'Are you sure?',
       'Deleting bureau is an irreversible process and you confirm that this also affects officials linked to it.',
@@ -89,7 +89,7 @@ export class BureausListComponent implements OnInit {
       'Yes, Delete Bureau!',
       'No, Cancel',
       '',
-      this.apiService.removeMinistry(id)
+      this.apiService.removeBureau(id)
     );
   }
 
@@ -114,6 +114,12 @@ export class BureausListComponent implements OnInit {
         this.toastrService.error(error.error.message,'Error');
         this.submitting=false;
       })
+  }
+  /**
+   * redirect to single ministry details
+   */
+  redirectToSingleBureau(bureauId){
+    this.router.navigate(['/admin/bureaus/bureau-list/bureau-details'],{queryParams: {bureauId}});
   }
 
   /**

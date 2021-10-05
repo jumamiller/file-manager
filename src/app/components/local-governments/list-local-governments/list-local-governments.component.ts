@@ -4,7 +4,8 @@ import {LocalGovernment} from "../../../core/models/local-government";
 import {environment} from "../../../../environments/environment";
 import {ConfirmationAlertService} from "../../../core/helpers/confirmation-alert.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
-
+import * as _ from 'lodash';
+import {Router} from "@angular/router";
 @Component({
   selector: 'app-list-local-governments',
   templateUrl: './list-local-governments.component.html',
@@ -17,8 +18,14 @@ export class ListLocalGovernmentsComponent implements OnInit {
   selectedLGA:LocalGovernment;
   imageUrl=environment.ASSETS_URL;
   editLGAForm:FormGroup;
+
+  imageError: string;
+  isImageSaved: boolean;
+  cardImageBase64: string;
+
   constructor(private apiService:ApiService,
               private fb:FormBuilder,
+              private router:Router,
               private confirmationAlert:ConfirmationAlertService) { }
 
   ngOnInit(): void {
@@ -92,7 +99,8 @@ export class ListLocalGovernmentsComponent implements OnInit {
       history: this.form.history.value,
       name: this.form.name.value,
       population: this.form.population.value,
-      state: this.form.state.value
+      state: this.form.state.value,
+      LGA_avatar:this.cardImageBase64
     };
     this.confirmationAlert.sweetAlert(
       'Are you sure?',
@@ -108,4 +116,68 @@ export class ListLocalGovernmentsComponent implements OnInit {
     );
   }
 
+  /**
+   * handle image upload
+   * @param fileInput
+   */
+  // @ts-ignore
+  handleFileInput(fileInput) {
+    this.imageError = null;
+    if (fileInput.target.files && fileInput.target.files[0]) {
+      // Size Filter Bytes
+      const max_size = 20971520;
+      const allowed_types = ['image/png', 'image/jpeg'];
+      const max_height = 15200;
+      const max_width = 25600;
+
+      if (fileInput.target.files[0].size > max_size) {
+        this.imageError =
+          'Maximum size allowed is ' + max_size / 1000 + 'Mb';
+
+        return false;
+      }
+
+      if (!_.includes(allowed_types, fileInput.target.files[0].type)) {
+        this.imageError = 'Only Images are allowed ( JPG | PNG )';
+        return false;
+      }
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        const image = new Image();
+        image.src = e.target.result;
+        // @ts-ignore
+        image.onload = rs => {
+          const img_height = rs.currentTarget['height'];
+          const img_width = rs.currentTarget['width'];
+
+          console.log(img_height, img_width);
+
+          if (img_height > max_height && img_width > max_width) {
+            this.imageError =
+              'Maximum dimensions allowed ' +
+              max_height +
+              '*' +
+              max_width +
+              'px';
+            return false;
+          } else {
+            this.cardImageBase64 = e.target.result;
+            this.isImageSaved = true;
+            // this.previewImagePath = imgBase64Path;
+          }
+        };
+      };
+
+      reader.readAsDataURL(fileInput.target.files[0]);
+    }
+  }
+  /**
+   * reload
+   */
+  reloadCurrentRoute() {
+    let currentUrl = this.router.url;
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+      this.router.navigate([currentUrl]);
+    });
+  }
 }
