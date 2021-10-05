@@ -22,6 +22,11 @@ export class RolesListComponent implements OnInit {
 
   permissionType=PermissionType;
 
+
+  page = 1;
+  count = 0;
+  tableSize = 10;
+  tableSizes = [2, 5, 10, 20, 30, 40];
   constructor(
     private apiService:ApiService,
     private fb:FormBuilder,
@@ -102,5 +107,11 @@ export class RolesListComponent implements OnInit {
       '',
       this.apiService.updateRole(role,this.selectedRole.id)
     );
+  }
+
+  onTableDataChange(event)
+  {
+    this.page = event;
+    this.getAllRoles();
   }
 }

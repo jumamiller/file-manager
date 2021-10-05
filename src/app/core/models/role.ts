@@ -7,4 +7,5 @@ export interface Role {
   message?:string;
   meta?:string[];
   data?:any[];
+  permissions?:any;
 }
