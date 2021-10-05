@@ -48,8 +48,8 @@ export enum PermissionType  {
   //Categories
   CREATE_CATEGORIES='create_categories',
   VIEW_CATEGORIES='view_categories',
-  DELETE_CATEGORIES='delete_category',
-  EDIT_CATEGORIES='edit_category',
+  DELETE_CATEGORIES='delete_categories',
+  EDIT_CATEGORIES='edit_categories',
 
   //Roles
   CREATE_ROLES='create_roles',

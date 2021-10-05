@@ -48,7 +48,7 @@
       </button>
     </div>
 
-    <div>
+    <div *appAccessControl="[permissions.VIEW_ROLES,'nav']">
       <mat-divider></mat-divider>
       <button mat-button class="menu-button" [routerLink]="['/admin/manage-users/roles-list']" routerLinkActive="active">
         <mat-icon>lock</mat-icon>
@@ -64,7 +64,7 @@
       </button>
     </div>
 
-    <div>
+    <div *appAccessControl="[permissions.VIEW_MINISTRY,'nav']">
       <mat-divider></mat-divider>
       <button mat-button class="menu-button" [routerLink]="['/admin/ministry/kogi-ministries-list']" routerLinkActive="active">
         <mat-icon>business</mat-icon>
@@ -72,7 +72,7 @@
       </button>
     </div>
 
-    <div>
+    <div *appAccessControl="[permissions.VIEW_BUREAU,'nav']">
       <mat-divider></mat-divider>
       <button mat-button class="menu-button" [routerLink]="['/admin/bureaus/bureau-list']" routerLinkActive="active">
         <mat-icon>business</mat-icon>
@@ -88,7 +88,7 @@
       </button>
     </div>
 
-    <div *appAccessControl="[permissions.VIEW_PROJECTS,'nav']">
+    <div *appAccessControl="[permissions.VIEW_SOCIAL_PROJECTS,'nav']">
       <mat-divider></mat-divider>
       <button mat-button class="menu-button"[routerLink]="['/admin/volunteer-projects/projects-list']" routerLinkActive="active">
         <mat-icon>work</mat-icon>
@@ -96,7 +96,7 @@
       </button>
     </div>
 
-    <div>
+    <div *appAccessControl="[permissions.VIEW_LGA,'nav']">
       <mat-divider></mat-divider>
       <button mat-button class="menu-button"[routerLink]="['/admin/local-government-area/list-governments']" routerLinkActive="active">
         <mat-icon>home</mat-icon>
@@ -104,7 +104,7 @@
       </button>
     </div>
 
-    <div>
+    <div *appAccessControl="[permissions.VIEW_NEWS_AND_EVENTS,'nav']">
       <mat-divider></mat-divider>
       <button mat-button class="menu-button" [routerLink]="['/admin/news/news-list']" routerLinkActive="active">
         <mat-icon>cell_wifi</mat-icon>
@@ -120,7 +120,7 @@
       </button>
     </div>
 
-    <div>
+    <div *appAccessControl="[permissions.VIEW_QUERIES,'nav']">
       <mat-divider></mat-divider>
       <button mat-button class="menu-button" [routerLink]="['/admin/proposals/citizens-proposals']" routerLinkActive="active">
         <mat-icon>work</mat-icon>
