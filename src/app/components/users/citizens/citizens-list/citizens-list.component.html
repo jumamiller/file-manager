@@ -7,7 +7,6 @@
         <thead>
         <tr>
           <th scope="col">#</th>
-          <th scope="col">Avatar</th>
           <th scope="col">Name</th>
           <th scope="col">Email</th>
           <th scope="col">Phone</th>
@@ -24,9 +23,9 @@
                   totalItems: count
                   };let i=index;">
           <td class="">{{i+1}}</td>
-          <td class="" title="Click Me to enlarge image" (click)="onCitizenChange(citizen)"data-toggle="modal" data-target="#exampleModal">
-            <img [src]="assetsURL+citizen.avatar" alt="avatar" width="70" height="70" class="rounded-circle">
-          </td>
+<!--          <td class="" title="Click Me to enlarge image" (click)="onCitizenChange(citizen)"data-toggle="modal" data-target="#exampleModal">-->
+<!--            <img [src]="assetsURL+citizen.avatar" alt="avatar" width="70" height="70" class="rounded-circle">-->
+<!--          </td>-->
           <td class="">{{citizen.first_name}} {{citizen.last_name}}</td>
           <td class="">{{citizen.email}}</td>
           <td class="">{{citizen.phone}}</td>

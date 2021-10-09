@@ -5,6 +5,8 @@ import {ToastrService} from "ngx-toastr";
 import {Citizen} from "../../../../core/models/citizen";
 import * as _ from 'lodash';
 import {PermissionType} from "../../../../core/constants/permission-type";
+import {LocalGovernment} from "../../../../core/models/local-government";
+import {ApiService} from "../../../../core/services/api.service";
 
 @Component({
   selector: 'app-add-new-citizens',
@@ -16,6 +18,7 @@ export class AddNewCitizensComponent implements OnInit {
   permissions=PermissionType;
   citizensForm:FormGroup;
   submitting=false;
+  LGAs:LocalGovernment[];
   loading=true;
 
   //avatar
@@ -25,12 +28,24 @@ export class AddNewCitizensComponent implements OnInit {
 
   constructor(
     private authService:AuthService,
+    private apiService:ApiService,
     private formBuilder:FormBuilder,
     private toastrService: ToastrService
   ) { }
 
   ngOnInit(): void {
+    this.getLGAs();
     this.citizensFormControl();
+  }
+
+  /**
+   * get list of LGAs
+   */
+  getLGAs(){
+    this.apiService.getLocalGovernments()
+      .subscribe((res)=>{
+        this.LGAs=res['data'];
+      })
   }
 
   /**

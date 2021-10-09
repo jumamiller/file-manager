@@ -39,7 +39,9 @@
 
         <div class="col-md-4">
           <label for="LGA">Local Government Area</label>
-          <input type="text" id="LGA" formControlName="LGA" class="form-control" placeholder=""required="">
+          <select id="LGA" formControlName="LGA" class="form-control" required="">
+            <option [value]="LGA.id" *ngFor="let LGA of LGAs">{{LGA.name}}</option>
+          </select>
         </div>
 
         <div class="col-md-4">
