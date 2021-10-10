@@ -10,8 +10,6 @@
         <tr>
           <th scope="col">#</th>
           <th scope="col">Name</th>
-          <th scope="col">Category</th>
-          <th scope="col">Officer</th>
           <th scope="col">Purpose</th>
           <th scope="col">proposed Date</th>
           <th scope="col">Response</th>
@@ -23,8 +21,6 @@
         <tr *ngFor="let appointment of appointments;let i=index">
           <td class="">{{i+1}}</td>
           <td class="">{{appointment.user.first_name}} {{appointment.user.last_name}}</td>
-          <td class="">{{appointment.category.category_name}}</td>
-          <td class="">{{appointment.sub_category.sub_category_name}}</td>
           <td class="">{{appointment.appointment_reason}}</td>
           <td class="">{{appointment.date | date:'full'}}</td>
           <td class="">{{appointment.official_response || 'No response yet'}}</td>
