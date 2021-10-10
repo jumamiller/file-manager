@@ -37,7 +37,8 @@ export class AppointmentListComponent implements OnInit {
   getAllAppointments(){
     this.apiService.getAllAppointments()
       .subscribe((res)=>{
-        this.appointments=res['data'];
+        this.appointments=res.data;
+        console.log(res.data);
         this.loading=false;
       },error => {
         this.toastrService.error(error.error.message,'Error');
@@ -56,6 +57,7 @@ export class AppointmentListComponent implements OnInit {
   responseFormControl(){
     this.responseForm=this.fb.group({
       response:['',[Validators.required]],
+      status:['',[Validators.required]],
       date:['',[Validators.required]],
     });
   }
@@ -67,11 +69,11 @@ export class AppointmentListComponent implements OnInit {
   onSubmit() {
     this.submitting=true;
     let appointment:any={
-      response: this.form.response.value,
+      official_response: this.form.response.value,
       date:this.form.date.value,
-      appointment_id:this.appointment_id
+      status:this.form.status.value,
     };
-    this.apiService.respondToAppointment(appointment)
+    this.apiService.respondToAppointment(appointment,this.appointment_id)
       .subscribe((res)=>{
         this.toastrService.success('You have successfully responded to this appointment','Success');
         this.submitting=false;

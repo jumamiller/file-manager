@@ -10,7 +10,8 @@
         <tr>
           <th scope="col">#</th>
           <th scope="col">Name</th>
-          <th scope="col">Officer To Be Seen</th>
+          <th scope="col">Category</th>
+          <th scope="col">Officer</th>
           <th scope="col">Purpose</th>
           <th scope="col">proposed Date</th>
           <th scope="col">Response</th>
@@ -21,11 +22,12 @@
         <tbody>
         <tr *ngFor="let appointment of appointments;let i=index">
           <td class="">{{i+1}}</td>
-          <td class="">{{appointment['first_name']}} {{appointment['last_name']}}</td>
-          <td class="">{{appointment.official}}</td>
-          <td class="">{{appointment.message}}</td>
+          <td class="">{{appointment.user.first_name}} {{appointment.user.last_name}}</td>
+          <td class="">{{appointment.category.category_name}}</td>
+          <td class="">{{appointment.sub_category.sub_category_name}}</td>
+          <td class="">{{appointment.appointment_reason}}</td>
           <td class="">{{appointment.date | date:'full'}}</td>
-          <td class="">{{appointment.response || 'No response yet'}}</td>
+          <td class="">{{appointment.official_response || 'No response yet'}}</td>
           <td class="text-center text-success"><span class="">{{appointment.status}}</span></td>
           <td class="text-center">
             <button mat-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
@@ -69,6 +71,16 @@
             <label for="date">Fix Date</label>
             <input type="datetime-local" class="form-control" id="date" formControlName="date">
           </div>
+
+          <div class="form-group">
+            <label for="date">Status</label>
+            <select class="form-control" formControlName="status">
+              <option value="Under Review">Under Review</option>
+              <option value="Approved">Approved</option>
+              <option value="Rejected">Rejected</option>
+            </select>
+          </div>
+
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             <button *ngIf="!submitting" [disabled]="responseForm.invalid" type="submit" class="btn btn-danger">Send Response</button>

@@ -162,15 +162,15 @@ export class ApiService {
   /**
    * get all appointments
    */
-  getAllAppointments():Observable<Appointment[]>{
-    return this.httpClient.get<Appointment[]>(`${environment.API_BASE_URL}citizen/appointments`);
+  getAllAppointments():Observable<Appointment>{
+    return this.httpClient.get<Appointment>(`${environment.API_BASE_URL}admin/appointments`);
   }
 
   /**
    * respond to appointment
    */
-  respondToAppointment(appointmentDetails:any):Observable<any>{
-    return this.httpClient.patch<any>(`${environment.API_BASE_URL}admin/appointment`,appointmentDetails);
+  respondToAppointment(appointmentDetails:any,appointment_id:number):Observable<any>{
+    return this.httpClient.patch<any>(`${environment.API_BASE_URL}admin/appointment/${appointment_id}`,appointmentDetails);
   }
 
   /**
