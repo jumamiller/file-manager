@@ -20,6 +20,10 @@ export class ListLocalGovernmentsComponent implements OnInit {
   imageUrl=environment.ASSETS_URL;
   editLGAForm:FormGroup;
 
+  page = 1;
+  count = 0;
+  tableSize = 6;
+
   permissionType=PermissionType;
 
   imageError: string;
@@ -182,5 +186,10 @@ export class ListLocalGovernmentsComponent implements OnInit {
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
       this.router.navigate([currentUrl]);
     });
+  }
+  onTableDataChange(event)
+  {
+    this.page = event;
+    this.getLGAs();
   }
 }

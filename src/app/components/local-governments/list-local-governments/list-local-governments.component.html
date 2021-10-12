@@ -18,7 +18,11 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let LGA of lgas;let i=index">
+        <tr *ngFor="let LGA of lgas|paginate :{
+                  itemsPerPage: tableSize,
+                  currentPage: page,
+                  totalItems: count
+                  };let i=index">
           <td class="">{{i+1}}</td>
           <td class="text-center">
             <img [src]="imageUrl+LGA.LGA_avatar" width="60" height="60" class="rounded-circle" alt="LGA">
@@ -34,6 +38,20 @@
 
         </tbody>
       </table>
+      <div class="d-flex justify-content-left p-2 mt-2 pagination-text">
+        <pagination-controls
+          [responsive]="true"
+          previousLabel="Prev"
+          nextLabel="Next"
+          [maxSize]="7"
+          [directionLinks]="true"
+          [autoHide]="true"
+          screenReaderPaginationLabel="Pagination"
+          screenReaderPageLabel="page"
+          screenReaderCurrentLabel="You're on page"
+          (pageChange)="onTableDataChange($event)">
+        </pagination-controls>
+      </div>
     </div>
   </div>
   <div *ngIf="loading" class="d-flex justify-content-center my-1">
