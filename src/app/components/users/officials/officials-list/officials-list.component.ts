@@ -17,7 +17,7 @@ export class OfficialsListComponent implements OnInit {
 
   page = 1;
   count = 0;
-  tableSize = 7;
+  tableSize = 6;
 
   permissions=PermissionType;
   officials:Citizen[];
