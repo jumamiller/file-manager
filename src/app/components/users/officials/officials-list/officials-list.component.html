@@ -20,7 +20,11 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let official of officials;let i=index">
+        <tr *ngFor="let official of officials|paginate :{
+                  itemsPerPage: tableSize,
+                  currentPage: page,
+                  totalItems: count
+                  };let i=index">
           <td class="">{{i+1}}</td>
           <td class="" title="Click Me to enlarge image" (click)="onOfficialChange(official)" data-toggle="modal" data-target="#exampleModal">
             <img [src]="assetsURL+official.avatar" alt="avatar" width="70" height="70" class="rounded-circle">
@@ -45,6 +49,20 @@
         </tr>
         </tbody>
       </table>
+      <div class="d-flex justify-content-left p-2 mt-2 pagination-text">
+        <pagination-controls
+          [responsive]="true"
+          previousLabel="Prev"
+          nextLabel="Next"
+          [maxSize]="7"
+          [directionLinks]="true"
+          [autoHide]="true"
+          screenReaderPaginationLabel="Pagination"
+          screenReaderPageLabel="page"
+          screenReaderCurrentLabel="You're on page"
+          (pageChange)="onTableDataChange($event)">
+        </pagination-controls>
+      </div>
     </div>
     <div *ngIf="loading" class="d-flex justify-content-center my-1">
       <div class="spinner-border" role="status" aria-hidden="true"></div>

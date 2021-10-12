@@ -15,6 +15,10 @@ import {PermissionType} from "../../../../core/constants/permission-type";
 })
 export class OfficialsListComponent implements OnInit {
 
+  page = 1;
+  count = 0;
+  tableSize = 7;
+
   permissions=PermissionType;
   officials:Citizen[];
   loading=true;
@@ -155,5 +159,10 @@ export class OfficialsListComponent implements OnInit {
       '',
       this.userService.deleteUser(userId)
     );
+  }
+  onTableDataChange(event)
+  {
+    this.page = event;
+    this.officialsList();
   }
 }
