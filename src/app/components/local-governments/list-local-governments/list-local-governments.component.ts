@@ -22,7 +22,7 @@ export class ListLocalGovernmentsComponent implements OnInit {
 
   page = 1;
   count = 0;
-  tableSize = 6;
+  tableSize = 8;
 
   permissionType=PermissionType;
 
