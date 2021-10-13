@@ -15,7 +15,7 @@ export class NewsListComponent implements OnInit {
 
   page = 1;
   count = 0;
-  tableSize = 6;
+  tableSize = 8;
 
   news:News[];
   permissionType=PermissionType;
