@@ -7,19 +7,44 @@
           <label for="name">Name</label>
           <input type="text" id="name" formControlName="name" class="form-control" placeholder="Agriculture"required="">
         </div>
+
+        <div class="col-md-4">
+          <label for="name">Project Type</label>
+          <select class="form-control" formControlName="type" required="">
+            <option disabled>Select Project Type</option>
+            <option value="regular">Regular</option>
+            <option value="spotlight">Spotlight</option>
+          </select>
+        </div>
+
         <div class="col-md-4">
           <label for="description">Description</label>
           <input type="text" id="description" formControlName="description" class="form-control" placeholder=""required="">
         </div>
 
         <div class="col-md-4">
-          <label for="category">Category</label>
-          <input type="text" id="category" formControlName="category" class="form-control" placeholder=""required="">
+          <label for="budget">Budget</label>
+          <input type="text" id="budget" formControlName="budget" class="form-control" placeholder=""required="">
+        </div>
+
+        <div class="col-md-4">
+          <label for="ministry">Ministry</label>
+          <select id="ministry" (change)="onMinistryChange($event.target)" class="form-control">
+            <option [value]="ministry.id" *ngFor="let ministry of ministries">{{ministry.name}}</option>
+          </select>
+        </div>
+
+        <div class="col-md-4">
+          <label for="bureau">Bureaus</label>
+          <select id="bureau" (change)="onBureauChange($event.target)" class="form-control">
+            <option [value]="bureau.id" *ngFor="let bureau of bureaus">{{bureau.name}}</option>
+          </select>
         </div>
 
         <div class="col-md-4">
           <label for="status">Project Status</label>
           <select formControlName="status" id="status" class="custom-select">
+            <option value="budgeted">Budgeted</option>
             <option value="upcoming">Upcoming</option>
             <option value="in-progress">In Progress</option>
             <option value="completed">Completed</option>
@@ -48,15 +73,8 @@
 
         <div class="col-md-4">
           <label for="facilitator-contacts">Facilitator Contacts</label>
-          <input type="text" id="facilitator-contacts" name="facilitator_contacts" class="form-control" placeholder=""required="">
+          <input type="text" id="facilitator-contacts" formControlName="facilitator_contacts" class="form-control" placeholder=""required="">
         </div>
-
-
-        <div class="col-md-4">
-          <label for="ministry">Ministry</label>
-          <input type="text" id="ministry" formControlName="ministry" class="form-control" placeholder=""required="">
-        </div>
-
 
         <div class="col-md-4">
           <label for="start-date">Expected Start Date</label>
@@ -75,12 +93,13 @@
 
         <div class="col-md-4">
           <label for="project_image">Banner Images</label>
-          <input type="file" id="project_image" multiple formControlName="project_image" class="form-control-file" placeholder=""required="">
+          <input type="file" id="project_image" multiple (change)="handleFileInput($event)" class="form-control-file" placeholder=""required="">
         </div>
 
       </div>
       <div class="submission m-4 text-right" *appAccessControl="[permissionType.CREATE_PROJECTS,'nav']">
-        <button class="btn btn-danger">Add New Project</button>
+        <button *ngIf="!submitting" [disabled]="projectForm.invalid" class="btn btn-danger">Add New Project</button>
+        <button *ngIf="submitting" class="btn btn-success">Processing New Project...</button>
       </div>
     </form>
   </div>

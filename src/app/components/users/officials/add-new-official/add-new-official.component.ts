@@ -21,6 +21,7 @@ export class AddNewOfficialComponent implements OnInit {
   permissions=PermissionType;
   officialForm: FormGroup;
   loading=true;
+
   submitting=false;
   categories:Category[];
   selectedCategory:any;
