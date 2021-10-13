@@ -13,6 +13,10 @@ import {PermissionType} from "../../../core/constants/permission-type";
 })
 export class NewsListComponent implements OnInit {
 
+  page = 1;
+  count = 0;
+  tableSize = 6;
+
   news:News[];
   permissionType=PermissionType;
   loading=true;
@@ -53,6 +57,11 @@ export class NewsListComponent implements OnInit {
       '',
       this.apiService.removeNews(newsId)
     );
+  }
+  onTableDataChange(event)
+  {
+    this.page = event;
+    this.getNews();
   }
 
 }
