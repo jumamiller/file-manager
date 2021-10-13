@@ -47,6 +47,13 @@ export class ApiService {
   }
 
   /**
+   * remove project
+   */
+  removeProject(id:number):Observable<Project>{
+    return this.httpClient.delete<Project>(`${environment.API_BASE_URL}admin/list-of-projects/${id}`);
+  }
+
+  /**
    *
    * @param projectId
    */

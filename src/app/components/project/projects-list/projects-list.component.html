@@ -7,9 +7,9 @@
         <thead>
         <tr>
           <th scope="col">#</th>
+          <th scope="col">Image</th>
           <th scope="col">Name</th>
           <th scope="col">Description</th>
-          <th scope="col">Category</th>
           <th scope="col">Client</th>
           <th scope="col">Start Date</th>
           <th scope="col">End Date</th>
@@ -23,17 +23,19 @@
         <tbody>
         <tr *ngFor="let project of projects;let i=index">
           <td class="">{{i+1}}</td>
+          <td class="text-center">
+            <img [src]="imageURL+project['image_path']" class="rounded-circle" width="50" height="50" alt="Project Image">
+          </td>
           <td class="">{{project.name}}</td>
           <td class="">{{project.description}}</td>
-          <td class="">{{project.category}}</td>
           <td class="">{{project.client}}</td>
           <td class="">{{project.start_date}}</td>
           <td class="">{{project.end_date}}</td>
           <td class="">{{project.total_duration}}</td>
           <td class="text-center"><span class="badge badge-success">upcoming</span></td>
-          <td class="text-center" *appAccessControl="[permissionType.VIEW_PROJECTS,'nav']"><button class="btn btn-success" (click)="projectDetails(project.id)"><i class="fas fa-eye"></i> </button></td>
+          <td class="text-center" *appAccessControl="[permissionType.VIEW_PROJECTS,'nav']"><button disabled class="btn btn-success" (click)="projectDetails(project.id)"><i class="fas fa-eye"></i> </button></td>
           <td class="text-center" *appAccessControl="[permissionType.EDIT_PROJECTS,'nav']"><button class="btn btn-primary"><i class="fas fa-user-edit"></i></button> </td>
-          <td class="text-center" *appAccessControl="[permissionType.DELETE_PROJECTS,'nav']"> <button class="btn btn-danger"><i class="fas fa-trash"></i></button></td>
+          <td class="text-center" *appAccessControl="[permissionType.DELETE_PROJECTS,'nav']"> <button class="btn btn-danger" (click)="remove(project.id)"><i class="fas fa-trash"></i></button></td>
         </tr>
         </tbody>
       </table>
