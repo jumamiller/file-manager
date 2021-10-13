@@ -10,6 +10,7 @@ import { OfficialCategoryPipe} from "../core/pipes/official-category.pipe";
 import {OfficialOfficePipe} from "../core/pipes/official-office.pipe";
 import {MinistryPipe} from "../core/pipes/ministry.pipe";
 import {AccessControlDirective} from "../core/directives/access-control.directive";
+import {NgxSpinnerModule} from "ngx-spinner";
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import {AccessControlDirective} from "../core/directives/access-control.directiv
     OfficialOfficePipe,
     MinistryPipe,
     AccessControlDirective,
+    NgxSpinnerModule,
 
   ],
     imports: [
@@ -39,6 +41,7 @@ import {AccessControlDirective} from "../core/directives/access-control.directiv
         MaterialModule,
         NgxPaginationModule,
         CommonModule,
+      NgxSpinnerModule
     ],
 })
 export class SharedModule { }

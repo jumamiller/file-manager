@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,7 +22,7 @@ import {NgxPaginationModule} from "ngx-pagination";
 import { SliceWordsPipe } from './core/pipes/slice-words.pipe';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import {UnauthorisedComponent} from "./unauthorised/unauthorised.component";
-
+import { NgxSpinnerModule } from "ngx-spinner";
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,12 +46,14 @@ import {UnauthorisedComponent} from "./unauthorised/unauthorised.component";
         MaterialModule,
         NgbModule,
         BrowserAnimationsModule,
+        NgxSpinnerModule,
         ToastrModule.forRoot(),
         SweetAlert2Module.forRoot(),
     ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
     exports: [
         SliceWordsPipe
 

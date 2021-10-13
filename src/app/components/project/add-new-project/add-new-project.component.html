@@ -18,13 +18,18 @@
         </div>
 
         <div class="col-md-4">
+          <label for="category">Category</label>
+          <input type="text" id="category" formControlName="category" class="form-control" placeholder="Transportation"required="">
+        </div>
+
+        <div class="col-md-4">
           <label for="description">Description</label>
           <input type="text" id="description" formControlName="description" class="form-control" placeholder=""required="">
         </div>
 
         <div class="col-md-4">
           <label for="budget">Budget</label>
-          <input type="text" id="budget" formControlName="budget" class="form-control" placeholder=""required="">
+          <input type="number" id="budget" formControlName="budget" class="form-control" placeholder=""required="">
         </div>
 
         <div class="col-md-4">
@@ -96,11 +101,21 @@
           <input type="file" id="project_image" multiple (change)="handleFileInput($event)" class="form-control-file" placeholder=""required="">
         </div>
 
+        <div class="col-md-4">
+          <label for="other_project_images">Upload Other Images</label>
+          <input type="file" id="other_project_images" multiple (change)="handleMultipleFileInput($event)" class="form-control-file" placeholder=""required="">
+        </div>
+
       </div>
       <div class="submission m-4 text-right" *appAccessControl="[permissionType.CREATE_PROJECTS,'nav']">
         <button *ngIf="!submitting" [disabled]="projectForm.invalid" class="btn btn-danger">Add New Project</button>
         <button *ngIf="submitting" class="btn btn-success">Processing New Project...</button>
       </div>
     </form>
+    <ngx-spinner
+      bdColor="rgba(0, 0, 0, 1)"
+      template="<img src='https://media.giphy.com/media/o8igknyuKs6aY/giphy.gif' />"
+    >
+    </ngx-spinner>
   </div>
 </div>

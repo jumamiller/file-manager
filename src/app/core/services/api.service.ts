@@ -40,6 +40,13 @@ export class ApiService {
   }
 
   /**
+   * upload project images
+   */
+  uploadProjectImages(other_project_images:any){
+    return this.httpClient.post<any>(`${environment.API_BASE_URL}admin/upload-project-images`, {other_project_images});
+  }
+
+  /**
    * list all projects
    */
   listOfProjects():Observable<Project[]>{
