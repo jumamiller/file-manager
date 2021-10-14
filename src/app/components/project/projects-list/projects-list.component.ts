@@ -52,12 +52,12 @@ export class ProjectsListComponent implements OnInit {
   {
     this.confirmationAlert.sweetAlert(
       'Are you sure?',
-      'Deleting an official is an irreversible process and will deny the affected official an access to Kogas',
+      'Deleting an project is an irreversible process.',
       '',
       '',
       'question',
       true,
-      'Yes, Delete Official!',
+      'Yes, Delete Project!',
       'No, Cancel',
       '',
       this.apiService.removeProject(projectId)

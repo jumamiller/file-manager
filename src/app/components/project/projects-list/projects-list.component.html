@@ -32,7 +32,11 @@
           <td class="">{{project.start_date}}</td>
           <td class="">{{project.end_date}}</td>
           <td class="">{{project.total_duration}}</td>
-          <td class="text-center"><span class="badge badge-success">upcoming</span></td>
+          <td class="text-center">
+            <span *ngIf="project.status=='completed'" class="badge badge-success">{{project.status}}</span>
+            <span *ngIf="project.status=='in progress'" class="badge badge-danger">{{project.status}}</span>
+            <span *ngIf="project.status=='upcoming'" class="badge badge-primary">{{project.status}}</span>
+          </td>
           <td class="text-center" *appAccessControl="[permissionType.VIEW_PROJECTS,'nav']"><button disabled class="btn btn-success" (click)="projectDetails(project.id)"><i class="fas fa-eye"></i> </button></td>
           <td class="text-center" *appAccessControl="[permissionType.EDIT_PROJECTS,'nav']"><button class="btn btn-primary"><i class="fas fa-user-edit"></i></button> </td>
           <td class="text-center" *appAccessControl="[permissionType.DELETE_PROJECTS,'nav']"> <button class="btn btn-danger" (click)="remove(project.id)"><i class="fas fa-trash"></i></button></td>
