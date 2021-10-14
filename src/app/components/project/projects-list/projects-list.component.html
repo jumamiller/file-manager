@@ -9,7 +9,6 @@
           <th scope="col">#</th>
           <th scope="col">Image</th>
           <th scope="col">Name</th>
-          <th scope="col">Description</th>
           <th scope="col">Client</th>
           <th scope="col">Start Date</th>
           <th scope="col">End Date</th>
@@ -27,14 +26,13 @@
             <img [src]="imageURL+project['image_path']" class="rounded-circle" width="50" height="50" alt="Project Image">
           </td>
           <td class="">{{project.name}}</td>
-          <td class="">{{project.description}}</td>
           <td class="">{{project.client}}</td>
           <td class="">{{project.start_date}}</td>
           <td class="">{{project.end_date}}</td>
           <td class="">{{project.total_duration}}</td>
           <td class="text-center">
             <span *ngIf="project.status=='completed'" class="badge badge-success">{{project.status}}</span>
-            <span *ngIf="project.status=='in progress'" class="badge badge-danger">{{project.status}}</span>
+            <span *ngIf="project.status=='in-progress'" class="badge badge-danger">{{project.status}}</span>
             <span *ngIf="project.status=='upcoming'" class="badge badge-primary">{{project.status}}</span>
             <span *ngIf="project.status=='budgeted'" class="badge badge-warning">{{project.status}}</span>
           </td>

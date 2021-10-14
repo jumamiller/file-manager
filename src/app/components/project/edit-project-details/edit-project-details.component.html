@@ -7,80 +7,96 @@
       <img [src]="imageURL+project.image_path" alt="image" height="100" width="100" class="rounded-circle">
     </div>
     <div class="text-center mt-2"><p class="">{{project.name}}</p></div>
-    <form>
-      <div class="form-row">
+    <form [formGroup]="editProjectForm" (ngSubmit)="onSubmit()">
+      <div class="form-row m-3">
         <div class="col-md-4">
-          <label>Name</label>
-          <input type="text" class="form-control" [value]="project.name">
+          <label for="name">Name</label>
+          <input type="text" id="name" [placeholder]="project.name" formControlName="name" class="form-control" placeholder="Agriculture"required="">
         </div>
 
         <div class="col-md-4">
-          <label>Category</label>
-          <input type="text" class="form-control" [value]="project.category">
-        </div>
-
-        <div class="col-md-4" *ngIf="project.ministry">
-          <label>Ministry</label>
-          <input type="text" class="form-control" [value]="project.ministry.name">
-        </div>
-        <div class="col-md-4" *ngIf="project.bureau">
-          <label>Bureau</label>
-          <input type="text" class="form-control" [value]="project.bureau.name">
+          <label for="name">Project Type</label>
+          <select class="form-control" formControlName="type" required="">
+            <option disabled>{{project['type']}}</option>
+            <option value="regular">Regular</option>
+            <option value="spotlight">Spotlight</option>
+          </select>
         </div>
 
         <div class="col-md-4">
-          <label>Status</label>
-          <input type="text" class="form-control" [value]="project.status">
+          <label for="category">Category</label>
+          <input type="text" id="category"[placeholder]="project.category" formControlName="category" class="form-control" placeholder="Transportation"required="">
         </div>
 
         <div class="col-md-4">
-          <label>Client</label>
-          <input type="text" class="form-control" [value]="project.client">
+          <label for="budget">Budget</label>
+          <input type="number" [placeholder]="project['budget']" id="budget" formControlName="budget" class="form-control" placeholder=""required="">
         </div>
 
         <div class="col-md-4">
-          <label>Contractor</label>
-          <input type="text" class="form-control" [value]="project.contractor">
+          <label for="status">Project Status</label>
+          <select formControlName="status" id="status" class="custom-select">
+            <option disabled>{{project.status}}</option>
+            <option value="budgeted">Budgeted</option>
+            <option value="upcoming">Upcoming</option>
+            <option value="in-progress">In Progress</option>
+            <option value="completed">Completed</option>
+          </select>
         </div>
 
         <div class="col-md-4">
-          <label>Contractor Contacts</label>
-          <input type="text" class="form-control" [value]="project.contractor_contacts">
+          <label for="client">Client</label>
+          <input type="text" id="client"[placeholder]="project.client" formControlName="client" class="form-control" placeholder=""required="">
         </div>
 
         <div class="col-md-4">
-          <label>Facilitator</label>
-          <input type="text" class="form-control" [value]="project.facilitator_name">
+          <label for="contractor">Contractor</label>
+          <input type="text" [placeholder]="project.contractor" id="contractor" formControlName="contractor" class="form-control" placeholder=""required="">
         </div>
 
         <div class="col-md-4">
-          <label>Facilitator Contacts</label>
-          <input type="text" class="form-control" [value]="project.facilitator_contacts">
+          <label for="contractor-contacts"> Contractor Contacts</label>
+          <input type="text" [placeholder]="project.contractor_contacts" id="contractor-contacts" formControlName="contractor_contacts" class="form-control" placeholder=""required="">
         </div>
 
         <div class="col-md-4">
-          <label>Start Date</label>
-          <input type="text" class="form-control" [value]="project.start_date">
+          <label for="facilitator">Facilitator</label>
+          <input type="text" [placeholder]="project.facilitator_name" id="facilitator" formControlName="facilitator_name" class="form-control" placeholder=""required="">
         </div>
 
         <div class="col-md-4">
-          <label>End Date</label>
-          <input type="text" class="form-control" [value]="project.end_date">
+          <label for="facilitator-contacts">Facilitator Contacts</label>
+          <input type="text" [placeholder]="project.facilitator_contacts" id="facilitator-contacts" formControlName="facilitator_contacts" class="form-control" placeholder=""required="">
         </div>
 
         <div class="col-md-4">
-          <label>Duration</label>
-          <input type="text" class="form-control" [value]="project.total_duration">
+          <label for="start-date">Expected Start Date</label>
+          <input type=date id="start-date"[title]="project.start_date | date:'full'" formControlName="start_date" class="form-control" placeholder=""required="">
         </div>
 
         <div class="col-md-4">
-          <label>Added On:</label>
-          <input type="text" class="form-control" [value]="project['created_at']| date">
+          <label for="end-date">Expected End Date</label>
+          <input type="date"[title]="project.end_date|date:'full'" id="end-date" formControlName="end_date" class="form-control" placeholder=""required="">
+        </div>
+
+        <div class="col-md-4">
+          <label for="total-duration">Total Duration</label>
+          <input type="text" [placeholder]="project.total_duration" id="total-duration" formControlName="total_duration" class="form-control" placeholder=""required="">
+        </div>
+
+        <div class="col-md-6">
+          <label for="other_project_images">Upload Other Images</label>
+          <input type="file" id="other_project_images" (change)="handleMultipleFileInput($event)" class="form-control-file" placeholder="upload one at a time"required="">
         </div>
         <div class="col-md-12">
-          <label>Description</label>
-          <textarea  class="form-control text-lowercase" cols="7" rows="7" [value]="project.description"></textarea>
+          <label for="description">Description</label>
+          <textarea class="form-control" [placeholder]="project.description" id="description"formControlName="description" rows="7" cols="7"></textarea>
         </div>
+
+      </div>
+      <div class="submission m-4 text-right" *appAccessControl="[permissionType.CREATE_PROJECTS,'nav']">
+        <button *ngIf="!submitting" class="btn btn-danger">Edit Project</button>
+        <button *ngIf="submitting" class="btn btn-success">Processing Project...</button>
       </div>
     </form>
     <hr/>

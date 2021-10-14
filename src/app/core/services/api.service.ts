@@ -40,6 +40,12 @@ export class ApiService {
   }
 
   /**
+   * update project
+   */
+  updateProject(project:Project,id):Observable<Project>{
+    return this.httpClient.patch<Project>(`${environment.API_BASE_URL}admin/list-of-projects/${id}`,project);
+  }
+  /**
    * upload project images
    */
   uploadProjectImages(other_project_images:any){
