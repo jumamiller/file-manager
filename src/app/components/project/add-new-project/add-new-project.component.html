@@ -1,5 +1,5 @@
 <div class="content mat-elevation-z8" *appAccessControl="[permissionType.CREATE_PROJECTS,'page']">
-  <h2 class="text-center text-dark">Add New Project</h2>
+  <h2 class="text-center text-dark">Add New Kogi State Project</h2>
   <div class="add-new-user">
     <form [formGroup]="projectForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
       <div class="form-row m-3">
@@ -23,11 +23,6 @@
         </div>
 
         <div class="col-md-4">
-          <label for="description">Description</label>
-          <input type="text" id="description" formControlName="description" class="form-control" placeholder=""required="">
-        </div>
-
-        <div class="col-md-4">
           <label for="budget">Budget</label>
           <input type="number" id="budget" formControlName="budget" class="form-control" placeholder=""required="">
         </div>
@@ -35,6 +30,7 @@
         <div class="col-md-4">
           <label for="ministry">Ministry</label>
           <select id="ministry" (change)="onMinistryChange($event.target)" class="form-control">
+            <option disabled>Select Project Ministry</option>
             <option [value]="ministry.id" *ngFor="let ministry of ministries">{{ministry.name}}</option>
           </select>
         </div>
@@ -42,6 +38,7 @@
         <div class="col-md-4">
           <label for="bureau">Bureaus</label>
           <select id="bureau" (change)="onBureauChange($event.target)" class="form-control">
+            <option disabled>Select Project Bureau</option>
             <option [value]="bureau.id" *ngFor="let bureau of bureaus">{{bureau.name}}</option>
           </select>
         </div>
@@ -96,14 +93,18 @@
           <input type="text" id="total-duration" formControlName="total_duration" class="form-control" placeholder=""required="">
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-6">
           <label for="project_image">Banner Images</label>
           <input type="file" id="project_image" multiple (change)="handleFileInput($event)" class="form-control-file" placeholder=""required="">
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-6">
           <label for="other_project_images">Upload Other Images</label>
           <input type="file" id="other_project_images" multiple (change)="handleMultipleFileInput($event)" class="form-control-file" placeholder=""required="">
+        </div>
+        <div class="col-md-12">
+          <label for="description">Description</label>
+          <textarea class="form-control" id="description"formControlName="description" rows="7" cols="7"></textarea>
         </div>
 
       </div>
