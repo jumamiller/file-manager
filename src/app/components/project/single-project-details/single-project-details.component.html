@@ -3,7 +3,10 @@
     <div class="spinner-border" role="status" aria-hidden="true"></div>
   </div>
   <div class="m-5" *ngIf="project">
-    <div class="text-center mt-2"><p class="">{{project.name}} Details</p></div>
+    <div class="text-center">
+      <img [src]="imageURL+project.image_path" alt="image" height="100" width="100" class="rounded-circle">
+    </div>
+    <div class="text-center mt-2"><p class="">{{project.name}}</p></div>
     <form>
       <div class="form-row">
         <div class="col-md-4">
@@ -81,6 +84,7 @@
       </div>
     </form>
     <hr/>
+    <p class="text-center font-weight-bolder">Project Images</p>
     <div class="row justify-content-around">
       <div class="col-md-3 project-cards" *ngFor="let project of project.project_images">
         <div class="card m-auto border-0">
@@ -88,6 +92,7 @@
         </div>
       </div>
     </div>
+    <hr/>
   </div>
 </div>
 

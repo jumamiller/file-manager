@@ -119,7 +119,7 @@ export class AddNewProjectComponent implements OnInit {
       facilitator_contacts: this.form.facilitator_contacts.value,
       facilitator_name: this.form.facilitator_name.value,
       project_image: this.cardImageBase64,
-      status: 'upcoming',
+      status: this.form.status.value,
       category: this.form.category.value,
       name: this.form.name.value,
       start_date: this.form.start_date.value,

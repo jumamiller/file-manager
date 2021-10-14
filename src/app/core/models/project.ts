@@ -10,7 +10,7 @@ export interface Project {
   name:string,
   description:string,
   category:string,
-  project_image:string,
+  image_path:string,
   client:string,
   ministry:Ministry;
   bureau:Bureau;
