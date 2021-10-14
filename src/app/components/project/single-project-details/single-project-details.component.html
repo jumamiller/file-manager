@@ -2,9 +2,9 @@
   <div *ngIf="loading" class="d-flex justify-content-center my-1">
     <div class="spinner-border" role="status" aria-hidden="true"></div>
   </div>
-  <div class="m-5">
+  <div class="m-5" *ngIf="project">
     <div class="text-center mt-2"><p class="">{{project.name}} Details</p></div>
-    <form *ngIf="project">
+    <form>
       <div class="form-row">
         <div class="col-md-4">
           <label>Name</label>
@@ -16,14 +16,13 @@
           <input type="text" class="form-control" [value]="project.category">
         </div>
 
-        <div class="col-md-4">
-          <label>Description</label>
-          <textarea  class="form-control text-lowercase" [value]="project.description"></textarea>
-        </div>
-
-        <div class="col-md-4">
+        <div class="col-md-4" *ngIf="project.ministry">
           <label>Ministry</label>
-          <input type="text" class="form-control" [value]="project.ministry">
+          <input type="text" class="form-control" [value]="project.ministry.name">
+        </div>
+        <div class="col-md-4" *ngIf="project.bureau">
+          <label>Bureau</label>
+          <input type="text" class="form-control" [value]="project.bureau.name">
         </div>
 
         <div class="col-md-4">
@@ -75,8 +74,20 @@
           <label>Added On:</label>
           <input type="text" class="form-control" [value]="project['created_at']| date">
         </div>
-
+        <div class="col-md-12">
+          <label>Description</label>
+          <textarea  class="form-control text-lowercase" cols="7" rows="7" [value]="project.description"></textarea>
+        </div>
       </div>
     </form>
+    <hr/>
+    <div class="row justify-content-around">
+      <div class="col-md-3 project-cards" *ngFor="let project of project.project_images">
+        <div class="card m-auto border-0">
+          <img class="card-img-top" [src]="imageURL+project.file_path" height="150" width="200" alt="Ministry image">
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+
