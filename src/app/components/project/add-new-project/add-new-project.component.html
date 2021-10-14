@@ -95,12 +95,12 @@
 
         <div class="col-md-6">
           <label for="project_image">Banner Images</label>
-          <input type="file" id="project_image" multiple (change)="handleFileInput($event)" class="form-control-file" placeholder=""required="">
+          <input type="file" id="project_image" (change)="handleFileInput($event)" class="form-control-file" placeholder=""required="">
         </div>
 
         <div class="col-md-6">
           <label for="other_project_images">Upload Other Images</label>
-          <input type="file" id="other_project_images" multiple (change)="handleMultipleFileInput($event)" class="form-control-file" placeholder=""required="">
+          <input type="file" id="other_project_images" (change)="handleMultipleFileInput($event)" class="form-control-file" placeholder="upload one at a time"required="">
         </div>
         <div class="col-md-12">
           <label for="description">Description</label>

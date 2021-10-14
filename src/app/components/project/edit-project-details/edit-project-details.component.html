@@ -1,0 +1,98 @@
+<div class="mat-elevation-z8 content" *appAccessControl="[permissionType.VIEW_PROJECTS,'page']">
+  <div *ngIf="loading" class="d-flex justify-content-center my-1">
+    <div class="spinner-border" role="status" aria-hidden="true"></div>
+  </div>
+  <div class="m-5" *ngIf="project">
+    <div class="text-center">
+      <img [src]="imageURL+project.image_path" alt="image" height="100" width="100" class="rounded-circle">
+    </div>
+    <div class="text-center mt-2"><p class="">{{project.name}}</p></div>
+    <form>
+      <div class="form-row">
+        <div class="col-md-4">
+          <label>Name</label>
+          <input type="text" class="form-control" [value]="project.name">
+        </div>
+
+        <div class="col-md-4">
+          <label>Category</label>
+          <input type="text" class="form-control" [value]="project.category">
+        </div>
+
+        <div class="col-md-4" *ngIf="project.ministry">
+          <label>Ministry</label>
+          <input type="text" class="form-control" [value]="project.ministry.name">
+        </div>
+        <div class="col-md-4" *ngIf="project.bureau">
+          <label>Bureau</label>
+          <input type="text" class="form-control" [value]="project.bureau.name">
+        </div>
+
+        <div class="col-md-4">
+          <label>Status</label>
+          <input type="text" class="form-control" [value]="project.status">
+        </div>
+
+        <div class="col-md-4">
+          <label>Client</label>
+          <input type="text" class="form-control" [value]="project.client">
+        </div>
+
+        <div class="col-md-4">
+          <label>Contractor</label>
+          <input type="text" class="form-control" [value]="project.contractor">
+        </div>
+
+        <div class="col-md-4">
+          <label>Contractor Contacts</label>
+          <input type="text" class="form-control" [value]="project.contractor_contacts">
+        </div>
+
+        <div class="col-md-4">
+          <label>Facilitator</label>
+          <input type="text" class="form-control" [value]="project.facilitator_name">
+        </div>
+
+        <div class="col-md-4">
+          <label>Facilitator Contacts</label>
+          <input type="text" class="form-control" [value]="project.facilitator_contacts">
+        </div>
+
+        <div class="col-md-4">
+          <label>Start Date</label>
+          <input type="text" class="form-control" [value]="project.start_date">
+        </div>
+
+        <div class="col-md-4">
+          <label>End Date</label>
+          <input type="text" class="form-control" [value]="project.end_date">
+        </div>
+
+        <div class="col-md-4">
+          <label>Duration</label>
+          <input type="text" class="form-control" [value]="project.total_duration">
+        </div>
+
+        <div class="col-md-4">
+          <label>Added On:</label>
+          <input type="text" class="form-control" [value]="project['created_at']| date">
+        </div>
+        <div class="col-md-12">
+          <label>Description</label>
+          <textarea  class="form-control text-lowercase" cols="7" rows="7" [value]="project.description"></textarea>
+        </div>
+      </div>
+    </form>
+    <hr/>
+    <p class="text-center font-weight-bolder">Project Images</p>
+    <div class="row justify-content-around">
+      <div class="col-md-3 project-cards" *ngFor="let project of project.project_images">
+        <div class="card m-auto border-0">
+          <img class="card-img-top" [src]="imageURL+project.file_path" height="150" width="200" alt="Ministry image">
+        </div>
+      </div>
+    </div>
+    <hr/>
+  </div>
+</div>
+

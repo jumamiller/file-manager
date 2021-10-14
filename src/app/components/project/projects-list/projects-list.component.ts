@@ -45,6 +45,13 @@ export class ProjectsListComponent implements OnInit {
     this.router.navigate(['admin/projects/kogi-projects-list/details/'],{queryParams: {project_id: `${projectId}`}});
   }
   /**
+   * redirect ot single project id
+   * @param projectId
+   */
+  redirectToEdit(projectId: any) {
+    this.router.navigate(['admin/projects/kogi-projects-list/edit-details/'],{queryParams: {project_id: `${projectId}`}});
+  }
+  /**
    * remove official
    * @param projectId
    */
