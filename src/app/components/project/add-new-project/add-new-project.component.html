@@ -30,7 +30,7 @@
         <div class="col-md-4">
           <label for="ministry">Ministry</label>
           <select id="ministry" (change)="onMinistryChange($event.target)" class="form-control">
-            <option disabled>Select Project Ministry</option>
+            <option>Select Project Ministry</option>
             <option [value]="ministry.id" *ngFor="let ministry of ministries">{{ministry.name}}</option>
           </select>
         </div>
@@ -38,7 +38,7 @@
         <div class="col-md-4">
           <label for="bureau">Bureaus</label>
           <select id="bureau" (change)="onBureauChange($event.target)" class="form-control">
-            <option disabled>Select Project Bureau</option>
+            <option>Select Project Bureau</option>
             <option [value]="bureau.id" *ngFor="let bureau of bureaus">{{bureau.name}}</option>
           </select>
         </div>
