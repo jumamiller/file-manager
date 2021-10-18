@@ -13,6 +13,13 @@ mat-sidenav {
   border-radius: 10px;
   padding: 16px;
   text-align: center;
+  font-family: Poppins,sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 175.6%;
+  /* or 28px */
+  color: rgba(255, 255, 255, 0.4);
 }
 
 mat-sidenav-container {

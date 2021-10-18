@@ -43,19 +43,21 @@
         </tbody>
       </table>
     </div>
-    <pagination-controls
-      [responsive]="true"
-      previousLabel="Prev"
-      nextLabel="Next"
-      [maxSize]="9"
-      [directionLinks]="true"
-      [autoHide]=true
-      screenReaderPaginationLabel="Pagination"
-      screenReaderPageLabel="page"
-      screenReaderCurrentLabel="You're on page"
-      (pageBoundsCorrection)="pageChanged($event)"
-      (pageChange)="onTableDataChange($event)">
-    </pagination-controls>
+    <div class="pagination-text">
+      <pagination-controls
+        [responsive]="true"
+        previousLabel="Prev"
+        nextLabel="Next"
+        [maxSize]="9"
+        [directionLinks]="true"
+        [autoHide]=true
+        screenReaderPaginationLabel="Pagination"
+        screenReaderPageLabel="page"
+        screenReaderCurrentLabel="You're on page"
+        (pageBoundsCorrection)="pageChanged($event)"
+        (pageChange)="onTableDataChange($event)">
+      </pagination-controls>
+    </div>
 
     <div *ngIf="loading" class="d-flex justify-content-center my-1">
       <div class="spinner-border" role="status" aria-hidden="true"></div>

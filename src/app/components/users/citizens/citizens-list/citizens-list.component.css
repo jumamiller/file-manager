@@ -35,6 +35,9 @@ tbody td{
   /* or 32px */
   color: #000000;
 }
+.pagination-text{
+  font-size: 12px;
+}
 
 @media only screen
   and (min-device-width: 0)
