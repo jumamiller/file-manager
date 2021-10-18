@@ -39,11 +39,11 @@
 .update-account-alert{
   width: auto;
   height: auto;
-  background: #3873E7;
+  background: gray;
   border-radius: 3px;
 }
 .update-account-alert h4{
-  font-family: 'Poppins',sans-serif;
+  font-family: Poppins,sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 16px;
@@ -52,7 +52,7 @@
   color: #000000;
 }
 .update-account-alert p{
-  font-family: 'Poppins',sans-serif;
+  font-family: Poppins,sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
@@ -71,6 +71,9 @@
   text-align: center;
   padding: 5px;
   text-decoration: none;
+}
+.divider{
+  border-right: 1px solid #E5E5E5;
 }
 .links p{
   width: 222px;
@@ -135,6 +138,8 @@
   text-align: center;
   color: rgba(0, 0, 0, 0.6);
 }
+
+
 /*screen responses/*/
 
 /*screen media below 320px*/
