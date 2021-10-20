@@ -16,6 +16,8 @@ export interface Citizen {
   gender?:string;
   state?:string;
   age?:string;
+  vision?:string;
+  philosophy?:string;
   LGA_id?:string;
   sector?:string,
   user_type?:string;

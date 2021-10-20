@@ -1,3 +1,120 @@
-<div class="mat-elevation-z8 content">
+<div class="content mat-elevation-z8" *appAccessControl="[permissions.CREATE_OFFICIAL,'page']">
+  <h2 class="text-center text-dark">Edit Government Official</h2>
+  <div class="add-new-user">
+    <form [formGroup]="officialForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+      <div class="form-row m-3">
+        <div class="col-md-4">
+          <label for="category">Select Category</label>
+          <select class="custom-select" name="category" #category  id="category" (change)="currentCategory($event.target['value'])" formControlName="category_id">
+            <option disabled>Select Official's Category</option>
+            <option [value]="category.id" *ngFor="let category of categories">{{category.category_name}}</option>
+          </select>
+        </div>
 
+        <!-- Begin sub categories/offices -->
+        <div class="col-md-4" *ngIf="selectedCategory">
+          <label for="offices">Select Office</label>
+          <select class="custom-select" name="offices" id="offices" (change)="currentSubCategory($event.target['value'])" formControlName="sub_category_id">
+            <option disabled>Select Official's Office</option>
+            <option [value]="office.id" *ngFor="let office of selectedCategory['sub_categories']">{{office['sub_category_name']}}</option>
+          </select>
+        </div>
+        <!-- END sub categories/offices -->
+
+        <!--BEGIN If the office is commissioner=id=8/PRO=id=10/Permanent secretary =id=12-->
+        <div class="col-md-4" *ngIf="selectedSubCategory==8 ||selectedSubCategory==10 || selectedSubCategory==12">
+          <label for="ministry">Select Ministry</label>
+          <select class="custom-select" name="ministry" id="ministry" formControlName="ministry_id">
+            <option disabled>Select Official's Ministry</option>
+            <option [value]="ministry.id" *ngFor="let ministry of ministries">Ministry Of {{ministry.name}}</option>
+          </select>
+        </div>
+        <!--If the office is commissioner-->
+
+        <!--BEGIN LGAs is Local government councils -->
+        <div class="col-md-4" *ngIf="currentCategoryId==4">
+          <label for="LGA">Select LGA</label>
+          <select class="custom-select" name="ministry" id="LGA" formControlName="LGA">
+            <option disabled>Select Official's LGA</option>
+            <option [value]="LGA.id" *ngFor="let LGA of LGAs">{{LGA.name}}</option>
+          </select>
+        </div>
+        <!--LGAs is Local governments councils-->
+
+        <!--BEGIN sector if commissioner is displayed-->
+        <div class="col-md-4" *ngIf="selectedSubCategory==8">
+          <label for="sector">Select Sector</label>
+          <select class="custom-select" name="ministry" id="sector" formControlName="sector">
+            <option disabled>Select Commissioner's Sector</option>
+            <option value="admin-sector">Admin Sector</option>
+            <option value="economic-sector">Economic Sector</option>
+            <option value="social-sector">Social Sector</option>
+          </select>
+        </div>
+        <!--END sector if commissioner is displayed-->
+
+        <div class="col-md-4">
+          <label for="firstName">First Name</label>
+          <input type="text" id="firstName" formControlName="firstName" class="form-control" placeholder="John"required="">
+        </div>
+
+        <div class="col-md-4">
+          <label for="lastName">Last Name</label>
+          <input type="text" id="lastName" formControlName="lastName" class="form-control" placeholder="Doe"required="">
+        </div>
+
+        <div class="col-md-4">
+          <label for="phone">Phone Number</label>
+          <input type="text" id="phone" formControlName="phone" class="form-control" placeholder=""required="">
+        </div>
+
+        <div class="col-md-4">
+          <label for="email">Email</label>
+          <input type="email" id="email" formControlName="email" class="form-control" placeholder=""required="">
+        </div>
+
+        <div class="col-md-4">
+          <label for="city">Address</label>
+          <input type="text" id="city" formControlName="city" class="form-control" placeholder=""required="">
+        </div>
+
+        <div class="col-md-4">
+          <label for="gender">Gender</label>
+          <select id="gender" formControlName="gender"class="form-control">
+            <option value="">Select official gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Rather Not Say">Rather Not Say</option>
+          </select>
+        </div>
+
+        <div class="col-md-4">
+          <label for="role">Select Role</label>
+          <select id="role" class="custom-select" formControlName="role">
+            <option *ngFor="let role of roles" [value]="role.name">{{role.display_name}}</option>
+          </select>
+        </div>
+
+
+        <div class="col-md-4">
+          <label>Upload Avatar</label>
+          <input disabled type="file" class="form-control-file" (change)="handleFileInput($event)">
+        </div>
+
+        <div class="col-md-6">
+          <label>Vision</label>
+          <textarea class="form-control" formControlName="vision" cols="7" rows="7"></textarea>
+        </div>
+        <div class="col-md-6">
+          <label>Philosophy</label>
+          <textarea class="form-control" formControlName="philosophy" cols="7" rows="7"></textarea>
+        </div>
+
+      </div>
+      <div class="submission m-4 text-right">
+        <button *ngIf="!submitting" type="submit" class="btn btn-danger">Save Official</button>
+        <button *ngIf="submitting" type="submit" class="btn btn-success">Updating official...</button>
+      </div>
+    </form>
+  </div>
 </div>

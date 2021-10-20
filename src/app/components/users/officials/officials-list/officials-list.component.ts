@@ -165,4 +165,12 @@ export class OfficialsListComponent implements OnInit {
     this.page = event;
     this.officialsList();
   }
+
+  /**
+   * redirect to single page edit page
+   * @param id
+   */
+  redirectToEditUser(id:number){
+    this.router.navigate(['/admin/manage-users/officials-lists/edit-official-details'],{queryParams:{id}})
+  }
 }

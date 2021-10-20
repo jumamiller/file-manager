@@ -62,4 +62,11 @@ export class AuthService {
   register(citizen:Citizen):Observable<User>{
     return this.httpClient.post<User>(`${environment.API_BASE_URL}create-account`,citizen);
   }
+
+  /**
+   * update user details
+   */
+  updateUserProfile(user:Citizen,id:any):Observable<User>{
+    return this.httpClient.patch<User>(`${environment.API_BASE_URL}admin/user/update/${id}`,user);
+  }
 }
