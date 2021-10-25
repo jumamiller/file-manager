@@ -49,11 +49,13 @@ export class EditOfficialComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCurrentUser();
-    this.officialsFormControl();
     this.getAllRoles();
     this.getCategories();
     this.getMinistries();
     this.getLocalGovernments();
+    setTimeout(()=>{
+      this.officialsFormControl();
+    },3000)
   }
   /**
    * current user
@@ -87,7 +89,7 @@ export class EditOfficialComponent implements OnInit {
       ministry_id:[''],
       password:[''],
       vision:[''],
-      philosophy:[''],
+      philosophy:[this.user.philosophy],
       profile:[''],
     })
   }

@@ -101,18 +101,18 @@
           <input disabled type="file" class="form-control-file" (change)="handleFileInput($event)">
         </div>
 
-        <div class="col-md-6"*ngIf="user">
+        <div class="col-md-6" *ngIf="user">
           <label>Vision</label>
-          <textarea [placeholder]="user.vision" class="form-control" formControlName="vision" cols="7" rows="7"></textarea>
+          <textarea class="form-control" formControlName="vision" cols="7" rows="7">{{user.vision}}</textarea>
         </div>
-        <div class="col-md-6"*ngIf="user">
+        <div class="col-md-6" *ngIf="user">
           <label>Philosophy</label>
-          <textarea class="form-control" [placeholder]="user.philosophy" formControlName="philosophy" cols="7" rows="7"></textarea>
+          <textarea class="form-control" name="philosophy" id="philosophy" formControlName="philosophy" cols="7" rows="7">{{user.philosophy}}</textarea>
         </div>
 
         <div class="col-md-12" *ngIf="user">
           <label>Brief Profile</label>
-          <textarea class="form-control" [placeholder]="user.profile" formControlName="profile" cols="10" rows="10"></textarea>
+          <textarea class="form-control" [value]="user.profile" formControlName="profile" cols="10" rows="10"></textarea>
         </div>
 
       </div>
