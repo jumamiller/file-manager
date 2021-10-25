@@ -113,7 +113,6 @@ export class AddNewsComponent implements OnInit {
           } else {
             this.cardImageBase64 = e.target.result;
             this.isImageSaved = true;
-            // this.previewImagePath = imgBase64Path;
           }
         };
       };

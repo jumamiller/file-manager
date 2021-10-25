@@ -11,6 +11,7 @@ import {ToastrService} from "ngx-toastr";
 import {Citizen} from "../../../../core/models/citizen";
 import * as _ from 'lodash';
 import {ActivatedRoute} from "@angular/router";
+import {UserService} from "../../../../core/services/user.service";
 @Component({
   selector: 'app-edit-official',
   templateUrl: './edit-official.component.html',
@@ -36,20 +37,35 @@ export class EditOfficialComponent implements OnInit {
   isImageSaved: boolean;
   cardImageBase64: string;
 
+  user:Citizen;
   constructor(
     private authService:AuthService,
     private formBuilder:FormBuilder,
     private activatedRoute:ActivatedRoute,
     private apiService:ApiService,
+    private userService:UserService,
     private toastrService: ToastrService
   ) { }
 
   ngOnInit(): void {
+    this.getCurrentUser();
     this.officialsFormControl();
     this.getAllRoles();
     this.getCategories();
     this.getMinistries();
     this.getLocalGovernments();
+  }
+  /**
+   * current user
+   */
+  getCurrentUser(){
+    let id=this.activatedRoute.snapshot.queryParamMap.get('id');
+    this.userService.showSingleUserDetails(id)
+      .subscribe((res)=>{
+        this.user=res.data;
+      },error => {
+        this.toastrService.error(error.error.message,'Error');
+      })
   }
 
   /**
@@ -71,7 +87,8 @@ export class EditOfficialComponent implements OnInit {
       ministry_id:[''],
       password:[''],
       vision:[''],
-      philosophy:['']
+      philosophy:[''],
+      profile:[''],
     })
   }
 
@@ -140,7 +157,8 @@ export class EditOfficialComponent implements OnInit {
       ministry_id:this.form.ministry_id.value,
       vision:this.form.vision.value,
       philosophy:this.form.philosophy.value,
-    }
+      profile:this.form.profile.value,
+    };
     this.authService.updateUserProfile(official,id)
       .subscribe((res)=>{
         if(res.success)

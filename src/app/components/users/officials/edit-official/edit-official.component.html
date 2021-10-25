@@ -53,29 +53,29 @@
         </div>
         <!--END sector if commissioner is displayed-->
 
-        <div class="col-md-4">
+        <div class="col-md-4"*ngIf="user">
           <label for="firstName">First Name</label>
-          <input type="text" id="firstName" formControlName="firstName" class="form-control" placeholder="John"required="">
+          <input type="text" [placeholder]="user.first_name" id="firstName" formControlName="firstName" class="form-control" required="">
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-4"*ngIf="user">
           <label for="lastName">Last Name</label>
-          <input type="text" id="lastName" formControlName="lastName" class="form-control" placeholder="Doe"required="">
+          <input type="text" id="lastName" formControlName="lastName" class="form-control" [placeholder]="user.last_name"required="">
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-4"*ngIf="user">
           <label for="phone">Phone Number</label>
-          <input type="text" id="phone" formControlName="phone" class="form-control" placeholder=""required="">
+          <input type="text" id="phone" formControlName="phone" class="form-control" [placeholder]="user.phone"required="">
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-4"*ngIf="user">
           <label for="email">Email</label>
-          <input type="email" id="email" formControlName="email" class="form-control" placeholder=""required="">
+          <input type="email" id="email" formControlName="email" class="form-control" [placeholder]="user.email"required="">
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-4"*ngIf="user">
           <label for="city">Address</label>
-          <input type="text" id="city" formControlName="city" class="form-control" placeholder=""required="">
+          <input type="text" id="city" formControlName="city" class="form-control" [placeholder]="user.city"required="">
         </div>
 
         <div class="col-md-4">
@@ -101,19 +101,24 @@
           <input disabled type="file" class="form-control-file" (change)="handleFileInput($event)">
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-6"*ngIf="user">
           <label>Vision</label>
-          <textarea class="form-control" formControlName="vision" cols="7" rows="7"></textarea>
+          <textarea [placeholder]="user.vision" class="form-control" formControlName="vision" cols="7" rows="7"></textarea>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6"*ngIf="user">
           <label>Philosophy</label>
-          <textarea class="form-control" formControlName="philosophy" cols="7" rows="7"></textarea>
+          <textarea class="form-control" [placeholder]="user.philosophy" formControlName="philosophy" cols="7" rows="7"></textarea>
+        </div>
+
+        <div class="col-md-12" *ngIf="user">
+          <label>Brief Profile</label>
+          <textarea class="form-control" [placeholder]="user.profile" formControlName="profile" cols="10" rows="10"></textarea>
         </div>
 
       </div>
       <div class="submission m-4 text-right">
-        <button *ngIf="!submitting" type="submit" class="btn btn-danger">Save Official</button>
-        <button *ngIf="submitting" type="submit" class="btn btn-success">Updating official...</button>
+        <button *ngIf="!submitting" type="submit" class="btn btn-danger mb-4">Save Official</button>
+        <button *ngIf="submitting" type="submit" class="btn btn-success mb-4">Updating official...</button>
       </div>
     </form>
   </div>

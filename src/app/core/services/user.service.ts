@@ -30,7 +30,7 @@ export class UserService {
   /**
    * get details of a single user
    */
-  showSingleUserDetails(id:number):Observable<User>{
+  showSingleUserDetails(id:any):Observable<User>{
     return this.httpClient.get<User>(`${environment.API_BASE_URL}admin/user/details/${id}`);
   }
 
