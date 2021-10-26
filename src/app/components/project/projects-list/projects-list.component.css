@@ -1,5 +1,5 @@
 .content {
-  height: calc(100vh - 98px);
+  height: auto;
   border-radius: 10px;
   margin: 16px 32px;
   font-size: 2rem;
@@ -35,6 +35,7 @@ tbody td{
   /* or 32px */
   color: #000000;
 }
-.create-citizen-button{
-
+.pagination-text{
+  font-size: 14px;
+  font-family: Poppins, sans-serif;
 }

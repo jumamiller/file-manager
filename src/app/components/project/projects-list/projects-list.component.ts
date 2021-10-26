@@ -13,6 +13,10 @@ import {ConfirmationAlertService} from "../../../core/helpers/confirmation-alert
 })
 export class ProjectsListComponent implements OnInit {
 
+  page = 1;
+  count = 0;
+  tableSize = 8;
+
   permissionType=PermissionType;
   projects: Project[]=[];
   loading=true;
@@ -70,4 +74,10 @@ export class ProjectsListComponent implements OnInit {
       this.apiService.removeProject(projectId)
     );
   }
+  onTableDataChange(event)
+  {
+    this.page = event;
+    this.listOfProjects();
+  }
+
 }

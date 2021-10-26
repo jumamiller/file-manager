@@ -20,7 +20,11 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let project of projects;let i=index">
+        <tr *ngFor="let project of projects|paginate :{
+                  itemsPerPage: tableSize,
+                  currentPage: page,
+                  totalItems: count
+                  };let i=index">
           <td class="">{{i+1}}</td>
           <td class="text-center">
             <img [src]="imageURL+project['image_path']" class="rounded-circle" width="50" height="50" alt="Project Image">
@@ -42,6 +46,20 @@
         </tr>
         </tbody>
       </table>
+      <div class="d-flex justify-content-left p-2 mt-2 pagination-text">
+        <pagination-controls
+          [responsive]="true"
+          previousLabel="Prev"
+          nextLabel="Next"
+          [maxSize]="7"
+          [directionLinks]="true"
+          [autoHide]="true"
+          screenReaderPaginationLabel="Pagination"
+          screenReaderPageLabel="page"
+          screenReaderCurrentLabel="You're on page"
+          (pageChange)="onTableDataChange($event)">
+        </pagination-controls>
+      </div>
     </div>
   </div>
   <div *ngIf="loading" class="d-flex justify-content-center my-1">
