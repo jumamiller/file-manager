@@ -53,9 +53,7 @@ export class EditOfficialComponent implements OnInit {
     this.getCategories();
     this.getMinistries();
     this.getLocalGovernments();
-    setTimeout(()=>{
-      this.officialsFormControl();
-    },3000)
+    this.officialsFormControl();
   }
   /**
    * current user
@@ -89,7 +87,7 @@ export class EditOfficialComponent implements OnInit {
       ministry_id:[''],
       password:[''],
       vision:[''],
-      philosophy:[this.user.philosophy],
+      philosophy:[''],
       profile:[''],
     })
   }

@@ -53,29 +53,29 @@
         </div>
         <!--END sector if commissioner is displayed-->
 
-        <div class="col-md-4"*ngIf="user">
+        <div class="col-md-4">
           <label for="firstName">First Name</label>
-          <input type="text" [placeholder]="user.first_name" id="firstName" formControlName="firstName" class="form-control" required="">
+          <input type="text" id="firstName" formControlName="firstName" class="form-control" required="">
         </div>
 
-        <div class="col-md-4"*ngIf="user">
+        <div class="col-md-4">
           <label for="lastName">Last Name</label>
-          <input type="text" id="lastName" formControlName="lastName" class="form-control" [placeholder]="user.last_name"required="">
+          <input type="text" id="lastName" formControlName="lastName" class="form-control">
         </div>
 
-        <div class="col-md-4"*ngIf="user">
+        <div class="col-md-4">
           <label for="phone">Phone Number</label>
-          <input type="text" id="phone" formControlName="phone" class="form-control" [placeholder]="user.phone"required="">
+          <input type="text" id="phone" formControlName="phone" class="form-control">
         </div>
 
-        <div class="col-md-4"*ngIf="user">
+        <div class="col-md-4">
           <label for="email">Email</label>
-          <input type="email" id="email" formControlName="email" class="form-control" [placeholder]="user.email"required="">
+          <input type="email" id="email" formControlName="email" class="form-control">
         </div>
 
-        <div class="col-md-4"*ngIf="user">
+        <div class="col-md-4">
           <label for="city">Address</label>
-          <input type="text" id="city" formControlName="city" class="form-control" [placeholder]="user.city"required="">
+          <input type="text" id="city" formControlName="city" class="form-control" required="">
         </div>
 
         <div class="col-md-4">
@@ -101,18 +101,18 @@
           <input disabled type="file" class="form-control-file" (change)="handleFileInput($event)">
         </div>
 
-        <div class="col-md-6" *ngIf="user">
+        <div class="col-md-6">
           <label>Vision</label>
-          <textarea class="form-control" formControlName="vision" cols="7" rows="7">{{user.vision}}</textarea>
+          <textarea class="form-control" formControlName="vision" cols="7" rows="7"></textarea>
         </div>
-        <div class="col-md-6" *ngIf="user">
+        <div class="col-md-6">
           <label>Philosophy</label>
-          <textarea class="form-control" name="philosophy" id="philosophy" formControlName="philosophy" cols="7" rows="7">{{user.philosophy}}</textarea>
+          <textarea class="form-control" name="philosophy" id="philosophy" formControlName="philosophy" cols="7" rows="7"></textarea>
         </div>
 
-        <div class="col-md-12" *ngIf="user">
+        <div class="col-md-12">
           <label>Brief Profile</label>
-          <textarea class="form-control" [value]="user.profile" formControlName="profile" cols="10" rows="10"></textarea>
+          <textarea class="form-control" formControlName="profile" cols="10" rows="10"></textarea>
         </div>
 
       </div>
