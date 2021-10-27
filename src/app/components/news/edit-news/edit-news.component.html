@@ -1,0 +1,40 @@
+<div class="content mat-elevation-z8">
+  <h2 class="text-center text-dark">Edit News/Events</h2>
+  <div *ngIf="loading" class="d-flex justify-content-center my-1">
+    <div class="spinner-border" role="status" aria-hidden="true"></div>
+  </div>
+  <div class="add-new-user" *ngIf="event">
+    <form [formGroup]="newsForm" (ngSubmit)="onNewsSubmit()">
+      <div class="form-row m-3">
+        <div class="col-md-6">
+          <label for="title">Title</label>
+          <input type="text" id="title" formControlName="title" class="form-control" placeholder="Agriculture"required="">
+        </div>
+        <div class="col-md-6">
+          <label for="target_audience">Target Audience</label>
+          <input type="text" id="target_audience" formControlName="target_audience" class="form-control" placeholder=""required="">
+        </div>
+        <div class="col-md-12">
+          <label for="description">Description</label>
+          <textarea id="description" cols="10" rows="10" formControlName="description" class="form-control" placeholder=""required=""></textarea>
+        </div>
+
+
+        <div class="col-md-6">
+          <label for="news_banner">News Banner</label>
+          <input type="file" id="news_banner" (change)="handleFileInput($event)" class="form-control-file"required="">
+        </div>
+
+        <div class="col-md-12 banner-image">
+          <h3>Banner Image</h3>
+          <img [src]="imageURL+event.image_path" alt="banner">
+        </div>
+
+      </div>
+      <div class="submission m-4 text-right">
+        <button *ngIf="!submitting" class="btn btn-danger mb-3">Save News</button>
+        <button *ngIf="submitting" class="btn btn-success mb-3">Saving News...</button>
+      </div>
+    </form>
+  </div>
+</div>

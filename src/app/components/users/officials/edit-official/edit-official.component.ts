@@ -63,6 +63,8 @@ export class EditOfficialComponent implements OnInit {
     this.userService.showSingleUserDetails(id)
       .subscribe((res)=>{
         this.user=res.data;
+        this.setFormValues();
+        this.loading=false;
       },error => {
         this.toastrService.error(error.error.message,'Error');
       })
@@ -90,6 +92,25 @@ export class EditOfficialComponent implements OnInit {
       philosophy:[''],
       profile:[''],
     })
+  }
+
+  /**
+   * set values for the form
+   */
+  setFormValues(){
+    this.officialForm.patchValue({
+      firstName:this.user.first_name,
+      lastName:this.user.last_name,
+      phone:this.user.phone,
+      email:this.user.email,
+      role:this.user.role,
+      city:this.user.city,
+      gender:this.user.gender,
+      sector:this.user.sector,
+      vision:this.user.vision,
+      philosophy:this.user.philosophy,
+      profile:this.user.profile,
+    });
   }
 
   /**

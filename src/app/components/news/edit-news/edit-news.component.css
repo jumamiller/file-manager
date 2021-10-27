@@ -1,0 +1,37 @@
+.content {
+  height: auto;
+  border-radius: 10px;
+  margin: 16px 32px;
+  font-size: 2rem;
+  color: lightgray;
+}
+label{
+  font-family: 'Poppins',sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 36px;
+  color: #000000;
+}
+input,select{
+  font-family: Poppins,sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 27px;
+}
+.banner-image{
+  text-align: center;
+}
+.banner-image img{
+  height: 400px;
+}
+h3{
+  font-family: Poppins,sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 36px;
+  color: #2D2B96;
+  text-align: center;
+}

@@ -5,6 +5,7 @@ import {News} from "../../../core/models/news";
 import {environment} from "../../../../environments/environment";
 import {ConfirmationAlertService} from "../../../core/helpers/confirmation-alert.service";
 import {PermissionType} from "../../../core/constants/permission-type";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-news-list',
@@ -21,9 +22,10 @@ export class NewsListComponent implements OnInit {
   permissionType=PermissionType;
   loading=true;
   imageURL=environment.ASSETS_URL;
+
   constructor(private apiService:ApiService,
               private confirmationAlert:ConfirmationAlertService,
-              private toastrService:ToastrService) { }
+              private router:Router) { }
 
   ngOnInit(): void {
     this.getNews();
@@ -64,4 +66,11 @@ export class NewsListComponent implements OnInit {
     this.getNews();
   }
 
+  /**
+   * redirect
+   * @param id
+   */
+  redirectToEdit(id: number) {
+    this.router.navigate(['/admin/news/edit-news'],{queryParams:{id}})
+  }
 }

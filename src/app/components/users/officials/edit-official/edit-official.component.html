@@ -1,5 +1,8 @@
 <div class="content mat-elevation-z8" *appAccessControl="[permissions.CREATE_OFFICIAL,'page']">
   <h2 class="text-center text-dark">Edit Government Official</h2>
+  <div *ngIf="loading" class="d-flex justify-content-center my-1">
+    <div class="spinner-border" role="status" aria-hidden="true"></div>
+  </div>
   <div class="add-new-user">
     <form [formGroup]="officialForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
       <div class="form-row m-3">

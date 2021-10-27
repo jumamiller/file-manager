@@ -98,8 +98,8 @@ export class ApiService {
   /**
    * update news details
    */
-  updateNews(data:News, newsId:number):Observable<News>{
-    return this.httpClient.patch<News>(`${environment.API_BASE_URL}admin/get-news/${newsId}`,data);
+  updateNews(news: News, newsId: string):Observable<News>{
+    return this.httpClient.patch<News>(`${environment.API_BASE_URL}admin/get-news/${newsId}`,news);
   }
 
   /**
