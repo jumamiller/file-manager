@@ -5,6 +5,8 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ToastrService} from "ngx-toastr";
 import {Router} from "@angular/router";
 import {PermissionType} from "../../../core/constants/permission-type";
+import {Citizen} from "../../../core/models/citizen";
+import {AuthService} from "../../../core/services/auth.service";
 
 @Component({
   selector: 'app-appointment-list',
@@ -17,11 +19,13 @@ export class AppointmentListComponent implements OnInit {
   appointments:Appointment[];
   submitting=false;
   loading=true;
+  currentUser:Citizen;
   responseForm:FormGroup;
   appointment_id:number;
 
   constructor(
     private apiService:ApiService,
+    private authService:AuthService,
     private fb:FormBuilder,
     private router:Router,
     private toastrService:ToastrService) { }
@@ -29,6 +33,12 @@ export class AppointmentListComponent implements OnInit {
   ngOnInit(): void {
     this.getAllAppointments();
     this.responseFormControl();
+  }
+  /**
+   * current user
+   */
+  getCurrentUser(){
+    this.currentUser=this.authService.currentUserValue.data;
   }
 
   /**
@@ -38,7 +48,6 @@ export class AppointmentListComponent implements OnInit {
     this.apiService.getAllAppointments()
       .subscribe((res)=>{
         this.appointments=res.data;
-        console.log(res.data);
         this.loading=false;
       },error => {
         this.toastrService.error(error.error.message,'Error');

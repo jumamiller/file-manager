@@ -28,8 +28,8 @@
   text-decoration: none;
   color: #FFFFFF;
 }
-.appointment-list {
-  font-family: 'Poppins',sans-serif;
+.appointment-list,.not-found {
+  font-family: Poppins,sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;

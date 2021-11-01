@@ -42,6 +42,9 @@
     <div *ngIf="loading" class="d-flex justify-content-center my-1">
       <div class="spinner-border" role="status" aria-hidden="true"></div>
     </div>
+    <div class="text-center" *ngIf="appointments">
+      <span class="not-found" *ngIf="appointments.length==0">You have no appointments at the moment</span>
+    </div>
   </div>
 </div>
 
