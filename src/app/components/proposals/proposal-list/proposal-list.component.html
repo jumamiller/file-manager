@@ -8,9 +8,8 @@
         <tr>
           <th scope="col">#</th>
           <th scope="col">Date</th>
+          <th scope="col">Attachment</th>
           <th scope="col">Name</th>
-          <th scope="col">Official</th>
-          <th scope="col">Office</th>
           <th scope="col">proposal</th>
           <th scope="col">Response</th>
           <th scope="col" class="text-center">Status</th>
@@ -22,11 +21,15 @@
         <tr *ngFor="let proposal of proposals;let i=index">
           <td class="">{{i+1}}</td>
           <td class="">{{proposal.created_at | date}}</td>
-          <td class="">{{proposal.official}}</td>
-          <td class="">{{proposal.first_name}} {{proposal.last_name}}</td>
-          <td class="">{{proposal.office}}</td>
+          <td class="text-center">
+            <img [src]="imageURL+proposal.attachment_url"alt="attachment" height="50" width="50" class="rounded-circle">
+          </td>
+          <td class="">{{proposal.user.first_name}} {{proposal.user.last_name}}</td>
           <td class="">{{proposal.message}}</td>
-          <td class="">{{proposal.message}}</td>
+          <td class="">
+            <span *ngIf="proposal.response">{{proposal.response}}</span>
+            <span *ngIf="!proposal.response" class="text-danger">You have not responded to this proposal</span>
+          </td>
           <td class="text-center text-success"><span class="">Pending</span></td>
           <td class="text-center">
             <button mat-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
@@ -39,6 +42,9 @@
         </tr>
         </tbody>
       </table>
+    </div>
+    <div class=""*ngIf="proposals">
+      <h4 class="text-center"*ngIf="proposals.length==0">You have no new proposals</h4>
     </div>
     <div *ngIf="loading" class="d-flex justify-content-center my-1">
       <div class="spinner-border" role="status" aria-hidden="true"></div>

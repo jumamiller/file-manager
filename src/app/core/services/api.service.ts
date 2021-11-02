@@ -350,6 +350,12 @@ export class ApiService {
   getListOfSuggestions():Observable<Suggestion[]>{
     return this.httpClient.get<Suggestion[]>(`${environment.API_BASE_URL}citizen/suggestions`);
   }
+  /**
+   * ideas
+   */
+  getListOfMySuggestionsRequest():Observable<Suggestion>{
+    return this.httpClient.get<Suggestion>(`${environment.API_BASE_URL}admin/my-suggestion-requests`);
+  }
 
   /**
    * respond to suggestion
@@ -363,6 +369,12 @@ export class ApiService {
    */
   getProposalsList():Observable<Suggestion[]>{
     return this.httpClient.get<Suggestion[]>(`${environment.API_BASE_URL}citizen/proposals`);
+  }
+  /**
+   * proposals
+   */
+  getMyProposalsList():Observable<Suggestion>{
+    return this.httpClient.get<Suggestion>(`${environment.API_BASE_URL}admin/my-proposal-requests`);
   }
 
   /**

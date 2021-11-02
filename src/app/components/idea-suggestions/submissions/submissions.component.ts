@@ -5,6 +5,7 @@ import {ToastrService} from "ngx-toastr";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {PermissionType} from "../../../core/constants/permission-type";
+import {environment} from "../../../../environments/environment";
 
 @Component({
   selector: 'app-submissions',
@@ -19,6 +20,7 @@ export class SubmissionsComponent implements OnInit {
   loading=true;
   responseForm:FormGroup;
   suggestion_id:number;
+  imageURL=environment.ASSETS_URL;
   constructor(private apiService:ApiService,
               private fb:FormBuilder,
               private toastrService:ToastrService,
@@ -29,10 +31,13 @@ export class SubmissionsComponent implements OnInit {
     this.responseFormControl();
   }
 
+  /**
+   * my suggestion list
+   */
   suggestionsList(){
-    this.apiService.getListOfSuggestions()
+    this.apiService.getListOfMySuggestionsRequest()
       .subscribe((res)=>{
-        this.suggestions=res['data'];
+        this.suggestions=res.data;
         this.loading=false;
       },error => {
         this.toastrService.error(error.error.message,'Error');

@@ -3,6 +3,7 @@ import {Suggestion} from "../../../core/models/suggestion";
 import {ApiService} from "../../../core/services/api.service";
 import {ToastrService} from "ngx-toastr";
 import {PermissionType} from "../../../core/constants/permission-type";
+import {environment} from "../../../../environments/environment";
 
 @Component({
   selector: 'app-proposal-list',
@@ -14,6 +15,7 @@ export class ProposalListComponent implements OnInit {
   proposals:Suggestion[];
   permissionType=PermissionType;
   loading=true;
+  imageURL=environment.ASSETS_URL;
   constructor(private apiService:ApiService, private toastrService:ToastrService) { }
 
   ngOnInit(): void {
@@ -21,9 +23,9 @@ export class ProposalListComponent implements OnInit {
   }
 
   suggestionsList(){
-    this.apiService.getProposalsList()
+    this.apiService.getMyProposalsList()
       .subscribe((res)=>{
-        this.proposals=res['data'];
+        this.proposals=res.data;
         this.loading=false;
       },error => {
         this.toastrService.error(error.error.message,'Error');

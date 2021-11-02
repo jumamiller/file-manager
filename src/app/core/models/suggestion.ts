@@ -1,12 +1,12 @@
+import {Citizen} from "./citizen";
+
 export interface Suggestion {
-  first_name:string;
-  last_name:string;
-  message:string;
   id?:number;
-  city:string;
-  office:string;
+  data?:Suggestion[];
+  user?:Citizen;
   response?:string;
-  official:string;
+  message?:string;
   attachment?:string;
+  attachment_url?:string;
   created_at?:string;
 }

@@ -6,11 +6,10 @@
       <table class="table table-bordered table-hover table-striped">
         <thead class="thead-bg">
         <tr>
-          <th scope="col">S/N</th>
+          <th scope="col">#</th>
           <th scope="col">Date</th>
+          <th scope="col">Attachment</th>
           <th scope="col">Name</th>
-          <th scope="col">Official</th>
-          <th scope="col">Office</th>
           <th scope="col">Suggestion</th>
           <th scope="col">Response</th>
           <th scope="col" class="text-center">Status</th>
@@ -22,11 +21,15 @@
         <tr *ngFor="let suggestion of suggestions;let i=index">
           <td class="">{{i+1}}</td>
           <td class="">{{suggestion.created_at | date}}</td>
-          <td class="">{{suggestion.official}}</td>
-          <td class="">{{suggestion.first_name}} {{suggestion.last_name}}</td>
-          <td class="">{{suggestion.office}}</td>
+          <td class="text-center">
+            <img [src]="imageURL+suggestion.attachment_url"alt="attachment" height="50" width="50" class="rounded-circle">
+          </td>
+          <td class="">{{suggestion.user.first_name}} {{suggestion.user.last_name}}</td>
           <td class="">{{suggestion.message}}</td>
-          <td class="">{{suggestion.response}}</td>
+          <td class="">
+            <span *ngIf="suggestion.response">{{suggestion.response}}</span>
+            <span *ngIf="!suggestion.response" class="text-danger">You have not responded to this suggestion</span>
+          </td>
           <td class="text-center text-success"><span class="">Pending</span></td>
           <td class="text-center">
             <button mat-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
@@ -39,6 +42,9 @@
         </tr>
         </tbody>
       </table>
+    </div>
+    <div class=""*ngIf="suggestions">
+      <h4 class="text-center"*ngIf="suggestions.length==0">You have no new suggestions</h4>
     </div>
     <div *ngIf="loading" class="d-flex justify-content-center my-1">
       <div class="spinner-border" role="status" aria-hidden="true"></div>
