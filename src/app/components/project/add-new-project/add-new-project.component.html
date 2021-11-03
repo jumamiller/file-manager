@@ -11,7 +11,7 @@
         <div class="col-md-4">
           <label for="name">Project Type</label>
           <select class="form-control" formControlName="type" required="">
-            <option disabled>Select Project Type</option>
+            <option>Select Project Type</option>
             <option value="regular">Regular</option>
             <option value="spotlight">Spotlight</option>
           </select>
@@ -95,7 +95,7 @@
 
         <div class="col-md-6">
           <label for="project_image">Banner Images</label>
-          <input type="file" id="project_image" (change)="handleFileInput($event)" class="form-control-file" placeholder=""required="">
+          <input type="file" id="project_image" (change)="handleFileInput($event)" class="form-control-file" placeholder="">
         </div>
 
         <div class="col-md-6">
@@ -108,9 +108,9 @@
         </div>
 
       </div>
-      <div class="submission m-4 text-right" *appAccessControl="[permissionType.CREATE_PROJECTS,'nav']">
-        <button *ngIf="!submitting" [disabled]="projectForm.invalid" class="btn btn-danger">Add New Project</button>
-        <button *ngIf="submitting" class="btn btn-success">Processing New Project...</button>
+      <div class="submission m-4 p-4 text-right" *appAccessControl="[permissionType.CREATE_PROJECTS,'nav']">
+        <button *ngIf="!submitting" [disabled]="projectForm.invalid" class="btn btn-danger p-2">Add New Project</button>
+        <button *ngIf="submitting" class="btn btn-success p-2">Processing.. Please Wait...</button>
       </div>
     </form>
     <ngx-spinner
