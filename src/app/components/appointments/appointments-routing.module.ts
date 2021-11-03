@@ -22,7 +22,7 @@ const routes: Routes = [
         component: AddAppointmentsComponent
       },
       {
-        path: 'my-appointments/details',
+        path: 'my-appointments/details/:id',
         component: SingleAppointmentComponent
       },
       {

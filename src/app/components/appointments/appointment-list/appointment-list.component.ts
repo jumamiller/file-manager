@@ -31,6 +31,7 @@ export class AppointmentListComponent implements OnInit {
     private toastrService:ToastrService) { }
 
   ngOnInit(): void {
+    this.getCurrentUser();
     this.getAllAppointments();
     this.responseFormControl();
   }
@@ -45,8 +46,9 @@ export class AppointmentListComponent implements OnInit {
    * listing all appointments
    */
   getAllAppointments(){
-    this.apiService.getAllAppointments()
+    this.apiService.getAppointmentRequests(this.currentUser.sub_category_id)
       .subscribe((res)=>{
+        // @ts-ignore
         this.appointments=res.data;
         this.loading=false;
       },error => {

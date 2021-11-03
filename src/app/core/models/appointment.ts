@@ -7,7 +7,7 @@ import {Ministry} from "./ministry";
 export interface Appointment {
   success: true,
   message: string;
-  data:any[];
+  data: Appointment;
   id: number;
   user_id: number;
   category_id: number;

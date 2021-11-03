@@ -71,6 +71,7 @@
   font-weight: 500;
   font-size: 20px;
   line-height: 175.6%;
+  white-space: pre-line;
   /* or 35px */
   color: #000000;
 }

@@ -1,63 +1,68 @@
 <div class="content mat-elevation-z8 " *appAccessControl="[permissionType.VIEW_APPOINTMENTS,'page']">
-  <a class="back" [routerLink]="['/appointments/my-appointments']">
+  <div *ngIf="loading" class="d-flex justify-content-center my-1">
+    <div class="spinner-border" role="status" aria-hidden="true"></div>
+  </div>
+  <div *ngIf="appointment">
+    <a class="back" [routerLink]="['/admin/appointments/my-appointments']">
     <span class=""><mat-icon>keyboard_backspace</mat-icon>
     </span>Back to Appointments
-  </a>
+    </a>
 
-  <div class="row justify-content-evenly content-header">
-    <div class="col-md-6 text-left action-buttons">
-      <button class="status">Pending</button>
-    </div>
-    <div class="col-md-6 text-right">
-      <div class="row">
-        <div class="col-md-10"></div>
-        <div class="col-md-1 border-end p-2"><button class="edit-button"><mat-icon> border_color</mat-icon></button></div>
-        <div class="col-md-1 p-2"><button class="clear-button"><mat-icon>clear</mat-icon></button></div>
+    <div class="row justify-content-evenly content-header">
+      <div class="col-md-6 text-left action-buttons">
+        <button class="status">{{appointment.status}}</button>
+      </div>
+      <div class="col-md-6 text-right">
+        <div class="row">
+          <div class="col-md-10"></div>
+          <div class="col-md-1 border-end p-2"><button class="edit-button"><mat-icon> border_color</mat-icon></button></div>
+          <div class="col-md-1 p-2"><button class="clear-button"><mat-icon>clear</mat-icon></button></div>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="divider">
-    <mat-divider></mat-divider>
-  </div>
-
-  <div class="invitee-details">
-    <h4 class="title">Invitee</h4>
     <div class="divider">
       <mat-divider></mat-divider>
     </div>
 
-    <div class="row mt-5">
-      <div class="col-md-6"><p class=""><mat-icon>perm_identity</mat-icon> Dr. Alisu Dansuki</p></div>
-      <div class="col-md-6"><p class=""><mat-icon>email</mat-icon> emailaddress@email.com</p></div>
+    <div class="invitee-details">
+      <h4 class="title">Invitee</h4>
+      <div class="divider">
+        <mat-divider></mat-divider>
+      </div>
+
+      <div class="row mt-5">
+        <div class="col-md-6"><p class=""><mat-icon>perm_identity</mat-icon> {{appointment.user.first_name}} {{appointment.user.last_name}}</p></div>
+        <div class="col-md-6"><p class=""><mat-icon>email</mat-icon> {{appointment.user.email}}</p></div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6"><p class=""><mat-icon>work</mat-icon> {{appointment.user.user_type}}</p></div>
+        <div class="col-md-6"><p class=""><mat-icon> call</mat-icon> {{appointment.user.phone}}</p></div>
+      </div>
+
     </div>
 
-    <div class="row">
-      <div class="col-md-6"><p class=""><mat-icon>work</mat-icon> Chief of Staff</p></div>
-      <div class="col-md-6"><p class=""><mat-icon> call</mat-icon> +234 908 765 4321</p></div>
+    <!--BEGIN appointment details-->
+    <div class="invitee-details">
+      <h4 class="title">Appointment Details</h4>
+      <div class="divider">
+        <mat-divider></mat-divider>
+      </div>
+
+      <div class="row mt-5">
+        <div class="col-md-6"><p class=""><mat-icon>calendar_today</mat-icon> {{appointment.date|date}}</p></div>
+        <div class="col-md-6"><p class=""><mat-icon>query_builder</mat-icon> TBA</p></div>
+      </div>
+
+      <div class="reason-for-appointment mt-3">
+        <p>Reason for Appointment</p>
+        <p class="border">
+          {{appointment.appointment_reason}}
+        </p>
+      </div>
     </div>
 
+    <a class="delete">Delete Appointment</a>
+    <!--END appointment details-->
   </div>
-
-  <!--BEGIN appointment details-->
-  <div class="invitee-details">
-    <h4 class="title">Appointment Details</h4>
-    <div class="divider">
-      <mat-divider></mat-divider>
-    </div>
-
-    <div class="row mt-5">
-      <div class="col-md-6"><p class=""><mat-icon>calendar_today</mat-icon> Jan. 7th, 2020.</p></div>
-      <div class="col-md-6"><p class=""><mat-icon>query_builder</mat-icon> 11:30 AM</p></div>
-    </div>
-
-    <div class="reason-for-appointment mt-3">
-      <p>Reason for Appointment</p>
-      <p class="border">
-        Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est. Sed lectus. Praesent elementum hendrerit tortor.
-      </p>
-    </div>
-  </div>
-
-  <a class="delete">Delete Appointment</a>
-  <!--END appointment details-->
 </div>

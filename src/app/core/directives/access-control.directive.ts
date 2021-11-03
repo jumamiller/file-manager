@@ -44,8 +44,6 @@ export class AccessControlDirective implements OnInit{
       }
       else
       {
-        //clear nav content
-        console.log('cleared');
         this.viewContainer.clear();
       }
     }

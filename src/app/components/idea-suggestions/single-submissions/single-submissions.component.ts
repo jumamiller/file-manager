@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Suggestion} from "../../../core/models/suggestion";
+import {ApiService} from "../../../core/services/api.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-single-submissions',
@@ -7,9 +10,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SingleSubmissionsComponent implements OnInit {
 
-  constructor() { }
+  suggestion:Suggestion;
+  loading=false;
+
+  constructor(
+    private apiService:ApiService,
+    private toastrService:ToastrService
+  ) { }
 
   ngOnInit(): void {
+  }
+  getSuggestionDetails(){
+
   }
 
 }

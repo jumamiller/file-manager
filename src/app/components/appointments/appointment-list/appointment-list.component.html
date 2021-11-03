@@ -28,7 +28,7 @@
           <td class="text-center">
             <button mat-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
             <mat-menu #menu="matMenu">
-              <a [routerLink]="['/appointments/my-appointments/details']" mat-menu-item>View Entry</a>
+              <a [routerLink]="['/admin/appointments/my-appointments/details',appointment.id]" mat-menu-item>View Entry</a>
               <a *appAccessControl="[permissions.RESPOND_TO_APPOINTMENTS,'nav']" [routerLink]="['/appointments/my-appointments/edit']" (click)="onAppointmentClick(appointment.id)" mat-menu-item data-toggle="modal" data-target="#exampleModal">
                Respond
               </a>
