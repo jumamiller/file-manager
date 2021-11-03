@@ -189,6 +189,12 @@ export class ApiService {
   /**
    * get all appointments
    */
+  removeAppointment(id:number):Observable<Appointment>{
+    return this.httpClient.delete<Appointment>(`${environment.API_BASE_URL}admin/appointments/${id}`);
+  }
+  /**
+   * get all appointments
+   */
   getAppointmentRequests(sub_category_id: string):Observable<Appointment>{
     return this.httpClient.get<Appointment>(`${environment.API_BASE_URL}admin/appointments/request/${sub_category_id}`);
   }

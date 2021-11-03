@@ -32,7 +32,7 @@
               <a *appAccessControl="[permissions.RESPOND_TO_APPOINTMENTS,'nav']" [routerLink]="['/appointments/my-appointments/edit']" (click)="onAppointmentClick(appointment.id)" mat-menu-item data-toggle="modal" data-target="#exampleModal">
                Respond
               </a>
-              <a mat-menu-item class="text-danger">Delete Entry</a>
+              <a mat-menu-item class="text-danger" (click)="remove(appointment.id)">Delete Entry</a>
             </mat-menu>
           </td>
         </tr>

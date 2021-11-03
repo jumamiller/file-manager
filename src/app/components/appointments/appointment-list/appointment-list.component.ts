@@ -7,6 +7,7 @@ import {Router} from "@angular/router";
 import {PermissionType} from "../../../core/constants/permission-type";
 import {Citizen} from "../../../core/models/citizen";
 import {AuthService} from "../../../core/services/auth.service";
+import {ConfirmationAlertService} from "../../../core/helpers/confirmation-alert.service";
 
 @Component({
   selector: 'app-appointment-list',
@@ -28,6 +29,7 @@ export class AppointmentListComponent implements OnInit {
     private authService:AuthService,
     private fb:FormBuilder,
     private router:Router,
+    private confirmationAlert:ConfirmationAlertService,
     private toastrService:ToastrService) { }
 
   ngOnInit(): void {
@@ -94,10 +96,33 @@ export class AppointmentListComponent implements OnInit {
         this.submitting=false;
       })
   }
+
+  /**'
+   *
+   */
   reloadCurrentRoute() {
     let currentUrl = this.router.url;
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
       this.router.navigate([currentUrl]);
     });
+  }
+  /**
+   * remove appointment
+   * @param appointment_id
+   */
+  remove(appointment_id: number)
+  {
+    this.confirmationAlert.sweetAlert(
+      'Are you sure?',
+      'Deleting an appointment is an irreversible process and the sender will cease to see it.',
+      '',
+      '',
+      'question',
+      true,
+      'Yes, Delete Appointment!',
+      'No, Cancel',
+      '',
+      this.apiService.removeAppointment(appointment_id)
+    );
   }
 }
