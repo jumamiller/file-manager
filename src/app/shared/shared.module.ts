@@ -11,6 +11,7 @@ import {OfficialOfficePipe} from "../core/pipes/official-office.pipe";
 import {MinistryPipe} from "../core/pipes/ministry.pipe";
 import {AccessControlDirective} from "../core/directives/access-control.directive";
 import {NgxSpinnerModule} from "ngx-spinner";
+import {DateAgoPipe} from "../core/pipes/date-ago.pipe";
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import {NgxSpinnerModule} from "ngx-spinner";
     OfficialCategoryPipe,
     OfficialOfficePipe,
     MinistryPipe,
+    DateAgoPipe,
     AccessControlDirective,
   ],
   exports: [
@@ -28,6 +30,7 @@ import {NgxSpinnerModule} from "ngx-spinner";
     RouterModule,
     CommonModule,
     OfficialCategoryPipe,
+    DateAgoPipe,
     OfficialOfficePipe,
     MinistryPipe,
     AccessControlDirective,
@@ -41,7 +44,7 @@ import {NgxSpinnerModule} from "ngx-spinner";
         MaterialModule,
         NgxPaginationModule,
         CommonModule,
-      NgxSpinnerModule
+        NgxSpinnerModule
     ],
 })
 export class SharedModule { }

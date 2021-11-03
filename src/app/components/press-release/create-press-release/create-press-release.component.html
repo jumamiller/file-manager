@@ -1,0 +1,35 @@
+<div class="content mat-elevation-z8">
+  <h2 class="text-center text-dark">Add Press Release</h2>
+  <div class="add-new-user">
+    <form [formGroup]="pressForm" (ngSubmit)="onPressSubmit()">
+      <div class="form-row m-3">
+        <div class="col-md-6">
+          <label for="title">Title</label>
+          <input type="text" id="title" formControlName="title" class="form-control" placeholder="Agriculture"required="">
+        </div>
+        <div class="col-md-6">
+          <label>Ministry</label>
+          <select class="form-control" (change)="onMinistryChange($event.target)">
+            <option selected value="Select ministry">Select Press' Ministry</option>
+            <option [value]="ministry.id" *ngFor="let ministry of ministries">Ministry of {{ministry.name}}</option>
+          </select>
+        </div>
+        <div class="col-md-12">
+          <label for="description">Description</label>
+          <textarea id="description" cols="10" rows="10" formControlName="description" class="form-control" placeholder=""required=""></textarea>
+        </div>
+
+
+        <div class="col-md-6">
+          <label for="news_banner">Press Banner</label>
+          <input type="file" id="news_banner" (change)="handleFileInput($event)" class="form-control-file" required="">
+        </div>
+
+      </div>
+      <div class="submission m-4 text-right">
+        <button *ngIf="!submitting" class="btn btn-danger">Create Press Release</button>
+        <button *ngIf="submitting" class="btn btn-success">Processing...Please Wait...</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -16,6 +16,7 @@ import {Suggestion} from "../models/suggestion";
 import {Volunteer} from "../models/volunteer";
 import {Bureau} from "../models/bureau";
 import {B} from "@angular/cdk/keycodes";
+import {PressRelease} from "../models/press-release";
 
 @Injectable({
   providedIn: 'root'
@@ -390,5 +391,42 @@ export class ApiService {
    */
   addNewVolunteerProject(volunteer:Volunteer):Observable<Volunteer>{
     return this.httpClient.post<Volunteer>(`${environment.API_BASE_URL}citizen/volunteer`,volunteer);
+  }
+
+  /**
+   * create a Press releases
+   */
+  createPressRelease(press:PressRelease):Observable<PressRelease>{
+    return this.httpClient.post<PressRelease>(`${environment.API_BASE_URL}admin/press-releases`,press);
+  }
+
+  /**
+   * get all press releases
+   */
+  getAllPressReleases():Observable<PressRelease>{
+    return this.httpClient.get<PressRelease>(`${environment.API_BASE_URL}press-releases`);
+  }
+  /**
+   * get single press release
+   */
+  getSinglePressRelease(id:number):Observable<PressRelease>{
+    return this.httpClient.get<PressRelease>(`${environment.API_BASE_URL}press-releases/${id}`);
+  }
+
+  /**
+   * update press release
+   * @param press
+   * @param press_id
+   */
+  updatePressRelease(press:PressRelease,press_id:number):Observable<PressRelease>{
+    return this.httpClient.patch<PressRelease>(`${environment.API_BASE_URL}admin/press-releases/${press_id}`,press);
+  }
+
+  /**
+   * remove press release
+   * @param id
+   */
+  removePressRelease(id:number):Observable<PressRelease>{
+    return this.httpClient.delete<PressRelease>(`${environment.API_BASE_URL}admin/press-releases/${id}`);
   }
 }

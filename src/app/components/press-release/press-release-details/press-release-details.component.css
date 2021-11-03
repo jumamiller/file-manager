@@ -1,0 +1,43 @@
+.content {
+  height: auto;
+  border-radius: 10px;
+  margin: 16px 32px;
+  font-size: 2rem;
+  color: lightgray;
+}
+h2{
+  font-family: Poppins,sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 39px;
+  text-align: center;
+  color: #010F93;
+}
+h6{
+  font-family: Poppins,sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 39px;
+  text-align: left;
+  color: #010F93;
+  padding: 4px;
+}
+.inner-text{
+  color: #CA0C5C;
+}
+p{
+  font-family: Poppins,sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 150%;
+  color: #333333;
+  white-space: pre-line;
+  padding: 10px;
+}
+.press-image img{
+  width: 100%;
+  height: 400px;
+}

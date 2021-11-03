@@ -1,0 +1,19 @@
+<div class="content mat-elevation-z8">
+  <h2 *ngIf="press">Ministry of {{press.ministry.name}} Press Statement</h2>
+  <div *ngIf="loading" class="d-flex justify-content-center my-1">
+    <div class="spinner-border" role="status" aria-hidden="true"></div>
+  </div>
+  <div class="row press-image" *ngIf="press">
+    <div class="col-md-12 p-4">
+      <img [src]="imageURL+press.attachment"alt="press image">
+    </div>
+  </div>
+  <div class="row" *ngIf="press">
+    <div class="col-md-12">
+      <h6>Posted {{press.created_at | dateAgo}} By: <span class="inner-text">{{press.user.first_name}} {{press.user.last_name}}</span></h6>
+    </div>
+    <div class="col-md-12">
+      <p>{{press.description}}</p>
+    </div>
+  </div>
+</div>

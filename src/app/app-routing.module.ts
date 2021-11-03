@@ -74,6 +74,10 @@ const routes: Routes = [
     loadChildren: () => import('./components/news/news.module').then(mod=>mod.NewsModule),
   },
   {
+    path:'admin/press-release',
+    loadChildren: () => import('./components/press-release/press-release.module').then(mod=>mod.PressReleaseModule),
+  },
+  {
     path:'admin/projects',
     loadChildren: () => import('./components/project/project.module').then(mod=>mod.ProjectModule),
   },

@@ -1,0 +1,62 @@
+<div class="content mat-elevation-z8" *appAccessControl="[permissionType.VIEW_NEWS_AND_EVENTS,'page']">
+  <p *appAccessControl="[permissionType.CREATE_NEWS_AND_EVENTS,'nav']" class="m-1 p-1 text-right"><a class="btn btn-danger" [routerLink]="['/admin/press-release/create']">Create Press Release</a></p>
+  <div class="citizens">
+    <div class="table-responsive">
+      <h4 class="text-center text-dark">State Press Releases</h4>
+      <table class="table table-striped table-hover table-bordered">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Banner</th>
+          <th scope="col">Title</th>
+          <th scope="col">Description</th>
+          <th scope="col">Ministry</th>
+          <th scope="col">Created By</th>
+          <th scope="col" class="text-center" *appAccessControl="[permissionType.VIEW_NEWS_AND_EVENTS,'nav']">View</th>
+          <th scope="col" class="text-center" *appAccessControl="[permissionType.EDIT_NEWS_AND_EVENTS,'nav']">Edit</th>
+          <th scope="col" class="text-center" *appAccessControl="[permissionType.DELETE_NEWS_AND_EVENTS,'nav']">Remove</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let pressRelease of pressReleases|paginate :{
+                  itemsPerPage: tableSize,
+                  currentPage: page,
+                  totalItems: count
+                  };let i=index">
+          <td class="">{{i+1}}</td>
+          <td class="">
+            <img [src]="imageURL+pressRelease.attachment"alt="" width="100" height="50">
+          </td>
+          <td class="">{{pressRelease.title}}</td>
+          <td class="">{{pressRelease.description | slice:0:30}}...</td>
+          <td class="">{{pressRelease.ministry.name}}</td>
+          <td class="">{{pressRelease.user.first_name}} {{pressRelease.user.last_name}}</td>
+          <td class="text-center" *appAccessControl="[permissionType.VIEW_NEWS_AND_EVENTS,'nav']"><button (click)="redirectToDetailsPage(pressRelease.id)" class="btn btn-success"><i class="fas fa-eye"></i> </button></td>
+          <td class="text-center" *appAccessControl="[permissionType.EDIT_NEWS_AND_EVENTS,'nav']"><button (click)="redirectToEdit(pressRelease.id)" class="btn btn-primary"><i class="fas fa-user-edit"></i></button> </td>
+          <td class="text-center" *appAccessControl="[permissionType.DELETE_NEWS_AND_EVENTS,'nav']"> <button (click)="remove(pressRelease.id)" class="btn btn-danger"><i class="fas fa-trash"></i></button></td>
+        </tr>
+        </tbody>
+      </table>
+      <div class="d-flex justify-content-left p-2 mt-2 pagination-text">
+        <pagination-controls
+          [responsive]="true"
+          previousLabel="Prev"
+          nextLabel="Next"
+          [maxSize]="7"
+          [directionLinks]="true"
+          [autoHide]="true"
+          screenReaderPaginationLabel="Pagination"
+          screenReaderPageLabel="page"
+          screenReaderCurrentLabel="You're on page"
+          (pageChange)="onTableDataChange($event)">
+        </pagination-controls>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="pressReleases">
+    <h3 *ngIf="pressReleases.length==0">No press releases found!</h3>
+  </div>
+  <div *ngIf="loading" class="d-flex justify-content-center my-1">
+    <div class="spinner-border" role="status" aria-hidden="true"></div>
+  </div>
+</div>
