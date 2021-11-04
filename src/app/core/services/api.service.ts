@@ -17,6 +17,7 @@ import {Volunteer} from "../models/volunteer";
 import {Bureau} from "../models/bureau";
 import {B} from "@angular/cdk/keycodes";
 import {PressRelease} from "../models/press-release";
+import {Inquiry} from "../models/inquiry";
 
 @Injectable({
   providedIn: 'root'
@@ -387,6 +388,31 @@ export class ApiService {
    */
   respondToSubmission(response:Suggestion,$id):Observable<any>{
     return this.httpClient.patch<Suggestion[]>(`${environment.API_BASE_URL}admin/submissions/${$id}`,response);
+  }
+
+  /**
+   * list of inquiries beloging to current officials
+   */
+  getListInquiryRequest():Observable<Inquiry>{
+    return this.httpClient.get<Inquiry>(`${environment.API_BASE_URL}admin/inquiries`);
+  }
+  /**
+   * single inquiry to this official
+   */
+  getSingleInquiryRequest(id):Observable<Inquiry>{
+    return this.httpClient.get<Inquiry>(`${environment.API_BASE_URL}admin/inquiries/${id}`);
+  }
+  /**
+   * delete single inquiry
+   */
+  removeInquiryRequest(id):Observable<Inquiry>{
+    return this.httpClient.delete<Inquiry>(`${environment.API_BASE_URL}admin/inquiries/${id}`);
+  }
+  /**
+   * delete single inquiry
+   */
+  updateInquiryRequest(inquiry:Inquiry,id):Observable<Inquiry>{
+    return this.httpClient.patch<Inquiry>(`${environment.API_BASE_URL}admin/inquiries/${id}`,inquiry);
   }
 
 

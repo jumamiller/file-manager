@@ -16,7 +16,7 @@ const routes: Routes = [
         component: MyQueriesComponent,
       },
       {
-        path:'my-query-lists/details',
+        path:'my-query-lists/:id',
         component: SingleQueryComponent,
       }
     ]

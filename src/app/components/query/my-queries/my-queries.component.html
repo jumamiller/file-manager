@@ -1,73 +1,90 @@
-<div class="content mat-elevation-z8" *appAccessControl="[permissionType.VIEW_QUERIES,'page']">
-  <div class="appointment-heading">
-    <h5 class="text-center title">Query/Complaints</h5>
-  </div>
+<div class="content mat-elevation-z8" *appAccessControl="[permissions.VIEW_IDEAS,'page']">
+  <h5 class="text-center title">Inquiries</h5>
 
   <div class="appointment-table">
     <div class="table-responsive">
       <table class="table table-bordered table-hover table-striped">
         <thead class="thead-bg">
         <tr>
-          <th scope="col">S/N</th>
-          <th scope="col">Date Created</th>
-          <th scope="col">Description</th>
-          <th scope="col">Submitted To</th>
+          <th scope="col">#</th>
+          <th scope="col">Date</th>
+          <th scope="col">Attachment</th>
+          <th scope="col">Name</th>
+          <th scope="col">Suggestion</th>
+          <th scope="col">Response</th>
           <th scope="col" class="text-center">Status</th>
-          <th scope="col" class="text-center"  *appAccessControl="[permissionType.RESPOND_TO_QUERIES,'nav']">Actions</th>
+          <th scope="col" class="text-center">Actions</th>
         </tr>
         </thead>
         <tbody>
-
-        <tr>
-          <td class="">1</td>
-          <td class="">Jan. 7th, 2020.</td>
-          <td class="">Lorem ipsum dolor sit amet, consectetuer elit...</td>
-          <td class="">Dr. Jimoh Alisu</td>
-          <td class="text-center text-success"><span class="">Pending</span></td>
+        <tr *ngFor="let inquiry of inquiries;let i=index">
+          <td class="">{{i+1}}</td>
+          <td class="">{{inquiry.created_at | date}}</td>
+          <td class="text-center">
+            <img [src]="imageURL+inquiry.attachment_url"alt="attachment" height="50" width="50" class="rounded-circle">
+          </td>
+          <td class="">{{inquiry.user.first_name}} {{inquiry.user.last_name}}</td>
+          <td class="">{{inquiry.description|slice:0:20}}...</td>
+          <td class="">
+            <span *ngIf="inquiry.response">{{inquiry.response|slice:0:20}}...</span>
+            <span *ngIf="!inquiry.response" class="text-danger">You have not responded to this inquiry</span>
+          </td>
+          <td class="text-center"><span class="text-capitalize badge badge-danger">{{inquiry.status}}</span></td>
           <td class="text-center">
             <button mat-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
             <mat-menu #menu="matMenu">
-              <a [routerLink]="['/complaints/my-query-lists/details']" mat-menu-item>View Entry</a>
-              <a [routerLink]="['/complaints/my-query-lists/details']" mat-menu-item>Leave Comment</a>
-              <a mat-menu-item class="text-danger">Delete Entry</a>
+              <a [routerLink]="['/admin/complaints/my-query-lists',inquiry.id]" mat-menu-item>View Entry</a>
+              <a *appAccessControl="[permissions.RESPOND_TO_QUERIES,'nav']"
+                 mat-menu-item (click)="onInquiryClick(inquiry.id)" data-toggle="modal" data-target="#exampleModal">Respond
+              </a>
+              <a mat-menu-item class="text-danger" (click)="remove(inquiry.id)">Delete Entry</a>
             </mat-menu>
           </td>
         </tr>
-
-        <tr>
-          <td class="">1</td>
-          <td class="">Jan. 7th, 2020.</td>
-          <td class="">Lorem ipsum dolor sit amet, consectetuer elit...</td>
-          <td class="">Dr. Jimoh Alisu</td>
-          <td class="text-center text-danger"><span class="">Rejected</span></td>
-          <td class="text-center">
-            <button mat-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
-            <mat-menu #menu="matMenu">
-              <a [routerLink]="['/complaints/my-query-lists/details']" mat-menu-item>View Entry</a>
-              <a [routerLink]="['/complaints/my-query-lists/details']" mat-menu-item>Leave Comment</a>
-              <a mat-menu-item class="text-danger">Delete Entry</a>
-            </mat-menu>
-          </td>
-        </tr>
-
-        <tr>
-          <td class="">2</td>
-          <td class="">Jan. 7th, 2020.</td>
-          <td class="">Lorem ipsum dolor sit amet, consectetuer elit...</td>
-          <td class="">Dr. Jimoh Alisu</td>
-          <td class="text-center text-primary"><span class="">Accepted</span></td>
-          <td class="text-center">
-            <button mat-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
-            <mat-menu #menu="matMenu">
-              <a [routerLink]="['/complaints/my-query-lists/details']" mat-menu-item>View Entry</a>
-              <a [routerLink]="['/complaints/my-query-lists/details']" mat-menu-item>Leave Comment</a>
-              <a mat-menu-item class="text-danger">Delete Entry</a>
-            </mat-menu>
-          </td>
-        </tr>
-
         </tbody>
       </table>
+    </div>
+    <div class=""*ngIf="inquiries">
+      <h4 class="text-center"*ngIf="inquiries.length==0">You have no new inquiries</h4>
+    </div>
+    <div *ngIf="loading" class="d-flex justify-content-center my-1">
+      <div class="spinner-border" role="status" aria-hidden="true"></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div *appAccessControl="[permissions.RESPOND_TO_QUERIES,'page']" class="modal fade" data-backdrop="false" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">Respond to Proposal</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="responseForm" (ngSubmit)="onOfficialResponse()">
+          <div class="form-group">
+            <label>Status</label>
+            <select formControlName="status" class="form-control">
+              <option value="under-review">Under Review</option>
+              <option value="rejected">Rejected</option>
+              <option value="approved">Approved</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="response">Response</label>
+            <textarea class="form-control" cols="7" rows="7" id="response" formControlName="response"></textarea>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button *ngIf="!submitting" [disabled]="responseForm.invalid" type="submit" class="btn btn-danger">Send Response</button>
+            <button *ngIf="submitting" type="button" class="btn btn-success">Sending Response...</button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </div>
