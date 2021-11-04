@@ -5,8 +5,10 @@ export interface Suggestion {
   data?:Suggestion[];
   user?:Citizen;
   response?:string;
+  status?:string;
   message?:string;
   attachment?:string;
   attachment_url?:string;
   created_at?:string;
+  updated_at?:string;
 }

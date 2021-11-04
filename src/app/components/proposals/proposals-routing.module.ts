@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import {SidebarComponent} from "../../shared/layouts/sidebar/sidebar.component";
 import {ProposalListComponent} from "./proposal-list/proposal-list.component";
 import {AuthGuard} from "../../core/guards/auth.guard";
+import {SingleProposalComponent} from "./single-proposal/single-proposal.component";
 
 const routes: Routes = [
   {
@@ -10,7 +11,8 @@ const routes: Routes = [
     component:SidebarComponent,
     canActivate:[AuthGuard],
     children: [
-      {path:'citizens-proposals',component:ProposalListComponent}
+      {path:'my-proposal-requests',component:ProposalListComponent},
+      {path:'my-proposal-requests/:id',component:SingleProposalComponent}
     ],
   }
 ];

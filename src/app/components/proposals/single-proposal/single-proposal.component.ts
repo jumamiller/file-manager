@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import {Suggestion} from "../../../core/models/suggestion";
+import {environment} from "../../../../environments/environment";
 import {ApiService} from "../../../core/services/api.service";
 import {ToastrService} from "ngx-toastr";
 import {ConfirmationAlertService} from "../../../core/helpers/confirmation-alert.service";
 import {ActivatedRoute} from "@angular/router";
-import {environment} from "../../../../environments/environment";
 
 @Component({
-  selector: 'app-single-submissions',
-  templateUrl: './single-submissions.component.html',
-  styleUrls: ['./single-submissions.component.css']
+  selector: 'app-single-proposal',
+  templateUrl: './single-proposal.component.html',
+  styleUrls: ['./single-proposal.component.css']
 })
-export class SingleSubmissionsComponent implements OnInit {
+export class SingleProposalComponent implements OnInit {
 
   suggestion:Suggestion;
   loading=true;
@@ -51,7 +51,7 @@ export class SingleSubmissionsComponent implements OnInit {
   {
     this.confirmationAlert.sweetAlert(
       'Are you sure?',
-      'Deleting a suggestion is an irreversible process and the sender will cease to see it.',
+      'Deleting a proposal is an irreversible process and the sender will cease to see it.',
       '',
       '',
       'question',

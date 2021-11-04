@@ -16,7 +16,7 @@ const routes: Routes = [
         component: SubmissionsComponent
       },
       {
-        path:'submissions/details',
+        path:'submissions/details/:id',
         component: SingleSubmissionsComponent
       }
     ]

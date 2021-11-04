@@ -25,18 +25,18 @@
             <img [src]="imageURL+suggestion.attachment_url"alt="attachment" height="50" width="50" class="rounded-circle">
           </td>
           <td class="">{{suggestion.user.first_name}} {{suggestion.user.last_name}}</td>
-          <td class="">{{suggestion.message}}</td>
+          <td class="">{{suggestion.message|slice:0:20}}...</td>
           <td class="">
-            <span *ngIf="suggestion.response">{{suggestion.response}}</span>
+            <span *ngIf="suggestion.response">{{suggestion.response|slice:0:20}}...</span>
             <span *ngIf="!suggestion.response" class="text-danger">You have not responded to this suggestion</span>
           </td>
-          <td class="text-center text-success"><span class="">Pending</span></td>
+          <td class="text-center"><span class="text-capitalize badge badge-danger">{{suggestion.status}}</span></td>
           <td class="text-center">
             <button mat-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
             <mat-menu #menu="matMenu">
-              <a [routerLink]="['/admin/suggestions/submissions/details']" mat-menu-item>View Entry</a>
+              <a [routerLink]="['/admin/suggestions/submissions/details',suggestion.id]" mat-menu-item>View Entry</a>
               <a *appAccessControl="[permissions.RESPOND_TO_QUERIES,'nav']" [routerLink]="['/admin/suggestions/my-submissions/details']" mat-menu-item (click)="onSuggestionClick(suggestion.id)"data-toggle="modal" data-target="#exampleModal">Respond</a>
-              <a mat-menu-item class="text-danger">Delete Entry</a>
+              <a mat-menu-item class="text-danger" (click)="remove(suggestion.id)">Delete Entry</a>
             </mat-menu>
           </td>
         </tr>
@@ -55,16 +55,24 @@
 
 <!-- Modal -->
 <div *appAccessControl="[permissions.RESPOND_TO_QUERIES,'page']" class="modal fade" data-backdrop="false" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h6 class="modal-title" id="exampleModalLabel">Respond to Suggestion</h6>
+        <h3 class="modal-title" id="exampleModalLabel">Respond to Suggestion</h3>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form [formGroup]="responseForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="responseForm" (ngSubmit)="onOfficialResponse()">
+          <div class="form-group">
+            <label>Status</label>
+            <select formControlName="status" class="form-control">
+              <option value="under-review">Under Review</option>
+              <option value="rejected">Rejected</option>
+              <option value="approved">Approved</option>
+            </select>
+          </div>
           <div class="form-group">
             <label for="response">Response</label>
             <textarea class="form-control" cols="7" rows="7" id="response" formControlName="response"></textarea>

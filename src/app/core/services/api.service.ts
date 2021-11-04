@@ -357,39 +357,39 @@ export class ApiService {
   removeLocalGovernments(LGA_id:number):Observable<LocalGovernment>{
     return this.httpClient.delete<LocalGovernment>(`${environment.API_BASE_URL}admin/lga/${LGA_id}`);
   }
-
-  /**
-   * ideas
-   */
-  getListOfSuggestions():Observable<Suggestion[]>{
-    return this.httpClient.get<Suggestion[]>(`${environment.API_BASE_URL}citizen/suggestions`);
-  }
   /**
    * ideas
    */
   getListOfMySuggestionsRequest():Observable<Suggestion>{
     return this.httpClient.get<Suggestion>(`${environment.API_BASE_URL}admin/my-suggestion-requests`);
   }
-
-  /**
-   * respond to suggestion
-   */
-  respondToSuggestions(response:any):Observable<any>{
-    return this.httpClient.patch<Suggestion[]>(`${environment.API_BASE_URL}admin/suggestion`,response);
-  }
-
   /**
    * proposals
    */
-  getProposalsList():Observable<Suggestion[]>{
-    return this.httpClient.get<Suggestion[]>(`${environment.API_BASE_URL}citizen/proposals`);
-  }
-  /**
-   * proposals
-   */
-  getMyProposalsList():Observable<Suggestion>{
+  getListOfMyProposalsRequest():Observable<Suggestion>{
     return this.httpClient.get<Suggestion>(`${environment.API_BASE_URL}admin/my-proposal-requests`);
   }
+  /**
+   * proposals
+   */
+  getSingleSubmissionRequest(id):Observable<Suggestion>{
+    return this.httpClient.get<Suggestion>(`${environment.API_BASE_URL}admin/submissions/${id}`);
+  }
+  /**
+   * remove submission(proposal/suggestions)
+   */
+  removeSubmissionRequest(id):Observable<Suggestion>{
+    return this.httpClient.delete<Suggestion>(`${environment.API_BASE_URL}admin/submissions/${id}`);
+  }
+
+  /**
+   * respond to submission
+   */
+  respondToSubmission(response:Suggestion,$id):Observable<any>{
+    return this.httpClient.patch<Suggestion[]>(`${environment.API_BASE_URL}admin/submissions/${$id}`,response);
+  }
+
+
 
   /**
    * volunteer projects

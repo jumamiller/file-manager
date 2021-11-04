@@ -1,4 +1,4 @@
-<div class="content mat-elevation-z8" *appAccessControl="[permissionType.VIEW_QUERIES,'page']">
+<div class="content mat-elevation-z8" *appAccessControl="[permissions.VIEW_IDEAS,'page']">
   <h5 class="text-center title">Proposals</h5>
 
   <div class="appointment-table">
@@ -10,33 +10,32 @@
           <th scope="col">Date</th>
           <th scope="col">Attachment</th>
           <th scope="col">Name</th>
-          <th scope="col">proposal</th>
+          <th scope="col">Suggestion</th>
           <th scope="col">Response</th>
           <th scope="col" class="text-center">Status</th>
-          <th scope="col" class="text-center" *appAccessControl="[permissionType.RESPOND_TO_IDEAS,'nav']">Actions</th>
+          <th scope="col" class="text-center">Actions</th>
         </tr>
         </thead>
         <tbody>
-
-        <tr *ngFor="let proposal of proposals;let i=index">
+        <tr *ngFor="let suggestion of proposals;let i=index">
           <td class="">{{i+1}}</td>
-          <td class="">{{proposal.created_at | date}}</td>
+          <td class="">{{suggestion.created_at | date}}</td>
           <td class="text-center">
-            <img [src]="imageURL+proposal.attachment_url"alt="attachment" height="50" width="50" class="rounded-circle">
+            <img [src]="imageURL+suggestion.attachment_url"alt="attachment" height="50" width="50" class="rounded-circle">
           </td>
-          <td class="">{{proposal.user.first_name}} {{proposal.user.last_name}}</td>
-          <td class="">{{proposal.message}}</td>
+          <td class="">{{suggestion.user.first_name}} {{suggestion.user.last_name}}</td>
+          <td class="">{{suggestion.message|slice:0:20}}...</td>
           <td class="">
-            <span *ngIf="proposal.response">{{proposal.response}}</span>
-            <span *ngIf="!proposal.response" class="text-danger">You have not responded to this proposal</span>
+            <span *ngIf="suggestion.response">{{suggestion.response|slice:0:20}}...</span>
+            <span *ngIf="!suggestion.response" class="text-danger">You have not responded to this proposal</span>
           </td>
-          <td class="text-center text-success"><span class="">Pending</span></td>
+          <td class="text-center"><span class="text-capitalize badge badge-danger">{{suggestion.status}}</span></td>
           <td class="text-center">
             <button mat-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
             <mat-menu #menu="matMenu">
-              <a [routerLink]="['/admin/proposals/submissions/details']" mat-menu-item>View Entry</a>
-              <a [routerLink]="['/admin/proposals/my-submissions/details']" mat-menu-item>Respond</a>
-              <a mat-menu-item class="text-danger">Delete Entry</a>
+              <a [routerLink]="['/admin/proposals/my-proposal-requests',suggestion.id]" mat-menu-item>View Entry</a>
+              <a *appAccessControl="[permissions.RESPOND_TO_QUERIES,'nav']" [routerLink]="['/admin/suggestions/my-submissions/details']" mat-menu-item (click)="onProposalClick(suggestion.id)"data-toggle="modal" data-target="#exampleModal">Respond</a>
+              <a mat-menu-item class="text-danger" (click)="remove(suggestion.id)">Delete Entry</a>
             </mat-menu>
           </td>
         </tr>
@@ -48,6 +47,42 @@
     </div>
     <div *ngIf="loading" class="d-flex justify-content-center my-1">
       <div class="spinner-border" role="status" aria-hidden="true"></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div *appAccessControl="[permissions.RESPOND_TO_QUERIES,'page']" class="modal fade" data-backdrop="false" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">Respond to Proposal</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="responseForm" (ngSubmit)="onOfficialResponse()">
+          <div class="form-group">
+            <label>Status</label>
+            <select formControlName="status" class="form-control">
+              <option value="under-review">Under Review</option>
+              <option value="rejected">Rejected</option>
+              <option value="approved">Approved</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="response">Response</label>
+            <textarea class="form-control" cols="7" rows="7" id="response" formControlName="response"></textarea>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button *ngIf="!submitting" [disabled]="responseForm.invalid" type="submit" class="btn btn-danger">Send Response</button>
+            <button *ngIf="submitting" type="button" class="btn btn-success">Sending Response...</button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </div>

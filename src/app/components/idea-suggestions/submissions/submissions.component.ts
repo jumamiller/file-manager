@@ -6,6 +6,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {PermissionType} from "../../../core/constants/permission-type";
 import {environment} from "../../../../environments/environment";
+import {ConfirmationAlertService} from "../../../core/helpers/confirmation-alert.service";
 
 @Component({
   selector: 'app-submissions',
@@ -24,6 +25,7 @@ export class SubmissionsComponent implements OnInit {
   constructor(private apiService:ApiService,
               private fb:FormBuilder,
               private toastrService:ToastrService,
+              private confirmationAlert:ConfirmationAlertService,
               private router:Router) { }
 
   ngOnInit(): void {
@@ -48,6 +50,7 @@ export class SubmissionsComponent implements OnInit {
   responseFormControl(){
     this.responseForm=this.fb.group({
       response:['',[Validators.required]],
+      status:[''],
     });
   }
 
@@ -55,13 +58,16 @@ export class SubmissionsComponent implements OnInit {
     return this.responseForm.controls;
   }
 
-  onSubmit() {
+  /**
+   * on submission of response
+   */
+  onOfficialResponse() {
     this.submitting=true;
     let suggestion:any={
       response: this.form.response.value,
-      suggestion_id:this.suggestion_id
+      status: this.form.status.value,
     };
-    this.apiService.respondToSuggestions(suggestion)
+    this.apiService.respondToSubmission(suggestion,this.suggestion_id)
       .subscribe((res)=>{
         this.toastrService.success('You have successfully responded to this suggestion','Success');
         this.submitting=false;
@@ -71,6 +77,10 @@ export class SubmissionsComponent implements OnInit {
         this.submitting=false;
       })
   }
+
+  /**
+   *
+   */
   reloadCurrentRoute() {
     let currentUrl = this.router.url;
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
@@ -80,5 +90,24 @@ export class SubmissionsComponent implements OnInit {
 
   onSuggestionClick(id: any) {
     this.suggestion_id=id;
+  }
+  /**
+   * remove suggestion
+   * @param submission_id
+   */
+  remove(submission_id: number)
+  {
+    this.confirmationAlert.sweetAlert(
+      'Are you sure?',
+      'Deleting a suggestion is an irreversible process and the sender will cease to see it.',
+      '',
+      '',
+      'question',
+      true,
+      'Yes, Delete Suggestion!',
+      'No, Cancel',
+      '',
+      this.apiService.removeSubmissionRequest(submission_id)
+    );
   }
 }
