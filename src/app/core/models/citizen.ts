@@ -19,6 +19,7 @@ export interface Citizen {
   vision?:string;
   philosophy?:string;
   profile?:string;
+  bureau_id?:number;
   LGA_id?:string;
   sector?:string,
   user_type?:string;

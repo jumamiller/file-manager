@@ -10,6 +10,7 @@ import {Ministry} from "../../../../core/models/ministry";
 import {LocalGovernment} from "../../../../core/models/local-government";
 import * as _ from 'lodash';
 import {PermissionType} from "../../../../core/constants/permission-type";
+import {Bureau} from "../../../../core/models/bureau";
 @Component({
   selector: 'app-add-new-official',
   templateUrl: './add-new-official.component.html',
@@ -28,6 +29,7 @@ export class AddNewOfficialComponent implements OnInit {
   currentCategoryId:any;
   selectedSubCategory:any;
   ministries:Ministry[];
+  bureaus:Bureau[];
   LGAs:LocalGovernment[];
 
   //avatar
@@ -47,6 +49,7 @@ export class AddNewOfficialComponent implements OnInit {
     this.getAllRoles();
     this.getCategories();
     this.getMinistries();
+    this.getBureaus();
     this.getLocalGovernments();
   }
 
@@ -67,6 +70,7 @@ export class AddNewOfficialComponent implements OnInit {
       category_id:[''],
       sub_category_id:[''],
       ministry_id:[''],
+      bureau_id:[''],
       password:['',Validators.required],
     })
   }
@@ -80,6 +84,15 @@ export class AddNewOfficialComponent implements OnInit {
         this.ministries=res['data'];
       })
   }
+  /**
+   * get bureaus
+   */
+  getBureaus(){
+    this.apiService.getBureaus()
+      .subscribe((res)=>{
+        this.bureaus=res.data;
+      })
+  }
 
   /**
    * get LGAs
@@ -88,6 +101,26 @@ export class AddNewOfficialComponent implements OnInit {
     this.apiService.getLocalGovernments()
       .subscribe((res)=>{
         this.LGAs=res['data'];
+      })
+  }
+  /**
+   * list roles
+   */
+  getAllRoles(){
+    this.apiService.getAllRoles()
+      .subscribe((res)=>{
+        this.roles=res['data'];
+        this.loading=false;
+      })
+  }
+
+  /**
+   * get categories
+   */
+  getCategories(){
+    this.apiService.getCategories()
+      .subscribe((res)=>{
+        this.categories=res['data'];
       })
   }
 
@@ -111,7 +144,6 @@ export class AddNewOfficialComponent implements OnInit {
    */
   currentSubCategory(sub:any){
     this.selectedSubCategory=sub;
-    console.log(sub);
   }
 
   /**
@@ -135,6 +167,7 @@ export class AddNewOfficialComponent implements OnInit {
       category_id:this.form.category_id.value,
       sub_category_id:this.form.sub_category_id.value,
       ministry_id:this.form.ministry_id.value,
+      bureau_id:this.form.bureau_id.value,
     }
     this.authService.register(official)
       .subscribe((res)=>{
@@ -150,26 +183,6 @@ export class AddNewOfficialComponent implements OnInit {
       },error => {
         this.toastrService.error(error.error.errors,'Error');
         this.submitting=false;
-      })
-  }
-  /**
-   * list roles
-   */
-  getAllRoles(){
-    this.apiService.getAllRoles()
-      .subscribe((res)=>{
-        this.roles=res['data'];
-        this.loading=false;
-      })
-  }
-
-  /**
-   * get categories
-   */
-  getCategories(){
-    this.apiService.getCategories()
-      .subscribe((res)=>{
-        this.categories=res['data'];
       })
   }
   /**

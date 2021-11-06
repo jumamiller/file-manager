@@ -29,7 +29,17 @@
             <option [value]="ministry.id" *ngFor="let ministry of ministries">Ministry Of {{ministry.name}}</option>
           </select>
         </div>
-        <!--If the office is commissioner-->
+        <!--If the category is ministry-->
+
+        <!--BEGIN If the office is Bureaus=id=3-->
+        <div class="col-md-4" *ngIf="currentCategoryId==3">
+          <label for="ministry">Select Bureaus</label>
+          <select class="custom-select" name="ministry" id="bureau" formControlName="bureau_id">
+            <option disabled>Select Official's Bureau</option>
+            <option [value]="bureau.id" *ngFor="let bureau of bureaus">{{bureau.name}}</option>
+          </select>
+        </div>
+        <!--If the category is bureaus-->
 
         <!--BEGIN LGAs is Local government councils -->
         <div class="col-md-4" *ngIf="currentCategoryId==4">

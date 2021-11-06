@@ -1,5 +1,5 @@
 .content {
-  height: calc(100vh - 100px);
+  height: auto;
   border-radius: 10px;
   margin: 16px 32px;
   font-size: 2rem;
@@ -184,9 +184,8 @@
     color: #000000;
   }
   .account-edit-form .file-input{
-    height: 40px;
-    margin: 5px;
-    padding: 5px;
+    height: 100%;
+    width: 100%;
     background: #C4C4C4;
     border-radius: 3px;
   }
