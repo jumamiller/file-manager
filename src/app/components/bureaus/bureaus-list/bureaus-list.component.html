@@ -1,8 +1,16 @@
 <div class="content mat-elevation-z8" *appAccessControl="[permissionType.VIEW_BUREAU,'page']">
-  <p  *appAccessControl="[permissionType.CREATE_BUREAU,'nav']" class="text-right m-1 p-1"><a class="btn btn-danger" [routerLink]="['/admin/bureaus/add-bureau']">Add New Bureau</a></p>
-  <div class="citizens">
+  <div class="row header p-3">
+    <div class="col-md-6">
+      <h4>List of Bureaus</h4>
+    </div>
+    <div class="col-md-6 content-right">
+      <p  *appAccessControl="[permissionType.CREATE_BUREAU,'nav']">
+        <a class="btn" [routerLink]="['/admin/bureaus/add-bureau']"><i class="fas fa-plus-circle"></i> Add New Bureau</a>
+      </p>
+    </div>
+  </div>
+  <div class="citizens p-3">
     <div class="table-responsive">
-      <h4 class="text-center text-dark">Kogi Bureaus</h4>
       <table class="table table-striped table-hover table-bordered">
         <thead>
         <tr>

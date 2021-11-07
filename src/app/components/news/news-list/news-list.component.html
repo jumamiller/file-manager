@@ -1,8 +1,17 @@
 <div class="content mat-elevation-z8" *appAccessControl="[permissionType.VIEW_NEWS_AND_EVENTS,'page']">
-  <p *appAccessControl="[permissionType.CREATE_NEWS_AND_EVENTS,'nav']" class="m-1 p-1 text-right"><a class="btn btn-danger" [routerLink]="['/admin/news/add-news']">Create News/ Events</a></p>
-  <div class="citizens">
+  <div class="row header p-3">
+    <div class="col-md-6">
+      <h4>List of News &amp; Events</h4>
+    </div>
+    <div class="col-md-6 content-right">
+      <p *appAccessControl="[permissionType.CREATE_NEWS_AND_EVENTS,'nav']">
+        <a class="btn" [routerLink]="['/admin/news/add-news']"><i class="fas fa-plus-circle"></i> Add News/Events</a>
+      </p>
+    </div>
+  </div>
+
+  <div class="citizens p-3">
     <div class="table-responsive">
-      <h4 class="text-center text-dark">Kogi News &amp; Events</h4>
       <table class="table table-striped table-hover table-bordered">
         <thead>
         <tr>

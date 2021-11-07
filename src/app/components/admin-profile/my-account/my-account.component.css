@@ -112,7 +112,7 @@
   border-radius: 3px;
 }
 .edit-buttons .complete-account{
-  background: #CA0C5C;
+  background:  #003679;
   font-family: 'Poppins',sans-serif;
   font-style: normal;
   font-weight: bold;
@@ -200,7 +200,7 @@
     font-size: 14px;
     text-align: center;
     border: 0;
-    background: #c70038;
+    background: #003679;;
     color: #FFFFFF;
     padding: 8px;
     width: 100%;

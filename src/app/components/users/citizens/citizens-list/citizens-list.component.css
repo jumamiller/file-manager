@@ -5,6 +5,30 @@
   font-size: 2rem;
   color: lightgray;
 }
+
+.header h4{
+  font-family: Poppins,sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 175.6%;
+  color: #000000;
+}
+.header a{
+  font-family: Poppins,sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 175.6%;
+  color: #FFFFFF;
+  width: 228px;
+  height: 46px;
+  background: #003679;
+  border-radius: 3px;
+}
+.content-right{
+  text-align: right;
+}
  table{
   border: 2px solid #333333;
   box-sizing: border-box;

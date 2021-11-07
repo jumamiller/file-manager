@@ -1,8 +1,15 @@
 <div class="content mat-elevation-z8" *appAccessControl="[permissions.VIEW_OFFICIAL,'page']">
-  <p *appAccessControl="[permissions.CREATE_OFFICIAL,'nav']" class="m-1 p-1 text-right"><a class="btn btn-danger text-right mt-2 ml-5 add-new-action-button" [routerLink]="['/admin/manage-users/add-new-official']">Add New Official</a></p>
-  <div class="citizens">
+  <div class="row header p-3">
+    <div class="col-md-6">
+      <h4>List of Officials</h4>
+    </div>
+    <div class="col-md-6 content-right">
+      <p *appAccessControl="[permissions.CREATE_OFFICIAL,'nav']">
+        <a class="btn add-new-action-button" [routerLink]="['/admin/manage-users/add-new-official']"><i class="fas fa-plus-circle"></i> Add New Official</a></p>
+    </div>
+  </div>
+  <div class="citizens p-3">
     <div class="table-responsive">
-      <h4 class="text-center text-dark">List Of Government Officials</h4>
       <table class="table table-striped table-hover table-bordered">
         <thead>
         <tr>
