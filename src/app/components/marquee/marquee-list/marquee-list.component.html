@@ -1,0 +1,38 @@
+<div class="content mat-elevation-z8">
+  <h5 class="text-center title">Marquees</h5>
+  <div class="table-responsive p-3">
+    <h3 class="text-dark">Current Marquee</h3>
+    <table class="table table-responsive table-bordered table-striped" *ngIf="marquees">
+      <thead>
+      <tr>
+        <th>First Input</th>
+        <th>Second Input</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>{{marquees.first_input}}</td>
+        <td>{{marquees.second_input}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="marquee-form p-3">
+    <form (ngSubmit)="onSubmit()" [formGroup]="marqueeForm">
+      <div class="row">
+        <div class="col-md-6">
+          <label>First Input</label>
+          <textarea cols="7" rows="7" class="form-control" formControlName="first_input"></textarea>
+        </div>
+        <div class="col-md-6">
+          <label>Second Input</label>
+          <textarea cols="7" rows="7" class="form-control" formControlName="second_input"></textarea>
+        </div>
+      </div>
+      <div class="submission">
+        <button *ngIf="!submitting" class="btn" type="submit">Create Marquee</button>
+        <button *ngIf="submitting" class="btn" type="submit">Processing...Please wait...</button>
+      </div>
+    </form>
+  </div>
+</div>

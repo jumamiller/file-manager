@@ -468,4 +468,27 @@ export class ApiService {
   removePressRelease(id:number):Observable<PressRelease>{
     return this.httpClient.delete<PressRelease>(`${environment.API_BASE_URL}admin/press-releases/${id}`);
   }
+
+  /**
+   * get marquee
+   */
+  getMarquees():Observable<any>{
+    return this.httpClient.get<any>(`${environment.API_BASE_URL}marquee`);
+  }
+
+  /**
+   *
+   * @param marquee
+   */
+  createMarquee(marquee:any):Observable<PressRelease>{
+    return this.httpClient.post<PressRelease>(`${environment.API_BASE_URL}marquee`,marquee);
+  }
+
+  /**
+   *
+   * @param id
+   */
+  removeMarquee(id:number):Observable<PressRelease>{
+    return this.httpClient.delete<PressRelease>(`${environment.API_BASE_URL}marquee/${id}`);
+  }
 }

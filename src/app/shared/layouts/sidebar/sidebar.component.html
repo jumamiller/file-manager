@@ -151,6 +151,14 @@
       </button>
     </div>
 
+    <div *appAccessControl="[permissions.VIEW_QUERIES,'nav']">
+      <mat-divider></mat-divider>
+      <button mat-button class="menu-button" [routerLink]="['/admin/marquee/list']" routerLinkActive="active">
+        <mat-icon>work</mat-icon>
+        <span>Marquee</span>
+      </button>
+    </div>
+
     <mat-divider></mat-divider>
     <button mat-button class="menu-button"(click)="signOut()" routerLinkActive="active">
       <mat-icon>logout</mat-icon>

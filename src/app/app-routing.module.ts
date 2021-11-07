@@ -96,6 +96,10 @@ const routes: Routes = [
   {
     path:'admin/official-categories',
     loadChildren: () => import('./components/category/category.module').then(mod=>mod.CategoryModule)
+  },
+  {
+    path:'admin/marquee',
+    loadChildren: () => import('./components/marquee/marquee.module').then(mod=>mod.MarqueeModule)
   }
 ];
 
