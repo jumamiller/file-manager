@@ -9,34 +9,34 @@
     <div class="text-center mt-2"><p class="">{{project.name}}</p></div>
     <form [formGroup]="editProjectForm" (ngSubmit)="onSubmit()">
       <div class="form-row m-3">
-        <div class="col-md-4">
+        <div class="col-md-6">
           <label for="name">Name</label>
-          <input type="text" id="name" [placeholder]="project.name" formControlName="name" class="form-control" placeholder="Agriculture"required="">
+          <input type="text" id="name" formControlName="name" class="form-control" required="">
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-3">
           <label for="name">Project Type</label>
           <select class="form-control" formControlName="type" required="">
-            <option disabled>{{project['type']}}</option>
+            <option selected>{{project.type}}</option>
             <option value="regular">Regular</option>
             <option value="spotlight">Spotlight</option>
           </select>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-3">
           <label for="category">Category</label>
-          <input type="text" id="category"[placeholder]="project.category" formControlName="category" class="form-control" placeholder="Transportation"required="">
+          <input type="text" id="category" formControlName="category" class="form-control"required="">
         </div>
 
         <div class="col-md-4">
           <label for="budget">Budget</label>
-          <input type="number" [placeholder]="project['budget']" id="budget" formControlName="budget" class="form-control" placeholder=""required="">
+          <input type="number" id="budget" formControlName="budget" class="form-control"required="">
         </div>
 
         <div class="col-md-4">
           <label for="status">Project Status</label>
           <select formControlName="status" id="status" class="custom-select">
-            <option disabled>{{project.status}}</option>
+            <option selected>{{project.status}}</option>
             <option value="budgeted">Budgeted</option>
             <option value="upcoming">Upcoming</option>
             <option value="in-progress">In Progress</option>
@@ -46,42 +46,42 @@
 
         <div class="col-md-4">
           <label for="client">Client</label>
-          <input type="text" id="client"[placeholder]="project.client" formControlName="client" class="form-control" placeholder=""required="">
+          <input type="text" id="client" formControlName="client" class="form-control"required="">
         </div>
 
         <div class="col-md-4">
           <label for="contractor">Contractor</label>
-          <input type="text" [placeholder]="project.contractor" id="contractor" formControlName="contractor" class="form-control" placeholder=""required="">
+          <input type="text"id="contractor" formControlName="contractor" class="form-control" required="">
         </div>
 
         <div class="col-md-4">
           <label for="contractor-contacts"> Contractor Contacts</label>
-          <input type="text" [placeholder]="project.contractor_contacts" id="contractor-contacts" formControlName="contractor_contacts" class="form-control" placeholder=""required="">
+          <input type="text"  id="contractor-contacts" formControlName="contractor_contacts" class="form-control" required="">
         </div>
 
         <div class="col-md-4">
           <label for="facilitator">Facilitator</label>
-          <input type="text" [placeholder]="project.facilitator_name" id="facilitator" formControlName="facilitator_name" class="form-control" placeholder=""required="">
+          <input type="text"  id="facilitator" formControlName="facilitator_name" class="form-control" required="">
         </div>
 
         <div class="col-md-4">
           <label for="facilitator-contacts">Facilitator Contacts</label>
-          <input type="text" [placeholder]="project.facilitator_contacts" id="facilitator-contacts" formControlName="facilitator_contacts" class="form-control" placeholder=""required="">
+          <input type="text"id="facilitator-contacts" formControlName="facilitator_contacts" class="form-control" required="">
         </div>
 
         <div class="col-md-4">
           <label for="start-date">Expected Start Date</label>
-          <input type=date id="start-date"[title]="project.start_date | date:'full'" formControlName="start_date" class="form-control" placeholder=""required="">
+          <input type=date id="start-date" [title]="project.start_date | date:'full'" formControlName="start_date" class="form-control" required="">
         </div>
 
         <div class="col-md-4">
           <label for="end-date">Expected End Date</label>
-          <input type="date"[title]="project.end_date|date:'full'" id="end-date" formControlName="end_date" class="form-control" placeholder=""required="">
+          <input type="date" [title]="project.end_date|date:'full'" id="end-date" formControlName="end_date" class="form-control" required="">
         </div>
 
         <div class="col-md-4">
           <label for="total-duration">Total Duration</label>
-          <input type="text" [placeholder]="project.total_duration" id="total-duration" formControlName="total_duration" class="form-control" placeholder=""required="">
+          <input type="text" id="total-duration" formControlName="total_duration" class="form-control" required="">
         </div>
 
         <div class="col-md-6">
@@ -90,7 +90,7 @@
         </div>
         <div class="col-md-12">
           <label for="description">Description</label>
-          <textarea class="form-control" [placeholder]="project.description" id="description" formControlName="description" rows="7" cols="7">{{project.description}}</textarea>
+          <textarea class="form-control" id="description" formControlName="description" rows="7" cols="7">{{project.description}}</textarea>
         </div>
 
       </div>

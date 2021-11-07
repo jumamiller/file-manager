@@ -65,6 +65,28 @@ export class EditProjectDetailsComponent implements OnInit {
   }
 
   /**
+   * fill form
+   */
+  editProjectFieldValues(){
+    this.editProjectForm.patchValue({
+      name: this.project.name,
+      description: this.project.description,
+      client:this.project.client,
+      category:this.project.category,
+      budget:this.project.budget,
+      contractor:this.project.contractor,
+      contractor_contacts:this.project.contractor_contacts,
+      facilitator_name:this.project.facilitator_name,
+      facilitator_contacts:this.project.facilitator_contacts,
+      total_duration:this.project.total_duration,
+      start_date:this.project.start_date,
+      end_date:this.project.end_date,
+      type:this.project.type,
+      status:this.project.status,
+    })
+  }
+
+  /**
    * current project details
    */
   getCurrentProjectDetails(){
@@ -73,8 +95,8 @@ export class EditProjectDetailsComponent implements OnInit {
       .subscribe((res)=>{
         if(res.success){
           this.project=res.data;
+          this.editProjectFieldValues();
           this.toastrService.success(res.message,'Success');
-          console.log()
           this.loading=false;
         }
         else{
@@ -94,7 +116,7 @@ export class EditProjectDetailsComponent implements OnInit {
   onSubmit(){
     let id=this.route.snapshot.queryParamMap.get('project_id')
     this.submitting=true;
-    let project:any={
+    let project:Project={
       client:  this.form.client.value,
       type:  this.form.type.value,
       contractor:  this.form.contractor.value,
@@ -116,7 +138,7 @@ export class EditProjectDetailsComponent implements OnInit {
       .subscribe((res)=>{
         if(res){
           this.submitting=false;
-          this.toastrService.success(res.data.message,'Success');
+          this.toastrService.success(res.message,'Success');
         }
         else{
           this.submitting=false;
@@ -124,7 +146,7 @@ export class EditProjectDetailsComponent implements OnInit {
         }
       },error => {
         this.submitting=false;
-        this.toastrService.error(error.errors.message);
+        this.toastrService.error(error.error.message);
       })
   }
   /**
