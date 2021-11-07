@@ -92,14 +92,6 @@
         </div>
 
         <div class="col-md-4">
-          <label for="role">Select Role</label>
-          <select id="role" class="custom-select" formControlName="role">
-            <option *ngFor="let role of roles" [value]="role.name">{{role.display_name}}</option>
-          </select>
-        </div>
-
-
-        <div class="col-md-4">
           <label>Upload Avatar</label>
           <input type="file" class="form-control-file" (change)="handleFileInput($event)">
         </div>
