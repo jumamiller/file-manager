@@ -24,8 +24,7 @@ export class BureausListComponent implements OnInit {
 
   page = 1;
   count = 0;
-  tableSize = 10;
-  tableSizes = [2, 5, 10, 20, 30, 40];
+  tableSize = 7;
 
   imageError: string;
   isImageSaved: boolean;
@@ -196,6 +195,9 @@ export class BureausListComponent implements OnInit {
     this.getBureaus();
   }
 
+  /**
+   * @param event
+   */
   onTableSizeChange(event): void
   {
     this.tableSize = event.target.value;
