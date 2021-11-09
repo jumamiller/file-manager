@@ -48,7 +48,7 @@ export class AppointmentListComponent implements OnInit {
    * listing all appointments
    */
   getAllAppointments(){
-    this.apiService.getAppointmentRequests(this.currentUser.sub_category_id)
+    this.apiService.getAppointmentRequests(this.currentUser.id)
       .subscribe((res)=>{
         // @ts-ignore
         this.appointments=res.data;

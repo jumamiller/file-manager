@@ -196,8 +196,8 @@ export class ApiService {
   /**
    * get all appointments
    */
-  getAppointmentRequests(sub_category_id: string):Observable<Appointment>{
-    return this.httpClient.get<Appointment>(`${environment.API_BASE_URL}admin/appointments/request/${sub_category_id}`);
+  getAppointmentRequests(official_id: number):Observable<Appointment>{
+    return this.httpClient.get<Appointment>(`${environment.API_BASE_URL}admin/appointments/request/${official_id}`);
   }
 
 
