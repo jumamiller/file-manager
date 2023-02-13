@@ -1,0 +1,183 @@
+<div class="content mat-elevation-z8">
+  <div class="citizens p-3">
+    <div class="ml-3">
+      <div class="row header p-3">
+        <div class="col-md-6">
+          <h4>File Manager</h4>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-striped table-hover table-bordered">
+          <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col" class="text-center">Name</th>
+            <th scope="col" class="text-center">Type</th>
+<!--            <th scope="col" class="text-center">Path</th>-->
+            <th scope="col" class="text-center">Download</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let file of files;let i=index">
+            <td class="">{{i+1}}</td>
+            <td class="">{{file['name']}}</td>
+            <td class="">{{file['type']}}</td>
+<!--            <td class="">{{file['path']}}</td>-->
+            <td class="text-center"> <button class="btn btn-danger" (click)="downloadFile(file['path'])"><i class="fas fa-download"></i></button></td>
+          </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="loading" class="d-flex justify-content-center my-1">
+    <div class="spinner-border" role="status" aria-hidden="true"></div>
+  </div>
+</div>
+
+
+<!-- BEGIN category edit -->
+<div *ngIf="selectedCategory" class="modal fade" data-backdrop="false" id="viewLGA" tabindex="-1" role="dialog" aria-labelledby="editRoleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title" id="viewLGAModalLabel">{{selectedCategory.category_name}}</h1>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="editCategoryForm" (ngSubmit)="onCategoryEdit()">
+          <div class="form-group">
+            <label>Name</label>
+            <input type="text" [placeholder]="selectedCategory.category_name"class="form-control" formControlName="category_name">
+          </div>
+          <div class="form-group">
+            <label>Description</label>
+            <input type="text" [placeholder]="selectedCategory.category_description" class="form-control" formControlName="category_description">
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-success">Update {{selectedCategory.category_name}}</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!--END modal LGA viewer-->
+
+<!-- BEGIN add category details -->
+<div class="modal fade" data-backdrop="false" id="addCategory" tabindex="-1" role="dialog" aria-labelledby="editRoleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title" id="addNewModalLabel">Add New Category</h1>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="addNewCategoryForm" (ngSubmit)="onCategoryCreation()">
+          <div class="form-group">
+            <label>Name</label>
+            <input type="text" class="form-control" formControlName="category_name">
+          </div>
+          <div class="form-group">
+            <label>Description</label>
+            <input type="text"class="form-control" formControlName="category_description">
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            <button *ngIf="!submitting" type="submit" class="btn btn-success">Add Category</button>
+            <button *ngIf="submitting" type="submit" class="btn btn-success">Adding New Category...</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!--END Add new category-->
+
+
+<!-- BEGIN add sub category details -->
+<div *ngIf="selectedCategory" class="modal fade" data-backdrop="false" id="addNewSubCategory" tabindex="-1" role="dialog" aria-labelledby="editRoleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title" id="addNewSubCategoryModalLabel">Add Office For {{selectedCategory.category_name}} </h1>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="addNewCategoryOfficeForm" (ngSubmit)="onCategoryOfficeSubmission()">
+          <div class="form-group">
+            <label>Name</label>
+            <input type="text" class="form-control" formControlName="sub_category_name">
+          </div>
+          <div class="form-group">
+            <label>Description</label>
+            <input type="text" class="form-control" formControlName="sub_category_description">
+          </div>
+
+          <div class="modal-footer">
+            <button *ngIf="!submitting" type="submit" class="btn btn-danger">Add Office</button>
+            <button *ngIf="submitting" type="submit" class="btn btn-success">Adding Office...</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!--END Add new sub category-->
+
+
+<!-- BEGIN view cateorydetails -->
+<div *ngIf="selectedCategory" class="modal fade" data-backdrop="false" id="viewCategoryDetails" tabindex="-1" role="dialog" aria-labelledby="editRoleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title" id="viewCategoryDetailsModalLabel">{{selectedCategory.category_name}} </h1>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label>Name</label>
+            <input type="text" class="form-control"[placeholder]="selectedCategory.category_name">
+          </div>
+          <div class="form-group">
+            <label>Description</label>
+            <input type="text" class="form-control" [placeholder]="selectedCategory.category_description">
+          </div>
+        </form>
+        <h4 class="text-center">Offices</h4>
+        <table class="table table-striped table-active table-bordered table-hover">
+          <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Remove</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let office of selectedCategory.sub_categories;let i=index">
+            <td>{{i+1}}</td>
+            <td>{{office['sub_category_name']}}</td>
+            <td>{{office['sub_category_description']}}</td>
+            <td class="text-center"> <button class="btn btn-danger" (click)="removeSubCategory(office.id)"><i class="fas fa-trash"></i></button></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<!--END Add new sub category-->

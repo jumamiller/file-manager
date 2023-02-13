@@ -1,0 +1,240 @@
+import { Component, OnInit } from '@angular/core';
+import {Category} from "../../../core/models/category";
+import {FormBuilder, FormGroup} from "@angular/forms";
+import {PermissionType} from "../../../core/constants/permission-type";
+import {ApiService} from "../../../core/services/api.service";
+import {ToastrService} from "ngx-toastr";
+import {Router} from "@angular/router";
+import {ConfirmationAlertService} from "../../../core/helpers/confirmation-alert.service";
+
+@Component({
+  selector: 'app-file-manager',
+  templateUrl: './file-manager.component.html',
+  styleUrls: ['./file-manager.component.css']
+})
+export class FileManagerComponent implements OnInit {
+
+  categories:Category[];
+  files:[];
+  editCategoryForm:FormGroup;
+  addNewCategoryForm:FormGroup;
+  addNewCategoryOfficeForm:FormGroup;
+  submitting=false;
+  selectedCategory:Category;
+  loading=true;
+
+  permissionType=PermissionType;
+
+  constructor(
+    private apiService:ApiService,
+    private fb:FormBuilder,
+    private toastrService:ToastrService,
+    private router:Router,
+    private confirmationAlert:ConfirmationAlertService
+  ) { }
+
+  ngOnInit(): void {
+    this.getFiles();
+    // this.getCategories();
+    // this.editFormControls();
+    // this.addNewCategoryControls();
+    // this.addNewCategoryOfficeFormControls();
+  }
+  downloadFile(file){
+    window.open(file,'_blank')
+  }
+
+  /**
+   * categories
+   */
+  getCategories(){
+    this.apiService.getCategories()
+      .subscribe((res)=>{
+        this.categories=res.data;
+        this.loading=false;
+      },error => {
+        this.toastrService.error(error.error.message,'Error');
+      })
+  }
+
+  getFiles(){
+    this.apiService.getFiles()
+      .subscribe((res)=>{
+        this.files=res.data;
+        this.loading=false;
+      },error => {
+        this.toastrService.error(error.error.message,'Error');
+      })
+  }
+
+
+  /**
+   * add new category form
+   */
+  addNewCategoryControls(){
+    this.addNewCategoryForm=this.fb.group({
+      category_name:[''],
+      category_description:[''],
+    });
+  }
+  /**
+   * add new category form
+   */
+  addNewCategoryOfficeFormControls(){
+    this.addNewCategoryOfficeForm=this.fb.group({
+      sub_category_name:[''],
+      sub_category_description:[''],
+    });
+  }
+
+  /**
+   * edit form controls
+   */
+  editFormControls(){
+    this.editCategoryForm=this.fb.group({
+      category_name:[''],
+      category_description:[''],
+    });
+  }
+
+  /**
+   * edit form controls
+   */
+  get form(){
+    return this.editCategoryForm.controls;
+  }
+
+  /**
+   * add new category controls
+   */
+  get catForm(){
+    return this.addNewCategoryForm.controls;
+  }
+
+  /**
+   * sub category(office)form controls
+   */
+  get officeForm(){
+    return this.addNewCategoryOfficeForm.controls;
+  }
+
+  /**
+   * Remove category
+   * @param cat_id
+   */
+  removeCategory(cat_id:number){
+    this.confirmationAlert.sweetAlert(
+      'Are you sure?',
+      'Deleting a category is an irreversible process and will affect the associated official on Kogas',
+      '',
+      '',
+      'question',
+      true,
+      'Yes, Delete Category!',
+      'No, Cancel',
+      '',
+      this.apiService.removeCategory(cat_id)
+    );
+  }
+
+  /**
+   * Remove sub category
+   * @param sub_cat_id
+   */
+  removeSubCategory(sub_cat_id:number){
+    this.confirmationAlert.sweetAlert(
+      'Are you sure?',
+      'Deleting a sub category is an irreversible process and will affect the associated official on Kogas',
+      '',
+      '',
+      'question',
+      true,
+      'Yes, Delete Sub-Category!',
+      'No, Cancel',
+      '',
+      this.apiService.removeSubCategory(sub_cat_id)
+    );
+  }
+
+  /**
+   * category details
+   * @param category
+   */
+  onCategoryClick(category:Category){
+    this.selectedCategory=category;
+  }
+
+  /**
+   * creating new category
+   */
+  onCategoryCreation(){
+    this.submitting=true;
+    let category:Category={
+      category_name:this.catForm.category_name.value,
+      category_description:this.catForm.category_description.value,
+    };
+    this.apiService.createCategory(category)
+      .subscribe((res)=>{
+        this.toastrService.success(res.message,'Success');
+        this.submitting=false;
+        this.reloadCurrentRoute();
+      },error => {
+        this.toastrService.error(error.error.message,'Error');
+        this.submitting=false;
+      })
+  }
+  /**
+   * adding office to category
+   */
+  onCategoryOfficeSubmission(){
+    let office:Category={
+      sub_category_name:this.officeForm.sub_category_name.value,
+      sub_category_description:this.officeForm.sub_category_description.value,
+      category_id:this.selectedCategory.id,
+    };
+    this.confirmationAlert.sweetAlert(
+      'Are you sure?',
+      `Adding new office to ${this.selectedCategory.category_name} category will allow admins to add officials to this new office!`,
+      '',
+      '',
+      'question',
+      true,
+      'Yes, Add Office!',
+      'No, Cancel',
+      '',
+      this.apiService.createSubCategory(office)
+    );
+  }
+
+  /**
+   * on edit
+   */
+  onCategoryEdit(){
+    let category:Category={
+      category_name:this.form.category_name.value,
+      category_description:this.form.category_description.value,
+    };
+    this.confirmationAlert.sweetAlert(
+      'Are you sure?',
+      'Editing a category will reflect on the associated officials',
+      '',
+      '',
+      'question',
+      true,
+      'Yes, Update Category!',
+      'No, Cancel',
+      '',
+      this.apiService.updateCategories(category,this.selectedCategory.id)
+    );
+  }
+  /**
+   * reload
+   */
+  reloadCurrentRoute() {
+    let currentUrl = this.router.url;
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+      this.router.navigate([currentUrl]);
+    });
+  }
+
+}

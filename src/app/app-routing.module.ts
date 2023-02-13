@@ -50,6 +50,10 @@ const routes: Routes = [
     loadChildren: () => import('./components/appointments/appointments.module').then(mod=>mod.AppointmentsModule)
   },
   {
+    path:'admin/file-management',
+    loadChildren: () => import('./Packages/FIleManager/file-manager.module').then(mod=>mod.FileManagerModule)
+  },
+  {
     path:'admin/suggestions',
     loadChildren: () => import('./components/idea-suggestions/idea-suggestions.module').then(mod=>mod.IdeaSuggestionsModule)
   },

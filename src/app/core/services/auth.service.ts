@@ -32,13 +32,13 @@ export class AuthService {
    * @param password
    */
   login(email: string, password: string):Observable<any> {
-    return this.httpClient.post<User>(`${environment.API_BASE_URL}login`, { email, password })
-      .pipe(map(user => {
-        if(user.data.user_type=='official'){
+    return this.httpClient.post<User>(`https://api.solutech.millerjuma.co.ke/api/v1/auth/login`, { email, password })
+      .pipe(map(res => {
+        if(res.data){
           // store user details and jwt token in local storage to keep user logged in between page refreshes
-          localStorage.setItem('kogiCitizen', JSON.stringify(user));
-          this.currentUserSubject.next(user);
-          return user;
+          localStorage.setItem('kogiCitizen', JSON.stringify(res));
+          this.currentUserSubject.next(res);
+          return res;
         }
         else{
           this.toastrService.error("ACCESS DENIED | You're not authorised to this portal!");

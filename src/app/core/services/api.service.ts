@@ -267,6 +267,10 @@ export class ApiService {
     return this.httpClient.get<Category>(`${environment.API_BASE_URL}admin/category`);
   }
 
+  getFiles(): Observable<any>{
+    return this.httpClient.get<any>(`https://158a-41-81-13-69.ngrok.io/api/v1/storage/files/paulodhiambo962@gmail.com`)
+  }
+
   /**
    * get categories
    */

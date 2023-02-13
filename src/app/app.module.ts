@@ -23,6 +23,7 @@ import { SliceWordsPipe } from './core/pipes/slice-words.pipe';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import {UnauthorisedComponent} from "./unauthorised/unauthorised.component";
 import { NgxSpinnerModule } from "ngx-spinner";
+
 @NgModule({
   declarations: [
     AppComponent,
